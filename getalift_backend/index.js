@@ -955,7 +955,15 @@ router.post("/findTarget", function(req, res){
 
 			console.log(result);
 
-			var conditions = conditionsInString(result);
+			var conditions="(";
+			result.forEach(function(element,index,array) {
+			  if(index==0){
+				  conditions+=element.route;
+			  }else{
+				  conditions+=","+element.route;
+			  }
+			})
+			conditions+=")";
 
 			var query = "SELECT * FROM `Route` R "+
 				"INNER JOIN "+
@@ -1376,7 +1384,7 @@ function conditionsInString(array){
 	})
 	conditions+=")";
 
-	return conditions;
+	return conditions
 }
 
 /* ==================
