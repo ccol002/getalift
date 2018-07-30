@@ -1089,7 +1089,17 @@ function calculatePath(startPoint,endPoint,travelingMode,callback){
  // 		- result				: an array of routes that matches the previous step of the findTarget query
  // Body Params	: None
  // Return		:
- // 		- An array with the 3 best routes
+ // 		- An array with the 3 best routes,
+ //			- Each route is defined by an array composed of :
+	 //			- id : the route id
+	 //			- user_id : the driver id
+	//			- user_name : the driver username
+	//			- routesPoint : an array of every routesPoints of the route
+	//			- closestPointStart : the closest RoutePoint from the passenger starting point
+	//			- closestPointEnd : the closest RoutePoint from the passenger ending point
+	//			- distancePointStart : the distance from the passenger starting point to the closestPointStart
+	//			- distancePointEnd : the distance from the closestPointEnd to the the passenger ending point
+	//			- totalDistance : the distance to walk (distancePointStart + distancePointEnd)
  // Description	:
  //		This function is used to find the best target depending on the passenger parameters.
  //		It use a kd-tree algorithm to find the closest neighbor in a 2D plan composed of every routesPoint of one route.
