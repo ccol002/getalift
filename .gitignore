@@ -1,2 +1,11 @@
-getalift-android/.gradle/
-getalift-android/.idea/
+//GetALift android ignore
+
+getalift-android/*.iml
+getalift-android/.gradle
+getalift-android/local.properties
+getalift-android/.idea/workspace.xml
+getalift-android/.idea/libraries
+getalift-android/.DS_Store
+getalift-android/build
+getalift-android/captures
+getalift-android/.externalNativeBuild
