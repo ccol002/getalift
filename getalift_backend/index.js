@@ -1027,8 +1027,9 @@ router.post("/findTarget", function(req, res){
 										if(index != null){
 											tab[index].user_id = element.id;
 											tab[index].user_name = element.name;
-									});
-									
+										}
+									})
+
 									var d = new Date();
 									var t2 = d.getTime();
 									console.log("TEMPS TOTAL : ");
