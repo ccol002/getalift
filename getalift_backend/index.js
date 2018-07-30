@@ -1086,7 +1086,7 @@ function calculatePath(startPoint,endPoint,travelingMode,callback){
  // 	It also calculate the distance in meters between the passenger starting point to the driver closest routePoint
  //		Same for the passenger ending point.
 
-function refineWithRoutePoints(passenger,result){
+async function refineWithRoutePoints(passenger,result){
 	var tab = [];
 	var index;
 
@@ -1108,7 +1108,9 @@ function refineWithRoutePoints(passenger,result){
 	//For every routes
 	for(var i=0;i<tab.length;i++){
 		var points = [];
-		tab[i].user = getUserFromRoute(tab[i].id);
+		console.log("WAITING FOR DB ANSWER");
+		tab[i].user = await getUserFromRoute(tab[i].id);
+		console.log("DB ANSWERED");
 		//We add all the routePoints of the route to the kd-tree.
 		for(var j=0; j<tab[i].routePoints.length;j++){
 			points.push({id: tab[i].routePoints[j].id, lat:tab[i].routePoints[j].point.x, lng: tab[i].routePoints[j].point.y})
