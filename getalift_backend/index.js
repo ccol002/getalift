@@ -1004,12 +1004,13 @@ router.post("/findTarget", function(req, res){
 						query,
 						function(err,result){
 							if(err) throw err;
-							var rep = refineWithRoutePoints(passenger, result);
-							var d = new Date();
-							var t2 = d.getTime();
-							console.log("TEMPS TOTAL : ");
-							console.log((t2-t1)/1000 +" secondes");
-							res.json(rep);
+							refineWithRoutePoints(passenger, result).then( function(result) {
+								var d = new Date();
+								var t2 = d.getTime();
+								console.log("TEMPS TOTAL : ");
+								console.log((t2-t1)/1000 +" secondes");
+								res.json(rep);
+							});
 						}
 					)
 				});
