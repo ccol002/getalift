@@ -1005,7 +1005,7 @@ router.post("/findTarget", function(req, res){
 						function(err,result){
 							if(err) throw err;
 							var rep = refineWithRoutePoints(passenger, result);
-
+							console.log(rep);
 							if(rep.routes_id.length > 0){
 								var conditions="(";
 								rep.routes_id.forEach(function(element,index,array) {
@@ -1017,7 +1017,7 @@ router.post("/findTarget", function(req, res){
 								})
 								conditions+=")";
 
-								var query = "SELECT `User`.id, name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id IN "+conditions;
+								var query = "SELECT `User`.id, `Route`.id as route_id,name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id IN "+conditions;
 
 								db_con.query(query, function(err, result){
 									if(err) throw err;
@@ -1104,7 +1104,7 @@ function calculatePath(startPoint,endPoint,travelingMode,callback){
  // 	It also calculate the distance in meters between the passenger starting point to the driver closest routePoint
  //		Same for the passenger ending point.
 
-async function refineWithRoutePoints(passenger,result){
+function refineWithRoutePoints(passenger,result){
 	var tab = [];
 	var routes_id = [];
 	var index;
