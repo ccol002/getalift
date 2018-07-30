@@ -955,15 +955,7 @@ router.post("/findTarget", function(req, res){
 
 			console.log(result);
 
-			var conditions="(";
-			result.forEach(function(element,index,array) {
-			  if(index==0){
-				  conditions+=element.route;
-			  }else{
-				  conditions+=","+element.route;
-			  }
-			})
-			conditions+=")";
+			var conditions = conditionsInString(result);
 
 			var query = "SELECT * FROM `Route` R "+
 				"INNER JOIN "+
@@ -986,15 +978,7 @@ router.post("/findTarget", function(req, res){
 					var second_refined_selection = refineWithAngle(passenger,result);
 					console.log("NB ELEMENTS with angle OK : "+second_refined_selection.length);
 					/*SECOND REFINE SELECTION : Find route that got route points that are close to the departure and arrival point of the passenger  */
-					var conditions="(";
-					second_refined_selection.forEach(function(element,index,array) {
-					  if(index==0){
-						  conditions+=element;
-					  }else{
-						  conditions+=","+element;
-					  }
-					})
-					conditions+=")";
+					var conditions = conditionsInString(second_refined_selection);
 
 					var query = "SELECT id,point,route,seconds_from_start FROM `RoutePoints` RP "+
 						"WHERE "+
@@ -1007,15 +991,7 @@ router.post("/findTarget", function(req, res){
 							var rep = refineWithRoutePoints(passenger, result);
 							console.log(rep);
 							if(rep.routes_id.length > 0){
-								var conditions="(";
-								rep.routes_id.forEach(function(element,index,array) {
-								  if(index==0){
-									  conditions+=element;
-								  }else{
-									  conditions+=","+element;
-								  }
-								})
-								conditions+=")";
+								var conditions = conditionsInString(rep.routes_id);
 
 								var query = "SELECT `User`.id, `Route`.id as route_id,name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id IN "+conditions;
 
@@ -1385,13 +1361,22 @@ function testGoogleMaps(){
 	});
 }
 
-function getUserFromRoute(id_route){
-	console.log("get user from route "+id_route);
-	db_con.query("SELECT `User`.id, name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id=?", [id_route], function(err, result){
-		if(err) throw err;
-		console.log("finish !!!!");
-		return result;
-	});
+/*This function is use to build a string conditions for SQL queries
+Used for queries "SELECT [...] IN conditions"
+Exemple : array = [1,2,3,4]
+Returns : (1,2,3,4)*/
+function conditionsInString(array){
+	var conditions="(";
+	array.forEach(function(element,index,array) {
+		if(index==0){
+			conditions+=element;
+		}else{
+			conditions+=","+element;
+		}
+	})
+	conditions+=")";
+
+	return conditions
 }
 
 /* ==================
