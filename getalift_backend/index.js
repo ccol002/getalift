@@ -1025,8 +1025,8 @@ router.post("/findTarget", function(req, res){
 									result.forEach(function(element,index,array) {
 										index = keyExists(rep,element.route_id);
 										if(index != null){
-											tab[index].user_id = element.id;
-											tab[index].user_name = element.name;
+											rep[index].user_id = element.id;
+											rep[index].user_name = element.name;
 										}
 									})
 
