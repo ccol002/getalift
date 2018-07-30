@@ -1107,11 +1107,8 @@ function refineWithRoutePoints(passenger,result){
 
 	//For every routes
 	for(var i=0;i<tab.length;i++){
-		var user = [];
-		user = getUserInfos(getUserFromRoute(tab[i].id));
-		tab[i].push(user);
-
 		var points = [];
+		tab[i].user = getUserFromRoute(tab[i].id);
 		//We add all the routePoints of the route to the kd-tree.
 		for(var j=0; j<tab[i].routePoints.length;j++){
 			points.push({id: tab[i].routePoints[j].id, lat:tab[i].routePoints[j].point.x, lng: tab[i].routePoints[j].point.y})
@@ -1360,16 +1357,11 @@ function testGoogleMaps(){
 	});
 }
 
-function getUserInfos(id){
-	db_con.query("SELECT * FROM User WHERE id = ?", [id], function(err, result){
+function getUserFromRoute(id_route){
+	console.log("get user from route "+id_route);
+	db_con.query("SELECT `User`.id, name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id=?", [id_route], function(err, result){
 		if(err) throw err;
-		return result;
-	});
-}
-
-function getUserFromRoute(id){
-	db_con.query("SELECT driver FROM Route WHERE id = ?", [id], function(err, result){
-		if(err) throw err;
+		console.log("finish !!!!");
 		return result;
 	});
 }
