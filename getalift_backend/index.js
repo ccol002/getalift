@@ -1141,6 +1141,8 @@ function refineWithRoutePoints(passenger,result){
 		console.log("Distance Point End");
 		console.log(tab[i].distancePointEnd + " meters");
 	}
+
+	return tab;
 }
 
  // URL Params		:
