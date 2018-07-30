@@ -1376,7 +1376,7 @@ function conditionsInString(array){
 	})
 	conditions+=")";
 
-	return conditions
+	return conditions;
 }
 
 /* ==================
