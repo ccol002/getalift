@@ -1021,7 +1021,13 @@ router.post("/findTarget", function(req, res){
 
 								db_con.query(query, function(err, result){
 									if(err) throw err;
-									rep.push(result);
+
+									result.forEach(function(element,index,array) {
+										index = keyExists(rep,element.route_id);
+										if(index != null){
+											tab[index].user_id = element.id;
+											tab[index].user_name = element.name;
+									})
 									var d = new Date();
 									var t2 = d.getTime();
 									console.log("TEMPS TOTAL : ");
