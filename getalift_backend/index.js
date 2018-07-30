@@ -1004,17 +1004,34 @@ router.post("/findTarget", function(req, res){
 						query,
 						function(err,result){
 							if(err) throw err;
-							refineWithRoutePoints(passenger, result).then( function(result) {
-								var d = new Date();
-								var t2 = d.getTime();
-								console.log("TEMPS TOTAL : ");
-								console.log((t2-t1)/1000 +" secondes");
-								res.json(rep);
-							});
+							var rep = refineWithRoutePoints(passenger, result);
+
+							if(rep.routes_id.length > 0){
+								var conditions="(";
+								rep.routes_id.forEach(function(element,index,array) {
+								  if(index==0){
+									  conditions+=element;
+								  }else{
+									  conditions+=","+element;
+								  }
+								})
+								conditions+=")";
+
+								var query = "SELECT `User`.id, name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id IN "+conditions;
+
+								db_con.query(query, function(err, result){
+									if(err) throw err;
+									rep.push(result);
+									var d = new Date();
+									var t2 = d.getTime();
+									console.log("TEMPS TOTAL : ");
+									console.log((t2-t1)/1000 +" secondes");
+									res.json(rep);
+								});
+							}
 						}
 					)
 				});
-
 	});
 
 	/*var startPointDriver = {lat: parseFloat(req.body.startLatDriver),lng: parseFloat(req.body.startLngDriver)};
@@ -1089,6 +1106,7 @@ function calculatePath(startPoint,endPoint,travelingMode,callback){
 
 async function refineWithRoutePoints(passenger,result){
 	var tab = [];
+	var routes_id = [];
 	var index;
 
 	for(var j=0;j<result.length;j++){
@@ -1099,6 +1117,7 @@ async function refineWithRoutePoints(passenger,result){
 			var tmp = {id : result[j].route, routePoints : []};
 			tmp.routePoints.push(result[j]);
 			tab.push(tmp);
+			routes_id.push(result[j].route);
 		}
 	}
 
@@ -1109,9 +1128,6 @@ async function refineWithRoutePoints(passenger,result){
 	//For every routes
 	for(var i=0;i<tab.length;i++){
 		var points = [];
-		console.log("WAITING FOR DB ANSWER");
-		tab[i].user = await getUserFromRoute(tab[i].id);
-		console.log("DB ANSWERED");
 		//We add all the routePoints of the route to the kd-tree.
 		for(var j=0; j<tab[i].routePoints.length;j++){
 			points.push({id: tab[i].routePoints[j].id, lat:tab[i].routePoints[j].point.x, lng: tab[i].routePoints[j].point.y})
@@ -1146,6 +1162,7 @@ async function refineWithRoutePoints(passenger,result){
 		console.log(tab[i].distancePointEnd + " meters");
 	}
 
+	tab.routes_id = routes_id;
 	return tab;
 }
 
