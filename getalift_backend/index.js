@@ -1341,7 +1341,7 @@ function testGoogleMaps(){
 	console.log("test gmap...");
 	googleMapsClient.directions({
 		origin: "35.9015315,14.485157599999999",
-		destination: "35.85411349999999,14.48327949999998";
+		destination: "35.85411349999999,14.48327949999998",
 	}, function(error, response){
 		// If there is an error with the GM API request, we send it back.
 		if(error){
