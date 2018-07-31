@@ -931,17 +931,25 @@ router.post("/findTarget", function(req, res){
 
     var query = "Select distinct route from `RoutePoints` RP "+
 			"WHERE "+
-				"RP.square_id_lng = "+ pSPSI.lng +
+				"RP.square_id_lng >= "+ pSPSI.lng-1 +
 				" AND "+
-				"RP.square_id_lat = "+ pSPSI.lat+
+				"RP.square_id_lng <= "+ pSPSI.lng+1 +
+				" AND "+
+				"RP.square_id_lng >= "+ pSPSI.lat-1 +
+				" AND "+
+				"RP.square_id_lat <= "+ pSPSI.lat+1+
 					" AND "+
 						"RP.route IN "+
 							"("+
 								"Select distinct route from `RoutePoints` RP "+
 									"WHERE "+
-										"RP.square_id_lng = "+ pEPSI.lng +
-											" AND "+
-										"RP.square_id_lat = "+ pEPSI.lat +
+									"RP.square_id_lng >= "+ pSPSI.lng-1 +
+									" AND "+
+									"RP.square_id_lng <= "+ pSPSI.lng+1 +
+									" AND "+
+									"RP.square_id_lng >= "+ pSPSI.lat-1 +
+									" AND "+
+									"RP.square_id_lat <= "+ pSPSI.lat+1+
 							" )";
 
 	console.log("### FIRST STEP (SQUAREID) ###");

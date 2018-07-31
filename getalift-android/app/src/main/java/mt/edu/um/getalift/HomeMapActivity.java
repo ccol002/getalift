@@ -97,8 +97,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     private boolean isShowingMap;
 
-    private double[] originPoint = {0.0,0.0};
-    private double[] destinationPoint = {0.0,0.0};
+    private double[] originPoint = {-360,-360};
+    private double[] destinationPoint = {-360,-360};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -412,7 +412,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                             }
 
                             //If the origin field or the destination field is empty
-                            if(destinationPoint[0] != 0.0 && destinationPoint[1] != 0.0 && originPoint[0] != 0.0 && originPoint[1] != 0.0) {
+                            if(destinationPoint[0] > -180 && destinationPoint[1] > -180 && originPoint[0] > -180 && originPoint[1] > -180) {
                                 searchRide();
                             }
                         } catch (JSONException e) {
@@ -483,6 +483,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
             }
         };
         queue.add(postRequest);
-        Log.i(TAG, "request2 sent...");
+        originPoint[0] = -360;
+        originPoint[1] = -360;
+        destinationPoint[0] = -360;
+        destinationPoint[1] = -360;
     }
 }
