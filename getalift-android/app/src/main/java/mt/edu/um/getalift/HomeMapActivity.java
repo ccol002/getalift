@@ -204,12 +204,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     private void startResultSearchActivity() {
-        Log.i(TAG, "Button pressed.....");
         getLatLongFromGivenAddress(mTextSearchDestination.getText().toString(),"destination");
         getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
-
-        //Intent intent = new Intent(this, ResultSearchActivity.class);
-        //startActivity(intent);
     }
 
     public void switchView() {
@@ -450,15 +446,15 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
-                        Log.i(TAG, "RESPONSE !!!");
-                        Log.i(TAG, response);
+                        Intent intent = new Intent(getApplicationContext(), ResultSearchActivity.class);
+                        intent.putExtra("JSON_RESULT", response);
+                        startActivity(intent);
                     }
                 },
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
-                        Log.i(TAG, "ERROR RESPONSE !!!");
-                        Log.i("Error.Response", error.toString());
+                        Log.i(TAG, error.toString());
                     }
                 }){
             @Override

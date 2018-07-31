@@ -494,8 +494,8 @@ router.put("/routes", function(req, res){
 	var endLat = parseFloat(req.body.endLat);
 	var endLng = parseFloat(req.body.endLng);
 
-    var origin = req.body.origin
-    var destination = req.body.destination
+  var origin = req.body.origin
+  var destination = req.body.destination
 
 	var dates = req.body.dates.split(";");
 	//var dates = ["11-04-2018","12-04-2018"];
@@ -1215,7 +1215,6 @@ function refineWithAngle(passenger,drivers_vector){
 		if(getAngle(passenger_vector,driver_vector)<90){
 			first_refined_selection.push(drivers_vector[i].route);
 		};
-
 		console.log("ROUTE N "+drivers_vector[i].route);
 		console.log("ANGLE : "+getAngle(passenger_vector,driver_vector));
 	}

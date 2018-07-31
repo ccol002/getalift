@@ -14,6 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +42,42 @@ public class ResultSearchActivity extends AppCompatActivity {
     }
 
     private void populateRideList() {
-        myRides.add(new Ride("University of Malta","Mater Dei Hostipal", new User(4,"toto"),"10/08/2018",3));
-        myRides.add(new Ride("University of France","Mater Dei Hostipal",new User(2,"tata"), "11/08/2018",3));
-        myRides.add(new Ride("University of Germany","Mater Dei Hostipal",new User(1,"titi"), "12/08/2018",3));
+        String response = getIntent().getStringExtra("JSON_RESULT");
+        try {
+            JSONArray res = new JSONArray(response);
+            int user_id;
+            String user_name;
+            int route_id;
+            Double startLat;
+            Double startLng;
+            Double endLat;
+            Double endLng;
+            int minWalking;
+            for(int i=0;i<res.length();i++){
+
+                JSONObject tmp = res.getJSONObject(i);
+                JSONArray routePoints = tmp.getJSONArray("routePoints");
+
+                //Get the first route point of the route (startingPoint)
+                startLat = routePoints.getJSONObject(0).getJSONObject("point").getDouble("x");
+                startLng = routePoints.getJSONObject(0).getJSONObject("point").getDouble("y");
+
+                //Get the last route point of the route (endingPoint)
+                endLat = routePoints.getJSONObject(routePoints.length()-1).getJSONObject("point").getDouble("x");
+                endLng = routePoints.getJSONObject(routePoints.length()-1).getJSONObject("point").getDouble("y");
+
+                route_id = tmp.getInt("id");
+                user_id = tmp.getInt("user_id");
+                user_name = tmp.getString("user_name");
+
+                minWalking = (int)tmp.getInt("totalDistance")/60;
+
+                myRides.add(new Ride(startLat,startLng,endLat,endLng,route_id,user_id,user_name,"2018-12-31",minWalking));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void populateListView() {
@@ -97,11 +134,11 @@ public class ResultSearchActivity extends AppCompatActivity {
 
             // Name:
             TextView nameText = (TextView) itemView.findViewById(R.id.usr_name);
-            nameText.setText(currentRide.getDriver().getUsername());
+            nameText.setText(currentRide.getUser_name());
 
             // Rate:
             TextView rateText = (TextView) itemView.findViewById(R.id.usr_rate);
-            rateText.setText(Float.toString(currentRide.getDriver().getRate()) + "/5");
+            rateText.setText("3.4/5");
 
             // Distance:
             TextView distanceText = (TextView) itemView.findViewById(R.id.usr_distance);
