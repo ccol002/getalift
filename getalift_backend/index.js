@@ -955,6 +955,12 @@ router.post("/findTarget", function(req, res){
 
 			console.log(result);
 
+			if(result.length == 0){
+				console.log("Aucuns trajets disponibles");
+				res.json([]);
+				return;
+			}
+
 			var conditions="(";
 			result.forEach(function(element,index,array) {
 			  if(index==0){
@@ -988,7 +994,7 @@ router.post("/findTarget", function(req, res){
 					/*SECOND REFINE SELECTION : Find route that got route points that are close to the departure and arrival point of the passenger  */
 					if(second_refined_selection.length == 0){
 						console.log("Aucuns trajets disponibles");
-						res.json(null);
+						res.json([]);
 						return;
 					}
 					var conditions = conditionsInString(second_refined_selection);
