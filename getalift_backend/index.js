@@ -1003,6 +1003,7 @@ router.post("/findTarget", function(req, res){
 							if(err) throw err;
 							var rep = refineWithRoutePoints(passenger, result);
 							console.log(rep);
+							if(rep.routes_id.length > 0){
 								var conditions = conditionsInString(rep.routes_id);
 
 								var query = "SELECT `User`.id, `Route`.id as route_id,name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id IN "+conditions;
