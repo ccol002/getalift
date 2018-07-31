@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -71,6 +73,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private static final String TAG = "HomeMapActivity";
 
     private final static int MY_ACCESS_PERMISSION_CODE = 1;
+    private final static String GoogleMapsAPIKey = "AIzaSyDTy7xW1utk3NLaG_HXk28KIBbVm4mgkp0";
 
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
@@ -93,6 +96,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private FloatingActionButton myFab;
 
     private boolean isShowingMap;
+
+    private double[] originPoint = {0.0,0.0};
+    private double[] destinationPoint = {0.0,0.0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,8 +205,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     private void startResultSearchActivity() {
         Log.i(TAG, "Button pressed.....");
-        getLatLongFromGivenAddress(mTextSearchDestination.getText().toString());
-        getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString());
+        getLatLongFromGivenAddress(mTextSearchDestination.getText().toString(),"destination");
+        getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
 
         //Intent intent = new Intent(this, ResultSearchActivity.class);
         //startActivity(intent);
@@ -237,7 +243,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     public void setDate(final Calendar calendar){
         final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
-        showDateView.setText(dateFormat.format(calendar.getTime()));
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        showDateView.setText(format.format(calendar.getTime()));
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day){
@@ -370,12 +377,13 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         return tmp;
     }
 
-    public void getLatLongFromGivenAddress(String address) {
+    public void getLatLongFromGivenAddress(String address, final String point) {
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?address="+parseStringForURL(address)+"&key="+R.string.google_maps_api_key;
-        Log.i(TAG, "STARTING QUERY FOR ADDRESS "+parseStringForURL(address)+"....");
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?address="+parseStringForURL(address)+"&key="+GoogleMapsAPIKey;
+        /*Log.i(TAG, "STARTING QUERY FOR ADDRESS "+parseStringForURL(address)+"....");
+        Log.i(TAG, url);*/
         StringRequest sr = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>(){
 
@@ -385,6 +393,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         try {
                             // We create a JSONObject from the server response.
                             JSONObject jo = new JSONObject(response);
+                            double[] arr = new double[2];
 
                             double lng = ((JSONArray)jo.get("results")).getJSONObject(0)
                                     .getJSONObject("geometry").getJSONObject("location")
@@ -394,26 +403,18 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                     .getJSONObject("geometry").getJSONObject("location")
                                     .getDouble("lat");
 
-                            Context context = getApplicationContext();
-                            CharSequence text = Double.toString(lat)+","+Double.toString(lng);
-                            int duration = Toast.LENGTH_SHORT;
+                            if(point.equals("origin")){
+                                originPoint[0] = lat;
+                                originPoint[1] = lng;
+                            }else{
+                                destinationPoint[0] = lat;
+                                destinationPoint[1] = lng;
+                            }
 
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
-
-                            Log.i(TAG, Double.toString(lat));
-                            Log.i(TAG, Double.toString(lng));
-                            /*} else {
-                                Log.i(TAG,"NOT WORKING");
-
-                                Context context = getApplicationContext();
-                                CharSequence text = jo.getString("message");
-                                int duration = Toast.LENGTH_SHORT;
-
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
-                            }*/
-
+                            //If the origin field or the destination field is empty
+                            if(destinationPoint[0] != 0.0 && destinationPoint[1] != 0.0 && originPoint[0] != 0.0 && originPoint[1] != 0.0) {
+                                searchRide();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -433,58 +434,41 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     public void searchRide(){
-        // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
+
         // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/routes";
+        String url = ConnectionManager.SERVER_URL+"/api/findTarget";
 
-        // We retrieve the user credentials
-        //final String name = ((EditText) findViewById(R.id.edt_username)).getText().toString().trim();
-        //final String password = ((EditText) findViewById(R.id.edt_password)).getText().toString().trim();
+        // We retrieve the search parameters
+        final String startLat = Double.toString(originPoint[0]);
+        final String startLng = Double.toString(originPoint[1]);
+        final String endLat = Double.toString(destinationPoint[0]);
+        final String endLng = Double.toString(destinationPoint[1]);
+        final String startDate = ((EditText) findViewById(R.id.edt_home_date)).getText().toString().trim();
 
-        // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
-        // it looks like it's more stable.
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>(){
-
                     @Override
                     public void onResponse(String response){
-                        // We got a response from our server.
-                        try {
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONObject(response);
-
-                            if (jo.getBoolean("success")){
-                                //Log.i(jo.toString());
-                            } else {
-                                Context context = getApplicationContext();
-                                CharSequence text = jo.getString("message");
-                                int duration = Toast.LENGTH_SHORT;
-
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Log.i(TAG, "RESPONSE !!!");
+                        Log.i(TAG, response);
                     }
-
                 },
                 new Response.ErrorListener(){
-
                     @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("GetALift", error.toString());
+                    public void onErrorResponse(VolleyError error){
+                        Log.i(TAG, "ERROR RESPONSE !!!");
+                        Log.i("Error.Response", error.toString());
                     }
-
-                }
-        ){
+                }){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                //params.put("username",name);
-                //params.put("password",password);
+                params.put("startLng", startLng);
+                params.put("startLat", startLat);
+                params.put("endLng", endLng);
+                params.put("endLat", endLat);
+                params.put("startDate", startDate);
 
                 return params;
             }
@@ -493,10 +477,12 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
                 return params;
             }
         };
-
-        queue.add(sr);
+        queue.add(postRequest);
+        Log.i(TAG, "request2 sent...");
     }
 }

@@ -47,5 +47,4 @@
     <string name="error_username_exists">This username already exists. Please chose another one.</string>
     <string name="txt_title_profile">Get A Lift - Profile</string>
     <string name="txt_title_result_search">Available drives</string>
-    <string name="google_maps_api_key">AIzaSyCrJrav71SD2Bu-oUCm1Sxi563pGwaAsaI</string>
 </resources>

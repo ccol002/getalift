@@ -986,6 +986,11 @@ router.post("/findTarget", function(req, res){
 					var second_refined_selection = refineWithAngle(passenger,result);
 					console.log("NB ELEMENTS with angle OK : "+second_refined_selection.length);
 					/*SECOND REFINE SELECTION : Find route that got route points that are close to the departure and arrival point of the passenger  */
+					if(second_refined_selection.length == 0){
+						console.log("Aucuns trajets disponibles");
+						res.json(null);
+						return;
+					}
 					var conditions = conditionsInString(second_refined_selection);
 
 					var query = "SELECT id,point,route,seconds_from_start FROM `RoutePoints` RP "+
@@ -998,7 +1003,6 @@ router.post("/findTarget", function(req, res){
 							if(err) throw err;
 							var rep = refineWithRoutePoints(passenger, result);
 							console.log(rep);
-							if(rep.routes_id.length > 0){
 								var conditions = conditionsInString(rep.routes_id);
 
 								var query = "SELECT `User`.id, `Route`.id as route_id,name from `User`, `Route` where `User`.id = `Route`.driver and `Route`.id IN "+conditions;
