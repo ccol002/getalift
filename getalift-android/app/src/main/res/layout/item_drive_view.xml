@@ -53,9 +53,25 @@
         android:id="@+id/usr_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/usr_name"
-        android:layout_marginEnd="51dp"
+        android:layout_alignEnd="@+id/usr_arriveAt"
+        android:layout_below="@+id/usr_arriveAt"
         android:text="x min walk" />
+
+    <TextView
+        android:id="@+id/usr_arriveAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/usr_date"
+        android:layout_below="@+id/usr_name"
+        android:text="Arrive at 3:52 PM" />
+
+    <TextView
+        android:id="@+id/usr_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/usr_icon"
+        android:layout_marginEnd="12dp"
+        android:text="16th of June" />
 
 </RelativeLayout>

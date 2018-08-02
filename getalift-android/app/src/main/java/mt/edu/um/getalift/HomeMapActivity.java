@@ -191,16 +191,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         mTextSearchOrigin.setAdapter(mPlaceAutocompleteAdapater);
         mTextSearchDestination.setAdapter(mPlaceAutocompleteAdapater);
 
+        mTextSearchOrigin.setText("University Of Malta, Msida");
+        mTextSearchDestination.setText("Triq San Tumas, Luqa");
+
         showDateView = findViewById(R.id.edt_home_date);
-
-        Log.i(TAG, "Activity launched.....");
-
-        context = getApplicationContext();
-        CharSequence text = parseStringForURL("Universty of malta");
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
     }
 
     private void startResultSearchActivity() {

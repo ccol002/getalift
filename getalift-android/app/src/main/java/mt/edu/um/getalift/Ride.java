@@ -1,5 +1,7 @@
 package mt.edu.um.getalift;
 
+import java.util.List;
+
 public class Ride {
     private double startLat;
     private double startLng;
@@ -8,10 +10,11 @@ public class Ride {
     private int route_id;
     private int user_id;
     private String user_name;
-    private String date;
     private int minWalking;
+    private MyDate date;
+    private List<MyPoint> routePoints;
 
-    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, String date, int minWalking) {
+    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, int minWalking, MyDate date, List<MyPoint> routePoints) {
         this.startLat = startLat;
         this.startLng = startLng;
         this.endLat = endLat;
@@ -19,8 +22,10 @@ public class Ride {
         this.route_id = route_id;
         this.user_id = user_id;
         this.user_name = user_name;
-        this.date = date;
         this.minWalking = minWalking;
+        this.date = date;
+        this.routePoints = routePoints;
+
     }
 
     public double getStartLat() {
@@ -79,19 +84,27 @@ public class Ride {
         this.user_name = user_name;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public int getMinWalking() {
         return minWalking;
     }
 
     public void setMinWalking(int minWalking) {
         this.minWalking = minWalking;
+    }
+
+    public void setDate(MyDate date) {
+        this.date = date;
+    }
+
+    public MyDate getDate() {
+        return date;
+    }
+
+    public List<MyPoint> getRoutePoints() {
+        return routePoints;
+    }
+
+    public void setRoutePoints(List<MyPoint> routePoints) {
+        this.routePoints = routePoints;
     }
 }
