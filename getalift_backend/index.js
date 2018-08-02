@@ -1386,7 +1386,7 @@ function addRoute(nb){
 }
 
 function findPointById(arrayPoints, id){
-	for(int i=0;i<arrayPoints.length;i++){
+	for(var i=0;i<arrayPoints.length;i++){
 		if(arrayPoints[i].id == id){
 			return arrayPoints[i];
 		}
