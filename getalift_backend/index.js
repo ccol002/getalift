@@ -1157,14 +1157,14 @@ function refineWithRoutePoints(passenger,result){
 		var tree = new kdt.createKdTree(points, distance, ["lat","lng"]);
 
 		//Find the closest neighbor from the starting point
-		tab[i].closestPointStart = tree.nearest(passenger.startPoint,1)[0];
-		var tmp = findPointById(tab[i].routePoints, tab[i].closestPointStart.id);
-		tab[i].closestPointStart.seconds_from_start = tmp.seconds_from_start;
+		tab[i].closestPointStart = tree.nearest(passenger.startPoint,1);
+		//var tmp = findPointById(tab[i].routePoints, tab[i].closestPointStart.id);
+		//tab[i].closestPointStart.seconds_from_start = tmp.seconds_from_start;
 
 		//Find the closest neighbor from the ending point
-		tab[i].closestPointEnd = tree.nearest(passenger.endPoint,1)[0];
-		var tmp = findPointById(tab[i].routePoints, tab[i].closestPointEnd.id);
-		tab[i].closestPointEnd.seconds_from_start = tmp.seconds_from_start;
+		tab[i].closestPointEnd = tree.nearest(passenger.endPoint,1);
+		//var tmp = findPointById(tab[i].routePoints, tab[i].closestPointEnd.id);
+		//tab[i].closestPointEnd.seconds_from_start = tmp.seconds_from_start;
 
 		//Calculate distance in meters
 		tab[i].distancePointStart = coordToMeters(passenger.startPoint.lat, passenger.startPoint.lng, tab[i].closestPointStart[0][0].lat, tab[i].closestPointStart[0][0].lng);
