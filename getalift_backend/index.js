@@ -1158,19 +1158,19 @@ function refineWithRoutePoints(passenger,result){
 
 		//Find the closest neighbor from the starting point
 		var tmp = tree.nearest(passenger.startPoint,1);
-		tab[i].closestPointStart = tmp[0];
+		tab[i].closestPointStart = tmp[0][0];
 		//var tmp = findPointById(tab[i].routePoints, tab[i].closestPointStart.id);
 		//tab[i].closestPointStart.seconds_from_start = tmp.seconds_from_start;
 
 		//Find the closest neighbor from the ending point
 		var tmp = tree.nearest(passenger.endPoint,1);
-		tab[i].closestPointEnd = tmp[0];
+		tab[i].closestPointEnd = tmp[0][0];
 		//var tmp = findPointById(tab[i].routePoints, tab[i].closestPointEnd.id);
 		//tab[i].closestPointEnd.seconds_from_start = tmp.seconds_from_start;
 
 		//Calculate distance in meters
-		tab[i].distancePointStart = coordToMeters(passenger.startPoint.lat, passenger.startPoint.lng, tab[i].closestPointStart[0][0].lat, tab[i].closestPointStart[0][0].lng);
-		tab[i].distancePointEnd = coordToMeters(passenger.endPoint.lat, passenger.endPoint.lng, tab[i].closestPointEnd[0][0].lat, tab[i].closestPointEnd[0][0].lng);
+		tab[i].distancePointStart = coordToMeters(passenger.startPoint.lat, passenger.startPoint.lng, tab[i].closestPointStart.lat, tab[i].closestPointStart.lng);
+		tab[i].distancePointEnd = coordToMeters(passenger.endPoint.lat, passenger.endPoint.lng, tab[i].closestPointEnd.lat, tab[i].closestPointEnd.lng);
 		tab[i].totalDistance = tab[i].distancePointStart + tab[i].distancePointEnd;
 	}
 
