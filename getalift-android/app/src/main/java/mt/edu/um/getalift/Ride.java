@@ -13,8 +13,10 @@ public class Ride {
     private int minWalking;
     private MyDate date;
     private List<MyPoint> routePoints;
+    private MyPoint closestPointStart;
+    private MyPoint closestPointEnd;
 
-    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, int minWalking, MyDate date, List<MyPoint> routePoints) {
+    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, int minWalking, MyDate date, List<MyPoint> routePoints, MyPoint closestPointStart, MyPoint closestPointEnd) {
         this.startLat = startLat;
         this.startLng = startLng;
         this.endLat = endLat;
@@ -25,7 +27,8 @@ public class Ride {
         this.minWalking = minWalking;
         this.date = date;
         this.routePoints = routePoints;
-
+        this.closestPointStart = closestPointStart;
+        this.closestPointEnd = closestPointEnd;
     }
 
     public double getStartLat() {
@@ -106,5 +109,21 @@ public class Ride {
 
     public void setRoutePoints(List<MyPoint> routePoints) {
         this.routePoints = routePoints;
+    }
+
+    public MyPoint getClosestPointStart() {
+        return closestPointStart;
+    }
+
+    public void setClosestPointStart(MyPoint closestPointStart) {
+        this.closestPointStart = closestPointStart;
+    }
+
+    public MyPoint getClosestPointEnd() {
+        return closestPointEnd;
+    }
+
+    public void setClosestPointEnd(MyPoint closestPointEnd) {
+        this.closestPointEnd = closestPointEnd;
     }
 }
