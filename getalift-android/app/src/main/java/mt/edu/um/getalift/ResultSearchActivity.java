@@ -65,6 +65,7 @@ public class ResultSearchActivity extends AppCompatActivity {
                 mp_array = new ArrayList<MyPoint>();
 
                 //Get the first route point of the route (startingPoint)
+                //coucou
                 startLat = routePoints.getJSONObject(0).getJSONObject("point").getDouble("x");
                 startLng = routePoints.getJSONObject(0).getJSONObject("point").getDouble("y");
 
