@@ -1158,8 +1158,13 @@ function refineWithRoutePoints(passenger,result){
 
 		//Find the closest neighbor from the starting point
 		tab[i].closestPointStart = tree.nearest(passenger.startPoint,1);
+		var tmp = findPointById(tab[i].routePoints, tab[i].closestPointStart.id);
+		tab[i].closestPointStart.seconds_from_start = tmp.seconds_from_start;
+
 		//Find the closest neighbor from the ending point
 		tab[i].closestPointEnd = tree.nearest(passenger.endPoint,1);
+		var tmp = findPointById(tab[i].routePoints, tab[i].closestPointEnd.id);
+		tab[i].closestPointEnd.seconds_from_start = tmp.seconds_from_start;
 
 		//Calculate distance in meters
 		tab[i].distancePointStart = coordToMeters(passenger.startPoint.lat, passenger.startPoint.lng, tab[i].closestPointStart[0][0].lat, tab[i].closestPointStart[0][0].lng);
@@ -1378,6 +1383,16 @@ function addRoute(nb){
 		//sleep.sleep(2);
 		addRoute(nb-1);
 	}
+}
+
+function findPointById(arrayPoints, id){
+	for(int i=0;i<arrayPoints.length;i++){
+		if(arrayPoints[i].id == id){
+			return arrayPoints[i];
+		}
+	}
+
+	return null;
 }
 
 function testGoogleMaps(){
