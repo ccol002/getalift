@@ -1020,7 +1020,7 @@ router.post("/findTarget", function(req, res){
 							if(rep.routes_id.length > 0){
 								var conditions = conditionsInString(rep.routes_id);
 
-								var query = "SELECT `User`.id, `Route`.id as route_id, name, FORMAT(route_date, 'dd/MM/yyyy, hh:mm:ss') from `User`, `Route`, `RouteDate` where `User`.id = `Route`.driver and `Route`.id = `RouteDate`.route and `Route`.id IN "+conditions;
+								var query = "SELECT `User`.id, `Route`.id as route_id, name, route_date from `User`, `Route`, `RouteDate` where `User`.id = `Route`.driver and `Route`.id = `RouteDate`.route and `Route`.id IN "+conditions;
 
 								db_con.query(query, function(err, result){
 									if(err) throw err;
