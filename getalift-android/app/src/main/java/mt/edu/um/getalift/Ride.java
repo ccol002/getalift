@@ -1,8 +1,10 @@
 package mt.edu.um.getalift;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.List;
 
-public class Ride {
+public class Ride implements Parcelable {
     private double startLat;
     private double startLng;
     private double endLat;
@@ -30,6 +32,32 @@ public class Ride {
         this.closestPointStart = closestPointStart;
         this.closestPointEnd = closestPointEnd;
     }
+
+    protected Ride(Parcel in) {
+        startLat = in.readDouble();
+        startLng = in.readDouble();
+        endLat = in.readDouble();
+        endLng = in.readDouble();
+        route_id = in.readInt();
+        user_id = in.readInt();
+        user_name = in.readString();
+        minWalking = in.readInt();
+        routePoints = in.createTypedArrayList(MyPoint.CREATOR);
+        closestPointStart = in.readParcelable(MyPoint.class.getClassLoader());
+        closestPointEnd = in.readParcelable(MyPoint.class.getClassLoader());
+    }
+
+    public static final Creator<Ride> CREATOR = new Creator<Ride>() {
+        @Override
+        public Ride createFromParcel(Parcel in) {
+            return new Ride(in);
+        }
+
+        @Override
+        public Ride[] newArray(int size) {
+            return new Ride[size];
+        }
+    };
 
     public double getStartLat() {
         return startLat;
@@ -125,5 +153,25 @@ public class Ride {
 
     public void setClosestPointEnd(MyPoint closestPointEnd) {
         this.closestPointEnd = closestPointEnd;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeDouble(startLat);
+        parcel.writeDouble(startLng);
+        parcel.writeDouble(endLat);
+        parcel.writeDouble(endLng);
+        parcel.writeInt(route_id);
+        parcel.writeInt(user_id);
+        parcel.writeString(user_name);
+        parcel.writeInt(minWalking);
+        parcel.writeTypedList(routePoints);
+        parcel.writeParcelable(closestPointStart, i);
+        parcel.writeParcelable(closestPointEnd, i);
     }
 }

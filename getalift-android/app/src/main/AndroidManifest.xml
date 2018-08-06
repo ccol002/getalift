@@ -35,7 +35,11 @@
         <activity android:name=".HomeMapActivity" />
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".ResultSearchActivity"
-            android:parentActivityName=".HomeMapActivity" />
+            android:parentActivityName=".HomeMapActivity"
+            android:launchMode="singleTop"/>
+
+        <activity android:name=".ViewRideActivity"
+            android:parentActivityName=".ResultSearchActivity" />
     </application>
 
 </manifest>

@@ -1,9 +1,11 @@
 package mt.edu.um.getalift;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import java.util.List;
 
 public class ResultSearchActivity extends AppCompatActivity {
 
+    private static final String TAG = "ResultSearchActivity";
     private List<Ride> myRides = new ArrayList<Ride>();
 
     @Override
@@ -44,6 +47,7 @@ public class ResultSearchActivity extends AppCompatActivity {
 
     private void populateRideList() {
         String response = getIntent().getStringExtra("JSON_RESULT");
+        Log.i(TAG, "JSON_RESULT "+response);
         try {
             JSONArray res = new JSONArray(response);
             int user_id;
@@ -115,6 +119,28 @@ public class ResultSearchActivity extends AppCompatActivity {
         ArrayAdapter<Ride> adapter = new MyListAdapter();
         ListView list = (ListView) findViewById(R.id.ridesListView);
         list.setAdapter(adapter);
+
+        // Set an item click listener for ListView
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected item text from ListView
+                Ride selectedItem = (Ride) parent.getItemAtPosition(position);
+
+                Log.i(TAG,"Selected item size: "+selectedItem.getRoutePoints().size());
+
+                Double test = getIntent().getDoubleExtra("passengerStartingPointLat",0.0);
+                Log.i(TAG, "Passenger starting point :"+ Double.toString(test));
+                Intent intent = new Intent(getApplicationContext(), ViewRideActivity.class);
+                intent.putExtra("UserRide", selectedItem);
+                intent.putExtra("JSON_RESULT", getIntent().getStringExtra("JSON_RESULT"));
+                intent.putExtra("passengerStartingPointLat", getIntent().getDoubleExtra("passengerStartingPointLat",0.0));
+                intent.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
+                intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
+                intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+                startActivity(intent);
+            }
+        });
     }
 
 
