@@ -17,8 +17,10 @@ public class Ride implements Parcelable {
     private List<MyPoint> routePoints;
     private MyPoint closestPointStart;
     private MyPoint closestPointEnd;
+    private int distancePointStart;
+    private int distancePointEnd;
 
-    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, int minWalking, MyDate date, List<MyPoint> routePoints, MyPoint closestPointStart, MyPoint closestPointEnd) {
+    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, int minWalking, MyDate date, List<MyPoint> routePoints, MyPoint closestPointStart, MyPoint closestPointEnd, int distancePointStart, int distancePointEnd) {
         this.startLat = startLat;
         this.startLng = startLng;
         this.endLat = endLat;
@@ -31,6 +33,8 @@ public class Ride implements Parcelable {
         this.routePoints = routePoints;
         this.closestPointStart = closestPointStart;
         this.closestPointEnd = closestPointEnd;
+        this.distancePointStart = distancePointStart;
+        this.distancePointEnd = distancePointEnd;
     }
 
     protected Ride(Parcel in) {
@@ -45,6 +49,8 @@ public class Ride implements Parcelable {
         routePoints = in.createTypedArrayList(MyPoint.CREATOR);
         closestPointStart = in.readParcelable(MyPoint.class.getClassLoader());
         closestPointEnd = in.readParcelable(MyPoint.class.getClassLoader());
+        distancePointStart = in.readInt();
+        distancePointEnd = in.readInt();
     }
 
     public static final Creator<Ride> CREATOR = new Creator<Ride>() {
@@ -160,6 +166,22 @@ public class Ride implements Parcelable {
         return 0;
     }
 
+    public int getDistancePointStart() {
+        return distancePointStart;
+    }
+
+    public void setDistancePointStart(int distancePointStart) {
+        this.distancePointStart = distancePointStart;
+    }
+
+    public int getDistancePointEnd() {
+        return distancePointEnd;
+    }
+
+    public void setDistancePointEnd(int distancePointEnd) {
+        this.distancePointEnd = distancePointEnd;
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeDouble(startLat);
@@ -173,5 +195,8 @@ public class Ride implements Parcelable {
         parcel.writeTypedList(routePoints);
         parcel.writeParcelable(closestPointStart, i);
         parcel.writeParcelable(closestPointEnd, i);
+        parcel.writeInt(distancePointStart);
+        parcel.writeInt(distancePointEnd);
+
     }
 }

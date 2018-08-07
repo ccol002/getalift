@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ResultSearchActivity extends AppCompatActivity {
@@ -62,6 +63,8 @@ public class ResultSearchActivity extends AppCompatActivity {
             List<MyPoint> mp_array;
             MyPoint closestPointStart;
             MyPoint closestPointEnd;
+            int distancePointStart;
+            int distancePointEnd;
 
             for(int i=0;i<res.length();i++){
 
@@ -97,7 +100,10 @@ public class ResultSearchActivity extends AppCompatActivity {
                 user_id = tmp.getInt("user_id");
                 user_name = tmp.getString("user_name");
 
-                minWalking = (int)tmp.getInt("totalDistance")/60;
+                minWalking = tmp.getInt("totalDistance")/60;
+
+                distancePointStart = tmp.getInt("distancePointStart");
+                distancePointEnd = tmp.getInt("distancePointEnd");
 
                 date = new MyDate(tmp.getString("route_date"));
 
@@ -107,7 +113,7 @@ public class ResultSearchActivity extends AppCompatActivity {
                 cps = tmp.getJSONObject("closestPointEnd");
                 closestPointEnd = new MyPoint(cps.getInt("id"), cps.getDouble("lat"), cps.getDouble("lng"), cps.getInt("seconds_from_start"), cps.getInt("route"));
 
-                myRides.add(new Ride(startLat,startLng,endLat,endLng,route_id,user_id,user_name,minWalking,date, mp_array, closestPointStart, closestPointEnd));
+                myRides.add(new Ride(startLat,startLng,endLat,endLng,route_id,user_id,user_name,minWalking,date, mp_array, closestPointStart, closestPointEnd,distancePointStart,distancePointEnd));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -138,6 +144,14 @@ public class ResultSearchActivity extends AppCompatActivity {
                 intent.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
                 intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
                 intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+
+
+                intent.putExtra("startingTimeDriver", selectedItem.getDate().getTextArriveAt(0));
+
+                intent.putExtra("meetingTime", selectedItem.getDate().getTextArriveAt((int) selectedItem.getClosestPointStart().seconds_from_start/60));
+
+                intent.putExtra("droppingTime", selectedItem.getDate().getTextArriveAt((int) selectedItem.getClosestPointEnd().seconds_from_start/60));
+
                 startActivity(intent);
             }
         });
@@ -208,7 +222,7 @@ public class ResultSearchActivity extends AppCompatActivity {
 
             // ArriveAt:
             TextView arriveAtText = (TextView) itemView.findViewById(R.id.usr_arriveAt);
-            int seconds_from_start = (int) currentRide.getClosestPointEnd().getSeconds_from_start()/60;
+            int seconds_from_start = (int) (currentRide.getClosestPointEnd().getSeconds_from_start()/60 + currentRide.getDistancePointEnd()/60);
             arriveAtText.setText("Arrive at "+currentRide.getDate().getTextArriveAt(currentRide.getMinWalking() + seconds_from_start));
 
             return itemView;

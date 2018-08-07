@@ -9,7 +9,7 @@ class MyDate{
 
     public MyDate(String str){
         int year = Integer.parseInt(str.substring(0,4));
-        int month = Integer.parseInt(str.substring(5,7));
+        int month = Integer.parseInt(str.substring(5,7))-1;
         int day = Integer.parseInt(str.substring(8,10));
         int hour = Integer.parseInt(str.substring(11,13)) + 2;
         int minute = Integer.parseInt(str.substring(14,16));
@@ -24,7 +24,7 @@ class MyDate{
                 new SimpleDateFormat ("yyyy.MM.dd 'at' hh:mm");
     }
 
-    public Calendar getC() {
+    public GregorianCalendar getC() {
         return c;
     }
 
@@ -33,12 +33,14 @@ class MyDate{
     }
 
     public String getTextArriveAt(int minWalking){
+        String str;
         MyDate tmp = new MyDate(c);
 
         SimpleDateFormat ft =
                 new SimpleDateFormat ("hh:mm a");
         tmp.getC().add(c.MINUTE,minWalking);
-
-        return ft.format(c.getTime());
+        str = ft.format(c.getTime());
+        tmp.getC().add(c.MINUTE,-minWalking);
+        return str;
     }
 }
