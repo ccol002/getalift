@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,12 +24,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -42,9 +43,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.GeoDataClient;
 import com.google.android.gms.location.places.Places;
-import com.google.android.gms.location.places.PlaceDetectionClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -53,12 +52,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -86,6 +82,12 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private TextView showDateView;
     private AutoCompleteTextView mTextSearchOrigin;
     private AutoCompleteTextView mTextSearchDestination;
+
+    private EditText edt_time;
+    private TimePickerDialog timePickerDialog;
+    private Calendar calendar;
+    private int currentHour;
+    private int currentMinute;
 
     private PlaceAutocompleteAdapter mPlaceAutocompleteAdapater;
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
@@ -180,6 +182,27 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 startResultSearchActivity();
             }
         });
+
+        edt_time = findViewById(R.id.edt_home_time);
+        edt_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentMinute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(HomeMapActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                        edt_time.setText(String.format("%02d:%02d", hourOfDay, minutes));
+                    }
+                }, currentHour, currentMinute, false);
+
+                timePickerDialog.show();
+            }
+        });
+
+
 
         googleApiClient = new GoogleApiClient
                 .Builder(this)
@@ -388,15 +411,14 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                             Log.i(TAG,response);
                             // We create a JSONObject from the server response.
                             JSONObject jo = new JSONObject(response);
-                            double[] arr = new double[2];
 
-                            double lng = ((JSONArray)jo.get("results")).getJSONObject(0)
+                            /*double lng = ((JSONArray)jo.get("results")).getJSONObject(0)
                                     .getJSONObject("geometry").getJSONObject("location")
                                     .getDouble("lng");
 
                             double lat = ((JSONArray)jo.get("results")).getJSONObject(0)
                                     .getJSONObject("geometry").getJSONObject("location")
-                                    .getDouble("lat");
+                                    .getDouble("lat");*/
 
                             if(point.equals("origin")){
                                 originPoint[0] = 35.9021631;
@@ -447,7 +469,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         final String startLng = Double.toString(originPoint[1]);
         final String endLat = Double.toString(destinationPoint[0]);
         final String endLng = Double.toString(destinationPoint[1]);
-        final String startDate = ((EditText) findViewById(R.id.edt_home_date)).getText().toString().trim();
+        final String startDate = ((EditText) findViewById(R.id.edt_home_time)).getText().toString().trim();
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>(){

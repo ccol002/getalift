@@ -31,7 +31,10 @@
     <string name="edt_homedestination">Enter a destination...</string>
     <string name="btn_search">Search</string>
     <string name="edt_startpoint">Enter the starting point...</string>
-    <string name="edt_date">Enter a date...</string>
+    <string name="edt_date">Pic a date...</string>
+    <string name="edt_time">Pic a time...</string>
+    <string name="edt_pic_date">Pic</string>
+    <string name="edt_pic_time">Pic</string>
     <string name="msc_shared_pref_filename" translatable="false">mt.edu.um.getalift.sf</string>
     <string name="msc_saved_user" translatable="false">user</string>
     <string name="edt_signin_phonenumber">Phone Number</string>
@@ -47,4 +50,8 @@
     <string name="error_username_exists">This username already exists. Please chose another one.</string>
     <string name="txt_title_profile">Get A Lift - Profile</string>
     <string name="txt_title_result_search">Available drives</string>
+    <string name="txt_create_route">Or you can create your route</string>
+    <string name="btn_create_route">I want to drive</string>
+    <string name="btn_create_ride">Create</string>
+    <string name="btn_edit_ride">Edit</string>
 </resources>

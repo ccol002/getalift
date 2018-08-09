@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ public class ResultSearchActivity extends AppCompatActivity {
     private static final String TAG = "ResultSearchActivity";
     private List<Ride> myRides = new ArrayList<Ride>();
 
+    private Button btn_create_route;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,29 @@ public class ResultSearchActivity extends AppCompatActivity {
 
         populateRideList();
         populateListView();
+
+        btn_create_route = findViewById(R.id.btn_create_route);
+        btn_create_route.setText(R.string.btn_create_route);
+
+        TextView txt_create_route = findViewById(R.id.txt_create_route);
+        txt_create_route.setText(R.string.txt_create_route);
+
+        btn_create_route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startCreateRouteActivity();
+            }
+        });
+    }
+
+    private void startCreateRouteActivity(){
+        //We open the Create Route activity, and we close this activity
+        Intent intent = new Intent(getBaseContext(), CreateRideActivity.class);
+        intent.putExtra("passengerStartingPointLat", getIntent().getDoubleExtra("passengerStartingPointLat",0.0));
+        intent.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
+        intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
+        intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+        startActivity(intent);
     }
 
     private void populateRideList() {

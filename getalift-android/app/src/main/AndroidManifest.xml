@@ -40,6 +40,9 @@
 
         <activity android:name=".ViewRideActivity"
             android:parentActivityName=".ResultSearchActivity" />
+
+        <activity android:name=".CreateRideActivity"
+            android:parentActivityName=".ResultSearchActivity" />
     </application>
 
 </manifest>

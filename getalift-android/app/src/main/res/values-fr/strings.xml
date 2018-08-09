@@ -27,7 +27,8 @@
     <string name="edt_homedestination">Entrez une destination...</string>
     <string name="btn_search">Rechercher</string>
     <string name="edt_startpoint">Entrez un point de départ...</string>
-    <string name="edt_date">Entrez une date...</string>
+    <string name="edt_date">Choisissez une date...</string>
+    <string name="edt_time">Choisissez une heure...</string>
     <string name="edt_signin_phonenumber">Numéro de Téléphone</string>
     <string name="error_username_short">Le nom d\'utilisateur doit faire plus de 6 charactères.</string>
     <string name="error_password_short">Le mot de passe doit faire plus de 6 charactères.</string>
@@ -40,4 +41,11 @@
     <string name="success_account_created">Votre compte est créé. Vous pouvez maintenant vous connecter.</string>
     <string name="error_username_exists">Ce nom d\'utilisateur est déjà pris. Veuillez en choisir un autre.</string>
     <string name="txt_title_profile">Get A Lift - Profil</string>
+    <string name="txt_title_result_search">Trajets disponibles</string>
+    <string name="txt_create_route">Ou vous pouvez créer votre trajet</string>
+    <string name="btn_create_route">Je veux conduire</string>
+    <string name="btn_create_ride">Créer</string>
+    <string name="btn_edit_ride">Modifier</string>
+    <string name="edt_pic_date">Sélectionner</string>
+    <string name="edt_pic_time">Sélectionner</string>
 </resources>
