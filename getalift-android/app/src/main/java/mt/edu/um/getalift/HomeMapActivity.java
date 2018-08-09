@@ -399,17 +399,17 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                     .getDouble("lat");
 
                             if(point.equals("origin")){
-                                //originPoint[0] = 35.9021631;
-                                //originPoint[1] = 14.483748300000002;
-                                originPoint[0] = lat;
-                                originPoint[1] = lng;
+                                originPoint[0] = 35.9021631;
+                                originPoint[1] = 14.483748300000002;
+                                //originPoint[0] = lat;
+                                //originPoint[1] = lng;
                                 intent_result_search_activity.putExtra("passengerStartingPointLat", originPoint[0]);
                                 intent_result_search_activity.putExtra("passengerStartingPointLng", originPoint[1]);
                             }else{
-                                //destinationPoint[0] = 35.85411349999999;
-                                //destinationPoint[1] = 14.48327949999998;
-                                destinationPoint[0] = lat;
-                                destinationPoint[1] = lng;
+                                destinationPoint[0] = 35.85411349999999;
+                                destinationPoint[1] = 14.48327949999998;
+                                //destinationPoint[0] = lat;
+                                //destinationPoint[1] = lng;
                                 intent_result_search_activity.putExtra("passengerEndingPointLat", destinationPoint[0]);
                                 intent_result_search_activity.putExtra("passengerEndingPointLng", destinationPoint[1]);
                             }
