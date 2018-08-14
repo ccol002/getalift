@@ -281,7 +281,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+            Intent intentProfile = new Intent(getBaseContext(), ProfileActivity.class);
+            SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+            intentProfile.putExtra("userId", sh.getInt("userId",0));
+            startActivity(intentProfile);
         } else if (id == R.id.nav_lifts) {
 
         } else if (id == R.id.nav_help) {

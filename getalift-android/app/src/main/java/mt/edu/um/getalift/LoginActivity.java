@@ -126,6 +126,10 @@ public class LoginActivity extends AppCompatActivity {
                                         getString(R.string.msc_saved_user),
                                         jo.getJSONObject("user").toString()
                                 );
+                                edit.putInt(
+                                        getString(R.string.msc_saved_id),
+                                        jo.getJSONObject("user").getInt("id")
+                                );
                                 edit.apply();
 
                                 // ... and we go to the main menu.

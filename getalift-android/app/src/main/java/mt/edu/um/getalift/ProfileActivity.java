@@ -39,6 +39,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "ProfileActivity";
 
+    Intent intent_profile_activity;
+    private int userID;
+
 
 
 
@@ -60,8 +63,12 @@ public class ProfileActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.textEmail);
         txtNote = findViewById(R.id.textNote);
 
+        intent_profile_activity = getIntent();
 
-        txtUser.setText("DONy");
+        if (intent_profile_activity != null) {
+            userID = intent_profile_activity.getIntExtra("userId",0);
+            txtNote.setText(Integer.toString(userID));
+        }
         profil();
     }
 
