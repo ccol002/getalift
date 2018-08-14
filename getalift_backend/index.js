@@ -904,14 +904,14 @@ router.delete("/favoriteRouteDoublons", function(req, res){
 */
 
 
-// Route				: GET /api/routes/findTarget
-// URL Params		:
+// Route				: POST /api/routes/findTarget
+// URL Params		: None
+// Body Params	:
 // 		- startLat			: The Latitude of the starting point
 // 		- startLng			: The Longitude of the starting point
 // 		- endLat				: The Latitude of the end point
 // 		- endLng				: The Longitude of the end point
 // 		- startDate			: The starting datetime of the route
-// Body Params	: None
 // Return		:
 // 		- An array with every routes that match the parameters.
 // Description	:
