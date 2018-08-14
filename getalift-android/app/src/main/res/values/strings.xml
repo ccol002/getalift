@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name" translatable="false">GetALift</string>
+    <string name="txt_login_username">Username</string>
+    <string name="txt_login_password">Password</string>
+    <string name="btn_login_connect">Connection</string>
+    <string name="msc_key_saved_token" translatable="false">token</string>
+    <string name="txt_welcome">Welcome</string>
+    <string name="btn_login_createaccount">Create Account</string>
+    <string name="txt_title_signin">Get A Lift - Sign In</string>
+    <string name="txt_title_login">Get A Lift - Login</string>
+    <string name="txt_signin_username">Username</string>
+    <string name="txt_signin_password">Password</string>
+    <string name="txt_signin_email">Email</string>
+    <string name="txt_signin_firstname">First Name</string>
+    <string name="txt_signin_lastname">Last Name</string>
+    <string name="title_activity_home_map">Get A Lift - Map</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="txt_account">Your Account</string>
+    <string name="txt_profile">Profile</string>
+    <string name="txt_logout">Logout</string>
+    <string name="txt_lifts">Your Lifts</string>
+    <string name="txt_settings">Settings</string>
+    <string name="txt_help">Help</string>
+    <string name="txt_your_position">Your position</string>
+    <string name="txt_title_homemap">Get A Lift - Home</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+    <string name="edt_homedestination">Enter a destination...</string>
+    <string name="btn_search">Search</string>
+    <string name="edt_startpoint">Enter the starting point...</string>
+    <string name="edt_date">Pic a date...</string>
+    <string name="edt_time">Pic a time...</string>
+    <string name="edt_pic_date">Pic</string>
+    <string name="edt_pic_time">Pic</string>
+    <string name="msc_shared_pref_filename" translatable="false">mt.edu.um.getalift.sf</string>
+    <string name="msc_saved_user" translatable="false">user</string>
+    <string name="edt_signin_phonenumber">Phone Number</string>
+    <string name="error_username_short">The username must be more than 6 character long.</string>
+    <string name="error_password_short">The password must be more than 6 character long.</string>
+    <string name="error_password_long">The password must be less than 63 character long.</string>
+    <string name="error_username_long">The username must be less than 63 character long.</string>
+    <string name="error_email_valid">You must enter a valid email adress.</string>
+    <string name="error_firstname_notset">You must tell your firstname.</string>
+    <string name="error_lastname_notset">You must tell your last name.</string>
+    <string name="error_phone_valid">You must enter a valid phone number.</string>
+    <string name="success_account_created">Your account is created. You can log in now.</string>
+    <string name="error_username_exists">This username already exists. Please chose another one.</string>
+    <string name="txt_title_profile">Get A Lift - Profile</string>
+    <string name="txt_title_result_search">Available drives</string>
+    <string name="txt_create_route">Or you can create your route</string>
+    <string name="btn_create_route">I want to drive</string>
+    <string name="btn_create_ride">Create</string>
+    <string name="btn_edit_ride">Edit</string>
+</resources>
