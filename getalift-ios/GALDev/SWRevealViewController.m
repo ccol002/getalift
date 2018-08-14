@@ -1402,7 +1402,7 @@ const int FrontViewPositionNone = 0xff;
     void (^rightDeploymentCompletion)() = [self _rightViewDeploymentForNewFrontViewPosition:newPosition];
     void (^frontDeploymentCompletion)() = [self _frontViewDeploymentForNewFrontViewPosition:newPosition];
     
-    void (^animations)() = ^()
+void (^animations)() = ^()
     {
         // Calling this in the animation block causes the status bar to appear/dissapear in sync with our own animation
         [self setNeedsStatusBarAppearanceUpdate];

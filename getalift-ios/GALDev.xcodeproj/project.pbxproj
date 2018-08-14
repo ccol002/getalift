@@ -62,13 +62,15 @@
 		4CB63F271F94F4ED008E8881 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB63F261F94F4ED008E8881 /* RouteTests.swift */; };
 		4CBC78921F8B847D00C9930F /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC78911F8B847D00C9930F /* SearchTextField.swift */; };
 		4CF30A4C1F66A4D5001B3AF3 /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF30A4B1F66A4D5001B3AF3 /* RouteView.swift */; };
+		9C9DF0C3211DD5A400C35B73 /* Pods_GALDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */; };
+		9CD9B6CB2121755C00FF8C14 /* routeSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0916101F9E250E00E94F83 /* routeSaved.swift */; };
+		9CD9B6CE21217AE300FF8C14 /* Pods_GALDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */; };
 		C301201B1FA2161600FCCE5E /* SeeCurrentRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301201A1FA2161600FCCE5E /* SeeCurrentRoute.swift */; };
 		C306DD5E1FA8D35800DA70A5 /* routeViewForTheMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306DD5D1FA8D35800DA70A5 /* routeViewForTheMenu.swift */; };
 		C306DD601FA8DE2800DA70A5 /* GetMoreInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306DD5F1FA8DE2800DA70A5 /* GetMoreInformation.swift */; };
 		C306DD621FA8E4E600DA70A5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306DD611FA8E4E600DA70A5 /* Settings.swift */; };
 		C38644A61FA1CB6600EE7BD1 /* FavoriteRouteTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38644A51FA1CB6600EE7BD1 /* FavoriteRouteTasks.swift */; };
 		C38644A81FA1FB0700EE7BD1 /* BouttonArrondi2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38644A71FA1FB0700EE7BD1 /* BouttonArrondi2.swift */; };
-		E25BADAD8D0C8259BF27C13A /* Pods_GALDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4C312A4A1F4EE5B000555D0E;
 			remoteInfo = GALDev;
+		};
+		9CD9B6D621217BE800FF8C14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D02693A07110F00681FBFCFA4C9AAE0;
+			remoteInfo = MarqueeLabel;
+		};
+		9CD9B6D821217BE800FF8C14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E1A768BD6B967FFA533E84D2B088F947;
+			remoteInfo = NotificationBannerSwift;
+		};
+		9CD9B6DA21217BE800FF8C14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BAC751BC85D358CF3D48E5A6F501A4EE;
+			remoteInfo = "Pods-GALDev";
+		};
+		9CD9B6DC21217BE800FF8C14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 495AF576A346EBCD96A7D796A36B72D9;
+			remoteInfo = SnapKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -145,6 +175,7 @@
 		4CBC78911F8B847D00C9930F /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		4CF30A4B1F66A4D5001B3AF3 /* RouteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
 		9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GALDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		B4F0FD8CD784B4278919A266 /* Pods-GALDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GALDev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GALDev/Pods-GALDev.debug.xcconfig"; sourceTree = "<group>"; };
 		C301201A1FA2161600FCCE5E /* SeeCurrentRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeCurrentRoute.swift; sourceTree = "<group>"; };
 		C306DD5D1FA8D35800DA70A5 /* routeViewForTheMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = routeViewForTheMenu.swift; sourceTree = "<group>"; };
@@ -170,12 +201,12 @@
 				4C312A701F4EE72000555D0E /* CoreData.framework in Frameworks */,
 				4C312A711F4EE72000555D0E /* CoreGraphics.framework in Frameworks */,
 				4C312A721F4EE72000555D0E /* CoreLocation.framework in Frameworks */,
+				9C9DF0C3211DD5A400C35B73 /* Pods_GALDev.framework in Frameworks */,
 				4C312A731F4EE72000555D0E /* CoreText.framework in Frameworks */,
 				4C312A6B1F4EE70F00555D0E /* Accelerate.framework in Frameworks */,
 				4C312A651F4EE6C800555D0E /* GoogleMaps.framework in Frameworks */,
 				4C312A661F4EE6C800555D0E /* GoogleMapsCore.framework in Frameworks */,
 				4C312A621F4EE6AB00555D0E /* GoogleMapsBase.framework in Frameworks */,
-				E25BADAD8D0C8259BF27C13A /* Pods_GALDev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CD9B6CE21217AE300FF8C14 /* Pods_GALDev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +298,7 @@
 				4C312A6F1F4EE72000555D0E /* CoreText.framework */,
 				4C312A6A1F4EE70F00555D0E /* Accelerate.framework */,
 				9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */,
+				9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -352,6 +385,17 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		9CD9B6D021217BE800FF8C14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9CD9B6D721217BE800FF8C14 /* MarqueeLabel.framework */,
+				9CD9B6D921217BE800FF8C14 /* NotificationBannerSwift.framework */,
+				9CD9B6DB21217BE800FF8C14 /* Pods_GALDev.framework */,
+				9CD9B6DD21217BE800FF8C14 /* SnapKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CDE3AF6853D5D0F432910420 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +458,7 @@
 				TargetAttributes = {
 					4C312A4A1F4EE5B000555D0E = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8G4FF9766W;
+						DevelopmentTeam = 4358SH6647;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -437,6 +481,12 @@
 			mainGroup = 4C312A421F4EE5B000555D0E;
 			productRefGroup = 4C312A4C1F4EE5B000555D0E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9CD9B6D021217BE800FF8C14 /* Products */;
+					ProjectRef = 9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4C312A4A1F4EE5B000555D0E /* GALDev */,
@@ -444,6 +494,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9CD9B6D721217BE800FF8C14 /* MarqueeLabel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MarqueeLabel.framework;
+			remoteRef = 9CD9B6D621217BE800FF8C14 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9CD9B6D921217BE800FF8C14 /* NotificationBannerSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NotificationBannerSwift.framework;
+			remoteRef = 9CD9B6D821217BE800FF8C14 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9CD9B6DB21217BE800FF8C14 /* Pods_GALDev.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_GALDev.framework;
+			remoteRef = 9CD9B6DA21217BE800FF8C14 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9CD9B6DD21217BE800FF8C14 /* SnapKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SnapKit.framework;
+			remoteRef = 9CD9B6DC21217BE800FF8C14 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4C312A491F4EE5B000555D0E /* Resources */ = {
@@ -470,7 +551,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		2195535EC3A2588C0A5ED4EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -498,10 +579,11 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GALDev/Pods-GALDev-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"$(SRCROOT)/myfile",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -580,6 +662,7 @@
 				4C3F107A1F8650C000D10178 /* HomeTests.swift in Sources */,
 				4C3F10721F86507300D10178 /* GALDevTests.swift in Sources */,
 				4CA18F301F8829370055E327 /* CalculationForMapDisplayTests.swift in Sources */,
+				9CD9B6CB2121755C00FF8C14 /* routeSaved.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,7 +803,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 8G4FF9766W;
+				DEVELOPMENT_TEAM = 4358SH6647;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -744,7 +827,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 8G4FF9766W;
+				DEVELOPMENT_TEAM = 4358SH6647;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

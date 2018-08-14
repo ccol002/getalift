@@ -59,7 +59,8 @@ class CreateAccount : UIViewController {
         let account = "username="+username!+"&password="+password!+"&name="+name!+"&surname="+surname!+"&email="+email!+"&mobileNumber="+mobileNumber!
         
         // URL
-        let url = NSURL(string: ServerAdress+":3000/api/users")!
+        //let url = NSURL(string: ServerAdress+":3000/api/users")!
+        let url = NSURL(string: ServerAdress+":7878/api/users")!
         
         // Request
         var request = URLRequest(url: url as URL)
