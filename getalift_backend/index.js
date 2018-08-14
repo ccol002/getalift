@@ -1411,7 +1411,7 @@ function testGoogleMaps(){
 		// If there is an error with the GM API request, we send it back.
 		if(error){
 			console.log("error");
-			res.json(error);
+			console.log(error);
 		} else {
 			console.log("SUCCESS");
 			console.log(response);
