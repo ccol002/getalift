@@ -10,12 +10,7 @@ import NotificationBannerSwift
 import UIKit
 
 /// The address of the server user
-<<<<<<< HEAD
 var ServerAdress : String = "http://10.68.119.81"
-=======
-//var ServerAdress : String = "http://10.68.119.81"
-var ServerAdress : String = "http://10.249.45.149"
->>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 
 
 
@@ -87,18 +82,10 @@ class Home: UIViewController {
         } else {
             
             /// String to transmit the identifiers to the request
-<<<<<<< HEAD
             let login = "name="+username!+"&password="+password!
             
             /// The URL
             let url = NSURL(string: ServerAdress+":3000/api/auth")!
-=======
-            let login = "username="+username!+"&password="+password!
-            
-            /// The URL
-            //let url = NSURL(string: ServerAdress+":3000/api/auth")!
-            let url = NSURL(string: ServerAdress+":7878/api/auth")!
->>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
             
             /// The request
             var request = URLRequest(url: url as URL)

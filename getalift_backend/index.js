@@ -40,7 +40,11 @@ var config = require("./config");
 
 // The google maps client, with the API key
 var googleMapsClient = require("@google/maps").createClient({
+<<<<<<< HEAD
 	key: "AIzaSyALY4VsSLHOjmG2MRsLtEk1EPtKNx8-NvU"
+=======
+	key: "AIzaSyCI00nL5v2KOAwATGYIkPZCwhCawhwqRF0"
+>>>>>>> parent of 4abd790... Merge branch 'master' of https://github.com/ccol002/getalift
 });
 
 var bcrypt = require("bcrypt");
@@ -173,8 +177,6 @@ router.post("/auth", function(req, res){
 	db_con.query("SELECT * FROM User WHERE username = ?", [req.body.username], function(err, result){
 		// If there is an error, throw it.
 		if (err) throw err;
-		console.log("Username : "+req.body.username);
-		console.log("Password : "+req.body.password);
 		// If there is one user with this username...
 		if (result.length === 1){
 			// We check if the password given is the good one.
@@ -904,14 +906,14 @@ router.delete("/favoriteRouteDoublons", function(req, res){
 */
 
 
-// Route				: POST /api/routes/findTarget
-// URL Params		: None
-// Body Params	:
+// Route				: GET /api/routes/findTarget
+// URL Params		:
 // 		- startLat			: The Latitude of the starting point
 // 		- startLng			: The Longitude of the starting point
 // 		- endLat				: The Latitude of the end point
 // 		- endLng				: The Longitude of the end point
 // 		- startDate			: The starting datetime of the route
+// Body Params	: None
 // Return		:
 // 		- An array with every routes that match the parameters.
 // Description	:

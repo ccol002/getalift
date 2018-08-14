@@ -7,10 +7,6 @@ framework module GoogleMaps {
   link framework "CoreData"
   link framework "CoreFoundation"
   link framework "CoreGraphics"
-<<<<<<< HEAD
-=======
-  link framework "CoreImage"
->>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
   link framework "CoreLocation"
   link framework "CoreTelephony"
   link framework "CoreText"

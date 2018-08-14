@@ -22,10 +22,6 @@
 #import "GMSMarker.h"
 #import "GMSMarkerLayer.h"
 #import "GMSOverlay.h"
-<<<<<<< HEAD
-=======
-#import "GMSOverlayLayer.h"
->>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 #import "GMSPolygon.h"
 #import "GMSPolyline.h"
 #import "GMSSyncTileLayer.h"
@@ -38,8 +34,4 @@
 #import "GMSPanoramaLayer.h"
 #import "GMSPanoramaLink.h"
 #import "GMSPanoramaService.h"
-<<<<<<< HEAD
-=======
-#import "GMSPanoramaSource.h"
->>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 #import "GMSPanoramaView.h"

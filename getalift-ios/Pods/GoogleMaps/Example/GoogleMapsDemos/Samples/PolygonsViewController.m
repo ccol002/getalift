@@ -13,13 +13,10 @@
  * permissions and limitations under the License.
  */
 
-<<<<<<< HEAD
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
 #endif
 
-=======
->>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 #import "GoogleMapsDemos/Samples/PolygonsViewController.h"
 
 #import <GoogleMaps/GoogleMaps.h>
