@@ -10,6 +10,11 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+<<<<<<< HEAD
+=======
+#import "GMSPanoramaSource.h"
+
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 @class GMSPanorama;
 
 NS_ASSUME_NONNULL_BEGIN;
@@ -48,6 +53,30 @@ typedef void (^GMSPanoramaCallback)(GMSPanorama *_Nullable panorama, NSError *_N
                              callback:(GMSPanoramaCallback)callback;
 
 /**
+<<<<<<< HEAD
+=======
+ * Similar to requestPanoramaNearCoordinate:callback: but allows specifying the panorama source type
+ * near the given |coordinate|.
+ *
+ * This API is experimental and may not always filter by source.
+ */
+- (void)requestPanoramaNearCoordinate:(CLLocationCoordinate2D)coordinate
+                               source:(GMSPanoramaSource)source
+                             callback:(GMSPanoramaCallback)callback;
+
+/**
+ * Similar to requestPanoramaNearCoordinate:callback: but allows specifying a search radius (meters)
+ * and the panorama source type near the given |coordinate|.
+ *
+ * This API is experimental and may not always filter by source.
+ */
+- (void)requestPanoramaNearCoordinate:(CLLocationCoordinate2D)coordinate
+                               radius:(NSUInteger)radius
+                               source:(GMSPanoramaSource)source
+                             callback:(GMSPanoramaCallback)callback;
+
+/**
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
  * Retrieves information about a panorama with the given |panoramaID|.
  *
  * |callback| will be called with the result. Only panoramaIDs obtained from the Google Maps SDK for

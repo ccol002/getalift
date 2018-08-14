@@ -81,7 +81,12 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
         
         let driverId = user.id as! Int
         
+<<<<<<< HEAD
         let url = NSURL(string: ServerAdress+":3000/api/routes")!
+=======
+        //let url = NSURL(string: ServerAdress+":3000/api/routes")!
+        let url = NSURL(string: ServerAdress+":7878/api/routes")!
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
         
         var request = URLRequest(url: url as URL)
         

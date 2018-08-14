@@ -12,7 +12,15 @@
 
 NS_ASSUME_NONNULL_BEGIN;
 
+<<<<<<< HEAD
 /** Service class for the Google Maps SDK for iOS. */
+=======
+/**
+ * Service class for the Google Maps SDK for iOS.
+ *
+ * This class is not thread safe. All methods should only be invoked on the main thread.
+ */
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 @interface GMSServices : NSObject
 
 /**
@@ -36,11 +44,29 @@ NS_ASSUME_NONNULL_BEGIN;
  * This must be called exactly once by your application before any iOS Maps SDK object is
  * initialized.
  *
+<<<<<<< HEAD
  * @return YES if the APIKey was successfully provided
+=======
+ * @return YES if the APIKey was successfully provided.
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
  */
 + (BOOL)provideAPIKey:(NSString *)APIKey;
 
 /**
+<<<<<<< HEAD
+=======
+ * Provides your API options to the Google Maps SDK for iOS. Pass an array containing an NSString
+ * for each option. These options apply to all maps.
+ *
+ * This may be called exactly once by your application and must be called before any iOS Maps SDK
+ * object is initialized.
+ *
+ * @return YES if all the APIOptions were successfully provided.
+ */
++ (BOOL)provideAPIOptions:(NSArray<NSString *> *)APIOptions;
+
+/**
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
  * Returns the open source software license information for Google Maps SDK for iOS. This
  * information must be made available within your application.
  */

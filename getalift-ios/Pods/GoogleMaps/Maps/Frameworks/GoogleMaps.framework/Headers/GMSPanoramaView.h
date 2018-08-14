@@ -13,6 +13,10 @@
 
 #import "GMSOrientation.h"
 #import "GMSPanoramaLayer.h"
+<<<<<<< HEAD
+=======
+#import "GMSPanoramaSource.h"
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 
 @class GMSMarker;
 @class GMSPanorama;
@@ -207,6 +211,26 @@ NS_ASSUME_NONNULL_BEGIN;
 - (void)moveNearCoordinate:(CLLocationCoordinate2D)coordinate radius:(NSUInteger)radius;
 
 /**
+<<<<<<< HEAD
+=======
+ * Similar to moveNearCoordinate: but allows specifying a source near |coordinate|.
+ *
+ * This API is experimental and may not always filter by source.
+ */
+- (void)moveNearCoordinate:(CLLocationCoordinate2D)coordinate source:(GMSPanoramaSource)source;
+
+/**
+ * Similar to moveNearCoordinate: but allows specifying a search radius (meters) around
+ * |coordinate| and a source.
+ *
+ * This API is experimental and may not always filter by source.
+ */
+- (void)moveNearCoordinate:(CLLocationCoordinate2D)coordinate
+                    radius:(NSUInteger)radius
+                    source:(GMSPanoramaSource)source;
+
+/**
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
  * Requests a panorama with |panoramaID|.
  *
  * Upon successful completion panoramaView:didMoveToPanorama: will be sent to
@@ -255,6 +279,31 @@ NS_ASSUME_NONNULL_BEGIN;
                    nearCoordinate:(CLLocationCoordinate2D)coordinate
                            radius:(NSUInteger)radius;
 
+<<<<<<< HEAD
+=======
+/**
+ * Convenience constructor for GMSPanoramaView, which searches for and displays a GMSPanorama near
+ * |coordinate|. This performs a similar action to that of moveNearCoordinate:source, and will call
+ * the same delegate methods.
+ *
+ * This API is experimental and may not always filter by source.
+ */
++ (instancetype)panoramaWithFrame:(CGRect)frame
+                   nearCoordinate:(CLLocationCoordinate2D)coordinate
+                           source:(GMSPanoramaSource)source;
+/**
+ * Convenience constructor for GMSPanoramaView, which searches for and displays a GMSPanorama near
+ * |coordinate|. This performs a similar action to that of moveNearCoordinate:radius:source, and
+ * will call the same delegate methods.
+ *
+ * This API is experimental and may not always filter by source.
+ */
++ (instancetype)panoramaWithFrame:(CGRect)frame
+                   nearCoordinate:(CLLocationCoordinate2D)coordinate
+                           radius:(NSUInteger)radius
+                           source:(GMSPanoramaSource)source;
+
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 @end
 
 NS_ASSUME_NONNULL_END;

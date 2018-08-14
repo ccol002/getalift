@@ -18,8 +18,11 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+<<<<<<< HEAD
 	<key>CFBundleSignature</key>
 	<string>????</string>
+=======
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>

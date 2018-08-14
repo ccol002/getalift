@@ -18,17 +18,30 @@ class RouteTasks {
     // Variable de stockage
     var routes : [Route] = []
     
+<<<<<<< HEAD
     func route(date: String, startLat : Double, startLong : Double, endLat : Double, endLong : Double, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         //let url = NSURL(string: ServerAdress+":3000/api/search?date=")!
         
         let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong))!
+=======
+    func route(startDate: String, startLat : Double, startLong : Double, endLat : Double, endLong : Double, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+        
+        //let url = NSURL(string: ServerAdress+":3000/api/search?date=")!
+        
+        //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong))!
+        let url = NSURL(string: ServerAdress+":7878/api/findTarget="+startDate+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong))!
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
         
         var request = URLRequest(url: url as URL)
         
         request.setValue(token, forHTTPHeaderField: "x-access-token")
         
         request.httpMethod = "GET"
+<<<<<<< HEAD
+=======
+        //request.httpMethod = "POST"
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
@@ -101,7 +114,12 @@ class RouteTasks {
     
     func route(date: String, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
+<<<<<<< HEAD
         let url = NSURL(string: ServerAdress+":3000/api/search?date=")!
+=======
+        //let url = NSURL(string: ServerAdress+":3000/api/search?date=")!
+        let url = NSURL(string: ServerAdress+":7878/api/search?date=")!
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
         
         //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
         
@@ -183,7 +201,12 @@ class RouteTasks {
     // Route par rapport a un driver.
     func route(driverId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
+<<<<<<< HEAD
         let url = NSURL(string: ServerAdress+":3000/api/driverroutes/"+String(driverId))!
+=======
+        //let url = NSURL(string: ServerAdress+":3000/api/driverroutes/"+String(driverId))!
+        let url = NSURL(string: ServerAdress+":7878/api/driverroutes/"+String(driverId))!
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
         
         //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
         
@@ -267,7 +290,12 @@ class RouteTasks {
     // Pour supprimer une route à un identifiant donné
     func deleteRoute(routeId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
+<<<<<<< HEAD
         let url = NSURL(string: ServerAdress+":3000/api/routes/"+String(routeId))!
+=======
+        //let url = NSURL(string: ServerAdress+":3000/api/routes/"+String(routeId))!
+        let url = NSURL(string: ServerAdress+":7878/api/routes/"+String(routeId))!
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
         
         //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
         

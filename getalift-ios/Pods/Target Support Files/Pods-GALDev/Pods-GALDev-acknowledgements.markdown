@@ -3,7 +3,11 @@ This application makes use of the following third party libraries:
 
 ## GoogleMaps
 
+<<<<<<< HEAD
 Copyright 2017 Google
+=======
+Copyright 2018 Google
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 
 ## MarqueeLabel
 

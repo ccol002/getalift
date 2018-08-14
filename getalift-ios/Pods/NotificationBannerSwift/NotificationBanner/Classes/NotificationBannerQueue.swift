@@ -23,7 +23,11 @@ public enum QueuePosition {
     case front
 }
 
+<<<<<<< HEAD
 public class NotificationBannerQueue: NSObject {
+=======
+open class NotificationBannerQueue: NSObject {
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
     
     /// The default instance of the NotificationBannerQueue
     public static let `default` = NotificationBannerQueue()

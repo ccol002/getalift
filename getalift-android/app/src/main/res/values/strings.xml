@@ -54,6 +54,9 @@
     <string name="btn_create_route">I want to drive</string>
     <string name="btn_create_ride">Create</string>
     <string name="btn_edit_ride">Edit</string>
+<<<<<<< HEAD
 
     <string name="msc_saved_id" translatable="false">userId</string>
+=======
+>>>>>>> fd41e4ca7494bd690db4cbe9be7b1b9aaf1c998d
 </resources>
