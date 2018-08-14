@@ -73,7 +73,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private static final String TAG = "HomeMapActivity";
 
     private final static int MY_ACCESS_PERMISSION_CODE = 1;
-    private final static String GoogleMapsAPIKey = "AIzaSyDTy7xW1utk3NLaG_HXk28KIBbVm4mgkp0";
+    private final static String GoogleMapsAPIKey = "AIzaSyCI00nL5v2KOAwATGYIkPZCwhCawhwqRF0";
 
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
@@ -99,6 +99,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     private double[] originPoint = {-360,-360};
     private double[] destinationPoint = {-360,-360};
+
+    Intent intent_result_search_activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,6 +197,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         mTextSearchDestination.setText("Triq San Tumas, Luqa");
 
         showDateView = findViewById(R.id.edt_home_date);
+
+        intent_result_search_activity =  new Intent(getApplicationContext(), ResultSearchActivity.class);
     }
 
     private void startResultSearchActivity() {
@@ -381,6 +385,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                     public void onResponse(String response){
                         // We got a response from our server.
                         try {
+                            Log.i(TAG,response);
                             // We create a JSONObject from the server response.
                             JSONObject jo = new JSONObject(response);
                             double[] arr = new double[2];
@@ -394,11 +399,19 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                     .getDouble("lat");
 
                             if(point.equals("origin")){
+                                //originPoint[0] = 35.9021631;
+                                //originPoint[1] = 14.483748300000002;
                                 originPoint[0] = lat;
                                 originPoint[1] = lng;
+                                intent_result_search_activity.putExtra("passengerStartingPointLat", originPoint[0]);
+                                intent_result_search_activity.putExtra("passengerStartingPointLng", originPoint[1]);
                             }else{
+                                //destinationPoint[0] = 35.85411349999999;
+                                //destinationPoint[1] = 14.48327949999998;
                                 destinationPoint[0] = lat;
                                 destinationPoint[1] = lng;
+                                intent_result_search_activity.putExtra("passengerEndingPointLat", destinationPoint[0]);
+                                intent_result_search_activity.putExtra("passengerEndingPointLng", destinationPoint[1]);
                             }
 
                             //If the origin field or the destination field is empty
@@ -440,9 +453,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
-                        Intent intent = new Intent(getApplicationContext(), ResultSearchActivity.class);
-                        intent.putExtra("JSON_RESULT", response);
-                        startActivity(intent);
+                        intent_result_search_activity.putExtra("JSON_RESULT", response);
+                        startActivity(intent_result_search_activity);
                     }
                 },
                 new Response.ErrorListener(){

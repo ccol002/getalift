@@ -1,9 +1,11 @@
 package mt.edu.um.getalift;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +22,12 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ResultSearchActivity extends AppCompatActivity {
 
+    private static final String TAG = "ResultSearchActivity";
     private List<Ride> myRides = new ArrayList<Ride>();
 
     @Override
@@ -44,6 +48,7 @@ public class ResultSearchActivity extends AppCompatActivity {
 
     private void populateRideList() {
         String response = getIntent().getStringExtra("JSON_RESULT");
+        Log.i(TAG, "JSON_RESULT "+response);
         try {
             JSONArray res = new JSONArray(response);
             int user_id;
@@ -56,6 +61,10 @@ public class ResultSearchActivity extends AppCompatActivity {
             int minWalking;
             MyDate date;
             List<MyPoint> mp_array;
+            MyPoint closestPointStart;
+            MyPoint closestPointEnd;
+            int distancePointStart;
+            int distancePointEnd;
 
             for(int i=0;i<res.length();i++){
 
@@ -65,7 +74,6 @@ public class ResultSearchActivity extends AppCompatActivity {
                 mp_array = new ArrayList<MyPoint>();
 
                 //Get the first route point of the route (startingPoint)
-                //coucou
                 startLat = routePoints.getJSONObject(0).getJSONObject("point").getDouble("x");
                 startLng = routePoints.getJSONObject(0).getJSONObject("point").getDouble("y");
 
@@ -81,10 +89,10 @@ public class ResultSearchActivity extends AppCompatActivity {
                         lat = pt.getDouble("lat");
                         lng = pt.getDouble("lng");
                     }else{
-                        lat = pt.getJSONObject("point").getDouble("lat");
-                        lng = pt.getJSONObject("point").getDouble("lng");
+                        lat = pt.getJSONObject("point").getDouble("x");
+                        lng = pt.getJSONObject("point").getDouble("y");
                     }
-                    MyPoint mp = new MyPoint(lat,lng,pt.getInt("seconds_from_start"), pt.getInt("route"));
+                    MyPoint mp = new MyPoint(pt.getInt("id"),lat,lng,pt.getInt("seconds_from_start"), pt.getInt("route"));
                     mp_array.add(mp);
                 }
 
@@ -92,11 +100,20 @@ public class ResultSearchActivity extends AppCompatActivity {
                 user_id = tmp.getInt("user_id");
                 user_name = tmp.getString("user_name");
 
-                minWalking = (int)tmp.getInt("totalDistance")/60;
+                minWalking = tmp.getInt("totalDistance")/60;
+
+                distancePointStart = tmp.getInt("distancePointStart");
+                distancePointEnd = tmp.getInt("distancePointEnd");
 
                 date = new MyDate(tmp.getString("route_date"));
 
-                myRides.add(new Ride(startLat,startLng,endLat,endLng,route_id,user_id,user_name,minWalking,date, mp_array));
+                JSONObject cps = tmp.getJSONObject("closestPointStart");
+                closestPointStart = new MyPoint(cps.getInt("id"), cps.getDouble("lat"), cps.getDouble("lng"), cps.getInt("seconds_from_start"), cps.getInt("route"));
+
+                cps = tmp.getJSONObject("closestPointEnd");
+                closestPointEnd = new MyPoint(cps.getInt("id"), cps.getDouble("lat"), cps.getDouble("lng"), cps.getInt("seconds_from_start"), cps.getInt("route"));
+
+                myRides.add(new Ride(startLat,startLng,endLat,endLng,route_id,user_id,user_name,minWalking,date, mp_array, closestPointStart, closestPointEnd,distancePointStart,distancePointEnd));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -108,6 +125,36 @@ public class ResultSearchActivity extends AppCompatActivity {
         ArrayAdapter<Ride> adapter = new MyListAdapter();
         ListView list = (ListView) findViewById(R.id.ridesListView);
         list.setAdapter(adapter);
+
+        // Set an item click listener for ListView
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected item text from ListView
+                Ride selectedItem = (Ride) parent.getItemAtPosition(position);
+
+                Log.i(TAG,"Selected item size: "+selectedItem.getRoutePoints().size());
+
+                Double test = getIntent().getDoubleExtra("passengerStartingPointLat",0.0);
+                Log.i(TAG, "Passenger starting point :"+ Double.toString(test));
+                Intent intent = new Intent(getApplicationContext(), ViewRideActivity.class);
+                intent.putExtra("UserRide", selectedItem);
+                intent.putExtra("JSON_RESULT", getIntent().getStringExtra("JSON_RESULT"));
+                intent.putExtra("passengerStartingPointLat", getIntent().getDoubleExtra("passengerStartingPointLat",0.0));
+                intent.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
+                intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
+                intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+
+
+                intent.putExtra("startingTimeDriver", selectedItem.getDate().getTextArriveAt(0));
+
+                intent.putExtra("meetingTime", selectedItem.getDate().getTextArriveAt((int) selectedItem.getClosestPointStart().seconds_from_start/60));
+
+                intent.putExtra("droppingTime", selectedItem.getDate().getTextArriveAt((int) selectedItem.getClosestPointEnd().seconds_from_start/60));
+
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -175,7 +222,8 @@ public class ResultSearchActivity extends AppCompatActivity {
 
             // ArriveAt:
             TextView arriveAtText = (TextView) itemView.findViewById(R.id.usr_arriveAt);
-            arriveAtText.setText("Arrive at "+currentRide.getDate().getTextArriveAt(currentRide.getMinWalking()));
+            int seconds_from_start = (int) (currentRide.getClosestPointEnd().getSeconds_from_start()/60 + currentRide.getDistancePointEnd()/60);
+            arriveAtText.setText("Arrive at "+currentRide.getDate().getTextArriveAt(currentRide.getMinWalking() + seconds_from_start));
 
             return itemView;
         }

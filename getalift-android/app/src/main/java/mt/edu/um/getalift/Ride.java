@@ -1,8 +1,10 @@
 package mt.edu.um.getalift;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import java.util.List;
 
-public class Ride {
+public class Ride implements Parcelable {
     private double startLat;
     private double startLng;
     private double endLat;
@@ -13,8 +15,12 @@ public class Ride {
     private int minWalking;
     private MyDate date;
     private List<MyPoint> routePoints;
+    private MyPoint closestPointStart;
+    private MyPoint closestPointEnd;
+    private int distancePointStart;
+    private int distancePointEnd;
 
-    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, int minWalking, MyDate date, List<MyPoint> routePoints) {
+    public Ride(double startLat, double startLng, double endLat, double endLng, int route_id, int user_id, String user_name, int minWalking, MyDate date, List<MyPoint> routePoints, MyPoint closestPointStart, MyPoint closestPointEnd, int distancePointStart, int distancePointEnd) {
         this.startLat = startLat;
         this.startLng = startLng;
         this.endLat = endLat;
@@ -25,8 +31,39 @@ public class Ride {
         this.minWalking = minWalking;
         this.date = date;
         this.routePoints = routePoints;
-
+        this.closestPointStart = closestPointStart;
+        this.closestPointEnd = closestPointEnd;
+        this.distancePointStart = distancePointStart;
+        this.distancePointEnd = distancePointEnd;
     }
+
+    protected Ride(Parcel in) {
+        startLat = in.readDouble();
+        startLng = in.readDouble();
+        endLat = in.readDouble();
+        endLng = in.readDouble();
+        route_id = in.readInt();
+        user_id = in.readInt();
+        user_name = in.readString();
+        minWalking = in.readInt();
+        routePoints = in.createTypedArrayList(MyPoint.CREATOR);
+        closestPointStart = in.readParcelable(MyPoint.class.getClassLoader());
+        closestPointEnd = in.readParcelable(MyPoint.class.getClassLoader());
+        distancePointStart = in.readInt();
+        distancePointEnd = in.readInt();
+    }
+
+    public static final Creator<Ride> CREATOR = new Creator<Ride>() {
+        @Override
+        public Ride createFromParcel(Parcel in) {
+            return new Ride(in);
+        }
+
+        @Override
+        public Ride[] newArray(int size) {
+            return new Ride[size];
+        }
+    };
 
     public double getStartLat() {
         return startLat;
@@ -106,5 +143,60 @@ public class Ride {
 
     public void setRoutePoints(List<MyPoint> routePoints) {
         this.routePoints = routePoints;
+    }
+
+    public MyPoint getClosestPointStart() {
+        return closestPointStart;
+    }
+
+    public void setClosestPointStart(MyPoint closestPointStart) {
+        this.closestPointStart = closestPointStart;
+    }
+
+    public MyPoint getClosestPointEnd() {
+        return closestPointEnd;
+    }
+
+    public void setClosestPointEnd(MyPoint closestPointEnd) {
+        this.closestPointEnd = closestPointEnd;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public int getDistancePointStart() {
+        return distancePointStart;
+    }
+
+    public void setDistancePointStart(int distancePointStart) {
+        this.distancePointStart = distancePointStart;
+    }
+
+    public int getDistancePointEnd() {
+        return distancePointEnd;
+    }
+
+    public void setDistancePointEnd(int distancePointEnd) {
+        this.distancePointEnd = distancePointEnd;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeDouble(startLat);
+        parcel.writeDouble(startLng);
+        parcel.writeDouble(endLat);
+        parcel.writeDouble(endLng);
+        parcel.writeInt(route_id);
+        parcel.writeInt(user_id);
+        parcel.writeString(user_name);
+        parcel.writeInt(minWalking);
+        parcel.writeTypedList(routePoints);
+        parcel.writeParcelable(closestPointStart, i);
+        parcel.writeParcelable(closestPointEnd, i);
+        parcel.writeInt(distancePointStart);
+        parcel.writeInt(distancePointEnd);
+
     }
 }

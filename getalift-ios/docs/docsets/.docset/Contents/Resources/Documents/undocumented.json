@@ -1,0 +1,1587 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 13,
+      "symbol": "AppDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 15,
+      "symbol": "AppDelegate.window",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 18,
+      "symbol": "AppDelegate.application(_:didFinishLaunchingWithOptions:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 24,
+      "symbol": "AppDelegate.applicationWillResignActive(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 29,
+      "symbol": "AppDelegate.applicationDidEnterBackground(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 34,
+      "symbol": "AppDelegate.applicationWillEnterForeground(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 38,
+      "symbol": "AppDelegate.applicationDidBecomeActive(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/AppDelegate.swift",
+      "line": 42,
+      "symbol": "AppDelegate.applicationWillTerminate(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/BoutonArrondi.swift",
+      "line": 11,
+      "symbol": "BoutonArrondi",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/BoutonArrondi.swift",
+      "line": 14,
+      "symbol": "BoutonArrondi.init(coder:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 11,
+      "symbol": "CreateAccount",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 13,
+      "symbol": "CreateAccount.usernameF",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 14,
+      "symbol": "CreateAccount.passwordF",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 15,
+      "symbol": "CreateAccount.nameF",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 16,
+      "symbol": "CreateAccount.surnameF",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 17,
+      "symbol": "CreateAccount.emailF",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 18,
+      "symbol": "CreateAccount.mobileNumberF",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 21,
+      "symbol": "CreateAccount.createAccount(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateAccount.swift",
+      "line": 88,
+      "symbol": "CreateAccount.touchesBegan(_:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 12,
+      "symbol": "CreateYourRoute",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 16,
+      "symbol": "CreateYourRoute.userDictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 17,
+      "symbol": "CreateYourRoute.token",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 19,
+      "symbol": "CreateYourRoute.origin",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 20,
+      "symbol": "CreateYourRoute.destination",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 22,
+      "symbol": "CreateYourRoute.time",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 23,
+      "symbol": "CreateYourRoute.date",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 25,
+      "symbol": "CreateYourRoute.reccurence",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 31,
+      "symbol": "CreateYourRoute.viewMap",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 33,
+      "symbol": "CreateYourRoute.originMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 35,
+      "symbol": "CreateYourRoute.destinationMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 37,
+      "symbol": "CreateYourRoute.routePolyline",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 39,
+      "symbol": "CreateYourRoute.mapTasks",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 43,
+      "symbol": "CreateYourRoute.originLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 44,
+      "symbol": "CreateYourRoute.destinationLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 45,
+      "symbol": "CreateYourRoute.timeLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 46,
+      "symbol": "CreateYourRoute.reccurenceLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 51,
+      "symbol": "CreateYourRoute.startLat",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 52,
+      "symbol": "CreateYourRoute.endLat",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 53,
+      "symbol": "CreateYourRoute.startLng",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 54,
+      "symbol": "CreateYourRoute.endLng",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 56,
+      "symbol": "CreateYourRoute.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 81,
+      "symbol": "CreateYourRoute.routeOnDataBase()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 129,
+      "symbol": "CreateYourRoute.createRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 154,
+      "symbol": "CreateYourRoute.drawRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/CreateYourRoute.swift",
+      "line": 164,
+      "symbol": "CreateYourRoute.configureMapAndMarkersForRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 13,
+      "symbol": "DriverView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 15,
+      "symbol": "DriverView.token",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 17,
+      "symbol": "DriverView.driverId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 19,
+      "symbol": "DriverView.driverEmail",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 20,
+      "symbol": "DriverView.mobileNumber",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 22,
+      "symbol": "DriverView.firstNameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 23,
+      "symbol": "DriverView.lastNameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 24,
+      "symbol": "DriverView.usernameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 25,
+      "symbol": "DriverView.mobileNumberLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 26,
+      "symbol": "DriverView.emailLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 28,
+      "symbol": "DriverView.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 33,
+      "symbol": "DriverView.mailCompose(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 52,
+      "symbol": "DriverView.mailComposeController(_:didFinishWith:error:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 56,
+      "symbol": "DriverView.phoneCompose(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/DriverView.swift",
+      "line": 67,
+      "symbol": "DriverView.driverInformations()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 12,
+      "symbol": "FirstView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 17,
+      "symbol": "FirstView.token",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 19,
+      "symbol": "FirstView.menuButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 21,
+      "symbol": "FirstView.viewMap",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 23,
+      "symbol": "FirstView.lblInfo",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 25,
+      "symbol": "FirstView.locationManager",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 27,
+      "symbol": "FirstView.didFindMyLocation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 29,
+      "symbol": "FirstView.mapTasks",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 31,
+      "symbol": "FirstView.locationMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 35,
+      "symbol": "FirstView.originMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 37,
+      "symbol": "FirstView.destinationMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 39,
+      "symbol": "FirstView.routePolyline",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 49,
+      "symbol": "FirstView.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 73,
+      "symbol": "FirstView.didReceiveMemoryWarning()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 78,
+      "symbol": "FirstView.changeMapType(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 109,
+      "symbol": "FirstView.findAddress(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 149,
+      "symbol": "FirstView.createRoute(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 193,
+      "symbol": "FirstView.locationManager(manager:didChangeAuthorizationStatus:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 202,
+      "symbol": "FirstView.locationManager(_:didUpdateLocations:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 214,
+      "symbol": "FirstView.showAlertWithMessage(message:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 228,
+      "symbol": "FirstView.setuplocationMarker(coordinate:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 238,
+      "symbol": "FirstView.configureMapAndMarkersForRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 252,
+      "symbol": "FirstView.drawRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/FirstView.swift",
+      "line": 262,
+      "symbol": "FirstView.displayRouteInfo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Help.swift",
+      "line": 11,
+      "symbol": "Help",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Help.swift",
+      "line": 12,
+      "symbol": "Help.menuButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Help.swift",
+      "line": 14,
+      "symbol": "Help.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Help.swift",
+      "line": 24,
+      "symbol": "Help.didReceiveMemoryWarning()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Home.swift",
+      "line": 25,
+      "symbol": "Home.passwordField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Home.swift",
+      "line": 37,
+      "symbol": "Home.GlobalsVariables.userToken",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Home.swift",
+      "line": 38,
+      "symbol": "Home.GlobalsVariables.userName",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Home.swift",
+      "line": 39,
+      "symbol": "Home.GlobalsVariables.user",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 13,
+      "symbol": "MapTasks",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 17,
+      "symbol": "MapTasks.baseURLGeocode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 19,
+      "symbol": "MapTasks.lookupAddressResults",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 21,
+      "symbol": "MapTasks.fetchedFormattedAddress",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 23,
+      "symbol": "MapTasks.fetchedAddressLongitude",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 25,
+      "symbol": "MapTasks.fetchedAddressLatitude",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 30,
+      "symbol": "MapTasks.baseURLDirections",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 32,
+      "symbol": "MapTasks.selectedRoute",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 34,
+      "symbol": "MapTasks.overviewPolyline",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 36,
+      "symbol": "MapTasks.originCoordinate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 38,
+      "symbol": "MapTasks.destinationCoordinate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 40,
+      "symbol": "MapTasks.originAddress",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 42,
+      "symbol": "MapTasks.destinationAddress",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 47,
+      "symbol": "MapTasks.totalDistanceInMeters",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 49,
+      "symbol": "MapTasks.totalDistance",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 51,
+      "symbol": "MapTasks.totalDurationInSeconds",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 53,
+      "symbol": "MapTasks.totalDuration",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 57,
+      "symbol": "MapTasks.geocodeAddress(address:withCompletionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 120,
+      "symbol": "MapTasks.getDirections(origin:destination:waypoints:travelMode:completionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/MapTasks.swift",
+      "line": 187,
+      "symbol": "MapTasks.calculateTotalDistanceAndDuration()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Menu.swift",
+      "line": 12,
+      "symbol": "Menu",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Menu.swift",
+      "line": 14,
+      "symbol": "Menu.mailCompose(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Menu.swift",
+      "line": 33,
+      "symbol": "Menu.openBrowser(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/Menu.swift",
+      "line": 39,
+      "symbol": "Menu.mailComposeController(_:didFinishWith:error:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 11,
+      "symbol": "nameOfRoutesStart",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 12,
+      "symbol": "nameOfRoutesEnd",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 13,
+      "symbol": "driver",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 14,
+      "symbol": "id",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 15,
+      "symbol": "myIndex",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 18,
+      "symbol": "RouteList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 21,
+      "symbol": "RouteList.origin",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 22,
+      "symbol": "RouteList.destination",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 23,
+      "symbol": "RouteList.token",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 25,
+      "symbol": "RouteList.routeTableView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 28,
+      "symbol": "RouteList.xStartingPoint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 29,
+      "symbol": "RouteList.xEndPoint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 30,
+      "symbol": "RouteList.yStartingPoint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 31,
+      "symbol": "RouteList.yEndPoint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 33,
+      "symbol": "RouteList.mapTasks",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 35,
+      "symbol": "RouteList.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 52,
+      "symbol": "RouteList.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 56,
+      "symbol": "RouteList.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 62,
+      "symbol": "RouteList.tableView(_:titleForHeaderInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 70,
+      "symbol": "RouteList.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 84,
+      "symbol": "RouteList.tableView(_:didSelectRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteList.swift",
+      "line": 92,
+      "symbol": "RouteList.routeList()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 14,
+      "symbol": "RouteView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 16,
+      "symbol": "RouteView.viewMap",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 18,
+      "symbol": "RouteView.originMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 20,
+      "symbol": "RouteView.destinationMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 22,
+      "symbol": "RouteView.routePolyline",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 24,
+      "symbol": "RouteView.mapTasks",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 26,
+      "symbol": "RouteView.token",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 27,
+      "symbol": "RouteView.origin",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 28,
+      "symbol": "RouteView.destination",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 29,
+      "symbol": "RouteView.driverIndex",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 31,
+      "symbol": "RouteView.originLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 32,
+      "symbol": "RouteView.destinationLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 33,
+      "symbol": "RouteView.usernameDriverLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 34,
+      "symbol": "RouteView.dateLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 35,
+      "symbol": "RouteView.weeklyreccurenceLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 36,
+      "symbol": "RouteView.durationLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 37,
+      "symbol": "RouteView.distanceLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 39,
+      "symbol": "RouteView.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 49,
+      "symbol": "RouteView.createRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 69,
+      "symbol": "RouteView.driverName()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 115,
+      "symbol": "RouteView.routeDate()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 172,
+      "symbol": "RouteView.drawRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 182,
+      "symbol": "RouteView.configureMapAndMarkersForRoute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/RouteView.swift",
+      "line": 197,
+      "symbol": "RouteView.displayRouteInfo()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 12,
+      "symbol": "SearchRoute",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 14,
+      "symbol": "SearchRoute.affichageJour",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 16,
+      "symbol": "SearchRoute.locationManager",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 18,
+      "symbol": "SearchRoute.locationMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 20,
+      "symbol": "SearchRoute.myLocationLat",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 21,
+      "symbol": "SearchRoute.myLocationLng",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 23,
+      "symbol": "SearchRoute.viewMap",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 25,
+      "symbol": "SearchRoute.hourTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 26,
+      "symbol": "SearchRoute.dateTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 38,
+      "symbol": "SearchRoute.originTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 39,
+      "symbol": "SearchRoute.destinationTextField",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 42,
+      "symbol": "SearchRoute.TransfertDonnee",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 43,
+      "symbol": "SearchRoute.TransfertDonnee.originT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 44,
+      "symbol": "SearchRoute.TransfertDonnee.destinationT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 45,
+      "symbol": "SearchRoute.TransfertDonnee.dateT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 46,
+      "symbol": "SearchRoute.TransfertDonnee.timeT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 47,
+      "symbol": "SearchRoute.TransfertDonnee.reccurenceT",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 52,
+      "symbol": "SearchRoute.awakeFromNib()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 66,
+      "symbol": "SearchRoute.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 82,
+      "symbol": "SearchRoute.myLocationOrigin(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 86,
+      "symbol": "SearchRoute.myLocationDestination(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 90,
+      "symbol": "SearchRoute.go(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 133,
+      "symbol": "SearchRoute.textFieldEditingDate(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 147,
+      "symbol": "SearchRoute.textFieldEditingTime(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 159,
+      "symbol": "SearchRoute.autoOnOff(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 171,
+      "symbol": "SearchRoute.locationManager(manager:didChangeAuthorizationStatus:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 179,
+      "symbol": "SearchRoute.locationManager(_:didUpdateLocations:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 192,
+      "symbol": "SearchRoute.timePickerChanged(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 198,
+      "symbol": "SearchRoute.datePickerChanged(sender:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SearchRoute.swift",
+      "line": 207,
+      "symbol": "SearchRoute.touchesBegan(_:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SelectedButton.swift",
+      "line": 11,
+      "symbol": "SelectedButton",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SelectedButton.swift",
+      "line": 12,
+      "symbol": "SelectedButton.alternateButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SelectedButton.swift",
+      "line": 14,
+      "symbol": "SelectedButton.awakeFromNib()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SelectedButton.swift",
+      "line": 20,
+      "symbol": "SelectedButton.unselectAlternateButtons()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SelectedButton.swift",
+      "line": 32,
+      "symbol": "SelectedButton.touchesBegan(_:with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SelectedButton.swift",
+      "line": 37,
+      "symbol": "SelectedButton.toggleButton()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/SelectedButton.swift",
+      "line": 41,
+      "symbol": "SelectedButton.isSelected",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 11,
+      "symbol": "UserList",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 13,
+      "symbol": "UserList.menuButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 15,
+      "symbol": "UserList.userTableView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 17,
+      "symbol": "UserList.token",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 20,
+      "symbol": "UserList.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 21,
+      "symbol": "UserList.username",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 22,
+      "symbol": "UserList.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 23,
+      "symbol": "UserList.surname",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 25,
+      "symbol": "UserList.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 39,
+      "symbol": "UserList.didReceiveMemoryWarning()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 45,
+      "symbol": "UserList.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 49,
+      "symbol": "UserList.tableView(_:numberOfRowsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 55,
+      "symbol": "UserList.tableView(_:titleForHeaderInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 63,
+      "symbol": "UserList.tableView(_:cellForRowAt:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserList.swift",
+      "line": 75,
+      "symbol": "UserList.userList()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 12,
+      "symbol": "UserProfile",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 14,
+      "symbol": "UserProfile.menuButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 16,
+      "symbol": "UserProfile.userDictionary",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 18,
+      "symbol": "UserProfile.firstNameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 19,
+      "symbol": "UserProfile.lastNameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 20,
+      "symbol": "UserProfile.usernameLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 21,
+      "symbol": "UserProfile.mobileNumberLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 22,
+      "symbol": "UserProfile.emailLabel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/UserProfile.swift",
+      "line": 24,
+      "symbol": "UserProfile.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/ViewController.swift",
+      "line": 11,
+      "symbol": "ViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/ViewController.swift",
+      "line": 13,
+      "symbol": "ViewController.viewDidLoad()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev/GALDev/ViewController.swift",
+      "line": 18,
+      "symbol": "ViewController.didReceiveMemoryWarning()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/Loan/Documents/STAGE/GetALift_STAGE/GALDev"
+}
