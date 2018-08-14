@@ -173,6 +173,8 @@ router.post("/auth", function(req, res){
 	db_con.query("SELECT * FROM User WHERE username = ?", [req.body.username], function(err, result){
 		// If there is an error, throw it.
 		if (err) throw err;
+		console.log("Username : "+req.body.username);
+		console.log("Password : "+req.body.password);
 		// If there is one user with this username...
 		if (result.length === 1){
 			// We check if the password given is the good one.
