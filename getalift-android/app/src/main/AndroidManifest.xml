@@ -33,7 +33,8 @@
             android:value="AIzaSyB_bfwlejYTkdUcfCKoO90Z1ClNI56CD4I" />
 
         <activity android:name=".HomeMapActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity"
+            android:parentActivityName=".HomeMapActivity"/>
         <activity android:name=".ResultSearchActivity"
             android:parentActivityName=".HomeMapActivity"
             android:launchMode="singleTop"/>

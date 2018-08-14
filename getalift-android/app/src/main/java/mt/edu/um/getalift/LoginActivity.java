@@ -122,6 +122,10 @@ public class LoginActivity extends AppCompatActivity {
                                         getString(R.string.msc_key_saved_token),
                                         jo.getString("token")
                                 );
+                                edit.putInt(
+                                       getString(R.string.msc_saved_id),
+                                       jo.getJSONObject("user").getInt("id")
+                               );
                                 edit.putString(
                                         getString(R.string.msc_saved_user),
                                         jo.getJSONObject("user").toString()

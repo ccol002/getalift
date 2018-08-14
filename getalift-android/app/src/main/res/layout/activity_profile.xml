@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textTitle"
         android:layout_width="73dp"
         android:layout_height="35dp"
         android:layout_marginEnd="8dp"
@@ -51,7 +51,7 @@
         app:srcCompat="@drawable/ic_directions_car_black_24dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textFirst_Last"
         android:layout_width="260dp"
         android:layout_height="27dp"
         android:layout_marginEnd="8dp"
@@ -60,10 +60,10 @@
         android:text="First_Last"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textPhoneNumber"
         android:layout_width="99dp"
         android:layout_height="33dp"
         android:layout_marginEnd="96dp"
@@ -75,7 +75,7 @@
         tools:layout_editor_absoluteY="280dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textEmail"
         android:layout_width="121dp"
         android:layout_height="26dp"
         android:layout_marginEnd="8dp"
@@ -87,7 +87,7 @@
         tools:layout_editor_absoluteY="333dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textNote"
         android:layout_width="121dp"
         android:layout_height="29dp"
         android:layout_marginEnd="84dp"
