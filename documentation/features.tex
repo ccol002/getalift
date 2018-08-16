@@ -1,0 +1,263 @@
+\part{Features}
+
+\chapter{Backend API}
+
+\section{Ready}
+
+Here is a list of the routes already availables from the backend API. All the routes below are preceded by \url{http://ip_server:port/api}
+
+\subsection{Global}
+\begin{itemize}
+	\item GET "/"
+	\begin{itemize}
+		\item Returns "Hello World"
+	\end{itemize}
+\end{itemize}
+
+\subsection{Users}
+\begin{itemize}
+	\item POST "/users"
+	\begin{itemize}
+		\item Create a user
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/auth"
+	\begin{itemize}
+		\item Authenticate a user
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/users"
+	\begin{itemize}
+		\item This route send back every public informations about every users. It can be a bit heavy with a lot of users.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/users/:usrid"
+	\begin{itemize}
+		\item This route send back the public informations about the chosen user
+	\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+	\item PUT "/users/:usrid"
+	\begin{itemize}
+		\item This route update the information about the chosen user.
+	\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+	\item DELETE "/users/:usrid"
+	\begin{itemize}
+		\item This route deletes the chosen user.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Routes}
+\begin{itemize}
+	\item GET "/routes"
+	\begin{itemize}
+		\item This route send back every informations about all the routes. It can be a bit heavy with a lot of routes.
+	\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+	\item GET "/routes/:routeid"
+	\begin{itemize}
+		\item This route send back the public informations about the chosen route.
+	\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+	\item GET "driverroutes/:driverid"
+	\begin{itemize}
+		\item This route send back the public informations about all the routes from a specific driver.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item PUT "/routes"
+	\begin{itemize}
+		\item This route create a new Route in the database. It search the optimal directions with the google maps API, in order to store the best route.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item DELETE "/routes/:routeid"
+	\begin{itemize}
+		\item This route deletes the chosen route.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/routes/findTarget"
+	\begin{itemize}
+		\item 	This route can be used in order to search for a route that match specific parameters.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Route Dates}
+\begin{itemize}
+	\item GET "/routedate/:routeid"
+	\begin{itemize}
+		\item This route send back the public informations about the chosen routedate.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/routedate"
+	\begin{itemize}
+		\item This route returns all the routedates for all the routes.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Rides}
+\begin{itemize}
+	\item GET "/rides"
+	\begin{itemize}
+		\item This route send back every informations about all the rides. It can be a bit heavy with a lot of rides.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/rides/:rideid"
+	\begin{itemize}
+		\item This route send back the public informations about the chosen ride.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/rides"
+	\begin{itemize}
+		\item This route create a ride in the database.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item PUT "/rides/:rideid"
+	\begin{itemize}
+		\item This route update the information about the chosen ride.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item  DELETE "/rides/:rideid"
+	\begin{itemize}
+		\item This route deletes the chosen ride.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Passenger}
+\begin{itemize}
+	\item GET "/passengers"
+	\begin{itemize}
+		\item This route send back every informations about all the passengers. It can be a bit heavy with a lot of passengers.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/passengers/:passid"
+	\begin{itemize}
+		\item This route send back the public informations about the chosen passenger.
+
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/passenger"
+	\begin{itemize}
+		\item 	This route can create a passenger in the database.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item PUT "/passenger/:passid"
+	\begin{itemize}
+		\item This route update the information about the chosen passenger.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item DELTE "/passenger/:passid"
+	\begin{itemize}
+		\item This route deletes the chosen passenger.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Ratings}
+\begin{itemize}
+	\item GET "/ratings"
+	\begin{itemize}
+		\item 	This route send back every informations about all the ratings. It can be a bit heavy with a lot of rates.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/ratings/:rateid"
+	\begin{itemize}
+		\item This route send back the public informations about the chosen rate.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/ratings"
+	\begin{itemize}
+		\item This route create a rate in the database.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item 
+	\begin{itemize}
+		\item 
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item DELETE "/ratings/:rateid"
+	\begin{itemize}
+		\item This route update the information about the chosen rating.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Favorite Route}
+\begin{itemize}
+	\item GET "/favoriteRoute/:userId"
+	\begin{itemize}
+		\item This routes returns all the favorites routes of a chosen user.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/favoriteRoute"
+	\begin{itemize}
+		\item This route create a favorite route.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item DELETE "/favoriteRoute"
+	\begin{itemize}
+		\item This route delete a favorite route.
+	\end{itemize}
+\end{itemize}
+
+\section{To Do}
+
+Currently, there is no need to add additional features to the backend API.
+
+\chapter{Android applcation}
+
+TODO
+
+\chapter{iOS application}
+
+TODO

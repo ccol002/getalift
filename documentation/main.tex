@@ -1,0 +1,38 @@
+\documentclass{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+
+\newenvironment{changemargin}[3]{%
+\begin{list}{}{%
+\setlength{\topsep}{#3}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\topmargin}{#3}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\geometry{hmargin = 2.5 cm, vmargin = 2.5 cm}
+
+
+\begin{document}
+
+\include{Project_description}
+\include{Features}
+
+\end{document}

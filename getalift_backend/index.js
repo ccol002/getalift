@@ -725,7 +725,7 @@ router.post("/passenger", function(req, res){
 // Return		:
 // 		- the mysql object for this ride.
 // Description	:
-//					This route update the information about the chosen ride.
+//					This route update the information about the chosen passenger.
 router.put("/passenger/:passid", function(req, res){
 	db_con.query("UPDATE Passenger SET ride = ?, passenger = ? WHERE id = ?",
 		[req.body.ride, req.body.passenger, req.params.passid],
@@ -795,7 +795,7 @@ router.get("/ratings/:rateid", function(req, res){
 // Return		:
 // 		- the mysql object for this ride.
 // Description	:
-//					This route can create a ride in the database.
+//					This route can create a rate in the database.
 router.post("/ratings", function(req, res){
 	db_con.query("INSERT INTO Rating (author, target, ride, stars, comment, postDate) VALUES (?, ?, ?, ?, ?, ?)",
 		[req.body.author, req.body.target, req.body.ride, req.body.stars, req.body.comment, req.body.postDate],
