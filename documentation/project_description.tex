@@ -1,13 +1,19 @@
+{\bf CCcomment: todo Title page}
+
 \part{Project Description}
 
 \chapter{High level}
 The project consists in creating a mobile application aimed at connecting people to make daily trips. This app is close to other apps carpool like BlaBlaCar for example, but it favors mainly course and regular trips.
 \\The application is part of the eco-responsibility domain. Indeed, we often notice that vehicles traveling in cities contain only one person. Carpooling offers significant advantages: to meet new people, to divide the journey price by the number of passengers, and of course to reduce the number of cars on the island, so the pollution but also the amount of traffic jams. The car traffic will be smoother and you will spend less time on the road. Indeed, the traffic on the island of Malta is difficult, the roads are narrow and old. The infrastructure of the Maltese roads is not suitable for such a high number of cars, especially in the summer when the island welcomes many tourists, 2.2 million expected for 2018.
-\\The app favors drivers. They must not wait or make a detour, theoretically of course, free to them to be accommodating. It is the passenger who must be at a given time and a given position. Knowing that the driver and the passenger will have a different path, the application will find the closest driver and calculate the distance to reach the meeting point.
+\\The app favors drivers. They must not wait or make a detour, theoretically of course, free to them to be accommodating. It is the passenger who must be at a given time and a given position. Knowing that the driver and the passenger will have a different path, the application will find the closest driver and calculate the distance to reach the meeting point.{\bf CCcomment: if would be great if you could add some figures and examples of maps}
 \\The application is intended to connect drivers and passengers only, it will not deal with the management of payments, if any, or the management of places. The app will track driver's journeys and suggest the one that's best for users seeking a ride. The application must be simple and intuitive.
 
 \chapter{Technical description}
-This application will be available on iOS and Android platform. The client-server environment refers to a mode of communication across a network between several programs: one, qualified as a client, sends requests; the other , qualified as server wait for and respond to customer requests.\\This chapter is divided in 4 majors subparts :
+This application will be available on iOS and Android platform. The client-server environment refers to a mode of communication across a network between several programs: one, qualified as a client, sends requests; the other , qualified as server wait for and respond to customer requests.
+
+{\bf CCcomment: somewhere here a diagram is needed showing how the parts connect with each other, which port numbers etc. I think the diagram will the following boxes: backend, android client, ios client, and db}
+
+This chapter is divided in 4 majors subparts :
 \begin{itemize}
     \item Back-end API
     \item Database settings
@@ -17,6 +23,8 @@ This application will be available on iOS and Android platform. The client-serve
 
 \section{Back-end API}
 The back-end server is an API using the NodeJS (JavaScript) technology. It is related to a database using MySQL to store the data of the application. The clients send HTTP request to the server, which answer back some datas. This is how the clients and the server communicate.
+{\bf CCcomment: here we need a list of the functions and their signatures supported by the backend (or simply refer to chapter 3 because it seems there is the whole backend api)}
+
 
 \section{Database settings}
 The database is using MySQL and PHPMyAdmin to interact with. The database is composed of 8 tables :
@@ -221,6 +229,7 @@ A routePoint is defined by :
 
 \section{Application design}
 
+{\bf CCcomment: description of the diagram is needed here}
 The following page is the application design realised by Loan AUBERGEON.
 \newpage
 \begin{changemargin}{-2.5cm}{-2.5cm}{-3.8cm}
