@@ -921,6 +921,12 @@ router.post("/findTarget", function(req, res){
 	var d = new Date();
 	var t1 = d.getTime();
 
+	console.log("startLat :"+req.body.startLat);
+	console.log("startLng :"+req.body.startLng);
+	console.log("endLat :"+req.body.endLat);
+	console.log("endLng :"+req.body.endLng);
+	console.log("startDate: "+req.body.startDate);
+
 	var passenger = {
 		startPoint: {lat: parseFloat(req.body.startLat),lng: parseFloat(req.body.startLng)},
 		endPoint: {lat: parseFloat(req.body.endLat),lng: parseFloat(req.body.endLng)},
