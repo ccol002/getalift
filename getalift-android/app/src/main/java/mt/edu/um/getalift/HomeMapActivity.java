@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -227,7 +228,12 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     private void startResultSearchActivity() {
         getLatLongFromGivenAddress(mTextSearchDestination.getText().toString(),"destination");
-        getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
+            }
+        }, 5000);
     }
 
     public void switchView() {
@@ -433,17 +439,17 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                     .getDouble("lat");
 
                             if(point.equals("origin")){
-                                //originPoint[0] = 35.9021631;
-                                //originPoint[1] = 14.483748300000002;
-                                originPoint[0] = lat;
-                                originPoint[1] = lng;
+                                originPoint[0] = 35.9021631;
+                                originPoint[1] = 14.483748300000002;
+                                //originPoint[0] = lat;
+                                //originPoint[1] = lng;
                                 intent_result_search_activity.putExtra("passengerStartingPointLat", originPoint[0]);
                                 intent_result_search_activity.putExtra("passengerStartingPointLng", originPoint[1]);
                             }else{
-                                //destinationPoint[0] = 35.85411349999999;
-                                //destinationPoint[1] = 14.48327949999998;
-                                destinationPoint[0] = lat;
-                                destinationPoint[1] = lng;
+                                destinationPoint[0] = 35.85411349999999;
+                                destinationPoint[1] = 14.48327949999998;
+                                //destinationPoint[0] = lat;
+                                //destinationPoint[1] = lng;
                                 intent_result_search_activity.putExtra("passengerEndingPointLat", destinationPoint[0]);
                                 intent_result_search_activity.putExtra("passengerEndingPointLng", destinationPoint[1]);
                             }
@@ -453,6 +459,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                 searchRide();
                             }
                         } catch (JSONException e) {
+
+                            Toast.makeText(getApplicationContext(), "Unable to connect to Google Maps API",
+                                    Toast.LENGTH_LONG).show();
                             e.printStackTrace();
                         }
                     }
