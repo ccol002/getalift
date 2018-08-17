@@ -69,6 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
             userID = intent_profile_activity.getIntExtra("userId",0);
             txtNote.setText(Integer.toString(userID));
         }
+
         profil();
     }
 
@@ -90,7 +91,9 @@ public class ProfileActivity extends AppCompatActivity {
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/users/2";
+        String url = ConnectionManager.SERVER_URL+"/api/users/" + Integer.toString(userID);
+        Log.i(TAG,"Bonjour");
+        Log.i(TAG,Integer.toString(userID));
         //Log.i(TAG,url);
         StringRequest sr = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>(){
