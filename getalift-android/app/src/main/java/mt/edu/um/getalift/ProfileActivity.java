@@ -1,8 +1,10 @@
 package mt.edu.um.getalift;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.nfc.Tag;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -37,10 +39,12 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView txtEmail;
     private TextView txtNote;
 
+
     private static final String TAG = "ProfileActivity";
 
     Intent intent_profile_activity;
     private int userID;
+    private int phoneNumber;
 
 
 
@@ -69,6 +73,8 @@ public class ProfileActivity extends AppCompatActivity {
             userID = intent_profile_activity.getIntExtra("userId",0);
             txtNote.setText(Integer.toString(userID));
         }
+
+        txtPhone.setOnClickListener(txtPhoneBtn);
 
         profil();
     }
@@ -112,6 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
                             txtPhone.setText(jo.getString("mobileNumber"));
                             txtName.setText(jo.getString("name")+ " " + jo.getString("username"));
 
+                            phoneNumber = Integer.parseInt(jo.getString("mobileNumber"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -137,5 +144,19 @@ public class ProfileActivity extends AppCompatActivity {
         queue.add(sr);
 
     }
+
+    private View.OnClickListener txtPhoneBtn = new View.OnClickListener() {
+        @SuppressLint("MissingPermission")
+        @Override
+        public void onClick(View view) {
+            Log.i("Bouton","Bouton cliquer");
+
+
+            Intent appel = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
+            startActivity(appel);
+
+        }
+    };
+
 
 }
