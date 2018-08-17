@@ -70,7 +70,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private static final String TAG = "HomeMapActivity";
 
     private final static int MY_ACCESS_PERMISSION_CODE = 1;
-    private final static String GoogleMapsAPIKey = "AIzaSyB_bfwlejYTkdUcfCKoO90Z1ClNI56CD4I";
+    private final static String GoogleMapsAPIKey = "AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0";
 
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;

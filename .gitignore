@@ -75,3 +75,9 @@ getalift-ios/fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 getalift-ios/iOSInjectionProject/
+
+#documenation
+documentation/*.out
+documentation/*.aux
+documentation/*.log
+documentation/*.gz

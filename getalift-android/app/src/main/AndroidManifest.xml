@@ -30,7 +30,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB_bfwlejYTkdUcfCKoO90Z1ClNI56CD4I" />
+            android:value="AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0" />
 
         <activity android:name=".HomeMapActivity" />
         <activity android:name=".ProfileActivity"

@@ -1,5 +1,3 @@
-{\bf CCcomment: todo Title page}
-
 \part{Project Description}
 
 \chapter{High level}
@@ -11,18 +9,23 @@ The project consists in creating a mobile application aimed at connecting people
 \chapter{Technical description}
 This application will be available on iOS and Android platform. The client-server environment refers to a mode of communication across a network between several programs: one, qualified as a client, sends requests; the other , qualified as server wait for and respond to customer requests.
 
-{\bf CCcomment: somewhere here a diagram is needed showing how the parts connect with each other, which port numbers etc. I think the diagram will the following boxes: backend, android client, ios client, and db}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.40]{diagrams/connecting_parts.png}
+\caption{Diagram showing the architecture of the project}
+\end{figure}
 
-This chapter is divided in 4 majors subparts :
+This chapter is divided in 5 majors subparts :
 \begin{itemize}
     \item Back-end API
     \item Database settings
     \item How to use
     \item Search algorithm
+    \item Application design
 \end{itemize}
 
 \section{Back-end API}
-The back-end server is an API using the NodeJS (JavaScript) technology. It is related to a database using MySQL to store the data of the application. The clients send HTTP request to the server, which answer back some datas. This is how the clients and the server communicate.
+The back-end server is an API using the NodeJS (JavaScript) technology. It is related to a database using MySQL to store the data of the application. The clients send HTTP request to the server, which answer back some datas. This is how the clients and the server communicate. The chapter 3 list all of the functions available on the back-end API.
 {\bf CCcomment: here we need a list of the functions and their signatures supported by the backend (or simply refer to chapter 3 because it seems there is the whole backend api)}
 
 
@@ -230,7 +233,20 @@ A routePoint is defined by :
 \section{Application design}
 
 {\bf CCcomment: description of the diagram is needed here}
-The following page is the application design realised by Loan AUBERGEON.
+The following page is the application design realised by Loan AUBERGEON. Here is a description the design :
+
+\begin{itemize}
+	\item {\bf Page 1 : Login}. This is the first page of the application. It is used to either log the user, or he also can create an account by clicking on the button "Create an account"
+	\item {\bf Page 2 : Sign in}. This page is use to register the user in the database. 
+	\item {\bf Page 3 : Home}. This is the home page of the application. There is a map from Google Map in the background, focused on the user's localisation. From this page, you can search for rides, or access to the navbar.
+	\item {\bf Page 4 : Navbar}. This page is the navigation bar. There is 5 items in the menu : "Profile", "My drives", "Settings", "Help" and "Get more infos".
+	\item {\bf Page 5 : Lift}. This page is to search for a route. The user has to choose his starting point, his destination, the date and the hour, and also if there is a weekly recurrence. When the "GO" button is pressed and the form is filled, we moove to the page 6.
+	\item {\bf Page 6 : Availables drives}. This page list the availables drives on the database that matches the user's parameters. By clicking on a drive, the user is redirected to page 7. If there is no drive available, or if the user want to drive, he can click on the button "I want to drive", which redirect to page 8.
+	\item {\bf Page 7 : User x's route}. This page is to display a specific route. If the user want to take this route, he can contact the driver by clicking on "Contact". The user will be redirected to page 9.
+	\item {\bf Page 8 : Create your route}. This page is to display the route that the user is going to create. He can edit this route, by clicking on the "Edit" button, to change a parameter. He will be redirected in page 5. Else, he can also click on the button "Create" to create his route.  He will be redirected to page 3.
+	\item {\bf Page 9 : User profile}. This page is to display a specific user profile. It shows some informations, such as the username, the first name and last name, the phone number, the email and also the rating of the user.
+	 \item {\bf Page 10 : My drives}. This page is to display the drives of the connected user. If he clicks on a drive, he will be redirected to page 8.
+\end{itemize}
 \newpage
 \begin{changemargin}{-2.5cm}{-2.5cm}{-3.8cm}
 \includegraphics[page=1]{maquettes} 

@@ -40,7 +40,7 @@ var config = require("./config");
 
 // The google maps client, with the API key
 var googleMapsClient = require("@google/maps").createClient({
-	key: "AIzaSyALY4VsSLHOjmG2MRsLtEk1EPtKNx8-NvU"
+	key: "AIzaSyATjcz1kGq5dh_S4oV9dBPuixSoWBppZLc"
 });
 
 var bcrypt = require("bcrypt");
