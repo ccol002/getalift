@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/textFirst_Last"
-        android:layout_width="260dp"
+        android:layout_width="155dp"
         android:layout_height="27dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -64,80 +64,74 @@
 
     <TextView
         android:id="@+id/textPhoneNumber"
-        android:layout_width="99dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="125dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="48dp"
         android:text="PhoneNumber"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.928"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="280dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textFirst_Last" />
 
     <TextView
         android:id="@+id/textEmail"
-        android:layout_width="121dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="125dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="28dp"
         android:text="Email"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="333dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textPhoneNumber" />
+
+    <TextView
+        android:id="@+id/textAdd"
+        android:layout_width="125dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="28dp"
+        android:text="AddComment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEmail" />
 
     <TextView
         android:id="@+id/textNote"
-        android:layout_width="121dp"
-        android:layout_height="29dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginStart="8dp"
-        android:text="AddComment"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="402dp" />
-
-    <TextView
-        android:id="@+id/textView6"
         android:layout_width="85dp"
         android:layout_height="38dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.367" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="37dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="88dp"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_search_black_24dp"
-        tools:layout_editor_absoluteY="280dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textFirst_Last"
+        app:srcCompat="@drawable/ic_search_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="43dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="80dp"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_help_outline_black_24dp"
-        tools:layout_editor_absoluteY="333dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:srcCompat="@drawable/ic_help_outline_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="46dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="76dp"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_menu_gallery"
-        tools:layout_editor_absoluteY="402dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:srcCompat="@drawable/ic_menu_gallery" />
 </android.support.constraint.ConstraintLayout>

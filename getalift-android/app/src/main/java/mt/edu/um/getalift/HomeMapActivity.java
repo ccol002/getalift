@@ -304,12 +304,19 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_profile) {
-          startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+            if (id == R.id.nav_profile) {
           Intent intentProfile = new Intent(getBaseContext(), ProfileActivity.class);
           SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
-          intentProfile.putExtra("userId", sh.getInt("userId",0));
-          startActivity(intentProfile);
+          try {
+              JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+              Log.i("Home",Integer.toString(user.getInt("id"),0));
+              intentProfile.putExtra("userId", user.getInt("id"));
+              startActivity(intentProfile);
+          } catch (JSONException e) {
+              e.printStackTrace();
+          }
+
+
         } else if (id == R.id.nav_lifts) {
 
         } else if (id == R.id.nav_help) {
