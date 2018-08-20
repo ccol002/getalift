@@ -140,7 +140,7 @@ class RouteView : UIViewController {
         let driverIndex = self.routes[myIndex].driver
         let driverOrigin = self.routes[myIndex].nameOfStartingPoint
         let driverDestination = self.routes[myIndex].nameOfEndpoint
-        let searchedOrigin = String(SearchRoute.SearchedRoute.searchedRoute.latitudeOfStartigPoint)+","+String(SearchRoute.SearchedRoute.searchedRoute.longitudeOfStartingPoint)
+        let searchedOrigin = String(SearchRoute.SearchedRoute.searchedRoute.latitudeOfStartingPoint)+","+String(SearchRoute.SearchedRoute.searchedRoute.longitudeOfStartingPoint)
         let searchedDestination = String(SearchRoute.SearchedRoute.searchedRoute.latitudeOfEndPoint)+","+String(SearchRoute.SearchedRoute.searchedRoute.longitudeOfEndPoint)
         let routeId = self.routes[myIndex].id
         
@@ -162,7 +162,7 @@ class RouteView : UIViewController {
             if success {
                 self.mapTasks.calculateTotalDistanceAndDuration()
                 let nameOfStartingPoint = self.mapTasks.originAddress
-                let latitudeOfStartigPoint = self.mapTasks.originCoordinate.latitude
+                let latitudeOfStartingPoint = self.mapTasks.originCoordinate.latitude
                 let longitudeOfStartingPoint = self.mapTasks.originCoordinate.longitude
                 let nameOfEndpoint = self.mapTasks.destinationAddress
                 let latitudeOfEndPoint = self.mapTasks.destinationCoordinate.latitude
@@ -173,7 +173,7 @@ class RouteView : UIViewController {
                 let duration = self.mapTasks.totalDuration
 
                 self.driverRoute = Route.init(nameOfStartingPoint: nameOfStartingPoint!,
-                                         latitudeOfStartigPoint: latitudeOfStartigPoint,
+                                         latitudeOfStartingPoint: latitudeOfStartingPoint,
                                          longitudeOfStartingPoint: longitudeOfStartingPoint,
                                          nameOfEndpoint: nameOfEndpoint!,
                                          latitudeOfEndPoint: latitudeOfEndPoint,
@@ -195,7 +195,7 @@ class RouteView : UIViewController {
         self.mapTasks.getDirectionsWalking(origin: searchedOrigin, destination: driverOrigin, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 let nameOfStartingPoint = self.mapTasks.originAddress
-                let latitudeOfStartigPoint = self.mapTasks.originCoordinate.latitude
+                let latitudeOfStartingPoint = self.mapTasks.originCoordinate.latitude
                 let longitudeOfStartingPoint = self.mapTasks.originCoordinate.longitude
                 let nameOfEndpoint = self.mapTasks.destinationAddress
                 let latitudeOfEndPoint = self.mapTasks.destinationCoordinate.latitude
@@ -206,7 +206,7 @@ class RouteView : UIViewController {
                 self.mapTasks.calculateTotalDistanceAndDuration()
                 
                 self.routeOnFootOne = Route.init(nameOfStartingPoint: nameOfStartingPoint!,
-                                              latitudeOfStartigPoint: latitudeOfStartigPoint,
+                                              latitudeOfStartingPoint: latitudeOfStartingPoint,
                                               longitudeOfStartingPoint: longitudeOfStartingPoint,
                                               nameOfEndpoint: nameOfEndpoint!,
                                               latitudeOfEndPoint: latitudeOfEndPoint,
@@ -222,7 +222,7 @@ class RouteView : UIViewController {
         self.mapTasks.getDirectionsWalking(origin: driverDestination, destination: searchedDestination, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 let nameOfStartingPoint = self.mapTasks.originAddress
-                let latitudeOfStartigPoint = self.mapTasks.originCoordinate.latitude
+                let latitudeOfStartingPoint = self.mapTasks.originCoordinate.latitude
                 let longitudeOfStartingPoint = self.mapTasks.originCoordinate.longitude
                 let nameOfEndpoint = self.mapTasks.destinationAddress
                 let latitudeOfEndPoint = self.mapTasks.destinationCoordinate.latitude
@@ -233,7 +233,7 @@ class RouteView : UIViewController {
                 self.mapTasks.calculateTotalDistanceAndDuration()
                 
                 self.routeOnFootTwo = Route.init(nameOfStartingPoint: nameOfStartingPoint!,
-                                              latitudeOfStartigPoint: latitudeOfStartigPoint,
+                                              latitudeOfStartingPoint: latitudeOfStartingPoint,
                                               longitudeOfStartingPoint: longitudeOfStartingPoint,
                                               nameOfEndpoint: nameOfEndpoint!,
                                               latitudeOfEndPoint: latitudeOfEndPoint,
@@ -260,7 +260,7 @@ class RouteView : UIViewController {
     func drawDriverRoute(){
         self.viewMap?.clear()
         // Premier Marker
-        driverOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfStartigPoint as Double, self.driverRoute.longitudeOfStartingPoint as Double))
+        driverOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfStartingPoint as Double, self.driverRoute.longitudeOfStartingPoint as Double))
         driverOriginMarker.map = self.viewMap
         driverOriginMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 0.0471, green: 0.5686, blue: 0.0275, alpha: 1))
         driverOriginMarker.title = self.driverRoute.nameOfStartingPoint
@@ -284,7 +284,7 @@ class RouteView : UIViewController {
         
         // Configuration de la camera
         // On recupere les coordonner des deux points
-        let oLat = self.driverRoute.latitudeOfStartigPoint
+        let oLat = self.driverRoute.latitudeOfStartingPoint
         let oLong = self.driverRoute.longitudeOfStartingPoint
         let dLat = self.driverRoute.latitudeOfEndPoint
         let dLong = self.driverRoute.longitudeOfEndPoint
@@ -306,7 +306,7 @@ class RouteView : UIViewController {
         // Premier chemin
         
         // Premier Marker
-        userOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.routeOnFootOne.latitudeOfStartigPoint as Double, self.routeOnFootOne.longitudeOfStartingPoint as Double))
+        userOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.routeOnFootOne.latitudeOfStartingPoint as Double, self.routeOnFootOne.longitudeOfStartingPoint as Double))
         userOriginMarker.map = self.viewMap
         userOriginMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 146/255, green: 215/255, blue: 148/255, alpha: 1))
         userOriginMarker.title = self.routeOnFootOne.nameOfStartingPoint
@@ -326,7 +326,7 @@ class RouteView : UIViewController {
         // Deuxieme chemin
         
         // Premier Marker
-        driverOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfStartigPoint as Double, self.driverRoute.longitudeOfStartingPoint as Double))
+        driverOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfStartingPoint as Double, self.driverRoute.longitudeOfStartingPoint as Double))
         driverOriginMarker.map = self.viewMap
         driverOriginMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 0.0471, green: 0.5686, blue: 0.0275, alpha: 1))
         driverOriginMarker.title = self.driverRoute.nameOfStartingPoint
@@ -368,7 +368,7 @@ class RouteView : UIViewController {
         
         // Configuration de la camera
         // On recupere les coordonner des deux points
-        let oLat = self.routeOnFootOne.latitudeOfStartigPoint
+        let oLat = self.routeOnFootOne.latitudeOfStartingPoint
         let oLong = self.routeOnFootOne.longitudeOfStartingPoint
         let dLat = self.routeOnFootTwo.latitudeOfEndPoint
         let dLong = self.routeOnFootTwo.longitudeOfEndPoint

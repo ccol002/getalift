@@ -135,7 +135,7 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
                 
                 SearchedRoute.searchedRoute = Route.init(
                     nameOfStartingPoint: originAdress,
-                    latitudeOfStartigPoint: latitudeOfOrigin,
+                    latitudeOfStartingPoint: latitudeOfOrigin,
                     longitudeOfStartingPoint: longitudeOfOrigin,
                     nameOfEndpoint: destinationAdress,
                     latitudeOfEndPoint: latitudeOfDestination,
@@ -253,14 +253,16 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
         
         let dateFormatter = DateFormatter()
         //dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.dateFormat = "YYYY-MM-dd"
+        //dateFormatter.dateFormat = "YYYY-MM-dd"
+        dateFormatter.dateFormat = "dd-MM-YYYY"
         dateTextField.text = dateFormatter.string(for: sender.date)
     }
     
     @objc func todayDatePressed(sender: Any){
         let currentDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-dd"
+        //dateFormatter.dateFormat = "YYYY-MM-dd"
+        dateFormatter.dateFormat = "dd-MM-YYYY"
         dateTextField.text = dateFormatter.string(for: currentDate)
         dateTextField.resignFirstResponder()
     }

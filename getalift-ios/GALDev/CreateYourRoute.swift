@@ -21,7 +21,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
     
     /// Route's informations 
     var origin : String! = SearchRoute.SearchedRoute.searchedRoute.nameOfStartingPoint
-    var latitudeOfOrigin : Double! = SearchRoute.SearchedRoute.searchedRoute.latitudeOfStartigPoint
+    var latitudeOfOrigin : Double! = SearchRoute.SearchedRoute.searchedRoute.latitudeOfStartingPoint
     var longitudeOfOrigin : Double! = SearchRoute.SearchedRoute.searchedRoute.longitudeOfStartingPoint
     var destination : String! = SearchRoute.SearchedRoute.searchedRoute.nameOfEndpoint
     var latitudeOfDestination : Double! = SearchRoute.SearchedRoute.searchedRoute.latitudeOfEndPoint

@@ -18,7 +18,7 @@ class UserTasks {
         
         let driverIdString = String(driverId)
         
-        let urlString : String = ServerAdress+":3000/api/users/"+driverIdString
+        let urlString : String = ServerAdress+":7878/api/users/"+driverIdString
         
         let url = NSURL(string: urlString)!
         

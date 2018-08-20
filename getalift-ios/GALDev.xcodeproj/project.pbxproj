@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F7675BF8A4C4E8AA38C73FF /* Pods_GALDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */; };
 		4C057C291F87DF75002178E5 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C057C281F87DF75002178E5 /* UserTests.swift */; };
 		4C057C2B1F87EC49002178E5 /* CalculationForMapDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C057C2A1F87EC49002178E5 /* CalculationForMapDisplay.swift */; };
 		4C0916111F9E250E00E94F83 /* routeSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0916101F9E250E00E94F83 /* routeSaved.swift */; };
@@ -64,7 +65,6 @@
 		4CF30A4C1F66A4D5001B3AF3 /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF30A4B1F66A4D5001B3AF3 /* RouteView.swift */; };
 		9C9DF0C3211DD5A400C35B73 /* Pods_GALDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */; };
 		9CD9B6CB2121755C00FF8C14 /* routeSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0916101F9E250E00E94F83 /* routeSaved.swift */; };
-		9CD9B6CE21217AE300FF8C14 /* Pods_GALDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */; };
 		C301201B1FA2161600FCCE5E /* SeeCurrentRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301201A1FA2161600FCCE5E /* SeeCurrentRoute.swift */; };
 		C306DD5E1FA8D35800DA70A5 /* routeViewForTheMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306DD5D1FA8D35800DA70A5 /* routeViewForTheMenu.swift */; };
 		C306DD601FA8DE2800DA70A5 /* GetMoreInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306DD5F1FA8DE2800DA70A5 /* GetMoreInformation.swift */; };
@@ -207,6 +207,7 @@
 				4C312A651F4EE6C800555D0E /* GoogleMaps.framework in Frameworks */,
 				4C312A661F4EE6C800555D0E /* GoogleMapsCore.framework in Frameworks */,
 				4C312A621F4EE6AB00555D0E /* GoogleMapsBase.framework in Frameworks */,
+				3F7675BF8A4C4E8AA38C73FF /* Pods_GALDev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +215,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CD9B6CE21217AE300FF8C14 /* Pods_GALDev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,7 +579,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GALDev/Pods-GALDev-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"$(SRCROOT)/myfile",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (

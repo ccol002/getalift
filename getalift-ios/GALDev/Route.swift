@@ -17,7 +17,7 @@ struct Route {
     var nameOfStartingPoint : String!
     var nameOfEndpoint : String!
     
-    var latitudeOfStartigPoint : Double!
+    var latitudeOfStartingPoint : Double!
     var longitudeOfStartingPoint : Double!
     var latitudeOfEndPoint : Double!
     var longitudeOfEndPoint : Double!
@@ -44,10 +44,10 @@ struct Route {
 
     
     // Route pour RouteTasks
-    init(id : Int, nameOfStartingPoint : String, latitudeOfStartigPoint : Double, longitudeOfStartingPoint : Double, nameOfEndpoint : String, latitudeOfEndPoint : Double, longitudeOfEndPoint : Double, driver : Int, distance : String, duration : String){
+    init(id : Int, nameOfStartingPoint : String, latitudeOfStartingPoint : Double, longitudeOfStartingPoint : Double, nameOfEndpoint : String, latitudeOfEndPoint : Double, longitudeOfEndPoint : Double, driver : Int, distance : String, duration : String){
         self.id = id
         self.nameOfStartingPoint = nameOfStartingPoint
-        self.latitudeOfStartigPoint = latitudeOfStartigPoint
+        self.latitudeOfStartingPoint = latitudeOfStartingPoint
         self.longitudeOfStartingPoint = longitudeOfStartingPoint
         self.nameOfEndpoint = nameOfEndpoint
         self.latitudeOfEndPoint = latitudeOfEndPoint
@@ -58,9 +58,9 @@ struct Route {
     }
     
     // Route pour la route recherché
-    init(nameOfStartingPoint : String, latitudeOfStartigPoint : Double, longitudeOfStartingPoint : Double, nameOfEndpoint : String, latitudeOfEndPoint : Double, longitudeOfEndPoint : Double, overviewPolyline : NSDictionary, date : String, time : String, driver : Int, recurrence : Bool, distance : String, duration : String){
+    init(nameOfStartingPoint : String, latitudeOfStartingPoint : Double, longitudeOfStartingPoint : Double, nameOfEndpoint : String, latitudeOfEndPoint : Double, longitudeOfEndPoint : Double, overviewPolyline : NSDictionary, date : String, time : String, driver : Int, recurrence : Bool, distance : String, duration : String){
         self.nameOfStartingPoint = nameOfStartingPoint
-        self.latitudeOfStartigPoint = latitudeOfStartigPoint
+        self.latitudeOfStartingPoint = latitudeOfStartingPoint
         self.longitudeOfStartingPoint = longitudeOfStartingPoint
         self.nameOfEndpoint = nameOfEndpoint
         self.latitudeOfEndPoint = latitudeOfEndPoint
@@ -74,9 +74,9 @@ struct Route {
     }
     
     // Route pour l'affichage des routes dans RouteView
-    init(nameOfStartingPoint : String, latitudeOfStartigPoint : Double, longitudeOfStartingPoint : Double, nameOfEndpoint : String, latitudeOfEndPoint : Double, longitudeOfEndPoint : Double, overviewPolyline : NSDictionary, totalDistanceInMetter : Int){
+    init(nameOfStartingPoint : String, latitudeOfStartingPoint : Double, longitudeOfStartingPoint : Double, nameOfEndpoint : String, latitudeOfEndPoint : Double, longitudeOfEndPoint : Double, overviewPolyline : NSDictionary, totalDistanceInMetter : Int){
         self.nameOfStartingPoint = nameOfStartingPoint
-        self.latitudeOfStartigPoint = latitudeOfStartigPoint
+        self.latitudeOfStartingPoint = latitudeOfStartingPoint
         self.longitudeOfStartingPoint = longitudeOfStartingPoint
         self.nameOfEndpoint = nameOfEndpoint
         self.latitudeOfEndPoint = latitudeOfEndPoint

@@ -18,7 +18,7 @@ class FavoriteRouteTasks {
     // Route par rapport a un driver.
     func favoriteRoute(userId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
-        let url = NSURL(string: ServerAdress+":3000/api/favoriteRoute/"+String(userId))!
+        let url = NSURL(string: ServerAdress+":7878/api/favoriteRoute/"+String(userId))!
         
         var request = URLRequest(url: url as URL)
         
@@ -65,7 +65,7 @@ class FavoriteRouteTasks {
                         let route = Route.init(
                             id : routeId,
                             nameOfStartingPoint: originName,
-                            latitudeOfStartigPoint: xStart,
+                            latitudeOfStartingPoint: xStart,
                             longitudeOfStartingPoint: yStart,
                             nameOfEndpoint: destinationName,
                             latitudeOfEndPoint: xEnd,
@@ -100,7 +100,7 @@ class FavoriteRouteTasks {
         
         
         
-        let url = NSURL(string: ServerAdress+":3000/api/favoriteRoute/?userId="+String(userId)+"&routeId="+String(routeId))!
+        let url = NSURL(string: ServerAdress+":7878/api/favoriteRoute/?userId="+String(userId)+"&routeId="+String(routeId))!
         
         var request = URLRequest(url: url as URL)
         
@@ -137,7 +137,7 @@ class FavoriteRouteTasks {
     // Pour supprimer une favoriteRoute à un identifiant donné
     func deleteFavoriteRoute(routeId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
-        let url = NSURL(string: ServerAdress+":3000/api/favoriteRoute/"+String(routeId))!
+        let url = NSURL(string: ServerAdress+":7878/api/favoriteRoute/"+String(routeId))!
         
         //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
         
@@ -169,7 +169,7 @@ class FavoriteRouteTasks {
         
         let routeInformations = "userId="+String(userId)+"&routeId="+String(routeId)
         
-        let url = NSURL(string: ServerAdress+":3000/api/favoriteRoute/")!
+        let url = NSURL(string: ServerAdress+":7878/api/favoriteRoute/")!
         
         var request = URLRequest(url: url as URL)
         

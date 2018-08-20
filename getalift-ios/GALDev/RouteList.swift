@@ -47,9 +47,9 @@ class RouteList : UIViewController, UITableViewDataSource, UITableViewDelegate {
         routeTableView.delegate = self
 
         let fullDate : String = self.searchedRoute.date+""+self.searchedRoute.time
-        let startLat : Double = self.searchedRoute.latitudeOfStartigPoint
+        let startLat : Double = self.searchedRoute.latitudeOfStartingPoint
         let startLong : Double = self.searchedRoute.longitudeOfStartingPoint
-        let endLat : Double = self.searchedRoute.longitudeOfEndPoint
+        let endLat : Double = self.searchedRoute.latitudeOfEndPoint
         let endLong : Double = self.searchedRoute.longitudeOfEndPoint
         
         // Chargement de la liste des routes 
