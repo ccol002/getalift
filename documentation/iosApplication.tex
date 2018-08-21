@@ -1,0 +1,39 @@
+\chapter{iOS Application}
+
+\section{How to install GetALift (GEA) on you iPhone}
+
+\subsection{Xcode}
+
+To work on the GAL project, you have to use Xcode. Xcode downloads directly on the App Store.
+\\\\
+To open the project on Xcode, launch Xcode and click on \textit{File/Open} and select in the  \textit{getalift-ios} folder the \textit{GALDev.xcodeproject} and click on \textit{Open}
+\\\\
+When you open it for the first time you should have errors concerning ???.
+
+\subsection{???}
+
+
+You should have an error concerning the \textit{NotificationBannerSwift}. It because of CocoaPods.
+
+\subsection{CocoaPods}
+
+CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It has over 50 thousand libraries. It is used in the GAL application and it is necessary to install it is necessary to install it on your Mac.
+
+\subsubsection{How to install CocoaPods on your Mac}
+
+To install CocoaPods, you have to use the Terminal on your Mac. Open the Terminal.
+\\\\
+In the folder that contains the project : \textit{/getalift/getalift-ios/} make sure there is the file : \textit{Podfile}
+\\\\
+If it is not the case, in the Terminal, in the folder containing the xcodeproj file for your project, run the command:
+\\\\
+\begin{DDbox}{\linewidth}
+\begin{verbatim}
+pod init
+\end{verbatim}
+\end{DDbox}
+\\\\
+This will create a new text file named Podfile (no extension), with the following content:
+\begin{verbatim}
+
+\end{verbatim}

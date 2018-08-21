@@ -8,6 +8,15 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+
+\definecolor{Zgris}{rgb}{0.87,0.85,0.85}
+
+\newsavebox{\BBbox}
+\newenvironment{DDbox}[1]{
+\begin{lrbox}{\BBbox}\begin{minipage}{\linewidth}}
+{\end{minipage}\end{lrbox}\noindent\colorbox{Zgris}{\usebox{\BBbox}}}
 
 \lstdefinestyle{DOS}
 {
@@ -35,5 +44,6 @@
 \include{Titlepage}
 \include{Project_description}
 \include{Features}
+\include{iosApplication}
 
 \end{document}

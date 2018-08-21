@@ -116,10 +116,6 @@ class RouteTasks {
     
     func route(date: String, startLat : Double, startLong : Double, endLat : Double, endLong : Double, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
-        //declare parameter as a dictionary which contains string as key and value combination. considering inputs are valid
-        
-        /*let parameters = ["startLat": String(startLat), "startLng": String(startLong), "endLat": String(endLat), "endLng": String(endLong), "startDate": String(date)]*/
-        
         //create the url with URL
         let url  = URL(string: ServerAdress+":7878/api/findTarget")!
         
@@ -140,17 +136,25 @@ class RouteTasks {
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
-            guard error == nil else {
+            /*guard error == nil else {
                 return
             }
             
             guard let data = data else {
                 return
+            }*/
+            
+            // Check for error
+            if error != nil
+            {
+                print("Error")
+                return
             }
             
             do {
                 //create json object from data
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary {
+                if let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray {
+                    
                     var compteur = 0
                     
                     if (json).count > 0 {
@@ -163,28 +167,28 @@ class RouteTasks {
                             let startingPoint = jsonObjects["closestPointStart"] as AnyObject
                             let endPoint = jsonObjects["closestPointEnd"] as AnyObject
                             
-                            let xStart = startingPoint["lng"] as! Double
-                            let yStart = startingPoint["lat"] as! Double
+                            let xStart = startingPoint["lat"] as! Double
+                            let yStart = startingPoint["lng"] as! Double
                             
-                            let xEnd = endPoint["lng"] as! Double
-                            let yEnd = endPoint["lat"] as! Double
+                            let xEnd = endPoint["lat"] as! Double
+                            let yEnd = endPoint["lng"] as! Double
                             
-                            let originName = startingPoint["id"] as! String
-                            let destinationName = endPoint["id"] as! String
-                            let distance = jsonObjects["totalDistance"] as! String
-                            let duration = endPoint["seconds_from_start"] as! String
+                            let originName = startingPoint["id"] as! Int
+                            let destinationName = endPoint["id"] as! Int
+                            let distance = jsonObjects["totalDistance"] as! Double
+                            let duration = endPoint["seconds_from_start"] as! Int
                             
                             let route = Route.init(
                                 id : routeId,
-                                nameOfStartingPoint: originName,
+                                nameOfStartingPoint: String(originName),
                                 latitudeOfStartingPoint: xStart,
                                 longitudeOfStartingPoint: yStart,
-                                nameOfEndpoint: destinationName,
+                                nameOfEndpoint: String(destinationName),
                                 latitudeOfEndPoint: xEnd,
                                 longitudeOfEndPoint: yEnd,
                                 driver: driverId,
-                                distance: distance,
-                                duration: duration
+                                distance: String(distance),
+                                duration: String(duration)
                             )
                             
                             self.routes.append(route)
