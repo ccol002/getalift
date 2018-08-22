@@ -49,6 +49,7 @@
     <string name="success_account_created">Your account is created. You can log in now.</string>
     <string name="error_username_exists">This username already exists. Please chose another one.</string>
     <string name="txt_title_profile">Get A Lift - Profile</string>
+    <string name="txt_title_drive">Get A Lift - Drive</string>
     <string name="txt_title_result_search">Available drives</string>
     <string name="txt_create_route">Or you can create your route</string>
     <string name="btn_create_route">I want to drive</string>

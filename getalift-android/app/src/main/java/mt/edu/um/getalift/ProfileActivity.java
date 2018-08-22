@@ -33,17 +33,22 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
+
+    // Creation de variable pour stocker celle du Layout
     private TextView txtUser;
     private TextView txtName;
     private TextView txtPhone;
     private TextView txtEmail;
     private TextView txtNote;
 
-
+    // Tag utilsié pour mes LOG
     private static final String TAG = "ProfileActivity";
 
+    //Création de l'intent qui récupere l'Id de l'utilisateur
     Intent intent_profile_activity;
     private int userID;
+
+    //Variable utilisée pour passer l'appel
     private int phoneNumber;
 
 
@@ -61,12 +66,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // On assimile les variables créées plus haut avec les Id des layout
         txtUser = findViewById(R.id.textTitle);
         txtName = findViewById(R.id.textFirst_Last);
         txtPhone = findViewById(R.id.textPhoneNumber);
         txtEmail = findViewById(R.id.textEmail);
         txtNote = findViewById(R.id.textNote);
 
+        // On recupere l'Id
         intent_profile_activity = getIntent();
 
         if (intent_profile_activity != null) {
@@ -74,6 +81,7 @@ public class ProfileActivity extends AppCompatActivity {
             txtNote.setText(Integer.toString(userID));
         }
 
+        // On transforme le TextView en boutton pour pouvoir appeller quand on appuie dessus
         txtPhone.setOnClickListener(txtPhoneBtn);
 
         profil();
@@ -98,9 +106,7 @@ public class ProfileActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL+"/api/users/" + Integer.toString(userID);
-        Log.i(TAG,"Bonjour");
-        Log.i(TAG,Integer.toString(userID));
-        //Log.i(TAG,url);
+
         StringRequest sr = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>(){
 
@@ -108,11 +114,10 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // We got a response from our server.
                         try {
-                            Log.i(TAG, response);
                             // We create a JSONObject from the server response.
                             JSONObject jo = new JSONArray(response).getJSONObject(0);
 
-                            Log.i(TAG,jo.getString("username"));
+                            // On affiche les données de l'utilisateur
                             txtUser.setText(jo.getString("surname"));
                             txtEmail.setText(jo.getString("email"));
                             txtPhone.setText(jo.getString("mobileNumber"));
@@ -145,14 +150,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    // Pour passer l'appel
     private View.OnClickListener txtPhoneBtn = new View.OnClickListener() {
         @SuppressLint("MissingPermission")
         @Override
         public void onClick(View view) {
-            Log.i("Bouton","Bouton cliquer");
-
 
             Intent appel = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
+            // Pourquoi 0 + phone ? Aucune idée
             startActivity(appel);
 
         }

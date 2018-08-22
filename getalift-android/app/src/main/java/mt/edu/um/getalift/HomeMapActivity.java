@@ -228,12 +228,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     private void startResultSearchActivity() {
         getLatLongFromGivenAddress(mTextSearchDestination.getText().toString(),"destination");
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
-            }
-        }, 5000);
+        getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
     }
 
     public void switchView() {
@@ -324,6 +319,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
 
         } else if (id == R.id.nav_lifts) {
+
+                Intent intentDrive = new Intent(getBaseContext(), DriveActivity.class);
+                startActivity(intentDrive);
 
         } else if (id == R.id.nav_help) {
 
