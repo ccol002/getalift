@@ -322,6 +322,15 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
                 Intent intentDrive = new Intent(getBaseContext(), DriveActivity.class);
                 startActivity(intentDrive);
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                try {
+                    JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+                    Log.i("Home",Integer.toString(user.getInt("id"),0));
+                    intentDrive.putExtra("userId", user.getInt("id"));
+                    startActivity(intentDrive);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
         } else if (id == R.id.nav_help) {
 

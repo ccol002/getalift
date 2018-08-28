@@ -42,6 +42,16 @@ public class DriveActivity extends AppCompatActivity {
             "Julien", "Victor", "PA", "Camille", "Octave", "Justine",
             "Thomas", "Gaetan", "Alexandre Di", "Alexandre Do", "Gabriel", "Hans Greg"
     };
+    // Tag utilsié pour les LOG
+    private static final String TAG = "DriveTAG";
+
+    //Log.i("Home",Integer.toString(user.getInt("id"),0));
+
+    //Création de l'intent qui récupere l'Id de l'utilisateur
+    Intent intent_drive_activity;
+    private int userID;
+
+
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -69,6 +79,16 @@ public class DriveActivity extends AppCompatActivity {
 
             }
         });
+
+        // On recupere l'Id
+        intent_drive_activity = getIntent();
+
+        if (intent_drive_activity != null) {
+            userID = intent_drive_activity.getIntExtra("userId",0);
+        }
+        Log.i(TAG,Integer.toString(userID,0));
+
+        drive();
     }
 
     @Override
@@ -81,4 +101,51 @@ public class DriveActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-}
+    public void drive(){
+        // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(this);
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/driverroutes/" + Integer.toString(userID);
+
+
+        StringRequest sr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        try {
+                            // We create a JSONObject from the server response.
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            Log.i(TAG,"Cc");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
+                return params;
+            }
+        };
+        queue.add(sr);
+
+    }
+
+    }
+
+
+
