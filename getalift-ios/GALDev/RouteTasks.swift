@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import UIKit
+import MapKit
+import CoreLocation
 
 class RouteTasks {
     
@@ -175,6 +178,7 @@ class RouteTasks {
                             
                             let originName = startingPoint["id"] as! Int
                             let destinationName = endPoint["id"] as! Int
+                            
                             let distance = jsonObjects["totalDistance"] as! Double
                             let duration = endPoint["seconds_from_start"] as! Int
                             

@@ -9,93 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GALDev/RouteTasks.swift"
-            timestampString = "556808813.9495029"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "route(date:startLat:startLong:endLat:endLong:completionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GALDev.RouteTasks.route(date: Swift.String, startLat: Swift.Double, startLong: Swift.Double, endLat: Swift.Double, endLong: Swift.Double, completionHandler: (Swift.String, Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "GALDev"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbook/Documents/GitHub/getalift/getalift-ios/GALDev/RouteTasks.swift"
-                  timestampString = "556462180.451337"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "141"
-                  endingLineNumber = "141"
-                  offsetFromSymbolStart = "1796">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__ObjC.URLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in GALDev.RouteTasks.route(date: Swift.String, startLat: Swift.Double, startLong: Swift.Double, endLat: Swift.Double, endLong: Swift.Double, completionHandler: (Swift.String, Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "GALDev"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/macbook/Documents/GitHub/getalift/getalift-ios/GALDev/RouteTasks.swift"
-                  timestampString = "556462180.454924"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "143"
-                  endingLineNumber = "143"
-                  offsetFromSymbolStart = "60">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GALDev/RouteTasks.swift"
-            timestampString = "556808814.1027991"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "route(date:startLat:startLong:endLat:endLong:completionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GALDev/RouteList.swift"
-            timestampString = "556808814.1035039"
+            timestampString = "557141748.4215961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
             endingLineNumber = "85"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GALDev/RouteTasks.swift"
-            timestampString = "556808814.1044151"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "route(date:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
