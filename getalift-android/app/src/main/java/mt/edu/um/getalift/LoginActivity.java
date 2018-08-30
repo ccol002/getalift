@@ -50,9 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         setTitle(R.string.txt_title_login);
 
         TextView txt_username = (TextView)findViewById(R.id.edt_username);
-        txt_username.setText("dodo");
+        txt_username.setText("dada");
         TextView txt_pw = (TextView)findViewById(R.id.edt_password);
-        txt_pw.setText("dodo");
+        txt_pw.setText("dada");
     }
 
     /**

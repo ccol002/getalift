@@ -51,7 +51,9 @@ public class DriveActivity extends AppCompatActivity {
     Intent intent_drive_activity;
     private int userID;
 
+    //Variable compteur pour les JSONObject
 
+    private int compteurJSON;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -88,7 +90,7 @@ public class DriveActivity extends AppCompatActivity {
         }
         Log.i(TAG,Integer.toString(userID,0));
 
-        drive();
+        driver();
     }
 
     @Override
@@ -101,7 +103,10 @@ public class DriveActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void drive(){
+
+
+
+    public void driver(){
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
@@ -115,9 +120,24 @@ public class DriveActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // We got a response from our server.
                         try {
+
+                            while (new JSONArray(response).getJSONObject(compteurJSON) != null){
+                                compteurJSON++;
+                                JSONObject joTest = new JSONArray(response).getJSONObject(compteurJSON);
+                                Log.i(TAG,joTest.getString("distance"));
+                                Log.i(TAG,Integer.toString(compteurJSON));
+                            }
+
+                            /*
                             // We create a JSONObject from the server response.
                             JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            JSONObject jo2 = new JSONArray(response).getJSONObject(1);
+
+
                             Log.i(TAG,"Cc");
+                            Log.i(TAG,jo.getString("distance"));
+                            Log.i(TAG,jo2.getString("distance"));
+                            */
 
                         } catch (JSONException e) {
                             e.printStackTrace();
