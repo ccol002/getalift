@@ -36,12 +36,6 @@ import java.util.Map;
 
 public class DriveActivity extends AppCompatActivity {
 
-    ListView mListView;
-    private String[] prenoms = new String[]{
-            "Alban", "Olivier", "Anais", "Hermine", "Leo", "Fabien",
-            "Julien", "Victor", "PA", "Camille", "Octave", "Justine",
-            "Thomas", "Gaetan", "Alexandre Di", "Alexandre Do", "Gabriel", "Hans Greg"
-    };
     // Tag utilsié pour les LOG
     private static final String TAG = "DriveTAG";
 
@@ -65,22 +59,6 @@ public class DriveActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mListView = (ListView) findViewById(R.id.listView);
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(DriveActivity.this,
-                android.R.layout.simple_list_item_1, prenoms);
-        mListView.setAdapter(adapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Toast.makeText(DriveActivity.this,prenoms[i],Toast.LENGTH_LONG).show();
-
-            }
-        });
 
         // On recupere l'Id
         intent_drive_activity = getIntent();
@@ -107,65 +85,10 @@ public class DriveActivity extends AppCompatActivity {
 
 
     public void driver(){
-        // We first setup the queue for the API Request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/driverroutes/" + Integer.toString(userID);
-
-
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-
-                    @Override
-                    public void onResponse(String response) {
-                        // We got a response from our server.
-                        try {
-
-                            while (new JSONArray(response).getJSONObject(compteurJSON) != null){
-                                compteurJSON++;
-                                JSONObject joTest = new JSONArray(response).getJSONObject(compteurJSON);
-                                Log.i(TAG,joTest.getString("distance"));
-                                Log.i(TAG,Integer.toString(compteurJSON));
-                            }
-
-                            /*
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-                            JSONObject jo2 = new JSONArray(response).getJSONObject(1);
-
-
-                            Log.i(TAG,"Cc");
-                            Log.i(TAG,jo.getString("distance"));
-                            Log.i(TAG,jo2.getString("distance"));
-                            */
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
-                    }
-
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
-                params.put("x-access-token", sh.getString("token", null));
-                return params;
-            }
-        };
-        queue.add(sr);
 
     }
 
-    }
+}
 
 
 
