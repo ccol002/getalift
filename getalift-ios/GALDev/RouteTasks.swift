@@ -176,18 +176,18 @@ class RouteTasks {
                             let xEnd = endPoint["lat"] as! Double
                             let yEnd = endPoint["lng"] as! Double
                             
-                            let originName = startingPoint["id"] as! Int
-                            let destinationName = endPoint["id"] as! Int
+                            let originName = jsonObjects["originAdress"] as! String
+                            let destinationName = jsonObjects["destinationAdress"] as! String
                             
                             let distance = jsonObjects["totalDistance"] as! Double
                             let duration = endPoint["seconds_from_start"] as! Int
                             
                             let route = Route.init(
                                 id : routeId,
-                                nameOfStartingPoint: String(originName),
+                                nameOfStartingPoint: originName,
                                 latitudeOfStartingPoint: xStart,
                                 longitudeOfStartingPoint: yStart,
-                                nameOfEndpoint: String(destinationName),
+                                nameOfEndpoint: destinationName,
                                 latitudeOfEndPoint: xEnd,
                                 longitudeOfEndPoint: yEnd,
                                 driver: driverId,

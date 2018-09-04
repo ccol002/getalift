@@ -139,6 +139,9 @@ class RouteView : UIViewController {
         
         let driverIndex = self.routes[myIndex].driver
         let driverOrigin = self.routes[myIndex].nameOfStartingPoint
+       //Ligne 143 et 144 rajoutées
+        let closestPointStart = String(self.routes[myIndex].latitudeOfStartingPoint)+","+String(self.routes[myIndex].longitudeOfStartingPoint)
+        let closestPointEnd = String(self.routes[myIndex].latitudeOfEndPoint)+","+String(self.routes[myIndex].longitudeOfEndPoint)
         let driverDestination = self.routes[myIndex].nameOfEndpoint
         let searchedOrigin = String(SearchRoute.SearchedRoute.searchedRoute.latitudeOfStartingPoint)+","+String(SearchRoute.SearchedRoute.searchedRoute.longitudeOfStartingPoint)
         let searchedDestination = String(SearchRoute.SearchedRoute.searchedRoute.latitudeOfEndPoint)+","+String(SearchRoute.SearchedRoute.searchedRoute.longitudeOfEndPoint)
@@ -191,8 +194,8 @@ class RouteView : UIViewController {
             }
         })
         
-        // Premier chemin parcouru par le passager à pied
-        self.mapTasks.getDirectionsWalking(origin: searchedOrigin, destination: driverOrigin, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
+        // Premier chemin parcouru par le passager à pied (Remplacement de driverOrigin par closestPointStart)
+        self.mapTasks.getDirectionsWalking(origin: searchedOrigin, destination: closestPointStart, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 let nameOfStartingPoint = self.mapTasks.originAddress
                 let latitudeOfStartingPoint = self.mapTasks.originCoordinate.latitude
@@ -218,8 +221,8 @@ class RouteView : UIViewController {
             }
         })
         
-        // Deuxieme chemin parcouru par le passager à pied
-        self.mapTasks.getDirectionsWalking(origin: driverDestination, destination: searchedDestination, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
+        // Deuxieme chemin parcouru par le passager à pied (Remplacement de driverDestination par closestPointEnd)
+        self.mapTasks.getDirectionsWalking(origin: closestPointEnd, destination: searchedDestination, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 let nameOfStartingPoint = self.mapTasks.originAddress
                 let latitudeOfStartingPoint = self.mapTasks.originCoordinate.latitude
