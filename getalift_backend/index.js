@@ -496,12 +496,11 @@ router.put("/routes", function(req, res){
 	var endLat = parseFloat(req.body.endLat);
 	var endLng = parseFloat(req.body.endLng);
 
-  var origin = req.body.origin
-  var destination = req.body.destination
+  	var origin = req.body.origin
+  	var destination = req.body.destination
 
 	var dates = req.body.dates.split(";");
 
-	console.log(dates);
 	//var dates = ["11-04-2018","12-04-2018"];
 	//console.log(req.body.dates)
 	//console.log(dates);
@@ -509,8 +508,6 @@ router.put("/routes", function(req, res){
 	/*var heure = dates[0].split(" ")[1];
 	var date = dates[0].split(" ")[0];
 	var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0]+" "+heure;*/
-
-	//console.log(dateSql);
 
 	var driverId = req.body.driverId;
 	var query = "";
