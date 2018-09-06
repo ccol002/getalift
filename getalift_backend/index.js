@@ -520,6 +520,8 @@ router.put("/routes", function(req, res){
 		// If there is an error with the GM API request, we send it back.
 		if(error){
 			res.json(error);
+			//Ajout
+			console.log("OK 1");
 		} else {
 			var distance = response.json.routes[0].legs[0].distance.value;
 			var duration = response.json.routes[0].legs[0].duration.value;
@@ -529,6 +531,8 @@ router.put("/routes", function(req, res){
 				[startLat, startLng, endLat, endLng, driverId, origin, destination, distance, duration],
 				function(err, result){
 					if(err) throw err;
+					//Ajout
+					console.log("OK 2");
 					// Next, we store the weekly repeat in the database.
 					// Each line of the RouteMeta table store a date, and an time interval from this date.
 					for (var i = 0; i < dates.length-1; i=i+2){
@@ -536,6 +540,8 @@ router.put("/routes", function(req, res){
 							"INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
 							[result.insertId, dates[i], dates[i+1]]
 						);
+						//Ajout
+						console.log("OK 3");
 					}
 					/*var heure = dates[0].split(" ")[1];
 					var date = dates[0].split(" ")[0];
@@ -548,6 +554,8 @@ router.put("/routes", function(req, res){
 					var steps = response.json.routes[0].legs[0].steps;
 					var seconds_from_start = 0;
 					var squareId = getSquareId(steps[0].start_location.lat, steps[0].start_location.lng);
+					//Ajout
+					console.log("OK 4");
 					for (var j = 0; j < steps.length; j++){
 						if (j === 0){
 							// If it's the first step, we need to store the starting point adding to the end point.
@@ -555,6 +563,8 @@ router.put("/routes", function(req, res){
 								"INSERT INTO `RoutePoints` (`id`, `route`, `point_rank`, `point`, `seconds_from_start`, `square_id_lat`, `square_id_lng`) VALUES (NULL, ?, ?, ST_GeomFromText('POINT(? ?)'), ?, ?, ?);",
 								[result.insertId, 0, steps[0].start_location.lat, steps[0].start_location.lng, seconds_from_start, squareId.lat, squareId.lng]
 							);
+							//Ajout
+							console.log("OK 5");
 						}
 
 						squareId = getSquareId(steps[j].start_location.lat, steps[j].start_location.lng);
@@ -564,6 +574,8 @@ router.put("/routes", function(req, res){
 							"INSERT INTO `RoutePoints` (`id`, `route`, `point_rank`, `point`, `seconds_from_start`, `square_id_lat`, `square_id_lng`) VALUES (NULL, ?, ?, ST_GeomFromText('POINT(? ?)'), ?, ?, ?);",
 							[result.insertId, j+1, steps[j].end_location.lat, steps[j].end_location.lng, seconds_from_start, squareId.lat, squareId.lng]
 						);
+						//Ajout
+						console.log("OK 6")
 					}
 					// Then, we launch the query into the database.
 					db_con.query(query, [], function(e, r){
