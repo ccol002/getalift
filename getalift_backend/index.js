@@ -526,10 +526,14 @@ router.put("/routes", function(req, res){
 		if(error){
 			res.json(error);
 			//Ajout
-			console.log("OK 1");
+			console.log("Erreur 1");
 		} else {
+
+			console.log("OK 1");
 			var distance = response.json.routes[0].legs[0].distance.value;
 			var duration = response.json.routes[0].legs[0].duration.value;
+
+			console.log("OK 2");
 
 			// If there is no error, we put the new route into the database.
 			db_con.query("INSERT INTO `Route` (`id`, `startingPoint`, `endPoint`, `driver`,`originAdress`,`destinationAdress`,`distance`,`duration`) VALUES (NULL, ST_GeomFromText('POINT(? ?)'), ST_GeomFromText('POINT(? ?)'), ?,? ,? ,? , ?);",
