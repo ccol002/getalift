@@ -510,7 +510,7 @@ router.put("/routes", function(req, res){
 	var date = dates[0].split(" ")[0];
 	var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0]+" "+heure;*/
 
-	console.log(dateSql);
+	//console.log(dateSql);
 
 	var driverId = req.body.driverId;
 	var query = "";
