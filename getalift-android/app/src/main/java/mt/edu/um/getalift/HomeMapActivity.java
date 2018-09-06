@@ -333,6 +333,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 }
 
         } else if (id == R.id.nav_help) {
+                Intent intentHelp = new Intent(getBaseContext(), HelpActivity.class);
+                startActivity(intentHelp);
 
         } else if (id == R.id.nav_settings) {
 
