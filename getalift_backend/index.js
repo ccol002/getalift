@@ -506,9 +506,9 @@ router.put("/routes", function(req, res){
 	//console.log(req.body.dates)
 	//console.log(dates);
 
-	var heure = dates[0].split(" ")[1];
+	/*var heure = dates[0].split(" ")[1];
 	var date = dates[0].split(" ")[0];
-	var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0]+" "+heure;
+	var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0]+" "+heure;*/
 
 	console.log(dateSql);
 
@@ -540,7 +540,6 @@ router.put("/routes", function(req, res){
 							[result.insertId, dates[i], dates[i+1]]
 						);
 					}
-					console.log("INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, "+result.insertId+", "+dates[i]+", "+dates[i+1]+");");
 					/*var heure = dates[0].split(" ")[1];
 					var date = dates[0].split(" ")[0];
 					var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0]+" "+heure;
