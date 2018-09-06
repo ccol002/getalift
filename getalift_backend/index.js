@@ -491,6 +491,8 @@ router.get("/search2/", function(req, res){
 //		directions with the google maps API, in order to store the best route.
 router.put("/routes", function(req, res){
 	// We store every parameters in custom vars.
+	console.log("ok first");
+
 	var startLat = parseFloat(req.body.startLat);
 	var startLng = parseFloat(req.body.startLng);
 	var endLat = parseFloat(req.body.endLat);
@@ -511,6 +513,9 @@ router.put("/routes", function(req, res){
 
 	var driverId = req.body.driverId;
 	var query = "";
+
+	//rajout
+	console.log("OK FIRST");
 
 	// We get the directions between the two points with the google maps api.
 	googleMapsClient.directions({
