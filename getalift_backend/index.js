@@ -534,7 +534,7 @@ router.put("/routes", function(req, res){
 					}*/
 					var heure = dates[0].split(" ")[1];
 					var date = dates[0].split(" ")[0];
-					var dateSql = date[0].split("-")[2]+"-"+date[0].split("-")[1]+"-"date[0].split("-")[0]+" "+heure;
+					var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"date.split("-")[0]+" "+heure;
 					query += mysql.format(
 							"INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
 							[result.insertId, dateSql, dates[1]]);
