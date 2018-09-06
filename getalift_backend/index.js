@@ -500,6 +500,8 @@ router.put("/routes", function(req, res){
   var destination = req.body.destination
 
 	var dates = req.body.dates.split(";");
+
+	console.log(dates);
 	//var dates = ["11-04-2018","12-04-2018"];
 	//console.log(req.body.dates)
 	//console.log(dates);
