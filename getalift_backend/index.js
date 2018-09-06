@@ -540,6 +540,7 @@ router.put("/routes", function(req, res){
 							[result.insertId, dates[i], dates[i+1]]
 						);
 					}
+					console.log(query);
 					/*var heure = dates[0].split(" ")[1];
 					var date = dates[0].split(" ")[0];
 					var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0]+" "+heure;
