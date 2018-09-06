@@ -46,8 +46,8 @@ public class DriveActivity extends AppCompatActivity {
     private int userID;
 
     //Variable compteur pour les JSONObject
-
     private int compteurJSON;
+
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -85,6 +85,7 @@ public class DriveActivity extends AppCompatActivity {
 
 
     public void driver(){
+
 
     }
 
