@@ -91,8 +91,6 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         
-        /*let postString = "startLat="+String(self.latitudeOfOrigin)+"&endLat="+String(self.latitudeOfDestination)+"&startLng="+String(self.longitudeOfOrigin)+"&endLng="+String(self.longitudeOfDestination)+"&origin="+self.origin+"&destination="+self.destination+"&distance="+self.distance+"&duration="+self.duration+"&driverId="+String(driverId)+"&dates="+self.date+" "+self.time+";"+reccurenceString*/
-        
         let postString = "startLat="+String(self.latitudeOfOrigin)+"&endLat="+String(self.latitudeOfDestination)+"&startLng="+String(self.longitudeOfOrigin)+"&endLng="+String(self.longitudeOfDestination)+"&origin="+self.origin+"&destination="+self.destination+"&distance="+self.distance+"&duration="+self.duration+"&driverId="+String(driverId)+"&dates="+self.date+" "+self.time+";"+reccurenceString
         
         request.httpBody = postString.data(using: .utf8)
