@@ -41,6 +41,7 @@ public class ContactUsActivity extends AppCompatActivity {
 
     private Button mSendMessageButton;
     private Button mAutoFillButton;
+    private Button mClearAll;
 
     // Tag utilsié pour les LOG
     private static final String TAG = "ContactUsActivity";
@@ -71,16 +72,24 @@ public class ContactUsActivity extends AppCompatActivity {
         intent_profile_activity = getIntent();
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
-           txtMessage.setText(Integer.toString(userID));
         }
+
         //On referencie les boutons
         mSendMessageButton = (Button) findViewById(R.id.contact_validate_button);
         mAutoFillButton = (Button) findViewById(R.id.contact_autofill_button);
+        mClearAll = (Button) findViewById(R.id.contact_clear_button);
 
         mAutoFillButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 profil();
+            }
+        });
+
+        mClearAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearAll();
             }
         });
 
@@ -178,4 +187,10 @@ public class ContactUsActivity extends AppCompatActivity {
 
     }
 
+    public void clearAll(){
+        txtEmail.setText("");
+        txtPhoneNumber.setText("");
+        txtName.setText("");
+        txtMessage.setText("");
+    }
 }

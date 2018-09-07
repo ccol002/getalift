@@ -132,7 +132,7 @@
         android:text="Send message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -143,12 +143,26 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Auotfill"
+        android:text="Autofill"
         app:layout_constraintBottom_toTopOf="@+id/edt_contact_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/contact_clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Clear All"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/contact_validate_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_contact_message" />
 
 
 </android.support.constraint.ConstraintLayout>
