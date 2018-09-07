@@ -94,6 +94,18 @@ public class ContactUsActivity extends AppCompatActivity {
         });
 
 
+        mSendMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMail();
+                Toast.makeText(getApplicationContext(), "Mail sent", Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+
+
     }
 
     // Return to the last page
@@ -192,5 +204,17 @@ public class ContactUsActivity extends AppCompatActivity {
         txtPhoneNumber.setText("");
         txtName.setText("");
         txtMessage.setText("");
+    }
+
+    public void sendMail(){
+        //Envoyer message a l'email de l'entreprise
+        String emailList [] = {"thessalene.jeanlouis@reseau.eseo.fr"};
+        Intent intentMail = new Intent(Intent.ACTION_SEND);
+        intentMail.setType("message/rfc822");
+        intentMail.putExtra(Intent.EXTRA_EMAIL, emailList);
+        intentMail.putExtra(Intent.EXTRA_SUBJECT, "Claim of" + txtName.getText());
+        intentMail.putExtra(Intent.EXTRA_TEXT, txtMessage.getText() +"\n You can call me with this number :" + txtPhoneNumber.getText());
+        startActivity(Intent.createChooser(intentMail, "Claim of" + txtName.getText()));
+
     }
 }
