@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 public class HelpActivity extends AppCompatActivity {
 
-     ImageButton mFaqButton;
+    private ImageButton mFaqButton;
     private ImageButton mContactUs;
     private ImageButton mAbout;
 
@@ -29,11 +29,23 @@ public class HelpActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAbout = (ImageButton) findViewById(R.id.image_about);
+        mContactUs = (ImageButton) findViewById(R.id.image_contact_us);
+        mFaqButton = (ImageButton) findViewById(R.id.image_faq_button);
 
-        mAbout.setOnClickListener(new View.OnClickListener() {
+        // En cliquant sur l'image FAQ l'utilisateur sera redirige vers la page Faq
+        mFaqButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentLoadNewActivity = new Intent(HelpActivity.this, PageFaq.class);
+                Intent intentLoadNewActivity = new Intent(HelpActivity.this, PageFaqActivity.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
+        // En cliquant sur l'image 'contact us' l'utilisateur sera redirige vers la page de prise de contact
+        mContactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentLoadNewActivity = new Intent(HelpActivity.this, ContactUsActivity.class);
                 startActivity(intentLoadNewActivity);
             }
         });

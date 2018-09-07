@@ -34,24 +34,28 @@
             android:value="AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0" />
 
         <activity android:name=".HomeMapActivity" />
-        <activity android:name=".ProfileActivity"
-            android:parentActivityName=".HomeMapActivity"/>
-        <activity android:name=".ResultSearchActivity"
-            android:parentActivityName=".HomeMapActivity"
-            android:launchMode="singleTop"/>
-
-        <activity android:name=".ViewRideActivity"
+        <activity
+            android:name=".ProfileActivity"
+            android:parentActivityName=".HomeMapActivity" />
+        <activity
+            android:name=".ResultSearchActivity"
+            android:launchMode="singleTop"
+            android:parentActivityName=".HomeMapActivity" />
+        <activity
+            android:name=".ViewRideActivity"
             android:parentActivityName=".ResultSearchActivity" />
-
-        <activity android:name=".CreateRideActivity"
+        <activity
+            android:name=".CreateRideActivity"
             android:parentActivityName=".ResultSearchActivity" />
-
-        <activity android:name=".DriveActivity"
+        <activity
+            android:name=".DriveActivity"
             android:parentActivityName=".ResultSearchActivity" />
-
-        <activity android:name=".HelpActivity"
-            android:parentActivityName=".ResultSearchActivity"
-             />
+        <activity
+            android:name=".HelpActivity"
+            android:parentActivityName=".ResultSearchActivity" />
+        <activity android:name=".PageFaqActivity" />
+        <activity android:name=".ContacUsActivity" />
+        <activity android:name=".ContactUsActivity"></activity>
     </application>
 
 </manifest>

@@ -56,5 +56,8 @@
     <string name="btn_create_ride">Create</string>
     <string name="btn_edit_ride">Edit</string>
     <string name="txt_title_help">Get A Lift - Help</string>
+    <string name="txt_title_faq">Get A Lift - F.A.Q</string>
+    <string name="text_title_contact_us">Get A Lift - Contact Us</string>
+
 
 </resources>
