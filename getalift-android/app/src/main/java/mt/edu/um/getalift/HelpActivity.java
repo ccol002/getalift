@@ -1,20 +1,33 @@
 package mt.edu.um.getalift;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HelpActivity extends AppCompatActivity {
 
     private ImageButton mFaqButton;
     private ImageButton mContactUs;
     private ImageButton mAbout;
+
+    private TextView txtMessage;
+
+    //Création de l'intent qui récupere l'Id de l'utilisateur
+    Intent intent_profile_activity;
+    private int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +40,16 @@ public class HelpActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // On recupere l'Id
+        intent_profile_activity = getIntent();
+
+        txtMessage = findViewById(R.id.textView3);
+
+        if (intent_profile_activity != null) {
+            userID = intent_profile_activity.getIntExtra("userId",0);
+            txtMessage.setText(Integer.toString(userID));
+        }
 
         mAbout = (ImageButton) findViewById(R.id.image_about);
         mContactUs = (ImageButton) findViewById(R.id.image_contact_us);
@@ -45,11 +68,25 @@ public class HelpActivity extends AppCompatActivity {
         mContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentLoadNewActivity = new Intent(HelpActivity.this, ContactUsActivity.class);
-                startActivity(intentLoadNewActivity);
+                //Intent intentContactUs = new Intent(getBaseContext(), ContactUsActivity.class);
+                //startActivity(intentContactUs);
+                Intent intentContactUs = new Intent(HelpActivity.this, ContactUsActivity.class);
+                startActivity(intentContactUs);
+
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                try {
+                    JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+                    Log.i("Home",Integer.toString(user.getInt("id"),0));
+                    intentContactUs.putExtra("userId", user.getInt("id"));
+
+                    startActivity(intentContactUs);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
+
 
 
 
@@ -69,5 +106,8 @@ public class HelpActivity extends AppCompatActivity {
 
     }
 
+    }
 
-}
+
+
+
