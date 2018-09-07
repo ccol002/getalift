@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView txtNote;
 
     // Tag utilsié pour les LOG
-    private static final String TAG = "ProfileActivity";
+    private static final String TAG = "ProfileActivityTag";
 
     //Création de l'intent qui récupere l'Id de l'utilisateur
     Intent intent_profile_activity;
