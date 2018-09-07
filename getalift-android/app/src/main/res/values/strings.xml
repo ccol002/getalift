@@ -55,4 +55,6 @@
     <string name="btn_create_route">I want to drive</string>
     <string name="btn_create_ride">Create</string>
     <string name="btn_edit_ride">Edit</string>
+    <string name="txt_title_help">Get A Lift - Help</string>
+
 </resources>

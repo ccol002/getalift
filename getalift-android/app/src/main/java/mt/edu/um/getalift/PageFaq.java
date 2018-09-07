@@ -1,46 +1,25 @@
 package mt.edu.um.getalift;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
-public class HelpActivity extends AppCompatActivity {
-
-     ImageButton mFaqButton;
-    private ImageButton mContactUs;
-    private ImageButton mAbout;
-
+public class PageFaq extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+    protected void onCreate(Bundle savedInstance){
+        super.onCreate(savedInstance);
+        setContentView(R.layout.activity_page_faq);
         setTitle(getString(R.string.txt_title_help));
 
-        // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mAbout = (ImageButton) findViewById(R.id.image_about);
-
-        mAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentLoadNewActivity = new Intent(HelpActivity.this, PageFaq.class);
-                startActivity(intentLoadNewActivity);
-            }
-        });
     }
-
-
-
 
 
     // Retourner a la page d'accueil en cliquant sur retour
@@ -56,6 +35,6 @@ public class HelpActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
-
 }
+
+
