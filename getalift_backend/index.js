@@ -544,6 +544,7 @@ router.put("/routes", function(req, res){
 					console.log("OK 2");
 					// Next, we store the weekly repeat in the database.
 					// Each line of the RouteMeta table store a date, and an time interval from this date.
+
 					for (var i = 0; i < dates.length-1; i=i+2){
 						query += mysql.format(
 							"INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
@@ -552,12 +553,14 @@ router.put("/routes", function(req, res){
 						//Ajout
 						console.log("OK 3");
 					}
+					
 					/*var heure = dates[0].split(" ")[1];
 					var date = dates[0].split(" ")[0];
 					var dateSql = date.split("-")[2]+"-"+date.split("-")[1]+"-"+date.split("-")[0]+" "+heure;
 					query += mysql.format(
 							"INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
-							[result.insertId, dateSql, dates[1]]);*/
+							[result.insertId, dateSql, dates[1]]);
+					console.log("OK 3");*/
 
 					// Finally, we store the points in the table RoutePoints, that we got from the Google Maps Directions API
 					var steps = response.json.routes[0].legs[0].steps;
