@@ -37,6 +37,7 @@ public class ContactUsActivity extends AppCompatActivity {
     private TextView txtName;
     private TextView txtPhoneNumber;
     private TextView txtEmail;
+    private TextView txtSubject;
     private TextView txtMessage;
 
     private Button mSendMessageButton;
@@ -67,6 +68,7 @@ public class ContactUsActivity extends AppCompatActivity {
         txtPhoneNumber = findViewById(R.id.edt_contact_phoneNumber);
         txtEmail = findViewById(R.id.edt_contact_email);
         txtMessage = findViewById(R.id.edt_contact_message);
+        txtSubject = findViewById(R.id.edt_contact_subject);
 
         // On recupere l'Id
         intent_profile_activity = getIntent();
@@ -97,8 +99,9 @@ public class ContactUsActivity extends AppCompatActivity {
         mSendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fillOutTheForm(view);
                 sendMail();
-                Toast.makeText(getApplicationContext(), "Mail sent", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Sending the email", Toast.LENGTH_LONG).show();
 
 
             }
@@ -128,6 +131,7 @@ public class ContactUsActivity extends AppCompatActivity {
         final String phonenumber = ((EditText) findViewById(R.id.edt_contact_phoneNumber)).getText().toString().trim();
         final String email = ((EditText) findViewById(R.id.edt_contact_email)).getText().toString().trim();
         final String message = ((EditText) findViewById(R.id.edt_contact_message)).getText().toString().trim();
+        final String subject = ((EditText) findViewById(R.id.edt_contact_subject)).getText().toString().trim();
 
         //We check if all the information is correct
         // We check a bunch of things from what the user type.
@@ -143,9 +147,11 @@ public class ContactUsActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), getString(R.string.error_message_long), Toast.LENGTH_SHORT).show();
         } else if (message.length() < 100){
             Toast.makeText(getApplicationContext(), getString(R.string.error_message_short), Toast.LENGTH_SHORT).show();
-        } else {
-            //The user can send the message : the button is activated
-           // mSendMessageButton.setEnabled(true);
+        } else if (subject.length() < 10){
+            Toast.makeText(getApplicationContext(), getString(R.string.error_subject_short), Toast.LENGTH_SHORT).show();
+        } else if (subject.length() > 100){
+            Toast.makeText(getApplicationContext(), getString(R.string.error_subject_long), Toast.LENGTH_SHORT).show();
+        }else {
             Toast.makeText(getApplicationContext(), "It's okay", Toast.LENGTH_SHORT).show();
         }
 
@@ -204,6 +210,7 @@ public class ContactUsActivity extends AppCompatActivity {
         txtPhoneNumber.setText("");
         txtName.setText("");
         txtMessage.setText("");
+        txtSubject.setText("");
     }
 
     public void sendMail(){
@@ -212,8 +219,8 @@ public class ContactUsActivity extends AppCompatActivity {
         Intent intentMail = new Intent(Intent.ACTION_SEND);
         intentMail.setType("message/rfc822");
         intentMail.putExtra(Intent.EXTRA_EMAIL, emailList);
-        intentMail.putExtra(Intent.EXTRA_SUBJECT, "Claim of" + txtName.getText());
-        intentMail.putExtra(Intent.EXTRA_TEXT, txtMessage.getText() +"\n You can call me with this number :" + txtPhoneNumber.getText());
+        intentMail.putExtra(Intent.EXTRA_SUBJECT,  txtSubject.getText());
+        intentMail.putExtra(Intent.EXTRA_TEXT, txtMessage.getText() +"\n You can call" + txtName.getText()+ " with this phone number :" + txtPhoneNumber.getText());
         startActivity(Intent.createChooser(intentMail, "Claim of" + txtName.getText()));
 
     }

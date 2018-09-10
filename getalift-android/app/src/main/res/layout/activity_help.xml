@@ -21,74 +21,77 @@
     <TextView
         android:id="@+id/text_faq"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="8dp"
         android:text="F.A.Q"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_about"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <ImageButton
         android:id="@+id/image_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="264dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/image_faq_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:srcCompat="@android:drawable/ic_menu_zoom" />
+        app:srcCompat="@drawable/help_image" />
 
     <ImageButton
         android:id="@+id/image_contact_us"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="148dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
+        app:srcCompat="@drawable/contact_us_image"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/text_contact_us"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="15dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_contac_us"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_help"
-        app:layout_constraintVertical_bias="0.771"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/text_contac_us"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="228dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Contact Us"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/image_about"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton6"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintTop_toBottomOf="@+id/image_contact_us"
+        app:layout_constraintVertical_bias="0.571" />
 
     <TextView
         android:id="@+id/text_about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="About "
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/image_faq_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_about"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.555" />
 
     <ImageView
         android:id="@+id/image_help"
@@ -100,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:srcCompat="@drawable/ic_help_outline_black_24dp"
+        app:srcCompat="@drawable/info_image"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
@@ -112,7 +115,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Help"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,29 +122,19 @@
 
     <ImageButton
         android:id="@+id/image_faq_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_faq"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/faq_image" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/image_help"
-        app:layout_constraintHorizontal_bias="0.587"
+
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_faq"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlb_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
+        app:layout_constraintVertical_bias="0.984"
+        app:srcCompat="@drawable/faq_image" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -44,11 +44,10 @@ public class HelpActivity extends AppCompatActivity {
         // On recupere l'Id
         intent_profile_activity = getIntent();
 
-        txtMessage = findViewById(R.id.textView3);
+
 
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
-            txtMessage.setText(Integer.toString(userID));
         }
 
         mAbout = (ImageButton) findViewById(R.id.image_about);
