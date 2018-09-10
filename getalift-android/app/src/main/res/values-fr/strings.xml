@@ -48,4 +48,8 @@
     <string name="btn_edit_ride">Modifier</string>
     <string name="edt_pic_date">Sélectionner</string>
     <string name="edt_pic_time">Sélectionner</string>
+    <string name="txt_title_drive">Get A Lift - Conduire</string>
+    <string name="txt_title_help">Get A Lift - Aide</string>
+    <string name="txt_title_faq">Get -</string>
+    <string name="error_name_long">"Le prenom doit etre compose de plus de 63 caracteres "</string>
 </resources>

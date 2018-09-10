@@ -3,16 +3,20 @@ package mt.edu.um.getalift;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +55,9 @@ public class ContactUsActivity extends AppCompatActivity {
     Intent intent_profile_activity;
     private int userID;
 
+    //Animation pour le chargement
+    AnimationDrawable animationLoading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +83,10 @@ public class ContactUsActivity extends AppCompatActivity {
             userID = intent_profile_activity.getIntExtra("userId",0);
         }
 
+        //Animation chargement
+        ImageView loading = (ImageView) findViewById(R.id.loading_image);
+        animationLoading = (AnimationDrawable) loading.getDrawable();
+
         //On referencie les boutons
         mSendMessageButton = (Button) findViewById(R.id.contact_validate_button);
         mAutoFillButton = (Button) findViewById(R.id.contact_autofill_button);
@@ -84,9 +95,11 @@ public class ContactUsActivity extends AppCompatActivity {
         mAutoFillButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                animationLoading.start();
                 profil();
             }
         });
+
 
         mClearAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,15 +108,27 @@ public class ContactUsActivity extends AppCompatActivity {
             }
         });
 
+        txtName.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    animationLoading.stop();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                                           }
+        });
+
 
         mSendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fillOutTheForm(view);
-                sendMail();
-                Toast.makeText(getApplicationContext(), "Sending the email", Toast.LENGTH_LONG).show();
-
-
             }
         });
 
@@ -121,7 +146,6 @@ public class ContactUsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
 
@@ -152,7 +176,8 @@ public class ContactUsActivity extends AppCompatActivity {
         } else if (subject.length() > 100){
             Toast.makeText(getApplicationContext(), getString(R.string.error_subject_long), Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(getApplicationContext(), "It's okay", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Sending the email", Toast.LENGTH_LONG).show();
+            sendMail();
         }
 
     }
@@ -214,14 +239,14 @@ public class ContactUsActivity extends AppCompatActivity {
     }
 
     public void sendMail(){
-        //Envoyer message a l'email de l'entreprise
+        //Envoyer le message a l'email de l'entreprise
         String emailList [] = {"thessalene.jeanlouis@reseau.eseo.fr"};
         Intent intentMail = new Intent(Intent.ACTION_SEND);
         intentMail.setType("message/rfc822");
         intentMail.putExtra(Intent.EXTRA_EMAIL, emailList);
         intentMail.putExtra(Intent.EXTRA_SUBJECT,  txtSubject.getText());
         intentMail.putExtra(Intent.EXTRA_TEXT, txtMessage.getText() +"\n You can call" + txtName.getText()+ " with this phone number :" + txtPhoneNumber.getText());
-        startActivity(Intent.createChooser(intentMail, "Claim of" + txtName.getText()));
+        startActivity(Intent.createChooser(intentMail, "Message of " + txtName.getText()));
 
     }
 }
