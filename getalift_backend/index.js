@@ -811,12 +811,11 @@ router.get("/ratings", function(req, res){
 // 		- the mysql object for this rate.
 // Description	:
 //					This route send back the public informations about the chosen rate.
-router.get("/ratings/:rateid", function(req, res){
-	db_con.query("SELECT * FROM Rating WHERE id = ?", [req.params.rateid], function(err, result){
+/*	db_con.query("SELECT * FROM Rating WHERE id = ?", [req.params.rateid], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
-});
+});*/
 
 //Rajouter par Charly
 // Route				: GET /api/ratings/:targetid
