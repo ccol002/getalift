@@ -818,6 +818,22 @@ router.get("/ratings/:rateid", function(req, res){
 	});
 });
 
+//Rajouter par Charly
+// Route				: GET /api/ratings/:targetid
+// URL Params		:
+//		- usrid					: The ID of the target you want to retrieve the average of rate.
+// Body Params	: None
+// Return		:
+// 		- the mysql object for this rate.
+// Description	:
+//					This route send back the public informations about the chosen rate.
+router.get("/ratings/:targetid", function(req, res){
+	db_con.query("SELECT AVG(stars) FROM Rating WHERE target = ?", [req.params.targetid], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
+
 // Route				: POST /api/ratings/
 // URL Params		: None
 // Body Params	:
