@@ -50,6 +50,17 @@
     <string name="edt_pic_time">Sélectionner</string>
     <string name="txt_title_drive">Get A Lift - Conduire</string>
     <string name="txt_title_help">Get A Lift - Aide</string>
-    <string name="txt_title_faq">Get -</string>
+    <string name="txt_title_faq">Get A Lift - F.A.Q</string>
     <string name="error_name_long">"Le prenom doit etre compose de plus de 63 caracteres "</string>
+    <string name="text_title_contact_us">Get A Lift - Nous contacter</string>
+    <string name="error_name_short">"Le nom doit comporter plus de 5 caractères. "</string>
+    <string name="error_message_long">"Le message doit comporter moins de 500 caractères. "</string>
+    <string name="error_message_short">"Le message doit comporter moins de 500 caractères. Le message doit comporter plus de 100 caractères. "</string>
+    <string name="error_subject_short">"Le message doit comporter plus de 10 caractères. "</string>
+    <string name="error_subject_long">"Le message doit comporter moins de 100 caractères. "</string>
+    <string name="txt_title_about">Get A Lift - A propos</string>
+    <string name="app_name" translatable="false">GetALift</string>
+    <string name="txt_about">A propos</string>
+    <string name="txt_contact_us">"Nous contacter "</string>
+    <string name="txt_faq">F.A.Q</string>
 </resources>
