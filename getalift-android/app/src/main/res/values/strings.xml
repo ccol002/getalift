@@ -62,6 +62,7 @@
     <string name="txt_title_faq">Get A Lift - F.A.Q</string>
     <string name="txt_title_about">Get A Lift - About</string>
     <string name="text_title_contact_us">Get A Lift - Contact Us</string>
+
     <string name="error_name_long">The name must be less than 63 character long.</string>
     <string name="error_name_short">The name must be more than 5 character long.</string>
     <string name="error_message_long">The message must be less than 500 character long.</string>
@@ -69,6 +70,105 @@
     <string name="error_subject_short">The message must be more than 10 character long.</string>
     <string name="error_subject_long">The message must be less than 100 character long.</string>
 
+    <string name="btn_autofill">Autofill</string>
+    <string name="btn_clear">Clear all</string>
+    <string name="btn_send_message">Send message</string>
+    <string name="txt_message">Your message</string>
+    <string name="txt_subject">Subject</string>
+
+    <string name="txt_about1"> What is Get A Lift ?</string>
+    <string name="txt_about2">" → As you can see, it’s an mobile application for Android. But what else ? This application was designed to connect people who want to make daily commutes. It mainly favors short and regular trips.   The application must allow users to find the best route offered by other users. Indeed, if the user leaves Sliema to go to Valletta for example every day and another user makes the same trip or part of this journey, they can be put in contact and make the trip together. It will only take one car instead of two, reducing the number of cars on the island.   "</string>
+    <string name="txt_about3">" → He can create his own account from which he can create one or more trips, save them and search for a trip.  The trip created can be his daily commute or the one he wants to do with another user. Once saved, the app can compare it to other users for similarities. This will determine if one or more users are making more or less similar journeys."</string>
+    <string name="txt_about4">" → In addition, the application must above all favor the driver unless he decides to be accommodating.          To do this, it will be proposed to the person wishing to travel with him a route (on foot) to reach the meeting point.          This meeting point will be determined by the application depending on the initial route and the location of the passenger.  "</string>
+    <string name="txt_about5"> What is the purpose of the Get A Lift App’ ? </string>
+    <string name="txt_about6">" → The purpose of the app is to connect only drivers and passengers, will not take care of the payment management if there is any, or the management of the places in the vehicles.          It will identify the journeys of the drivers and propose the one which is the best users seeking a route.          The application must be simple to use and intuitive. "</string>
+
+    <string name="txt_faq1"> How to create an account ? </string>
+    <string name="txt_faq2">" → Just go to the login page and click on the create an account button.  Then fill in the fields with your personal data."</string>
+    <string name="txt_faq3"> How to create a trip ?</string>
+    <string name="txt_faq4"> → Click on Enter destination \n → Fill in the fields related to your trip \n → Click on Go
+ \n And here is your trip and create and you can view all your saved trips in My drives </string>
+    <string name="txt_faq5">And if I want to drive ?</string>
+    <string name="txt_faq6">" → After recording my trip, by clicking on I want to drive, I can propose to be a driver   Then, a page to create your route will be displayed."</string>
+    <string name="txt_faq7"> How to access my profile ?</string>
+    <string name="txt_faq8">" → On the home page, click on the menu at the top left of the screen.  → Click on My profile "</string>
+    <string name="txt_faq9"> How to contact someone who is on the same trip as me ? </string>
+    <string name="txt_faq10">"→ Once the trip is saved, a page with the available routes appears   → Click on the person with whom you wish to travel   → A page showing the route of it appears   → Click on Contact "</string>
+    <string name="txt_faq11"> How to save the journey of a person making the same trip as me ?</string>
+    <string name="txt_faq12">" Once the trip is saved, a page with the available routes appears  → Click on the person with whom you wish to travel            → A page showing the route of it appears   → Click on Save"</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
 
 
 </resources>

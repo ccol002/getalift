@@ -40,7 +40,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="How to create an account ?" />
+                android:text="@string/txt_faq1" />
 
             <TextView
                 android:id="@+id/text_answer1"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ Just go to the login page and click on the create an account button.\n Then fill in the fields with your personal data." />
+                android:text="@string/txt_faq2" />
 
             <TextView
                 android:id="@+id/text_question2"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="How to create a trip ?" />
+                android:text="@string/txt_faq3" />
 
             <TextView
                 android:id="@+id/text_answer2"
@@ -72,8 +72,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ Click on Enter destination \n → Fill in the fields related to your trip \n → Click on Go
- \n And here is your trip and create and you can view all your saved trips in My drives" />
+                android:text="@string/txt_faq4" />
 
             <TextView
                 android:id="@+id/text_question3"
@@ -85,7 +84,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="And if I want to drive ?" />
+                android:text="@string/txt_faq5" />
 
             <TextView
                 android:id="@+id/text_answer3"
@@ -95,8 +94,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ After recording my trip, by clicking on I want to drive, I can propose to be a driver
-\n Then, a page to create your route will be displayed." />
+                android:text="@string/txt_faq6" />
 
             <TextView
                 android:id="@+id/text_question4"
@@ -108,7 +106,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="How to access my profile ?" />
+                android:text="@string/txt_faq7" />
 
             <TextView
                 android:id="@+id/text_answer4"
@@ -118,7 +116,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ On the home page, click on the menu at the top left of the screen.\n → Click on My profile" />
+                android:text="@string/txt_faq8" />
 
             <TextView
                 android:id="@+id/text_question5"
@@ -130,7 +128,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="How to contact someone who is on the same trip as me ?" />
+                android:text="@string/txt_faq9" />
 
             <TextView
                 android:id="@+id/text_answer5"
@@ -140,9 +138,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ Once the trip is saved, a page with the available routes appears \n → Click on the person with whom you wish to travel
-\n → A page showing the route of it appears
-\n → Click on Contact " />
+                android:text="@string/txt_faq10" />
 
             <TextView
                 android:id="@+id/text_question6"
@@ -154,7 +150,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="How to save the journey of a person making the same trip as me ?" />
+                android:text="@string/txt_faq11" />
 
             <TextView
                 android:id="@+id/text_answer6"
@@ -164,7 +160,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Once the trip is saved, a page with the available routes appears\n → Click on the person with whom you wish to travel \n → A page showing the route of it appears \n → Click on Save" />
+                android:text="@string/txt_faq12" />
 
         </LinearLayout>
     </ScrollView>

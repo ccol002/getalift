@@ -24,7 +24,7 @@ public class PageAboutActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //textfaq = (TextView) findViewById(R.id.text_faq);
+
     }
 
     // Retourner a la page d'accueil en cliquant sur retour

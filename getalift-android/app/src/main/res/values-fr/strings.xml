@@ -63,4 +63,27 @@
     <string name="txt_about">A propos</string>
     <string name="txt_contact_us">"Nous contacter "</string>
     <string name="txt_faq">F.A.Q</string>
+    <string name="btn_autofill">Remplir</string>
+    <string name="btn_send_message">Envoyer</string>
+    <string name="txt_subject">Sujet</string>
+    <string name="txt_message">Votre message</string>
+    <string name="btn_clear">Effacer</string>
+    <string name="txt_about1">Qu\'est-ce que Get A Lift ?</string>
+    <string name="txt_about2">"→ Comme vous pouvez le voir, c’est une application mobile pour Android. Mais quoi d'autre? Cette application a été conçue pour mettre en relation les personnes qui souhaitent effectuer des déplacements quotidiens. Il favorise principalement les voyages courts et réguliers. L'application doit permettre aux utilisateurs de trouver le meilleur itinéraire proposé par les autres utilisateurs. En effet, si l'utilisateur quitte Sliema pour se rendre à La Valette par exemple chaque jour et qu'un autre utilisateur effectue le même trajet ou une partie de ce trajet, il peut être mis en contact et faire le trajet ensemble. Il ne faudra qu'une voiture au lieu de deux, ce qui réduira le nombre de voitures sur l'île. "</string>
+    <string name="txt_about3">"→ Il peut créer son propre compte à partir duquel il peut créer un ou plusieurs voyages, les enregistrer et en rechercher. Le voyage créé peut être son trajet quotidien ou celui qu’il veut faire avec un autre utilisateur. Une fois enregistrée, l'application peut la comparer aux autres utilisateurs pour des similitudes. Cela déterminera si un ou plusieurs utilisateurs effectuent des trajets plus ou moins similaires. "</string>
+    <string name="txt_about4">"→ De plus, l'application doit avant tout favoriser le conducteur à moins qu'il ne décide de se montrer arrangeant. Pour ce faire, il sera proposé à la personne souhaitant voyager avec lui un itinéraire (à pied) pour atteindre le point de rendez-vous. Ce point de rencontre sera déterminé par l'application en fonction de l'itinéraire initial et de l'emplacement du passager. "</string>
+    <string name="txt_about5">"Quel est le but de l’application Get A Lift? "</string>
+    <string name="txt_about6">"→ Le but de l'application est de connecter uniquement les conducteurs et les passagers, ne prendra pas en charge la gestion des paiements, le cas échéant, ou la gestion des lieux dans les véhicules. Il identifiera les trajets des conducteurs et proposera celui qui est le meilleur utilisateur cherchant un itinéraire. L'application doit être simple à utiliser et intuitive. "</string>
+    <string name="txt_faq1">"Comment créer un compte ? "</string>
+    <string name="txt_faq2">"→ Il suffit d'aller sur la page de connexion et de cliquer sur le bouton créer un compte. Ensuite, remplissez les champs avec vos données personnelles. "</string>
+    <string name="txt_faq3">"Comment créer un trajet ? "</string>
+    <string name="txt_faq4">"→ Cliquez sur Entrez la destination → Remplissez les champs liés à votre voyage → Cliquez sur Aller Et voici votre voyage et créez et vous pouvez voir tous vos voyages enregistrés dans Mes lecteurs "</string>
+    <string name="txt_faq5">"Et si je veux conduire? "</string>
+    <string name="txt_faq6">"→ Après avoir enregistré mon voyage, en cliquant sur Je veux conduire, je peux proposer d'être pilote. Ensuite, une page pour créer votre itinéraire sera affichée. "</string>
+    <string name="txt_faq7">"Comment accéder à mon profil? "</string>
+    <string name="txt_faq8">"→ Sur la page d'accueil, cliquez sur le menu en haut à gauche de l'écran. → Cliquez sur Mon profil "</string>
+    <string name="txt_faq9">"Comment contacter quelqu'un qui est effectue le même voyage que moi? "</string>
+    <string name="txt_faq10">"→ Une fois le trajet enregistré, une page contenant les itinéraires disponibles apparaît. → Cliquez sur la personne avec laquelle vous souhaitez voyager. → Une page indiquant le parcours apparaît. → Cliquez sur Contact. "</string>
+    <string name="txt_faq11">"Comment enregistrer le voyage d'une personne effectuant le même voyage que moi? "</string>
+    <string name="txt_faq12">"Une fois le trajet enregistré, une page contenant les itinéraires disponibles apparaît. → Cliquez sur la personne avec laquelle vous souhaitez voyager. → Une page affichant le parcours apparaît. → Cliquez sur Enregistrer. "</string>
 </resources>

@@ -40,7 +40,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="What is Get A Lift ?" />
+                android:text="@string/txt_about1" />
 
             <TextView
                 android:id="@+id/text_answer1"
@@ -50,10 +50,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ As you can see, it’s an mobile application for Android. But what else ?
-This application was designed to connect people who want to make daily commutes. It mainly favors short and regular trips. \n
-The application must allow users to find the best route offered by other users. Indeed, if the user leaves Sliema to go to Valletta for example every day and another user makes the same trip or part of this journey, they can be put in contact and make the trip together. It will only take one car instead of two, reducing the number of cars on the island.
-\n" />
+                android:text="@string/txt_about2" />
 
             <TextView
                 android:id="@+id/text_answer2"
@@ -63,9 +60,7 @@ The application must allow users to find the best route offered by other users. 
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ He can create his own account from which he can create one or more trips, save them and search for a trip.\n
-The trip created can be his daily commute or the one he wants to do with another user. Once saved, the app can compare it to other users for similarities.
-This will determine if one or more users are making more or less similar journeys." />
+                android:text="@string/txt_about3" />
 
             <TextView
                 android:id="@+id/text_answer3"
@@ -75,8 +70,7 @@ This will determine if one or more users are making more or less similar journey
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ In addition, the application must above all favor the driver unless he decides to be accommodating. To do this, it will be proposed to the person wishing to travel with him a route (on foot) to reach the meeting point. This meeting point will be determined by the application depending on the initial route and the location of the passenger.
-\n" />
+                android:text="@string/txt_about4" />
 
             <TextView
                 android:id="@+id/text_question5"
@@ -88,7 +82,7 @@ This will determine if one or more users are making more or less similar journey
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
                 android:textStyle ="bold"
-                android:text="What is the purpose of the Get A Lift App’ ? " />
+                android:text="@string/txt_about5" />
 
             <TextView
                 android:id="@+id/text_answer5"
@@ -98,9 +92,7 @@ This will determine if one or more users are making more or less similar journey
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="→ The purpose of the app is to connect only drivers and passengers,
-will not take care of the payment management if there is any, or the management of the places in the vehicles. It will identify the journeys of the drivers and propose the one which is the best users seeking a route. The application must be simple to use and intuitive.
-\n" />
+                android:text="@string/txt_about6" />
         </LinearLayout>
     </ScrollView>
     </android.support.constraint.ConstraintLayout>
