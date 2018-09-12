@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PageAboutActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tlb_profile"
+        android:layout_width="0dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="4dp"
+        android:background="#40E0D0"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="492dp"
+        app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle ="bold"
+                android:text="What is Get A Lift ?" />
+
+            <TextView
+                android:id="@+id/text_answer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="→ As you can see, it’s an mobile application for Android. But what else ?
+This application was designed to connect people who want to make daily commutes. It mainly favors short and regular trips. \n
+The application must allow users to find the best route offered by other users. Indeed, if the user leaves Sliema to go to Valletta for example every day and another user makes the same trip or part of this journey, they can be put in contact and make the trip together. It will only take one car instead of two, reducing the number of cars on the island.
+\n" />
+
+            <TextView
+                android:id="@+id/text_answer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="→ He can create his own account from which he can create one or more trips, save them and search for a trip.\n
+The trip created can be his daily commute or the one he wants to do with another user. Once saved, the app can compare it to other users for similarities.
+This will determine if one or more users are making more or less similar journeys." />
+
+            <TextView
+                android:id="@+id/text_answer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="→ In addition, the application must above all favor the driver unless he decides to be accommodating. To do this, it will be proposed to the person wishing to travel with him a route (on foot) to reach the meeting point. This meeting point will be determined by the application depending on the initial route and the location of the passenger.
+\n" />
+
+            <TextView
+                android:id="@+id/text_question5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle ="bold"
+                android:text="What is the purpose of the Get A Lift App’ ? " />
+
+            <TextView
+                android:id="@+id/text_answer5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="→ The purpose of the app is to connect only drivers and passengers,
+will not take care of the payment management if there is any, or the management of the places in the vehicles. It will identify the journeys of the drivers and propose the one which is the best users seeking a route. The application must be simple to use and intuitive.
+\n" />
+        </LinearLayout>
+    </ScrollView>
+    </android.support.constraint.ConstraintLayout>

@@ -84,11 +84,15 @@ public class HelpActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent AboutActivity = new Intent(HelpActivity.this, PageAboutActivity.class);
+                startActivity(AboutActivity);
+            }
+        });
     }
-
-
-
-
 
 
     // Retourner a la page d'accueil en cliquant sur retour

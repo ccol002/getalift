@@ -55,7 +55,11 @@
             android:parentActivityName=".ResultSearchActivity" />
         <activity android:name=".PageFaqActivity" />
         <activity android:name=".ContacUsActivity" />
-        <activity android:name=".ContactUsActivity"></activity>
+        <activity android:name=".ContactUsActivity" />
+        <activity
+            android:name=".PageAboutActivity"
+            android:label="@string/title_activity_page_about"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
