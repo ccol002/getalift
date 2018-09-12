@@ -827,6 +827,7 @@ router.get("/ratings", function(req, res){
 // Description	:
 //					This route send back the public informations about the chosen rate.
 router.get("/ratings/:targetid", function(req, res){
+	console.log("OK 1");
 	db_con.query("SELECT AVG(stars) FROM Rating WHERE target = ?", [req.params.targetid], function(err, result){
 		if(err) throw err;
 		res.json(result);
