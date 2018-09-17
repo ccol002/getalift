@@ -700,6 +700,23 @@ router.delete("/rides/:rideid", function(req, res){
 	});
 });
 
+
+// Route				: DELETE /api/rides/route/:passengerId
+// URL Params		:
+//		- rideid					: The ID of the passenger you want to show the ride
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	:
+//					This route show all the routes that the passenger add to his rides
+router.get("/rides/route/:passengerId", function(req, res){
+	db_con.query("SELECT DISTINCT route.* FROM Route route, Ride ride, Passenger passenger WHERE route.id = ride.route and passenger.passenger = ?", [req.params.passengerId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
+
+
 // --- Passengers ---
 
 // Route				: GET /api/passengers
@@ -919,7 +936,7 @@ router.delete("/ratings/:rateid", function(req, res){
 
 
 
-
+//--Favorites Routes--
 
 
 
