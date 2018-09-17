@@ -803,6 +803,14 @@ router.delete("/passenger/:passid", function(req, res){
 	});
 });
 
+//Requête qui renvoie le nom de tous les passager par rapport à un conducteur (Pour le message d'alerte au démarrage)
+router.delete("/passenger/alert/:driverId", function(req, res){
+	db_con.query("SELECT 	passager.username From 	User passager,User conducteur,Route route,Ride ride,Passenger passenger Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = 2", [req.params.driverId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
+
 // --- Ratings ---
 
 // Route				: GET /api/ratings
