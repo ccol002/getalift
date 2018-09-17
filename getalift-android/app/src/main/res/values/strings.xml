@@ -86,8 +86,7 @@
     <string name="txt_faq1"> How to create an account ? </string>
     <string name="txt_faq2">" → Just go to the login page and click on the create an account button.  Then fill in the fields with your personal data."</string>
     <string name="txt_faq3"> How to create a trip ?</string>
-    <string name="txt_faq4"> → Click on Enter destination \n → Fill in the fields related to your trip \n → Click on Go
- \n And here is your trip and create and you can view all your saved trips in My drives </string>
+    <string name="txt_faq4"> → Click on Enter destination \n → Fill in the fields related to your trip \n → Click on Go \n And here is your trip and create and you can view all your saved trips in My drives </string>
     <string name="txt_faq5">And if I want to drive ?</string>
     <string name="txt_faq6">" → After recording my trip, by clicking on I want to drive, I can propose to be a driver   Then, a page to create your route will be displayed."</string>
     <string name="txt_faq7"> How to access my profile ?</string>
@@ -111,11 +110,11 @@
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>
 
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
+    <string name="pref_title_change_language">Change language</string>
+    <string-array name="pref_list_languages">
+        <item>English</item>
+        <item>French</item>
+        <item>Spanish</item>
     </string-array>
     <string-array name="pref_example_list_values">
         <item>1</item>

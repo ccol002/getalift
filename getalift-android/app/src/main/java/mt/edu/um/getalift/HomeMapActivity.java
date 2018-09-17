@@ -346,6 +346,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 }
 
         } else if (id == R.id.nav_settings) {
+                Intent intentSettings = new Intent(getBaseContext(), SettingsActivity.class);
+                startActivity(intentSettings);
+
 
         } else if (id == R.id.nav_logout) {
             // Retrieve the default SharedPreference File

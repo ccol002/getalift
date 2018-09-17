@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:title="EditText "
+        android:summary="Set your user name"
+        android:key ="user name" />
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entryValues="@array/pref_list_languages"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:key="change language"
+        android:title="Change language" />
+
+</PreferenceScreen>
