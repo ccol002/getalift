@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.LongToIntFunction;
 
-public class DriveActivity extends AppCompatActivity {
+public class DriveActivity extends AppCompatActivity implements DriveList.OnClientSelectedListener{
 
     // Tag utilisé pour les LOG
     private static final String TAG = "DriveTAGAct";
@@ -75,16 +75,14 @@ public class DriveActivity extends AppCompatActivity {
         if (intent_drive_activity != null) {
             userID = intent_drive_activity.getIntExtra("userId",0);
         }
-        Log.i(TAG,Integer.toString(userID,0));
-
-
-        DriveListItem();
-
-
-
 
         DriveList fragInfo = new DriveList();
         fragInfo.setArguments(bundle);
+
+
+
+        bundle.putInt("userID",userID);
+
         transaction.replace(R.id.layout, fragInfo);
         transaction.commit();
 
@@ -105,66 +103,16 @@ public class DriveActivity extends AppCompatActivity {
 
 
 
-    public void driver(){
+    public void driver(){ }
 
 
+
+
+    @Override
+    public void onClientSelected(int id) {
+        Intent intent = new Intent(DriveActivity.this,DriveDetails.class);
+        startActivity(intent);
     }
-
-    public void DriveListItem(){
-
-
-        String myMessage = "Stackoverflow is cool!";
-        bundle.putString("message", myMessage );
-        bundle.putInt("userID",userID);
-
-
-        // We first setup the queue for the API Request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/driverroutes/" + Integer.toString(userID);
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-
-                    @Override
-                    public void onResponse(String response) {
-                        // We got a response from our server.
-                        try {
-                            Log.i(TAG,response);
-                            // We create a JSONObject from the server response.
-                            int length = new JSONArray(response).length();
-                            for (int i = 0; i <= length; i ++){
-                                JSONObject jo = new JSONArray(response).getJSONObject(i);
-                                Log.i(TAG,jo.getString("id"));
-                                bundle.putString("driver" + i,jo.getString("id"));
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
-                    }
-
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
-                params.put("x-access-token", sh.getString("token", null));
-                return params;
-            }
-        };
-        queue.add(sr);
-
-
-    }
-
 }
 
 

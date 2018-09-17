@@ -29,11 +29,15 @@ import java.util.Map;
 
 public class DriveList extends ListFragment {
 
+    //Création d'un tag pour les log
     private static final String TAG = "DriveTAGList";
 
-    //Création de l'intent qui récupere l'Id de l'utilisateur
-    Intent intent_profile_activity;
-    private int userID;
+    //Récupération de l'id
+    int userID;
+
+    //Création de la liste qui va recevoir les données
+    List<String> prenoms = new ArrayList();
+
 
 
 
@@ -54,25 +58,20 @@ public class DriveList extends ListFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DriveListItem();
-
-        String myValue = this.getArguments().getString("message");
-        int userID = this.getArguments().getInt("userID");
-        //String myTest = this.getArguments().getString("driver0");
-        Log.i(TAG,myValue);
+        userID = this.getArguments().getInt("userID");
+        //String myTest = this.getArguments().getString("id");
         //Log.i(TAG,myTest);
 
+        dataList();
 
-        List<String> prenoms = new ArrayList();
+
+        /*
         prenoms.add("OUI OUI");
         prenoms.add(Integer.toString(userID,0));
         prenoms.add(Integer.toString(userID,0));
         prenoms.add(Integer.toString(userID,0));
-        /*
-        for (int i = 0; i <6;i++) {
-            prenoms.add(this.getArguments().getString("driver" + i));
-        }
         */
+
         DriveAdapter adapter = new DriveAdapter(getActivity(), prenoms);
         setListAdapter(adapter);
     }
@@ -84,6 +83,57 @@ public class DriveList extends ListFragment {
 
     }
 
-    public void DriveListItem() {
+    public void dataList(){
+
+        // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/driverroutes/" + Integer.toString(userID);
+        StringRequest sr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        try {
+                            Log.i(TAG + "Rep",response);
+                            // We create a JSONObject from the server response.
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+
+                            prenoms.add("Voila la liste des id");
+                            int length = new JSONArray(response).length();
+                            for (int i = 0;i<length;i++ ){
+                                JSONObject jo2 = new JSONArray(response).getJSONObject(i);
+                                prenoms.add(jo2.getString("id"));
+                                Log.i(TAG + "id",jo2.getString("id"));
+                            }
+
+                            prenoms.add("C'était la liste des id");
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getActivity().getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
+                return params;
+            }
+        };
+        queue.add(sr);
     }
+
 }
