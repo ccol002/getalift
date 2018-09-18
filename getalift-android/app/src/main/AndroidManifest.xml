@@ -52,14 +52,24 @@
             android:parentActivityName=".ResultSearchActivity" />
         <activity
             android:name=".HelpActivity"
-            android:parentActivityName=".ResultSearchActivity" />
-        <activity android:name=".PageFaqActivity" />
-        <activity android:name=".ContactUsActivity" />
+            android:parentActivityName=".HomeMapActivity" />
+        <activity
+            android:name=".PageFaqActivity"
+            android:parentActivityName=".HelpActivity"/>
+
+        <activity
+            android:name=".ContactUsActivity"
+            android:parentActivityName=".HelpActivity" />
+
         <activity
             android:name=".PageAboutActivity"
             android:label="@string/txt_title_about"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".SettingsActivity"></activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".HomeMapActivity"
+            />
     </application>
 
 </manifest>

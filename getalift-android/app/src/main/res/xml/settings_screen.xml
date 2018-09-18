@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout="@layout/activity_settings"
+    android:orderingFromXml="true">
 
     <EditTextPreference
-        android:title="EditText "
-        android:summary="Set your user name"
-        android:key ="user name" />
-
+        android:defaultValue="Default value"
+        android:key="edit_text_preference_1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Edit text preference" />
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="check_box_preference_1"
+        android:title="Check box preference" />
     <ListPreference
-        android:defaultValue="1"
-        android:entryValues="@array/pref_list_languages"
-        android:icon="@android:drawable/ic_btn_speak_now"
         android:key="change language"
-        android:title="Change language" />
-
+        android:title="@string/pref_title_change_language"
+        android:defaultValue="English"
+        android:entries="@array/pref_list_languages"
+        android:entryValues="@array/pref_entry_values_languages"
+         />
 </PreferenceScreen>

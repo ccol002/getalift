@@ -62,6 +62,7 @@
     <string name="txt_title_faq">Get A Lift - F.A.Q</string>
     <string name="txt_title_about">Get A Lift - About</string>
     <string name="text_title_contact_us">Get A Lift - Contact Us</string>
+    <string name="text_title_settings">Get A Lift - Settings</string>
 
     <string name="error_name_long">The name must be less than 63 character long.</string>
     <string name="error_name_short">The name must be more than 5 character long.</string>
@@ -116,10 +117,10 @@
         <item>French</item>
         <item>Spanish</item>
     </string-array>
-    <string-array name="pref_example_list_values">
-        <item>1</item>
-        <item>0</item>
-        <item>-1</item>
+    <string-array name="pref_entry_values_languages">
+        <item>en</item>
+        <item>fr</item>
+        <item>es</item>
     </string-array>
 
     <!-- Example settings for Data & Sync -->
