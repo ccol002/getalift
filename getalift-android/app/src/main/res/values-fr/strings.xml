@@ -86,4 +86,8 @@
     <string name="txt_faq10">"→ Une fois le trajet enregistré, une page contenant les itinéraires disponibles apparaît. → Cliquez sur la personne avec laquelle vous souhaitez voyager. → Une page indiquant le parcours apparaît. → Cliquez sur Contact. "</string>
     <string name="txt_faq11">"Comment enregistrer le voyage d'une personne effectuant le même voyage que moi? "</string>
     <string name="txt_faq12">"Une fois le trajet enregistré, une page contenant les itinéraires disponibles apparaît. → Cliquez sur la personne avec laquelle vous souhaitez voyager. → Une page affichant le parcours apparaît. → Cliquez sur Enregistrer. "</string>
+    <string name="txt_change_settings">"Salut les amis je vous aime fort "</string>
+    <string name="txt_change_btn">Changer la langue</string>
+    <string name="pref_title_change_language">Changer la langue</string>
+    <string name="text_title_settings">Get A Lift - Paramètres</string>
 </resources>
