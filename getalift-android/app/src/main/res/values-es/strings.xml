@@ -91,5 +91,11 @@
 
         <string name="txt_change_btn">Cambiar la lengua</string>
         <string name="pref_title_change_language">Cambiar la lengua</string>
-    <string name="txt_login_username">Nombre del usuario</string>
+
+        <string name="text_title_settings">Get A Lift - Configuraciones</string>
+    <string name="txt_btn_valid">Validar</string>
+    <string name="txt_general">General</string>
+    <string name="txt_Profil">Perfil</string>
+    <string name="txt_Notifications">Notificaciones</string>
+
 </resources>

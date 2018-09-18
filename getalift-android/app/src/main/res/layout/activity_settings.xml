@@ -33,26 +33,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="41dp"
-        android:text="Valider " />
+        android:text="@string/txt_btn_valid" />
 
-
-    <Button
-        android:id="@+id/btn_change_language"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="133dp"
-        android:text="@string/txt_change_btn" />
-
-    <TextView
-        android:id="@+id/text_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="228dp"
-        android:text="@string/txt_change_settings" />
 
 
 </RelativeLayout>
