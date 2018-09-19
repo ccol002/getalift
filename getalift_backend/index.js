@@ -831,7 +831,7 @@ router.get("/passenger/alert/:driverId", function(req, res){
 
 
 router.put("/passenger/alert/:passid", function(req, res){
-	db_con.query("UPDATE Passenger SET inTheCar WHERE id = ?",
+	db_con.query("UPDATE Passenger SET inTheCar = ? WHERE id = ?",
 		[req.body.inTheCar, req.params.passid],
 		function(err, result){
 			if(err) throw err;
