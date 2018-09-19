@@ -803,6 +803,31 @@ router.delete("/passenger/:passid", function(req, res){
 	});
 });
 
+//---Alert message when user connect---
+
+/// Route				: GET /api/passenger/alert/:driverId
+// URL Params		:
+//		- driverId					: The ID of the user/driver who connect
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	: Query that returns the name of all passengers in relation to a driver (For the alert message at startup)
+/*router.get("/passenger/alert/:driverId", function(req, res){
+	db_con.query("SELECT passager.username From User passager,User conducteur,Route route,Ride ride,Passenger passenger Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = ?", [req.params.driverId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});*/
+
+//Requête qui renvoie toutes les informations sur un passager par rapport à un driver
+router.get("/passenger/alert/:driverId", function(req, res){
+	db_con.query("SELECT passenger.* From User passager,User conducteur,Route route,Ride ride,Passenger passenger Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = ?", [req.params.driverId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
+
+
 // --- Ratings ---
 
 // Route				: GET /api/ratings
