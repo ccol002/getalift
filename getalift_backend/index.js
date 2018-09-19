@@ -830,7 +830,7 @@ router.get("/passenger/alert/:driverId", function(req, res){
 // Description	: Query that returns the name of all passengers in relation to a driver (For the alert message at startup)
 
 
-router.put("/passenger/:passid", function(req, res){
+router.put("/passenger/alert/:passid", function(req, res){
 	db_con.query("UPDATE Passenger SET inTheCar WHERE id = ?",
 		[req.body.inTheCar, req.params.passid],
 		function(err, result){
