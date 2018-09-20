@@ -49,8 +49,6 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
     Intent intent_drive_activity;
     private int userID;
 
-    //Variable compteur pour les JSONObject
-    private int compteurJSON;
 
     // On envoie l'id de l'utilisateur pour avoir les infos dans le fragment
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
