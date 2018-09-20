@@ -689,7 +689,7 @@ router.post("/rides", function(req, res){
 			);	
 		}
 	}); 
-}
+});
 
 // Route				: PUT /api/rides/:rideid
 // URL Params		:
