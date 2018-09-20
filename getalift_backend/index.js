@@ -668,29 +668,31 @@ router.get("/rides/:rideid", function(req, res){
 
 //Essai méthode post (Charly)
 router.post("/rides", function(req, res){
+	// First, we check if the username already exists in the database.
 	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
 		if (err) throw err;
 		if (result.length === 1){
-			console.log("PB1");
-			//If the route is already exist, we send an error
+			// If the username already exists, we send an error.
 			res.json({
 				success: 	false,
-				message: 	"This ride for this route already exists",
-				errorCode: 	1
+				message: 	"This route is already attributed to a ride",
+				errorCode:	1
 			});
 		} else {
-			console.log("PB2");
+			// And we launch the query that store everything in the db.
 			db_con.query(
 				"INSERT INTO Ride (route) VALUES (?)",
 				[req.body.route],
 				function(err, result){
 					if(err) throw err;
+					// At the end, we respond with a success.
 					result.success = true;
 					res.json(result);
 				}
 			);
 		}
-	}); 
+	});
+
 });
 
 // Route				: PUT /api/rides/:rideid
