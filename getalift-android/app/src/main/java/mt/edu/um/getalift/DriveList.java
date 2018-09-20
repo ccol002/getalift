@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class DriveList extends ListFragment {
 
@@ -35,10 +36,9 @@ public class DriveList extends ListFragment {
     //Récupération de l'id
     int userID;
 
-    //Création de la liste qui va recevoir les données
-    List<String> prenoms = new ArrayList();
-
-
+    //Création de la liste qui va recevoir les données des destinations
+    List<String> desti = new ArrayList();
+    List<Drive> data = new ArrayList();
 
 
     public interface OnClientSelectedListener{
@@ -59,21 +59,11 @@ public class DriveList extends ListFragment {
         super.onCreate(savedInstanceState);
 
         userID = this.getArguments().getInt("userID");
-        //String myTest = this.getArguments().getString("id");
-        //Log.i(TAG,myTest);
 
         dataList();
 
 
-        /*
-        prenoms.add("OUI OUI");
-        prenoms.add(Integer.toString(userID,0));
-        prenoms.add(Integer.toString(userID,0));
-        prenoms.add(Integer.toString(userID,0));
-        */
 
-        DriveAdapter adapter = new DriveAdapter(getActivity(), prenoms);
-        setListAdapter(adapter);
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
@@ -84,6 +74,7 @@ public class DriveList extends ListFragment {
     }
 
     public void dataList(){
+
 
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -98,18 +89,16 @@ public class DriveList extends ListFragment {
                         try {
                             Log.i(TAG + "Rep",response);
                             // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            //JSONObject jo = new JSONArray(response).getJSONObject(0);
 
-                            prenoms.add("Voila la liste des id");
                             int length = new JSONArray(response).length();
                             for (int i = 0;i<length;i++ ){
-                                JSONObject jo2 = new JSONArray(response).getJSONObject(i);
-                                prenoms.add(jo2.getString("id"));
-                                Log.i(TAG + "id",jo2.getString("id"));
+                                JSONObject jo = new JSONArray(response).getJSONObject(i);
+                                Drive drive = new Drive(jo.getString("originAdress"),jo.getString("destinationAdress"),jo.getString("route_date"));
+                                data.add(drive);
                             }
-
-                            prenoms.add("C'était la liste des id");
-
+                            DriveAdapter adapter = new DriveAdapter(getActivity(), data);
+                            setListAdapter(adapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -134,6 +123,8 @@ public class DriveList extends ListFragment {
             }
         };
         queue.add(sr);
+
+
     }
 
 }
