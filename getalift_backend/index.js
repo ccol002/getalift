@@ -656,7 +656,7 @@ router.get("/rides/:rideid", function(req, res){
 // 		- the mysql object for this ride.
 // Description	:
 //					This route can create a ride in the database.
-router.post("/rides", function(req, res){
+/*router.post("/rides", function(req, res){
 	db_con.query("INSERT INTO Ride (route) VALUES (?)",
 		[req.body.route],
 		function(err, result){
@@ -664,6 +664,30 @@ router.post("/rides", function(req, res){
 			res.json(result);
 		}
 	);
+});*/
+
+//Essai méthode post (Charly)
+router.post("/rides", function(req, res){
+	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
+		if (err) throw err;
+		if (result.length === 1){
+			//If the route is already exist, we send an error
+			res.json({
+				success: false,
+				message: "This ride for this route already exists",
+				errorCode: 1
+			});
+		} else {
+			db_con.query(
+				"INSERT INTO Ride (route) VALUES (?)",
+				[req.body.route],
+				function(err, result){
+					if(err) throw err;
+					res.json(result);
+				}
+			);	
+		}
+	} 
 });
 
 // Route				: PUT /api/rides/:rideid
@@ -701,7 +725,7 @@ router.delete("/rides/:rideid", function(req, res){
 });
 
 
-// Route				: DELETE /api/rides/route/:passengerId
+// Route				: GET /api/rides/route/:passengerId
 // URL Params		:
 //		- rideid					: The ID of the passenger you want to show the ride
 // Body Params	: None
@@ -759,8 +783,8 @@ router.get("/passengers/:passid", function(req, res){
 // Description	:
 //					This route can create a passenger in the database.
 router.post("/passenger", function(req, res){
-	db_con.query("INSERT INTO Passenger (ride, passenger) VALUES (?, ?)",
-		[req.body.ride, req.body.passenger],
+	db_con.query("INSERT INTO Passenger (ride, passenger, inTheCar) VALUES (?, ?, ?)",
+		[req.body.ride, req.body.passenger, req.body.inTheCar],
 		function(err, result){
 			if(err) throw err;
 			res.json(result);
