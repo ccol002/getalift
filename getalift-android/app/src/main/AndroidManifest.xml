@@ -59,7 +59,7 @@
         <activity
             android:name=".ContactUsActivity"
             android:label="ContactUsActivity"
-            android:parentActivityName=".HelpActivity"></activity>
+            android:parentActivityName=".HelpActivity" />
         <activity
             android:name=".PageAboutActivity"
             android:label="@string/txt_title_about"
@@ -68,12 +68,12 @@
         <activity
             android:name=".SettingsActivity"
             android:parentActivityName=".HomeMapActivity" />
+        <activity android:name=".EditProfileActivity" android:label="EditProfile" android:parentActivityName=".SettingsActivity" >
 
-        <activity android:name=".ModifyProfileActivity" android:parentActivityName=".SettingsActivity" android:label="Modify Profile">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
-    </activity>
+        </activity>
     </application>
 
 </manifest>

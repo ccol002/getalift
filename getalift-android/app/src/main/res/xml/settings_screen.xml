@@ -11,7 +11,7 @@
 
     <PreferenceScreen android:title="Other Page" android:key="otherPage_key">
         <intent android:action="android.intent.action.VIEW"
-            android:targetPackage="mt.edu.um.getalift" android:targetClass="mt.edu.um.getalift.ModifyProfileActivity"/>
+            android:targetPackage="mt.edu.um.getalift" android:targetClass="mt.edu.um.getalift.EditProfileActivity"/>
     </PreferenceScreen>
 
     <CheckBoxPreference

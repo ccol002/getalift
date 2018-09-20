@@ -69,6 +69,8 @@
     <string name="error_name_short">The name must be more than 5 character long.</string>
     <string name="error_message_long">The message must be less than 500 character long.</string>
     <string name="error_message_short">The message must be more than 100 character long.</string>
+    <string name="error_comment_long">The message must be less than 500 character long.</string>
+    <string name="error_comment_short">The message must be more than 20 character long.</string>
     <string name="error_subject_short">The message must be more than 10 character long.</string>
     <string name="error_subject_long">The message must be less than 100 character long.</string>
 
@@ -136,7 +138,8 @@
 
     <string name="txt_btn_valid"> Validate </string>
     <string name="txt_change_settings"> Hey my friends, I love you </string>
-    <string name="title_activity_modify_profile">ModifyProfile</string>
+    <string name="text_title_edit_profile">Get A Lift - Edit Profile</string>
+    <string name="txt_comment">Your comment </string>
 
 
 </resources>
