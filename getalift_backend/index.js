@@ -671,6 +671,7 @@ router.post("/rides", function(req, res){
 	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
 		if (err) throw err;
 		if (result.length === 1){
+			console.log("PB1")
 			//If the route is already exist, we send an error
 			res.json({
 				success: 	false,
@@ -678,6 +679,7 @@ router.post("/rides", function(req, res){
 				errorCode: 	1
 			});
 		} else {
+			console.log("PB2")
 			db_con.query(
 				"INSERT INTO Ride (route) VALUES (?)",
 				[req.body.route],
