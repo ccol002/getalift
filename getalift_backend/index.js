@@ -679,6 +679,7 @@ router.put("/rides/:rideid", function(req, res){
 	db_con.query("UPDATE Ride SET route = ? WHERE id = ?",
 		[req.body.route, req.params.rideid],
 		function(err, result){
+			
 			if(err) throw err;
 			res.json(result);
 		}

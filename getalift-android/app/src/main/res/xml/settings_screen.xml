@@ -14,10 +14,7 @@
             android:targetPackage="mt.edu.um.getalift" android:targetClass="mt.edu.um.getalift.EditProfileActivity"/>
     </PreferenceScreen>
 
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="check_box_preference_1"
-        android:title="Check box preference" />
+
     <ListPreference
         android:key="change language"
         android:title="@string/pref_title_change_language"
@@ -33,7 +30,7 @@
         android:title ="@string/txt_profile">
 
         <PreferenceScreen
-            android:key="button_modify_profile_key"
+            android:key="button_edit_profile_key"
             android:title="@string/txt_change_profil"
             android:persistent="false">
 

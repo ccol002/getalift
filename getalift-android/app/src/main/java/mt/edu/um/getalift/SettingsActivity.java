@@ -2,7 +2,9 @@ package mt.edu.um.getalift;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.ListPreference;
@@ -18,14 +20,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Locale;
+
+/**  Created by Jean-Louis Thessalene **/
 
 public class SettingsActivity extends AppCompatActivity {
 
     private SharedPreferences mLanguagePreference;
 
     private Button mValidButtonSettings;
-    private Button mChangeLanguageButton;
+    private Button mEditButton;
 
 
     public static final String PREF_KEY_LANGUAGE = "PREF_KEY_LANGUAGE";
@@ -35,25 +42,54 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         loadLocale();
         setContentView(R.layout.activity_settings);
+
+        //Set the ttitle of the tootlbar
         setTitle(getString(R.string.text_title_settings));
 
+        //Display the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        //Display view buttons
         mValidButtonSettings = (Button) findViewById(R.id.btn_valid_settings);
+        mEditButton = (Button) findViewById(R.id.btn_edit);
 
-        // Display the settings screen
+        // Display the settings screen in the frameLayout of the activity_settings (replace it by that)
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
 
-
+        //When the user click on validate the language of the application changes
         mValidButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                choixLangue();
+                changeLanguage();
             }
         });
+
+        mEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Recover information of the user for the EditProfile page
+                Intent intentEditProfile = new Intent(SettingsActivity.this, EditProfileActivity.class);
+                startActivity(intentEditProfile);
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
+                try {
+                    JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+                    Log.i("Home", Integer.toString(user.getInt("id"), 0));
+                    intentEditProfile.putExtra("userId", user.getInt("id"));
+
+                    startActivity(intentEditProfile);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        /*SharedPreferences editPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String editProfile = editPref.getString("check_box_preference_1", "Défaut");
+        Boolean choiceUser = editPref.getBoolean(editProfile, true);*/
+
+
+
 
     }
 
@@ -64,7 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        //Save
+        //Save the language
         SharedPreferences.Editor editor = getSharedPreferences("Settings",MODE_PRIVATE).edit();
         editor.putString("My lang", lang);
         editor.apply();
@@ -102,7 +138,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public void choixLangue() {
+    public void changeLanguage() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String language = prefs.getString("change language", "Défaut");
         Log.i("salut salut",language);
@@ -125,5 +161,6 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
     }
+
 
 }

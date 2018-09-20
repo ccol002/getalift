@@ -17,6 +17,8 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**  Created by Jean-Louis Thessalene **/
+
 public class HelpActivity extends AppCompatActivity {
 
     private ImageButton mFaqButton;
@@ -43,13 +45,11 @@ public class HelpActivity extends AppCompatActivity {
 
         // On recupere l'Id
         intent_profile_activity = getIntent();
-
-
-
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
         }
 
+        //Display the buttons
         mAbout = (ImageButton) findViewById(R.id.image_about);
         mContactUs = (ImageButton) findViewById(R.id.image_contact_us);
         mFaqButton = (ImageButton) findViewById(R.id.image_faq_button);

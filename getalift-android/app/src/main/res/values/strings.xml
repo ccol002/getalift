@@ -50,6 +50,7 @@
     <string name="error_lastname_notset">You must tell your last name.</string>
     <string name="error_phone_valid">You must enter a valid phone number.</string>
     <string name="success_account_created">Your account is created. You can log in now.</string>
+    <string name="success_profile_edit">Your profile has been edit. You can look your new information on the profile page.</string>
     <string name="error_username_exists">This username already exists. Please chose another one.</string>
     <string name="txt_title_profile">Get A Lift - Profile</string>
     <string name="txt_title_drive">Get A Lift - Drive</string>
@@ -108,7 +109,7 @@
     <string name="txt_Profil"> Profile </string>
     <string name="txt_notifications"> Notifications </string>
 
-    <string name="txt_change_profil"> Modify my profile </string>
+    <string name="txt_change_profil"> Edit my profile </string>
 
 
     <string name="pref_title_change_language">Change language</string>

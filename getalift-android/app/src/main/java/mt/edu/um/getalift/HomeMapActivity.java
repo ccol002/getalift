@@ -348,6 +348,15 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         } else if (id == R.id.nav_settings) {
                 Intent intentSettings = new Intent(getBaseContext(), SettingsActivity.class);
                 startActivity(intentSettings);
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                try {
+                    JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+                    Log.i("Home",Integer.toString(user.getInt("id"),0));
+                    intentSettings.putExtra("userId", user.getInt("id"));
+                    startActivity(intentSettings);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
         } else if (id == R.id.nav_logout) {
