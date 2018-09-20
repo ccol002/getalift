@@ -673,9 +673,9 @@ router.post("/rides", function(req, res){
 		if (result.length === 1){
 			//If the route is already exist, we send an error
 			res.json({
-				success: false,
-				message: "This ride for this route already exists",
-				errorCode: 1
+				success: 	false,
+				message: 	"This ride for this route already exists",
+				errorCode: 	1
 			});
 		} else {
 			db_con.query(
@@ -683,12 +683,13 @@ router.post("/rides", function(req, res){
 				[req.body.route],
 				function(err, result){
 					if(err) throw err;
+					result.success = true;
 					res.json(result);
 				}
 			);	
 		}
-	} 
-});
+	}); 
+}
 
 // Route				: PUT /api/rides/:rideid
 // URL Params		:
