@@ -670,7 +670,6 @@ router.get("/rides/:rideid", function(req, res){
 router.post("/rides", function(req, res){
 	// First, we check if the username already exists in the database.
 	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
-		console.log(route);
 		if (err) throw err;
 		if (result.length === 1){
 			// If the username already exists, we send an error.
