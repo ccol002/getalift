@@ -57,40 +57,28 @@ public class DriveList extends ListFragment {
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         userID = this.getArguments().getInt("userID");
-
         dataList();
-
-
-
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         if (litstener != null) {
             litstener.onClientSelected(position);
         }
-
     }
 
     public void dataList(){
-
-
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL+"/api/driverroutes/" + Integer.toString(userID);
         StringRequest sr = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>(){
-
                     @Override
                     public void onResponse(String response) {
                         // We got a response from our server.
                         try {
                             Log.i(TAG + "Rep",response);
-                            // We create a JSONObject from the server response.
-                            //JSONObject jo = new JSONArray(response).getJSONObject(0);
-
                             int length = new JSONArray(response).length();
                             for (int i = 0;i<length;i++ ){
                                 JSONObject jo = new JSONArray(response).getJSONObject(i);
@@ -111,7 +99,6 @@ public class DriveList extends ListFragment {
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG, error.toString());
                     }
-
                 }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -123,8 +110,6 @@ public class DriveList extends ListFragment {
             }
         };
         queue.add(sr);
-
-
     }
 
 }
