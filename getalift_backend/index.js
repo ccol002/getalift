@@ -688,8 +688,7 @@ router.post("/rides", function(req, res){
 					result.success = true;
 					res.json(result);
 				}
-			);	
-			console.log(req.body.route);
+			);
 		}
 	}); 
 });
