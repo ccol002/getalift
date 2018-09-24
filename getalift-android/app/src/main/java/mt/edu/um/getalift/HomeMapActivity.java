@@ -353,6 +353,12 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                     JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
                     Log.i("Home",Integer.toString(user.getInt("id"),0));
                     intentSettings.putExtra("userId", user.getInt("id"));
+                    intentSettings.putExtra("name", user.getString("name"));
+                    intentSettings.putExtra("surname", user.getString("surname"));
+                    intentSettings.putExtra("username", user.getString("username"));
+                    intentSettings.putExtra("password", user.getString("password"));
+                    intentSettings.putExtra("email", user.getString("email"));
+                    intentSettings.putExtra("mobileNumber", user.getInt("mobileNumber"));
                     startActivity(intentSettings);
                 } catch (JSONException e) {
                     e.printStackTrace();

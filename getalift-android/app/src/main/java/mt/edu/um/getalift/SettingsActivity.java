@@ -77,7 +77,12 @@ public class SettingsActivity extends AppCompatActivity {
                     JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
                     Log.i("Home", Integer.toString(user.getInt("id"), 0));
                     intentEditProfile.putExtra("userId", user.getInt("id"));
-
+                    intentEditProfile.putExtra("name", user.getString("name"));
+                    intentEditProfile.putExtra("surname", user.getString("surname"));
+                    intentEditProfile.putExtra("username", user.getString("username"));
+                    intentEditProfile.putExtra("password", user.getString("password"));
+                    intentEditProfile.putExtra("email", user.getString("email"));
+                    intentEditProfile.putExtra("mobileNumber", user.getInt("mobileNumber"));
                     startActivity(intentEditProfile);
                 } catch (JSONException e) {
                     e.printStackTrace();
