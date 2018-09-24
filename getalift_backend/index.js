@@ -286,10 +286,11 @@ router.get("/users/:usrid", function(req, res){
 // Description	:
 //					This route update the information about the chosen user.
 router.put("/users/:usrid", function(req, res){
+	var passHash = bcrypt.hashSync(req.body.password, config.saltRounds);
 	db_con.query("UPDATE User SET username = ?, password = ?, name = ?, surname = ?, email = ?, mobileNumber = ?, isVerified = ? WHERE id = ?",
-		[req.body.username, bcrypt.hashSync(req.body.password, config.saltRounds),
-			req.body.name, req.body.surname, req.body.email, req.body.mobileNumber,
-			req.body.isVerified, req.params.usrid],
+		[req.body.username, passHash,
+			req.body.name, req.body.surname, req.body.email, req.body.mobileNumber, req.body.isVerified,
+			 req.params.usrid],
 		function(err, result){
 			if(err) throw err;
 			res.json(result);

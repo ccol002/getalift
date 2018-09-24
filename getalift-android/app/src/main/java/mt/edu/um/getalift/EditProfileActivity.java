@@ -196,35 +196,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 @Override
                 protected Map<String,String> getParams(){
                     Map<String,String> params = new HashMap<String, String>();
-                    if (username.length() != 0 ) {
-                        params.put("username",username);
-                    } else{
-                        params.put("username","test1245");
-                    }
-                    params.put("password","test1245");
-
-                    if (name.length() != 0 ) {
-                        params.put("name",name);
-                    }else {
-                        params.put("name","testname");
-                    }
-                    if (surname.length() != 0 ) {
-                        params.put("surname",surname);
-                    }else {
-                        params.put("surname","testSurname");
-                    }
-
-                    if (email.length() != 0 ) {
-                        params.put("email", email);
-                    }else {
-                        params.put("email","emailtest@hotmail.fr");
-                    }
-
-                    if (phonenumber.length() != 0 ) {
-                        params.put("mobileNumber",phonenumber);
-                    }else {
-                        params.put("mobileNumber","047000000");
-                    }
 
                     params.put("isVerified","true");
 
