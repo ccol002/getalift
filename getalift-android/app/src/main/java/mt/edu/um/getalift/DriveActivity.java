@@ -43,8 +43,6 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
     // Tag utilisé pour les LOG
     private static final String TAG = "DriveTAGAct";
 
-    //Log.i("Home",Integer.toString(user.getInt("id"),0));
-
     //Création de l'intent qui récupere l'Id de l'utilisateur
     Intent intent_drive_activity;
     private int userID;
@@ -53,6 +51,9 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     final Bundle bundle = new Bundle();
 
+    //On fait la même chose pour la deuxième liste
+    FragmentTransaction transactionPas = getSupportFragmentManager().beginTransaction();
+    final Bundle bundlePas = new Bundle();
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -79,8 +80,18 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
 
         bundle.putInt("userID",userID);
 
-        transaction.replace(R.id.layout, fragInfo);
+        transaction.replace(R.id.layout_1, fragInfo);
         transaction.commit();
+
+        //On fait la même chose pour la liste des passenger
+
+        PassengerList fragInfoPass = new PassengerList();
+        fragInfoPass.setArguments(bundlePas);
+
+        bundlePas.putInt("userID",userID);
+
+        transactionPas.replace(R.id.layout_2,fragInfoPass);
+        transactionPas.commit();
     }
 
 
