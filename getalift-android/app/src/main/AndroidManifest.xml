@@ -51,6 +51,9 @@
             android:name=".DriveActivity"
             android:parentActivityName=".ResultSearchActivity" />
         <activity
+            android:name=".DriveDetails"
+            android:parentActivityName=".DriveActivity" />
+        <activity
             android:name=".HelpActivity"
             android:parentActivityName=".HomeMapActivity" />
         <activity

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class DriveList extends ListFragment {
 
@@ -35,10 +36,9 @@ public class DriveList extends ListFragment {
     //Récupération de l'id
     int userID;
 
-    //Création de la liste qui va recevoir les données
-    List<String> prenoms = new ArrayList();
-
-
+    //Création de la liste qui va recevoir les données des destinations
+    List<String> desti = new ArrayList();
+    List<Drive> data = new ArrayList();
 
 
     public interface OnClientSelectedListener{
@@ -57,59 +57,36 @@ public class DriveList extends ListFragment {
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         userID = this.getArguments().getInt("userID");
-        //String myTest = this.getArguments().getString("id");
-        //Log.i(TAG,myTest);
-
         dataList();
-
-
-        /*
-        prenoms.add("OUI OUI");
-        prenoms.add(Integer.toString(userID,0));
-        prenoms.add(Integer.toString(userID,0));
-        prenoms.add(Integer.toString(userID,0));
-        */
-
-        DriveAdapter adapter = new DriveAdapter(getActivity(), prenoms);
-        setListAdapter(adapter);
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         if (litstener != null) {
             litstener.onClientSelected(position);
         }
-
     }
 
     public void dataList(){
-
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL+"/api/driverroutes/" + Integer.toString(userID);
         StringRequest sr = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>(){
-
                     @Override
                     public void onResponse(String response) {
                         // We got a response from our server.
                         try {
                             Log.i(TAG + "Rep",response);
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-
-                            prenoms.add("Voila la liste des id");
                             int length = new JSONArray(response).length();
                             for (int i = 0;i<length;i++ ){
-                                JSONObject jo2 = new JSONArray(response).getJSONObject(i);
-                                prenoms.add(jo2.getString("id"));
-                                Log.i(TAG + "id",jo2.getString("id"));
+                                JSONObject jo = new JSONArray(response).getJSONObject(i);
+                                Drive drive = new Drive(jo.getString("originAdress"),jo.getString("destinationAdress"),jo.getString("route_date"));
+                                data.add(drive);
                             }
-
-                            prenoms.add("C'était la liste des id");
-
+                            DriveAdapter adapter = new DriveAdapter(getActivity(), data);
+                            setListAdapter(adapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -122,7 +99,6 @@ public class DriveList extends ListFragment {
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG, error.toString());
                     }
-
                 }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

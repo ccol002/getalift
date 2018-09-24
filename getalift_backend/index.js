@@ -656,7 +656,7 @@ router.get("/rides/:rideid", function(req, res){
 // 		- the mysql object for this ride.
 // Description	:
 //					This route can create a ride in the database.
-router.post("/rides", function(req, res){
+/*router.post("/rides", function(req, res){
 	db_con.query("INSERT INTO Ride (route) VALUES (?)",
 		[req.body.route],
 		function(err, result){
@@ -664,6 +664,35 @@ router.post("/rides", function(req, res){
 			res.json(result);
 		}
 	);
+});*/
+
+//Essai méthode post (Charly)
+router.post("/rides", function(req, res){
+	// First, we check if the username already exists in the database.
+	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
+		if (err) throw err;
+		if (result.length === 1){
+			// If the username already exists, we send an error.
+			res.json({
+				success: 	false,
+				message: 	"This route is already attributed to a ride",
+				errorCode:	1
+			});
+		} else {
+			// And we launch the query that store everything in the db.
+			db_con.query(
+				"INSERT INTO Ride (route) VALUES (?)",
+				[req.body.route],
+				function(err, result){
+					if(err) throw err;
+					// At the end, we respond with a success.
+					result.success = true;
+					res.json(result);
+				}
+			);
+		}
+	});
+
 });
 
 // Route				: PUT /api/rides/:rideid
@@ -702,7 +731,7 @@ router.delete("/rides/:rideid", function(req, res){
 });
 
 
-// Route				: DELETE /api/rides/route/:passengerId
+// Route				: GET /api/rides/route/:passengerId
 // URL Params		:
 //		- rideid					: The ID of the passenger you want to show the ride
 // Body Params	: None
@@ -760,8 +789,8 @@ router.get("/passengers/:passid", function(req, res){
 // Description	:
 //					This route can create a passenger in the database.
 router.post("/passenger", function(req, res){
-	db_con.query("INSERT INTO Passenger (ride, passenger) VALUES (?, ?)",
-		[req.body.ride, req.body.passenger],
+	db_con.query("INSERT INTO Passenger (ride, passenger, inTheCar) VALUES (?, ?, ?)",
+		[req.body.ride, req.body.passenger, req.body.inTheCar],
 		function(err, result){
 			if(err) throw err;
 			res.json(result);
@@ -840,6 +869,21 @@ router.put("/passenger/alert/:passid", function(req, res){
 		}
 	);
 });	
+
+/// Route				: GET /passenger/route/:passId
+// URL Params		:
+//		- passId					: The ID of the user/driver who connect
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	: Query that returns the information of route where the user is a passenger
+
+router.get("/passenger/route/:passId", function(req, res){
+	db_con.query("SELECT ro.originAdress, ro.destinationAdress, rd.route_date FROM Passenger p, Ride ri, Route ro, RouteDate rd WHERE p.passenger = ? and p.ride = ri.id and ri.route = ro.id and rd.route = ro.id", [req.params.passId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
 
 // --- Ratings ---
 

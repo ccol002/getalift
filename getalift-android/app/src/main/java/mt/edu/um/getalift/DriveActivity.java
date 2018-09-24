@@ -49,9 +49,6 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
     Intent intent_drive_activity;
     private int userID;
 
-    //Variable compteur pour les JSONObject
-    private int compteurJSON;
-
     // On envoie l'id de l'utilisateur pour avoir les infos dans le fragment
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     final Bundle bundle = new Bundle();
@@ -76,17 +73,14 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
             userID = intent_drive_activity.getIntExtra("userId",0);
         }
 
+        // On crée la drive list et on lui donne l'id de l'utilisateur
         DriveList fragInfo = new DriveList();
         fragInfo.setArguments(bundle);
-
-
 
         bundle.putInt("userID",userID);
 
         transaction.replace(R.id.layout, fragInfo);
         transaction.commit();
-
-        driver();
     }
 
 
@@ -100,13 +94,6 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-    public void driver(){ }
-
-
-
 
     @Override
     public void onClientSelected(int id) {

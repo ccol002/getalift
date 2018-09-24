@@ -4,25 +4,25 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="185dp"
+        android:id="@+id/origin"
+        android:layout_width="50dp"
         android:layout_height="45dp"
         android:layout_weight="1"
-        android:text="C'est bon  ?" />
+        android:text="Origin" />
 
     <TextView
-        android:id="@+id/camarche"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/destination"
+        android:layout_width="95dp"
+        android:layout_height="45dp"
         android:layout_weight="1"
-        android:text="Ça marche" />
+        android:text="Destination" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_weight="1"
-        android:text="T ou ?" />
+        android:text="Date" />
 
 
 </LinearLayout>
