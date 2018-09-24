@@ -15,16 +15,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -115,9 +118,9 @@ public class EditProfileActivity extends AppCompatActivity {
         } else if (comment.length() < 20 && comment.length()>0){
             Toast.makeText(getApplicationContext(), getString(R.string.error_comment_short), Toast.LENGTH_SHORT).show();
         } */else if (username.length() < 10 && username.length() > 0){
-            Toast.makeText(getApplicationContext(), getString(R.string.error_subject_short), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.error_username_short), Toast.LENGTH_SHORT).show();
         } else if (username.length() > 100){
-            Toast.makeText(getApplicationContext(), getString(R.string.error_subject_long), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.error_username_long), Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(getApplicationContext(), "All information is correct", Toast.LENGTH_SHORT).show();
                 info = true;
@@ -131,81 +134,62 @@ public class EditProfileActivity extends AppCompatActivity {
      * This method is called when the user click on the "edit all" button.
      * @param view the view of the button clicked.
      */
-    public void editDataBase(View view){
-        fillOutTheEditForm();
+    public void editDataBase(View view) {
+        //fillOutTheEditForm();
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/users/"+"9";
-
-        // We retrieve what the user taped in the form
-        final String name = ((EditText) findViewById(R.id.edt_edit_name)).getText().toString().trim();
-        final String surname = ((EditText) findViewById(R.id.edt_edit_surname)).getText().toString().trim();
-        final String phonenumber = ((EditText) findViewById(R.id.edt_edit_phoneNumber)).getText().toString().trim();
-        final String email = ((EditText) findViewById(R.id.edt_edit_email)).getText().toString().trim();
-        //final String comment = ((EditText) findViewById(R.id.edt_edit_comment)).getText().toString().trim();
-        final String username = ((EditText) findViewById(R.id.edt_edit_username)).getText().toString().trim();
-
-        final Activity activity = this;
+        String url = ConnectionManager.SERVER_URL + "/api/users/" + 9;
 
 
-            Toast.makeText(getApplicationContext(), "Edit the information", Toast.LENGTH_LONG).show();
-
-
-            // If everything is correct,
-            // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
-            // it looks like it's more stable.
-            StringRequest sr = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>(){
-
-                        @Override
-                        public void onResponse(String response) {
-                            // We got a response from our server.
-                            try {
-                                Log.d("GetALift", response);
-                                // We create a JSONObject from the server response.
-                                JSONObject jo = new JSONObject(response);
-                                // If the server respond with a success...
-                                if (jo.getBoolean("success")){
-                                    // We tell the user his account is now created...
-                                    Toast.makeText(getApplicationContext(), "Okay ca marche !!", Toast.LENGTH_SHORT).show();
-                                    // And we move him back to the login activity.
-                                    //NavUtils.navigateUpFromSameTask(activity);
-                                } else {
-                                    if (jo.getInt("errorCode") == 1){
-                                        // We tell the user his account is now created...
-                                        Toast.makeText(getApplicationContext(), getString(R.string.error_username_exists), Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    },
-                    new Response.ErrorListener(){
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("GetALift", error.toString());
-                        }
+        StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response.toString());
+                        Toast.makeText(getBaseContext(),"ça marche bien !", Toast.LENGTH_SHORT).show();
+;                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", error.toString());
+                        Toast.makeText(getBaseContext(),"ça marche PAS !", Toast.LENGTH_SHORT).show();
 
                     }
-            ){
-                @Override
-                protected Map<String,String> getParams(){
-                    Map<String,String> params = new HashMap<String, String>();
-
-                    params.put("isVerified","true");
-
-                    return params;
                 }
-            };
-            queue.add(sr);
-        }
+        ) {
 
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                //or try with this:
+                headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                headers.put("Content-Type", "application/x-www-form-urlencoded");
+                return headers;
+            }
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username","test12345");
+                params.put("name","nameTest1234");
+                params.put("surname","surnameTest1234");
+                params.put("password","testPassword");
+                params.put("email","emailTestAndro@hotmail.fr");
+                params.put("mobileNumber","0696000011");
+                params.put("isVerified", "0");
+                return params;
+            }
+        };
 
+        queue.add(putRequest);
+    }
 
 
 
