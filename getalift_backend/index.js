@@ -617,6 +617,23 @@ router.delete("/routes/:routeid", function(req, res){
 
 });
 
+// Route				: GET /api/driverroutesdate/:driverid
+// URL Params		:
+//		- driverid					: The ID of the driver you want the route
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	:
+//					To get the route where the user's id is the driver order by date
+// AD
+
+router.get("/driverroutes/:driverid", function(req, res){
+	db_con.query("SELECT * FROM Route, RouteDate WHERE (Route.id = RouteDate.route) AND (Route.driver = ?) ORDER BY RouteDate.route_date;", [req.params.driverid], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
+
 // --- Rides ---
 
 // Route				: GET /api/rides
@@ -878,6 +895,7 @@ router.put("/passenger/alert/:passid", function(req, res){
 // Return		:
 // 		- the mysql return object.
 // Description	: Query that returns the information of route where the user is a passenger
+// Done by : AD
 
 router.get("/passenger/route/:passId", function(req, res){
 	db_con.query("SELECT ro.originAdress, ro.destinationAdress, rd.route_date FROM Passenger p, Ride ri, Route ro, RouteDate rd WHERE p.passenger = ? and p.ride = ri.id and ri.route = ro.id and rd.route = ro.id", [req.params.passId], function(err, result){
