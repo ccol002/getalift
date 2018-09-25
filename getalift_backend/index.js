@@ -689,7 +689,7 @@ router.post("/rides", function(req, res){
 	// First, we check if the username already exists in the database.
 	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
 		if (err) throw err;
-		if (result.length === 1){
+		else if (result.length >= 1){
 			// If the username already exists, we send an error.
 			res.json({
 				success: 	false,
@@ -758,11 +758,12 @@ router.delete("/rides/:rideid", function(req, res){
 // Description	:
 //					This route show all the routes that the passenger add to his rides
 router.get("/rides/route/:passengerId", function(req, res){
-	db_con.query("SELECT DISTINCT route.* FROM Route route, Ride ride, Passenger passenger WHERE route.id = ride.route and passenger.passenger = ?", [req.params.passengerId], function(err, result){
+	db_con.query("SELECT DISTINCT route.* from Route route, Passenger passenger, Ride ride where passenger.ride = ride.id and ride.route = route.id and passenger.passenger = ?", [req.params.passengerId], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
 });
+
 
 
 // --- Passengers ---

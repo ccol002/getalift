@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -33,6 +34,18 @@ public class SettingsActivity extends AppCompatActivity {
 
     private Button mValidButtonSettings;
     private Button mEditButton;
+
+    private TextView mtxt_settings;
+
+    //Création de l'intent qui récupere l'Id de l'utilisateur
+    Intent intent_profile_activity;
+    private int userID;
+    private  String name_txt;
+    private String username_txt;
+    private String email_txt;
+    private String surname_txt;
+    private String password_txt;
+    private int phone_txt;
 
 
     public static final String PREF_KEY_LANGUAGE = "PREF_KEY_LANGUAGE";
@@ -55,6 +68,22 @@ public class SettingsActivity extends AppCompatActivity {
         mValidButtonSettings = (Button) findViewById(R.id.btn_valid_settings);
         mEditButton = (Button) findViewById(R.id.btn_edit);
 
+        mtxt_settings = (TextView) findViewById(R.id.txt_settings);
+
+        // Recovering of all teh information of the user
+        intent_profile_activity = getIntent();
+        Bundle bundle = intent_profile_activity.getExtras();
+        if (intent_profile_activity != null) {
+            userID = intent_profile_activity.getIntExtra("userId",0);
+            name_txt = intent_profile_activity.getStringExtra("name");
+            username_txt = intent_profile_activity.getStringExtra("username");
+            email_txt = intent_profile_activity.getStringExtra("email");
+            surname_txt = intent_profile_activity.getStringExtra("surname");
+            password_txt = intent_profile_activity.getStringExtra("password");
+            phone_txt = intent_profile_activity.getIntExtra("mobileNumber", 000000000000);
+            //mtxt_settings.setText("Id est :" + phone_txt);
+        }
+
         // Display the settings screen in the frameLayout of the activity_settings (replace it by that)
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
 
@@ -69,7 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
         mEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Recover information of the user for the EditProfile page
+                //Transfer of the information of the user for the EditProfile page
                 Intent intentEditProfile = new Intent(SettingsActivity.this, EditProfileActivity.class);
                 startActivity(intentEditProfile);
                 SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
@@ -77,20 +106,18 @@ public class SettingsActivity extends AppCompatActivity {
                     JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
                     Log.i("Home", Integer.toString(user.getInt("id"), 0));
                     intentEditProfile.putExtra("userId", user.getInt("id"));
-
+                    intentEditProfile.putExtra("name", user.getString("name"));
+                    intentEditProfile.putExtra("username", user.getString("username"));
+                    intentEditProfile.putExtra("email", user.getString("email"));
+                    intentEditProfile.putExtra("surname", user.getString("surname"));
+                    intentEditProfile.putExtra("password", user.getString("password"));
+                    intentEditProfile.putExtra("mobileNumber", user.getInt("mobileNumber"));
                     startActivity(intentEditProfile);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
-        /*SharedPreferences editPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String editProfile = editPref.getString("check_box_preference_1", "Défaut");
-        Boolean choiceUser = editPref.getBoolean(editProfile, true);*/
-
-
-
-
     }
 
     //Change language
@@ -113,7 +140,7 @@ public class SettingsActivity extends AppCompatActivity {
         setLocale(language);
     }
 
-    //Preference Fragment for teh settins screen
+    //Preference Fragment for teh settings screen
     public static class MyPreferenceFragment extends PreferenceFragment {
         @Override
         public void onCreate(final Bundle savedInstanceState) {
@@ -123,7 +150,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    // Retourner a la page d'accueil en cliquant sur retour
+    // Come back to the home page
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // If we select the "Go back" button
@@ -141,11 +168,10 @@ public class SettingsActivity extends AppCompatActivity {
     public void changeLanguage() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String language = prefs.getString("change language", "Défaut");
-        Log.i("salut salut",language);
 
         if(language.equals("fr")){
             //French
-            Toast.makeText(getApplicationContext(), "Vous avez choisi :" + language, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext()," You choose :" + language, Toast.LENGTH_SHORT).show();
             setLocale("fr");
             recreate();
         }else if(language.equals("en")){
