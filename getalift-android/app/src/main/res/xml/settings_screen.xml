@@ -9,12 +9,6 @@
     android:key="GeneralCategory"
     android:title ="@string/txt_general">
 
-    <PreferenceScreen android:title="Other Page" android:key="otherPage_key">
-        <intent android:action="android.intent.action.VIEW"
-            android:targetPackage="mt.edu.um.getalift" android:targetClass="mt.edu.um.getalift.EditProfileActivity"/>
-    </PreferenceScreen>
-
-
     <ListPreference
         android:key="change language"
         android:title="@string/pref_title_change_language"
@@ -24,14 +18,13 @@
          />
 </PreferenceCategory>
 
-
     <PreferenceCategory
-        android:key="ProfilCategory"
+        android:key="Profile Category"
         android:title ="@string/txt_profile">
 
         <PreferenceScreen
             android:key="button_edit_profile_key"
-            android:title="@string/txt_change_profil"
+            android:title="@string/txt_edit_profile"
             android:persistent="false">
 
             <EditTextPreference

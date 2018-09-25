@@ -51,6 +51,21 @@
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile" />
 
     <EditText
+        android:id="@+id/edt_edit_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_edit_surname" />
+
+    <EditText
         android:id="@+id/edt_edit_surname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,20 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_edit_name" />
 
-    <EditText
-        android:id="@+id/edt_edit_username"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="UserName"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_edit_surname" />
+
 
     <EditText
         android:id="@+id/edt_edit_phoneNumber"
@@ -96,7 +98,7 @@
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_edit_email"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/edt_edit_email"
@@ -123,13 +125,13 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textVisiblePassword"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/edt_edit_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_edit_username"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.428" />
 
     <Button
         android:id="@+id/btn_valid_edit_profile"
@@ -165,8 +167,8 @@
 
     <TextView
         android:id="@+id/txt_test_id"
-        android:layout_width="201dp"
-        android:layout_height="20dp"
+        android:layout_width="367dp"
+        android:layout_height="21dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"

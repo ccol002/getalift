@@ -61,7 +61,9 @@ public class EditProfileActivity extends AppCompatActivity {
     private String email;
     private String surname;
     private String password;
-    private int mobileNumber;
+    private int phoneNumber;
+
+    private Bundle bundle;
 
 
     @Override
@@ -78,12 +80,12 @@ public class EditProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // On assimile les variables créées plus haut avec les Id des layout
-        txtName = (TextView) findViewById(R.id.edt_edit_name);
-        txtPhoneNumber = (TextView) findViewById(R.id.edt_edit_phoneNumber);
-        txtEmail = (TextView) findViewById(R.id.edt_edit_email);
-        txtSurname = (TextView) findViewById(R.id.edt_edit_surname);
-        txtUsername = (TextView) findViewById(R.id.edt_edit_username);
-        txtPassword = (TextView) findViewById(R.id.edt_edit_password);
+        txtName = findViewById(R.id.edt_edit_name);
+        txtPhoneNumber = findViewById(R.id.edt_edit_phoneNumber);
+        txtEmail = findViewById(R.id.edt_edit_email);
+        txtSurname = findViewById(R.id.edt_edit_surname);
+        txtUsername = findViewById(R.id.edt_edit_username);
+        txtPassword = findViewById(R.id.edt_edit_password);
 
         mValidButton = (Button) findViewById(R.id.btn_valid_edit_profile);
         mClearButton = (Button) findViewById(R.id.btn_clear_edit);
@@ -91,15 +93,15 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // On recupere l'Id
         intent_edit_profile_activity = getIntent();
+        bundle = intent_edit_profile_activity.getExtras();
         if (intent_edit_profile_activity != null) {
             userID = intent_edit_profile_activity.getIntExtra("userId",0);
-           /* username = intent_edit_profile_activity.getStringExtra("username");
+            username = bundle.getString("username");
             name = intent_edit_profile_activity.getStringExtra("name");
+            email = intent_edit_profile_activity.getStringExtra("email");
             surname = intent_edit_profile_activity.getStringExtra("surname");
             password = intent_edit_profile_activity.getStringExtra("password");
-            email = intent_edit_profile_activity.getStringExtra("email");
-            mobileNumber = intent_edit_profile_activity.getIntExtra("mobileNumber",0);*/
-            txtTestId.setText("L'identifiant du user est : " +userID);
+            phoneNumber = intent_edit_profile_activity.getIntExtra("mobileNumber", 0000000000);
 
         }
 
@@ -108,9 +110,15 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 fillOutTheEditForm();
                 if (info ){
-                    profil();
                    editDataBase(view);
                 }
+            }
+        });
+
+        mClearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearAll();
             }
         });
     }
@@ -145,80 +153,12 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), getString(R.string.error_username_long), Toast.LENGTH_SHORT).show();
         }else {
             Toast.makeText(getApplicationContext(), "All information is correct", Toast.LENGTH_SHORT).show();
-                info = true;
+             info = true;
         }
 
     }
 
 
-    //Recover all the information of the user
-    public void profil(){
-        // We first setup the queue for the API Request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/users/" + Integer.toString(userID);
-
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-
-                    @Override
-                    public void onResponse(String response) {
-                        // We got a response from our server.
-                        try {
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-
-                            // On affiche les données de l'utilisateur
-                            Log.i("Test",response);
-                            if (email.length() == 0) {
-                                txtEmail.setText(jo.getString("email"));
-                                Toast.makeText(getBaseContext(), txtEmail.toString(), Toast.LENGTH_SHORT).show();}
-                            if (Integer.toString(mobileNumber).length() == 0){
-                                txtPhoneNumber.setText(jo.getString("mobileNumber"));
-                                Toast.makeText(getBaseContext(), txtPhoneNumber.toString(), Toast.LENGTH_SHORT).show();}
-                            if (name.length() == 0){
-                                txtName.setText(jo.getString("name"));
-                                Toast.makeText(getBaseContext(), txtName.toString(), Toast.LENGTH_SHORT).show();}
-                            if (surname.length() == 0){
-                                txtSurname.setText(jo.getString("surname"));
-                                Toast.makeText(getBaseContext(), txtSurname.toString(), Toast.LENGTH_SHORT).show();}
-                            if (username.length() == 0){
-                                txtUsername.setText(jo.getString("username"));
-                                Toast.makeText(getBaseContext(), txtSurname.toString(), Toast.LENGTH_SHORT).show();}
-                            if (password.length() == 0){
-                                txtPassword.setText(jo.getString("password"));
-                                Toast.makeText(getBaseContext(), txtPassword.toString(), Toast.LENGTH_SHORT).show();}
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.get.request.edit", error.toString());
-                    }
-
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
-                params.put("x-access-token", sh.getString("token", null));
-                return params;
-            }
-        };
-        queue.add(sr);
-
-    }
-
-   public void clearAll(){
-        //clear all the text zone
-   }
 
     /**
      * This method is called when the user click on the "edit all" button.
@@ -254,9 +194,6 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         final Activity activity = this;
 
-
-        Toast.makeText(getApplicationContext(), "Edit the information", Toast.LENGTH_SHORT).show();
-
         StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
                 new Response.Listener<String>()
                 {
@@ -264,7 +201,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d("Response", response.toString());
-                        Toast.makeText(getBaseContext(),"ça marche bien !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),"Database Updated !", Toast.LENGTH_SHORT).show();
+                        NavUtils.navigateUpFromSameTask(activity);
 ;                    }
                 },
                 new Response.ErrorListener()
@@ -273,7 +211,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        Toast.makeText(getBaseContext(),"ça marche PAS !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),"Error !", Toast.LENGTH_SHORT).show();
 
                     }
                 }
@@ -295,37 +233,37 @@ public class EditProfileActivity extends AppCompatActivity {
                 if(edt_username.length() != 0){
                     params.put("username",edt_username);
                 }else {
-                    params.put("username",txtUsername.toString());
+                    params.put("username",username);
                 }
 
                 if(edt_name.length() != 0){
                     params.put("name",edt_name);
                 }else {
-                    params.put("name",txtName.toString());
+                    params.put("name",name);
                 }
 
                 if(edt_surname.length() != 0){
                     params.put("surname",edt_surname);
                 }else {
-                    params.put("surname",txtSurname.toString());
+                    params.put("surname",surname);
                 }
 
                 if(edt_email.length() != 0){
                     params.put("email",edt_email);
                 }else {
-                    params.put("email","dodo22@hotmail.fr");
+                    params.put("email",email);
                 }
                 //Password
                 if(edt_password.length() != 0){
                     params.put("password",edt_password);
                 }else {
-                    params.put("password", "dodo22");
+                    params.put("password", password);
                 }
 
                 if(edt_phonenumber.length() != 0){
                     params.put("mobileNumber",edt_phonenumber);
                 }else{
-                    params.put("mobileNumber","00000000");
+                    params.put("mobileNumber",Integer.toString(phoneNumber));
 
                 }
                 params.put("isVerified", "0");
@@ -336,6 +274,16 @@ public class EditProfileActivity extends AppCompatActivity {
         queue.add(putRequest);
     }
 
+
+
+        public void clearAll(){
+            txtName.setText("");
+            txtSurname.setText("");
+            txtUsername.setText("");
+            txtEmail.setText("");
+            txtPhoneNumber.setText("");
+            txtPassword.setText("");
+        }
 
 
 
