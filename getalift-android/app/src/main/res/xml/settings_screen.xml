@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout="@layout/activity_settings"
+    android:orderingFromXml="true">
+<PreferenceCategory
+    android:key="GeneralCategory"
+    android:title ="@string/txt_general">
+
+    <ListPreference
+        android:key="change language"
+        android:title="@string/pref_title_change_language"
+        android:defaultValue="English"
+        android:entries="@array/pref_list_languages"
+        android:entryValues="@array/pref_entry_values_languages"
+         />
+</PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="Profile Category"
+        android:title ="@string/txt_profile">
+
+        <PreferenceScreen
+            android:key="button_edit_profile_key"
+            android:title="@string/txt_edit_profile"
+            android:persistent="false">
+
+            <EditTextPreference
+                android:key="edt_modify_name"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="Name" />
+
+            <EditTextPreference
+                android:key="edt_modify_username"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="Username" />
+
+            <EditTextPreference
+                android:key="edt_modify_mobile"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="Mobile Phone" />
+
+            <EditTextPreference
+                android:key="edt_modify_mobile"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="Mobile Phone" />
+
+            <EditTextPreference
+                android:key="edt_modify_adress"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="Mail adresse" />
+
+            <EditTextPreference
+                android:key="edt_modify_comment"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:title="Comment" />
+
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
+
+
+<PreferenceCategory
+android:key="NotificationCategory"
+android:title ="@string/txt_notifications">
+
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:title="VoiceMail"
+        android:persistent="false">
+        <ListPreference
+            android:key="button_voicemail_provider_key"
+            android:title="Voice Mail provider"  />
+        <!-- opens another nested subscreen -->
+        <PreferenceScreen
+            android:key="button_voicemail_setting_key"
+            android:title="VoiceMail Settings"
+            android:persistent="false">
+
+        </PreferenceScreen>
+        <RingtonePreference
+            android:key="button_ringtone_key"
+            android:title="Sounds"
+            android:ringtoneType="notification"  />
+
+    </PreferenceScreen>
+</PreferenceCategory>
+
+
+
+</PreferenceScreen>

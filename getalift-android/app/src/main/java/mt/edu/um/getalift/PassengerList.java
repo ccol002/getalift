@@ -1,7 +1,6 @@
 package mt.edu.um.getalift;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,12 +25,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-public class DriveList extends ListFragment {
+public class PassengerList extends ListFragment{
 
     //Création d'un tag pour les log
-    private static final String TAG = "DriveTAGList";
+    private static final String TAG = "DriveTAGListPass";
 
     //Récupération de l'id
     int userID;
@@ -39,18 +37,17 @@ public class DriveList extends ListFragment {
     //Création de la liste qui va recevoir les données des destinations
     List<Drive> data = new ArrayList();
 
-
     public interface OnClientSelectedListener{
         void onClientSelected(int id);
     }
 
-    private OnClientSelectedListener litstener;
+    private PassengerList.OnClientSelectedListener litstener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (getActivity() instanceof OnClientSelectedListener) {
-            litstener = (OnClientSelectedListener) getActivity();
+        if (getActivity() instanceof PassengerList.OnClientSelectedListener) {
+            litstener = (PassengerList.OnClientSelectedListener) getActivity();
         }
     }
 
@@ -70,7 +67,7 @@ public class DriveList extends ListFragment {
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/driverroutes/" + Integer.toString(userID);
+        String url = ConnectionManager.SERVER_URL+"/api/passenger/route/" + Integer.toString(userID);
         StringRequest sr = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>(){
                     @Override
@@ -110,5 +107,7 @@ public class DriveList extends ListFragment {
         };
         queue.add(sr);
     }
+
+
 
 }

@@ -286,10 +286,11 @@ router.get("/users/:usrid", function(req, res){
 // Description	:
 //					This route update the information about the chosen user.
 router.put("/users/:usrid", function(req, res){
+	var passHash = bcrypt.hashSync(req.body.password, config.saltRounds);
 	db_con.query("UPDATE User SET username = ?, password = ?, name = ?, surname = ?, email = ?, mobileNumber = ?, isVerified = ? WHERE id = ?",
-		[req.body.username, bcrypt.hashSync(req.body.password, config.saltRounds),
-			req.body.name, req.body.surname, req.body.email, req.body.mobileNumber,
-			req.body.isVerified, req.params.usrid],
+		[req.body.username, passHash,
+			req.body.name, req.body.surname, req.body.email, req.body.mobileNumber, req.body.isVerified,
+			 req.params.usrid],
 		function(err, result){
 			if(err) throw err;
 			res.json(result);
@@ -708,6 +709,7 @@ router.put("/rides/:rideid", function(req, res){
 	db_con.query("UPDATE Ride SET route = ? WHERE id = ?",
 		[req.body.route, req.params.rideid],
 		function(err, result){
+			
 			if(err) throw err;
 			res.json(result);
 		}
@@ -868,6 +870,21 @@ router.put("/passenger/alert/:passid", function(req, res){
 		}
 	);
 });	
+
+/// Route				: GET /passenger/route/:passId
+// URL Params		:
+//		- passId					: The ID of the user/driver who connect
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	: Query that returns the information of route where the user is a passenger
+
+router.get("/passenger/route/:passId", function(req, res){
+	db_con.query("SELECT ro.originAdress, ro.destinationAdress, rd.route_date FROM Passenger p, Ride ri, Route ro, RouteDate rd WHERE p.passenger = ? and p.ride = ri.id and ri.route = ro.id and rd.route = ro.id", [req.params.passId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
 
 // --- Ratings ---
 

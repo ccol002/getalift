@@ -35,6 +35,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**  Created by Jean-Louis Thessalene **/
+
 public class ContactUsActivity extends AppCompatActivity {
 
     // Creation des variables pour stocker celles du Layout

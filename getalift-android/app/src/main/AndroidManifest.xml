@@ -55,20 +55,27 @@
             android:parentActivityName=".DriveActivity" />
         <activity
             android:name=".HelpActivity"
-            android:parentActivityName=".ResultSearchActivity" />
-        <activity android:name=".PageFaqActivity" />
-        <activity android:name=".ContactUsActivity" />
+            android:parentActivityName=".HomeMapActivity" />
+        <activity
+            android:name=".PageFaqActivity"
+            android:parentActivityName=".HelpActivity" />
+        <activity
+            android:name=".ContactUsActivity"
+            android:label="ContactUsActivity"
+            android:parentActivityName=".HelpActivity" />
         <activity
             android:name=".PageAboutActivity"
             android:label="@string/txt_title_about"
+            android:parentActivityName=".HelpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".HomeMapActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="mt.edu.um.getalift.HomeMapActivity" />
+            android:parentActivityName=".HomeMapActivity" />
+        <activity android:name=".EditProfileActivity" android:label="EditProfile" android:parentActivityName=".SettingsActivity" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
         </activity>
     </application>
 
