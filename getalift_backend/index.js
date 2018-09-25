@@ -627,8 +627,8 @@ router.delete("/routes/:routeid", function(req, res){
 //					To get the route where the user's id is the driver order by date
 // AD
 
-router.get("/driverroutes/:driverid", function(req, res){
-	db_con.query("SELECT * FROM Route, RouteDate WHERE (Route.id = RouteDate.route) AND (Route.driver = ?) ORDER BY RouteDate.route_date;", [req.params.driverid], function(err, result){
+router.get("/driverroutesdate/:driverid", function(req, res){
+	db_con.query("SELECT * FROM Route, RouteDate WHERE (Route.id = RouteDate.route) AND (Route.driver = ?) ORDER BY RouteDate.route_date", [req.params.driverid], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
