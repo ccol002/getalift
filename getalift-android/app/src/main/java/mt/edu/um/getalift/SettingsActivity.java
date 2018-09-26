@@ -71,8 +71,6 @@ public class SettingsActivity extends AppCompatActivity  {
 
         //Display view buttons
         mValidButtonSettings = (Button) findViewById(R.id.btn_valid_settings);
-        mEditButton = (Button) findViewById(R.id.btn_edit);
-
 
         // Recovering of all teh information of the user
         intent_profile_activity = getIntent();
