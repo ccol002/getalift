@@ -67,14 +67,20 @@
             android:name=".PageAboutActivity"
             android:label="@string/txt_title_about"
             android:parentActivityName=".HelpActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+
+        </activity>
+
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".HomeMapActivity" />
-        <activity android:name=".EditProfileActivity" android:label="EditProfile" android:parentActivityName=".SettingsActivity" >
+            android:parentActivityName=".HomeMapActivity" >
 
+        </activity>
+
+        <activity android:name=".EditProfileActivity" android:label="EditProfile" android:parentActivityName=".SettingsActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="your.action.string"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

@@ -71,7 +71,6 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         setTitle(getString(R.string.text_title_edit_profile));
-
         info = false;
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
@@ -91,18 +90,18 @@ public class EditProfileActivity extends AppCompatActivity {
         mClearButton = (Button) findViewById(R.id.btn_clear_edit);
         txtTestId = (TextView)findViewById(R.id.txt_test_id);
 
-        // On recupere l'Id
+        // Recovering all the informations about the user
         intent_edit_profile_activity = getIntent();
-        bundle = intent_edit_profile_activity.getExtras();
+
         if (intent_edit_profile_activity != null) {
             userID = intent_edit_profile_activity.getIntExtra("userId",0);
-            username = bundle.getString("username");
+            username = intent_edit_profile_activity.getStringExtra("username");
             name = intent_edit_profile_activity.getStringExtra("name");
             email = intent_edit_profile_activity.getStringExtra("email");
             surname = intent_edit_profile_activity.getStringExtra("surname");
             password = intent_edit_profile_activity.getStringExtra("password");
             phoneNumber = intent_edit_profile_activity.getIntExtra("mobileNumber", 0000000000);
-
+            txtTestId.setText("Bonjour " + name + " ...!");
         }
 
         mValidButton.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +109,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 fillOutTheEditForm();
                 if (info ){
-                   editDataBase(view);
+                    editDataBase(view);
                 }
             }
         });
@@ -122,7 +121,6 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
     }
-
     //We check if all the information is correct
     private void fillOutTheEditForm() {
         // We retrieve what the user select in the form
@@ -130,7 +128,7 @@ public class EditProfileActivity extends AppCompatActivity {
         final String surname = ((EditText) findViewById(R.id.edt_edit_surname)).getText().toString().trim();
         final String phonenumber = ((EditText) findViewById(R.id.edt_edit_phoneNumber)).getText().toString().trim();
         final String email = ((EditText) findViewById(R.id.edt_edit_email)).getText().toString().trim();
-       // final String comment = ((EditText) findViewById(R.id.edt_edit_comment)).getText().toString().trim();
+        // final String comment = ((EditText) findViewById(R.id.edt_edit_comment)).getText().toString().trim();
         final String username = ((EditText) findViewById(R.id.edt_edit_username)).getText().toString().trim();
         final String password = ((EditText) findViewById(R.id.edt_edit_password)).getText().toString().trim();
 
@@ -139,6 +137,10 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), getString(R.string.error_name_short), Toast.LENGTH_SHORT).show();
         } else if (name.length() > 63){
             Toast.makeText(getApplicationContext(), getString(R.string.error_name_long), Toast.LENGTH_SHORT).show();
+        } else if (surname.length() > 63){
+            Toast.makeText(getApplicationContext(), getString(R.string.error_surname_long), Toast.LENGTH_SHORT).show();
+        } else if (surname.length() < 5 && surname.length() > 0 ){
+            Toast.makeText(getApplicationContext(), getString(R.string.error_surname_short), Toast.LENGTH_SHORT).show();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.length()>1){
             Toast.makeText(getApplicationContext(), getString(R.string.error_email_valid), Toast.LENGTH_SHORT).show();
         } else if (!Patterns.PHONE.matcher(phonenumber).matches() && phonenumber.length()>1){
@@ -149,16 +151,18 @@ public class EditProfileActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), getString(R.string.error_comment_short), Toast.LENGTH_SHORT).show();
         } */else if (username.length() < 6 && username.length() > 0){
             Toast.makeText(getApplicationContext(), getString(R.string.error_username_short), Toast.LENGTH_SHORT).show();
-        } else if (username.length() > 100){
+        } else if (username.length() > 63){
             Toast.makeText(getApplicationContext(), getString(R.string.error_username_long), Toast.LENGTH_SHORT).show();
-        }else {
+        }else if (password.length() < 6){
+            Toast.makeText(getApplicationContext(), getString(R.string.error_password_short), Toast.LENGTH_SHORT).show();
+        } else if (password.length() > 63){
+            Toast.makeText(getApplicationContext(), getString(R.string.error_password_long), Toast.LENGTH_SHORT).show();
+        } else {
             Toast.makeText(getApplicationContext(), "All information is correct", Toast.LENGTH_SHORT).show();
-             info = true;
+            info = true;
         }
 
     }
-
-
 
     /**
      * This method is called when the user click on the "edit all" button.
@@ -203,7 +207,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         Log.d("Response", response.toString());
                         Toast.makeText(getBaseContext(),"Database Updated !", Toast.LENGTH_SHORT).show();
                         NavUtils.navigateUpFromSameTask(activity);
-;                    }
+                        ;                    }
                 },
                 new Response.ErrorListener()
                 {
@@ -276,14 +280,14 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
 
-        public void clearAll(){
-            txtName.setText("");
-            txtSurname.setText("");
-            txtUsername.setText("");
-            txtEmail.setText("");
-            txtPhoneNumber.setText("");
-            txtPassword.setText("");
-        }
+    public void clearAll(){
+        txtName.setText("");
+        txtSurname.setText("");
+        txtUsername.setText("");
+        txtEmail.setText("");
+        txtPhoneNumber.setText("");
+        txtPassword.setText("");
+    }
 
 
 
@@ -298,5 +302,7 @@ public class EditProfileActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }

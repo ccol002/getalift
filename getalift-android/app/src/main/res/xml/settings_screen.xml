@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout="@layout/activity_settings"
-    android:orderingFromXml="true">
+    android:orderingFromXml="true"
+    tools:targetAPI="11">
 <PreferenceCategory
     android:key="GeneralCategory"
     android:title ="@string/txt_general">
@@ -17,57 +18,14 @@
         android:entryValues="@array/pref_entry_values_languages"
          />
 </PreferenceCategory>
-
     <PreferenceCategory
         android:key="Profile Category"
         android:title ="@string/txt_profile">
-
-        <PreferenceScreen
-            android:key="button_edit_profile_key"
+        <Preference
             android:title="@string/txt_edit_profile"
-            android:persistent="false">
-
-            <EditTextPreference
-                android:key="edt_modify_name"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:title="Name" />
-
-            <EditTextPreference
-                android:key="edt_modify_username"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:title="Username" />
-
-            <EditTextPreference
-                android:key="edt_modify_mobile"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:title="Mobile Phone" />
-
-            <EditTextPreference
-                android:key="edt_modify_mobile"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:title="Mobile Phone" />
-
-            <EditTextPreference
-                android:key="edt_modify_adress"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:title="Mail adresse" />
-
-            <EditTextPreference
-                android:key="edt_modify_comment"
-                android:selectAllOnFocus="true"
-                android:singleLine="true"
-                android:title="Comment" />
-
-
-        </PreferenceScreen>
-
-    </PreferenceCategory>
-
+            android:key="pref_edit_key">
+        </Preference>
+</PreferenceCategory>
 
 <PreferenceCategory
 android:key="NotificationCategory"
