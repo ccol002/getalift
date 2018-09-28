@@ -852,7 +852,7 @@ router.delete("/passenger/:passid", function(req, res){
 	});
 });
 
-// Route				: POST /api/passenger/existingRide/:passid
+// Route				: POST /api/passenger/existingRide/
 // URL Params		:
 //		- passid					: The ID of the passenger you want to delete.
 // Body Params	: None
@@ -860,7 +860,7 @@ router.delete("/passenger/:passid", function(req, res){
 // 		- the mysql return object.
 // Description	:
 //					This route create a passenger for a already existing Ride where the id of the route is in parameter whith the id of the passenger
-router.post("/passenger", function(req, res){
+router.post("/passenger/existingRide", function(req, res){
 	db_con.query("SELECT * FROM Passenger WHERE passenger = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.passId, req.body.routeId], function(err, result){
 		if (err) throw err;
 		else if (result.length >= 1){
