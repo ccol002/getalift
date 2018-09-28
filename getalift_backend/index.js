@@ -673,7 +673,7 @@ router.post("/rides", function(req, res){
 	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
 		if (err) throw err;
 		else if (result.length >= 1){
-			// If the username already exists, we send an error.
+			// If the ride for the route already exists, we send an error.
 			res.json({
 				success: 	false,
 				message: 	"This route is already attributed to a ride",
@@ -832,6 +832,36 @@ router.delete("/passenger/:passid", function(req, res){
 	db_con.query("DELETE FROM Passenger WHERE id = ?", [req.params.passid], function(err, result){
 		if(err) throw err;
 		res.json(result);
+	});
+});
+
+// Route				: POST /api/passenger/existingRide/:passid
+// URL Params		:
+//		- passid					: The ID of the passenger you want to delete.
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	:
+//					This route create a passenger for a already existing Ride where the id of the route is in parameter whith the id of the passenger
+router.post("/passenger", function(req, res){
+	db_con.query("SELECT * FROM Passenger WHERE passenger = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.passId, req.body.routeId], function(err, result){
+		if (err) throw err;
+		else if (result.length >= 1){
+			// If the ride for the route already exists, we send an error.
+			res.json({
+				success: 	false,
+				message: 	"The same passenger already exists for this route",
+				errorCode:	1
+			});
+		} else {
+			db_con.query("INSERT INTO Passenger (ride, passenger, inTheCar) SELECT Ride.id, ?, 0 FROM Ride WHERE Ride.route = ?",
+				[req.body.passId, req.body.routeId],
+				function(err, result){
+					if(err) throw err;
+					res.json(result);
+				}
+			);
+		}
 	});
 });
 
