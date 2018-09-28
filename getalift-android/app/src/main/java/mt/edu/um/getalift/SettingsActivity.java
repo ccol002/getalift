@@ -7,9 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,17 +29,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
+import java.util.prefs.PreferenceChangeListener;
 
 /**  Created by Jean-Louis Thessalene **/
 
-public class SettingsActivity extends AppCompatActivity {
-
-    private SharedPreferences mLanguagePreference;
+public class SettingsActivity extends AppCompatActivity  {
 
     private Button mValidButtonSettings;
-    private Button mEditButton;
-
-    private TextView mtxt_settings;
 
     //Création de l'intent qui récupere l'Id de l'utilisateur
     Intent intent_profile_activity;
@@ -46,9 +46,6 @@ public class SettingsActivity extends AppCompatActivity {
     private String surname_txt;
     private String password_txt;
     private int phone_txt;
-
-
-    public static final String PREF_KEY_LANGUAGE = "PREF_KEY_LANGUAGE";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,15 +61,11 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Display view buttons
+        //Display view of the buttons
         mValidButtonSettings = (Button) findViewById(R.id.btn_valid_settings);
-        mEditButton = (Button) findViewById(R.id.btn_edit);
-
-        mtxt_settings = (TextView) findViewById(R.id.txt_settings);
 
         // Recovering of all teh information of the user
         intent_profile_activity = getIntent();
-        Bundle bundle = intent_profile_activity.getExtras();
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
             name_txt = intent_profile_activity.getStringExtra("name");
@@ -81,13 +74,12 @@ public class SettingsActivity extends AppCompatActivity {
             surname_txt = intent_profile_activity.getStringExtra("surname");
             password_txt = intent_profile_activity.getStringExtra("password");
             phone_txt = intent_profile_activity.getIntExtra("mobileNumber", 000000000000);
-            //mtxt_settings.setText("Id est :" + phone_txt);
         }
 
         // Display the settings screen in the frameLayout of the activity_settings (replace it by that)
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
 
-        //When the user click on validate the language of the application changes
+        //When the user click on validate the language of the application changes in fonction of the choice of the user
         mValidButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,29 +87,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        mEditButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Transfer of the information of the user for the EditProfile page
-                Intent intentEditProfile = new Intent(SettingsActivity.this, EditProfileActivity.class);
-                startActivity(intentEditProfile);
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
-                try {
-                    JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
-                    Log.i("Home", Integer.toString(user.getInt("id"), 0));
-                    intentEditProfile.putExtra("userId", user.getInt("id"));
-                    intentEditProfile.putExtra("name", user.getString("name"));
-                    intentEditProfile.putExtra("username", user.getString("username"));
-                    intentEditProfile.putExtra("email", user.getString("email"));
-                    intentEditProfile.putExtra("surname", user.getString("surname"));
-                    intentEditProfile.putExtra("password", user.getString("password"));
-                    intentEditProfile.putExtra("mobileNumber", user.getInt("mobileNumber"));
-                    startActivity(intentEditProfile);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     //Change language
@@ -146,8 +115,39 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_screen);
+
+           Preference myPref = (Preference) findPreference("pref_edit_key");
+            myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                public boolean onPreferenceClick(Preference preference) {
+                    //open intent here
+                    //Transfer of the information of the user for the EditProfile page
+                    Intent intentEditProfile = new Intent(getActivity(), EditProfileActivity.class);
+                    startActivity(intentEditProfile);
+                    SharedPreferences sh = getContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
+                    try {
+                        JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+                        Log.i("Home", Integer.toString(user.getInt("id"), 0));
+                        intentEditProfile.putExtra("userId", user.getInt("id"));
+                        intentEditProfile.putExtra("name", user.getString("name"));
+                        intentEditProfile.putExtra("username", user.getString("username"));
+                        intentEditProfile.putExtra("email", user.getString("email"));
+                        intentEditProfile.putExtra("surname", user.getString("surname"));
+                        intentEditProfile.putExtra("password", user.getString("password"));
+                        intentEditProfile.putExtra("mobileNumber", user.getInt("mobileNumber"));
+                        startActivity(intentEditProfile);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    return true;
+                }
+
+
+            });
         }
     }
+
 
 
     // Come back to the home page
@@ -167,7 +167,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void changeLanguage() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String language = prefs.getString("change language", "Défaut");
+        String language = prefs.getString("change language", "Default");
 
         if(language.equals("fr")){
             //French

@@ -27,7 +27,7 @@ public class PageAboutActivity extends AppCompatActivity {
 
     }
 
-    // Retourner a la page d'accueil en cliquant sur retour
+    // Come back to the help page
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // If we select the "Go back" button

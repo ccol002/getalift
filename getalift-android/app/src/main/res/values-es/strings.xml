@@ -96,6 +96,16 @@
     <string name="txt_btn_valid">Validar</string>
     <string name="txt_general">General</string>
     <string name="txt_Profil">Perfil</string>
-    <string name="txt_Notifications">Notificaciones</string>
+    <string name="success_profile_edit">" Tu perfil ha sido editado. Puede buscar su nueva información en la página de perfil."</string>
+    <string name="error_surname_long">" El apellido debe tener menos de 63 caracteres."</string>
+    <string name="error_surname_short">" El apellido debe tener más de 63 caracteres."</string>
+    <string name="error_comment_long">" El mensaje debe tener menos de 500 caracteres."</string>
+    <string name="error_comment_short">" El mensaje debe tener más de 20 caracteres."</string>
+    <string name="title_activity_settings">Configuraciones</string>
+    <string name="txt_notifications">Notificaciones</string>
+    <string name="txt_edit_profile">Editar mi perfil</string>
+    <string name="text_title_edit_profile">Get A Lift - Editar el perfil</string>
+    <string name="txt_comment">Su mensaje</string>
+    <string name="txt_todo_edit_profile">Si no quieres cambiar, deja el estuche vacío.</string>
 
 </resources>

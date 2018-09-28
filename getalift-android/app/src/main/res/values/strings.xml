@@ -68,6 +68,8 @@
     <!-- Strings related to error for Contact US page -->
     <string name="error_name_long">The name must be less than 63 character long.</string>
     <string name="error_name_short">The name must be more than 5 character long.</string>
+    <string name="error_surname_long">The surname must be less than 63 character long.</string>
+    <string name="error_surname_short">The surname must be more than 5 character long.</string>
     <string name="error_message_long">The message must be less than 500 character long.</string>
     <string name="error_message_short">The message must be more than 100 character long.</string>
     <string name="error_comment_long">The message must be less than 500 character long.</string>
@@ -107,7 +109,6 @@
     <!-- Strings related to Settings -->
     <string name="txt_general"> General </string>
     <string name="txt_Profil"> Profile </string>
-    <string name="txt_notifications"> Notifications </string>
 
     <string name="txt_edit_profile"> Edit my profile </string>
 
@@ -138,9 +139,10 @@
     </string-array>
 
     <string name="txt_btn_valid"> Validate </string>
-    <string name="txt_change_settings"> Hey my friends, I love you </string>
     <string name="text_title_edit_profile">Get A Lift - Edit Profile</string>
     <string name="txt_comment">Your comment </string>
-
+    <string name="txt_change_btn">Change language</string>
+    <string name="txt_notifications">Notifications</string>
+    <string name="txt_todo_edit_profile">If you don\'t want to change, keep the case empty </string>
 
 </resources>

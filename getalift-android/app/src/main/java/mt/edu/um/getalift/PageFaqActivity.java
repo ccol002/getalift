@@ -21,12 +21,11 @@ public class PageFaqActivity extends AppCompatActivity {
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         textfaq = (TextView) findViewById(R.id.text_faq);
     }
 
-    // Retourner a la page d'accueil en cliquant sur retour
+    // Come back to the help page
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // If we select the "Go back" button
