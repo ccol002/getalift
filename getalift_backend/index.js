@@ -758,7 +758,7 @@ router.delete("/rides/:rideid", function(req, res){
 // Description	:
 //					This route show all the routes that the passenger add to his rides
 router.get("/rides/route/:passengerId", function(req, res){
-	db_con.query("SELECT DISTINCT route.* from Route route, Passenger passenger, Ride ride where passenger.ride = ride.id and ride.route = route.id and passenger.passenger = ?", [req.params.passengerId], function(err, result){
+	db_con.query("SELECT DISTINCT route.* from Route route, Passenger passenger, Ride ride where passenger.ride = ride.id and ride.route = route.id and passenger.passenger = ? and passenger.inTheCar = 1", [req.params.passengerId], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
