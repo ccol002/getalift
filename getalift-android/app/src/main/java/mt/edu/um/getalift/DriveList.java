@@ -40,6 +40,7 @@ public class DriveList extends ListFragment {
     List<Drive> data = new ArrayList();
 
 
+
     public interface OnClientSelectedListener{
         void onClientSelected(int id);
     }
@@ -61,9 +62,11 @@ public class DriveList extends ListFragment {
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
-        if (litstener != null) {
-            litstener.onClientSelected(position);
-        }
+
+            if (litstener != null) {
+                litstener.onClientSelected(position);
+            }
+
     }
 
     public void dataList(){

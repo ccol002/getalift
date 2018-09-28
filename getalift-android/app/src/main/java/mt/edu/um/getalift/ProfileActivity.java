@@ -51,9 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
     //Variable utilisée pour passer l'appel
     private int phoneNumber;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -83,7 +83,7 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         transaction.replace(R.id.layout_1, fragInfo);
         transaction.commit();
 
-        //On fait la même chose pour la liste des passenger
+        //On fait la même chose pour la liste des passengers
 
         PassengerList fragInfoPass = new PassengerList();
         fragInfoPass.setArguments(bundlePas);

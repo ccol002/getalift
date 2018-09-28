@@ -36,8 +36,6 @@ public class DriveAdapter extends ArrayAdapter<Drive> {
         dateText = (TextView) view.findViewById(R.id.date);
         dateText.setText(getItem(position).getDate());
 
-        //getItem(position)va me renvoyer un object
-
         return view;
 
     }
