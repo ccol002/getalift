@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class ContactUsActivity extends AppCompatActivity {
 
-    // Creation des variables pour stocker celles du Layout
+    //Creating variables to store Layout variables
     private TextView txtName;
     private TextView txtPhoneNumber;
     private TextView txtEmail;
@@ -50,14 +50,14 @@ public class ContactUsActivity extends AppCompatActivity {
     private Button mAutoFillButton;
     private Button mClearAll;
 
-    // Tag utilsié pour les LOG
+    //Tag for the LOG
     private static final String TAG = "ContactUsActivity";
 
-    //Création de l'intent qui récupere l'Id de l'utilisateur
+    //Creation of the intent which recovers the ID of the current user
     Intent intent_profile_activity;
     private int userID;
 
-    //Animation pour le chargement
+    //Animation for the loading
     AnimationDrawable animationLoading;
 
     @Override
@@ -72,28 +72,29 @@ public class ContactUsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // On assimile les variables créées plus haut avec les Id des layout
+        //We assimilate the variables created above with the Id of the layout
         txtName = findViewById(R.id.edt_contact_name);
         txtPhoneNumber = findViewById(R.id.edt_contact_phoneNumber);
         txtEmail = findViewById(R.id.edt_contact_email);
         txtMessage = findViewById(R.id.edt_contact_message);
         txtSubject = findViewById(R.id.edt_contact_subject);
 
-        // On recupere l'Id
+        // Recovering the ID of the current user
         intent_profile_activity = getIntent();
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
         }
 
-        //Animation chargement
+        //Animation for loading
         ImageView loading = (ImageView) findViewById(R.id.loading_image);
         animationLoading = (AnimationDrawable) loading.getDrawable();
 
-        //On referencie les boutons
+        //Display the buttons
         mSendMessageButton = (Button) findViewById(R.id.contact_validate_button);
         mAutoFillButton = (Button) findViewById(R.id.contact_autofill_button);
         mClearAll = (Button) findViewById(R.id.contact_clear_button);
 
+        //Autofill all the fields with the info of the current user
         mAutoFillButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +119,7 @@ public class ContactUsActivity extends AppCompatActivity {
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    //Stop the loading animation when the first field is filled
                     animationLoading.stop();
                     }
 
@@ -200,7 +202,7 @@ public class ContactUsActivity extends AppCompatActivity {
                             // We create a JSONObject from the server response.
                             JSONObject jo = new JSONArray(response).getJSONObject(0);
 
-                            // On affiche les données de l'utilisateur
+                            // Display the info of the user
                             Log.i("Test",response);
                             txtEmail.setText(jo.getString("email"));
                             txtPhoneNumber.setText(jo.getString("mobileNumber"));
@@ -232,6 +234,7 @@ public class ContactUsActivity extends AppCompatActivity {
 
     }
 
+    //Clear all the fields
     public void clearAll(){
         txtEmail.setText("");
         txtPhoneNumber.setText("");
@@ -241,8 +244,8 @@ public class ContactUsActivity extends AppCompatActivity {
     }
 
     public void sendMail(){
-        //Envoyer le message a l'email de l'entreprise
-        String emailList [] = {"thessalene.jeanlouis@reseau.eseo.fr"};
+        //send message to the email of the enterprise
+        String emailList [] = {"enterprise@hotmail.fr"}; //TO change with the good address
         Intent intentMail = new Intent(Intent.ACTION_SEND);
         intentMail.setType("message/rfc822");
         intentMail.putExtra(Intent.EXTRA_EMAIL, emailList);

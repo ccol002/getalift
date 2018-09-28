@@ -38,24 +38,23 @@
         android:layout_height="71dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="324dp"
+        android:title="@string/txt_help"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:srcCompat="@drawable/help_image"
-        android:title = "@string/txt_help"/>
+        app:srcCompat="@drawable/help_image" />
 
     <ImageButton
         android:id="@+id/image_contact_us"
         android:layout_width="match_parent"
         android:layout_height="71dp"
-
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="184dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
         app:srcCompat="@drawable/contact_us_image"
@@ -70,13 +69,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text = "@string/txt_contact_us"
+        android:text="@string/txt_contact_us"
         app:layout_constraintBottom_toTopOf="@+id/image_about"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_contact_us"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.421" />
 
     <TextView
         android:id="@+id/text_about"
@@ -86,13 +85,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text = "@string/txt_about"
+        android:text="@string/txt_about"
         app:layout_constraintBottom_toTopOf="@+id/image_faq_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_about"
-        app:layout_constraintVertical_bias="0.555" />
+        app:layout_constraintVertical_bias="0.444" />
 
     <ImageView
         android:id="@+id/image_help"
@@ -128,7 +127,6 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/text_faq"
         app:layout_constraintEnd_toEndOf="parent"

@@ -53,7 +53,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private boolean info;
 
-    //Création of the intent recovering the ID of the user
+    //Creation of the intent recovering the ID of the user
     Intent intent_edit_profile_activity;
     private int userID;
     private String username ;
@@ -62,8 +62,6 @@ public class EditProfileActivity extends AppCompatActivity {
     private String surname;
     private String password;
     private int phoneNumber;
-
-    private Bundle bundle;
 
 
     @Override
@@ -78,7 +76,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // On assimile les variables créées plus haut avec les Id des layout
+        // We assimilate the variables created above with the Id of the layout
         txtName = findViewById(R.id.edt_edit_name);
         txtPhoneNumber = findViewById(R.id.edt_edit_phoneNumber);
         txtEmail = findViewById(R.id.edt_edit_email);
@@ -88,11 +86,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
         mValidButton = (Button) findViewById(R.id.btn_valid_edit_profile);
         mClearButton = (Button) findViewById(R.id.btn_clear_edit);
-        txtTestId = (TextView)findViewById(R.id.txt_test_id);
+        //txtTestId = (TextView)findViewById(R.id.txt_test_id);
 
         // Recovering all the informations about the user
         intent_edit_profile_activity = getIntent();
 
+        //Recover user's info already saved in his profile to fill out the parameters that it doesn't want to change
         if (intent_edit_profile_activity != null) {
             userID = intent_edit_profile_activity.getIntExtra("userId",0);
             username = intent_edit_profile_activity.getStringExtra("username");
@@ -101,9 +100,10 @@ public class EditProfileActivity extends AppCompatActivity {
             surname = intent_edit_profile_activity.getStringExtra("surname");
             password = intent_edit_profile_activity.getStringExtra("password");
             phoneNumber = intent_edit_profile_activity.getIntExtra("mobileNumber", 0000000000);
-            txtTestId.setText("Bonjour " + name + " ...!");
+           // txtTestId.setText("Bonjour " + name + " ...!");
         }
 
+        //Actions when the user click on teh valid button
         mValidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +168,7 @@ public class EditProfileActivity extends AppCompatActivity {
      * This method is called when the user click on the "edit all" button.
      * @param view the view of the button clicked.
      */
+    //To update the database with the new information
     public void editDataBase(View view) {
         fillOutTheEditForm();
         // We first setup the queue for the API Request
@@ -186,16 +187,7 @@ public class EditProfileActivity extends AppCompatActivity {
         //final String comment = ((EditText) findViewById(R.id.edt_edit_comment)).getText().toString().trim();
 
 
-        //Recover user's info already saved in his profile to fill out the parameters that it doesn't want to change
-        if (intent_edit_profile_activity != null) {
-            final String username = intent_edit_profile_activity.getStringExtra("username");
-            String name = intent_edit_profile_activity.getStringExtra("name");
-            String surrname = intent_edit_profile_activity.getStringExtra("surname");
-            String password = intent_edit_profile_activity.getStringExtra("password");
-            String email = intent_edit_profile_activity.getStringExtra("email");
-            String mobileNumber = intent_edit_profile_activity.getStringExtra("mobileNumber");
 
-        }
         final Activity activity = this;
 
         StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
@@ -232,6 +224,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 return headers;
             }
             @Override
+            //Parameters for the SQL request, we need all the information
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 if(edt_username.length() != 0){
@@ -279,7 +272,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
 
-
+//Clear all the fields
     public void clearAll(){
         txtName.setText("");
         txtSurname.setText("");

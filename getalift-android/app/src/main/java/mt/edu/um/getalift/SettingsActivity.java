@@ -35,12 +35,7 @@ import java.util.prefs.PreferenceChangeListener;
 
 public class SettingsActivity extends AppCompatActivity  {
 
-    private SharedPreferences mLanguagePreference;
-
     private Button mValidButtonSettings;
-    private Button mEditButton;
-
-    private TextView mtxt_settings;
 
     //Création de l'intent qui récupere l'Id de l'utilisateur
     Intent intent_profile_activity;
@@ -51,9 +46,6 @@ public class SettingsActivity extends AppCompatActivity  {
     private String surname_txt;
     private String password_txt;
     private int phone_txt;
-
-
-    public static final String PREF_KEY_LANGUAGE = "PREF_KEY_LANGUAGE";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,12 +61,11 @@ public class SettingsActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Display view buttons
+        //Display view of the buttons
         mValidButtonSettings = (Button) findViewById(R.id.btn_valid_settings);
 
         // Recovering of all teh information of the user
         intent_profile_activity = getIntent();
-        Bundle bundle = intent_profile_activity.getExtras();
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
             name_txt = intent_profile_activity.getStringExtra("name");
@@ -88,7 +79,7 @@ public class SettingsActivity extends AppCompatActivity  {
         // Display the settings screen in the frameLayout of the activity_settings (replace it by that)
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
 
-        //When the user click on validate the language of the application changes
+        //When the user click on validate the language of the application changes in fonction of the choice of the user
         mValidButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -25,9 +25,7 @@ public class HelpActivity extends AppCompatActivity {
     private ImageButton mContactUs;
     private ImageButton mAbout;
 
-    private TextView txtMessage;
-
-    //Création de l'intent qui récupere l'Id de l'utilisateur
+    //Creation of the intent which recover the id of the user
     Intent intent_profile_activity;
     private int userID;
 
@@ -40,10 +38,9 @@ public class HelpActivity extends AppCompatActivity {
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // On recupere l'Id
+        //Recovering of the ID of the current user
         intent_profile_activity = getIntent();
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
@@ -54,7 +51,7 @@ public class HelpActivity extends AppCompatActivity {
         mContactUs = (ImageButton) findViewById(R.id.image_contact_us);
         mFaqButton = (ImageButton) findViewById(R.id.image_faq_button);
 
-        // En cliquant sur l'image FAQ l'utilisateur sera redirige vers la page Faq
+        //By clicking on the FAQ image the user will be redirected to the Faq page
         mFaqButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +60,10 @@ public class HelpActivity extends AppCompatActivity {
             }
         });
 
-        // En cliquant sur l'image 'contact us' l'utilisateur sera redirige vers la page de prise de contact
+        //By clicking on the "Contact Us" image the user will be redirected to the "Contact Us" page
         mContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intentContactUs = new Intent(getBaseContext(), ContactUsActivity.class);
-                //startActivity(intentContactUs);
                 Intent intentContactUs = new Intent(HelpActivity.this, ContactUsActivity.class);
                 startActivity(intentContactUs);
 
@@ -95,7 +90,7 @@ public class HelpActivity extends AppCompatActivity {
     }
 
 
-    // Retourner a la page d'accueil en cliquant sur retour
+    // Come back to the home page
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // If we select the "Go back" button
