@@ -1015,7 +1015,7 @@ router.post("/ratings/existingRate", function(req, res){
 	db_con.query("SELECT * FROM Rating WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.author, req.body.routeId], function(err, result){
 		if (err) throw err;
 		else if (result.length >= 1){
-			// If the ride for the route already exists, we send an error.
+			// If the rate for the route already exists, we send an error.
 			res.json({
 				success: 	false,
 				message: 	"The passenger already rate the route",
@@ -1035,7 +1035,6 @@ router.post("/ratings/existingRate", function(req, res){
 
 // Route				: PUT /api/ratings/:rateid
 // URL Params		:
-//		- rateid					: The ID of the rate you want to edit the info.
 // Body Params	:
 //		- author : the id of the user that creates this rating.
 //		- target : the id of the user that is the target of this rating.
@@ -1047,9 +1046,9 @@ router.post("/ratings/existingRate", function(req, res){
 // 		- the mysql object for this rate.
 // Description	:
 //					This route update the information about the chosen rating.
-router.put("/ratings/:rateid", function(req, res){
-	db_con.query("UPDATE Rating SET author = ?, target = ?, ride = ?, stars = ?, comment = ?, postDate = ? WHERE id = ?",
-		[req.body.author, req.body.target, req.body.ride, req.body.stars, req.body.comment, req.body.postDate, req.params.rateid],
+router.put("/ratings", function(req, res){
+	db_con.query("UPDATE Rating SET stars = ?, comment = ?, postDate = ? WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)",
+		[req.body.stars, req.body.comment, req.body.postDate, req.body.author, req.body.routeId],
 		function(err, result){
 			if(err) throw err;
 			res.json(result);
