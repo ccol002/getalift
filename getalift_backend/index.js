@@ -1016,11 +1016,14 @@ router.post("/ratings", function(req, res){
 		if (err) throw err;
 		else if (result.length >= 1){
 			// If the ride for the route already exists, we send an error.
-			res.json({
+			result.success = false;
+			result.message = "This passenger already rate this route";
+			res.json(result);
+			/*res.json({
 				success: 	false,
 				message: 	"This passenger already rate this route",
 				errorCode:	1
-			});
+			})*/
 		} else {
 			db_con.query("INSERT INTO Rating (author, target, ride, stars, comment, postDate) VALUES (?, ?, ?, ?, ?, ?)",
 				[req.body.author, req.body.target, req.body.ride, req.body.stars, req.body.comment, req.body.postDate],
