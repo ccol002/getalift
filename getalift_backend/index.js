@@ -1016,13 +1016,25 @@ router.get("/ratings/Comment/:targetid", function(req, res){
 // Description	:
 //					This route can create a rate in the database.
 router.post("/ratings", function(req, res){
-	db_con.query("INSERT INTO Rating (author, target, ride, stars, comment, postDate) VALUES (?, ?, ?, ?, ?, ?)",
-		[req.body.author, req.body.target, req.body.ride, req.body.stars, req.body.comment, req.body.postDate],
-		function(err, result){
-			if(err) throw err;
-			res.json(result);
+	db_con.query("SELECT rating.* FROM Rating rating WHERE rating.author = ? and rating.ride = ?", [req.body.author, req.body.ride], function(err, result){
+		if (err) throw err;
+		else if (result.length >= 1){
+			// If the ride for the route already exists, we send an error.
+			res.json({
+				success: 	false,
+				message: 	"This passenger already rate this route",
+				errorCode:	1
+			});
+		} else {
+			db_con.query("INSERT INTO Rating (author, target, ride, stars, comment, postDate) VALUES (?, ?, ?, ?, ?, ?)",
+				[req.body.author, req.body.target, req.body.ride, req.body.stars, req.body.comment, req.body.postDate],
+				function(err, result){
+					if(err) throw err;
+					res.json(result);
+				}
+			);
 		}
-	);
+	});
 });
 
 // Route				: PUT /api/ratings/:rateid
