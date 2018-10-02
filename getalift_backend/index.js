@@ -756,7 +756,7 @@ router.get("/rides/route/:passengerId", function(req, res){
 // Description	:
 //					This route show the ride id corresponding to this route id
 router.get("/rides/routeId/:routeId", function(req, res){
-	db_con.query("SELECT DISTINCT ride.id from Ride ride where ride.route = ?", [req.params.roteId], function(err, result){
+	db_con.query("SELECT DISTINCT ride.id from Ride ride where ride.route = ?", [req.params.routeId], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
