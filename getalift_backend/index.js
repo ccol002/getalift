@@ -1019,8 +1019,7 @@ router.post("/ratings", function(req, res){
 			res.json({
 				success: 	false,
 				message: 	"This passenger already rate this route",
-				errorCode:	1,
-				ride: rating.id 
+				errorCode:	1
 			});
 		} else {
 			db_con.query("INSERT INTO Rating (author, target, ride, stars, comment, postDate) VALUES (?, ?, ?, ?, ?, ?)",
