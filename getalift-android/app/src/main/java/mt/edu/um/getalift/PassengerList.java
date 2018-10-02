@@ -41,13 +41,13 @@ public class PassengerList extends ListFragment{
         void onClientSelected(int id);
     }
 
-    private PassengerList.OnClientSelectedListener litstener;
+    private OnClientSelectedListener litstener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (getActivity() instanceof PassengerList.OnClientSelectedListener) {
-            litstener = (PassengerList.OnClientSelectedListener) getActivity();
+        if (getActivity() instanceof OnClientSelectedListener) {
+            litstener = (OnClientSelectedListener) getActivity();
         }
     }
 
