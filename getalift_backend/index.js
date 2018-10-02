@@ -1011,7 +1011,7 @@ router.get("/ratings/Comment/:targetid", function(req, res){
 // 		- the mysql object for this ride.
 // Description	:
 //					This route can create a rate in the database.
-router.post("/passenger/existingRide", function(req, res){
+router.post("/ratings/existingRate", function(req, res){
 	db_con.query("SELECT * FROM Rating WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.author, req.body.routeId], function(err, result){
 		if (err) throw err;
 		else if (result.length >= 1){
