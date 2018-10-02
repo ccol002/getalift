@@ -666,23 +666,6 @@ router.get("/rides/:rideid", function(req, res){
 	});
 });
 
-// Route				: POST /api/rides/
-// URL Params		: None
-// Body Params	:
-//		- route : the id of the route you want to link to this ride.
-// Return		:
-// 		- the mysql object for this ride.
-// Description	:
-//					This route can create a ride in the database.
-/*router.post("/rides", function(req, res){
-	db_con.query("INSERT INTO Ride (route) VALUES (?)",
-		[req.body.route],
-		function(err, result){
-			if(err) throw err;
-			res.json(result);
-		}
-	);
-});*/
 
 //Essai méthode post (Charly)
 router.post("/rides", function(req, res){
@@ -764,7 +747,20 @@ router.get("/rides/route/:passengerId", function(req, res){
 	});
 });
 
-
+// Route				: GET /api/rides/routeId/:routeId
+// URL Params		:
+//		- rideid					: The ID of the passenger you want to show the ride
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	:
+//					This route show the ride id corresponding to this route id
+router.get("/rides/routeId/:routeId", function(req, res){
+	db_con.query("SELECT DISTINCT ride.id from Ride ride where ride.route = ?", [req.params.roteId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
 
 // --- Passengers ---
 
