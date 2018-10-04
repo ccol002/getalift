@@ -168,20 +168,19 @@ public class SettingsActivity extends AppCompatActivity  {
     public void changeLanguage() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String language = prefs.getString("change language", "Default");
-
         if(language.equals("fr")){
-            //French
-            Toast.makeText(getApplicationContext()," You choose :" + language, Toast.LENGTH_SHORT).show();
+            //English
+            Toast.makeText(getApplicationContext(),"@string/txt_choice_language :" + language, Toast.LENGTH_SHORT).show();
             setLocale("fr");
             recreate();
         }else if(language.equals("en")){
             //French
-            Toast.makeText(getApplicationContext(), "Vous avez choisi :" + language, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "@string/txt_choice_language :" + language, Toast.LENGTH_SHORT).show();
             setLocale("en");
             recreate();
         }if(language.equals("es")){
-            //French
-            Toast.makeText(getApplicationContext(), "Vous avez choisi :" + language, Toast.LENGTH_SHORT).show();
+            //Spanish
+            Toast.makeText(getApplicationContext(), "@string/txt_choice_language :" + language, Toast.LENGTH_SHORT).show();
             setLocale("es");
             recreate();
         }

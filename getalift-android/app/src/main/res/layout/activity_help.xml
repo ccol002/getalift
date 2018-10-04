@@ -20,15 +20,17 @@
 
     <TextView
         android:id="@+id/text_faq"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="191dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/txt_faq"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -38,10 +40,10 @@
         android:layout_height="71dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="292dp"
         android:title="@string/txt_help"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
         app:srcCompat="@drawable/help_image" />
@@ -52,7 +54,7 @@
         android:layout_height="71dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="152dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,13 +65,16 @@
 
     <TextView
         android:id="@+id/text_contact_us"
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
+        android:layout_width="163dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/txt_contact_us"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/image_about"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -79,13 +84,16 @@
 
     <TextView
         android:id="@+id/text_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="165dp"
+        android:layout_height="32dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/txt_about"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/image_faq_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -108,13 +116,15 @@
 
     <TextView
         android:id="@+id/text_help"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_width="141dp"
+        android:layout_height="39dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text = "@string/txt_help"
+        android:text="@string/txt_help"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,9 +140,10 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/text_faq"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:layout_constraintVertical_bias="0.984"
+        app:layout_constraintVertical_bias="0.952"
         app:srcCompat="@drawable/faq_image" />
 
 

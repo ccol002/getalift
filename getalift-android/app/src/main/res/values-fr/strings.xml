@@ -103,4 +103,19 @@
     <string name="text_title_edit_profile">Get A Lift - Modifier le profil</string>
     <string name="txt_comment">Votre message</string>
     <string name="txt_todo_edit_profile">Si vous ne voulez pas changer une information, laissez la case vide.</string>
+    <string name="txt_choice_language">Vous avez choisi</string>
+    <string name="txt_english">Anglais</string>
+    <string name="txt_franch">Français</string>
+    <string name="txt_spanish">Espagnol</string>
+
+    <string-array name="pref_list_languages">
+        <item> Anglais </item>
+        <item> Français </item>
+        <item>Espagnol </item>
+    </string-array>
+    <string-array name="pref_entry_values_languages">
+        <item>en</item>
+        <item>fr</item>
+        <item>es</item>
+    </string-array>
 </resources>

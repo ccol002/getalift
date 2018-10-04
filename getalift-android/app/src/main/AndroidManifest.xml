@@ -7,14 +7,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="mt.edu.um.getalift.permission.MAPS_RECEIVE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        http://cedric.cnam.fr/~farinone/SETMO/annee1314/seance4PourSETMO.pdf
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,8 +34,8 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0" />
-
+            android:value="AIzaSyBTeZn21blQiQ5_VqjaLnACePRCqa5SOqc" />
+<!-- API KEY : AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0 -->
         <activity android:name=".HomeMapActivity" />
         <activity
             android:name=".ProfileActivity"
@@ -83,6 +86,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>

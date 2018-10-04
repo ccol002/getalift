@@ -109,15 +109,15 @@
     <!-- Strings related to Settings -->
     <string name="txt_general"> General </string>
     <string name="txt_Profil"> Profile </string>
-
+    <string name="txt_choice_language"> You chose </string>
     <string name="txt_edit_profile"> Edit my profile </string>
 
 
     <string name="pref_title_change_language">Change language</string>
     <string-array name="pref_list_languages">
-        <item>English</item>
-        <item>French</item>
-        <item>Spanish</item>
+        <item> <string name="txt_english"> English</string></item>
+        <item> <string name="txt_french"> French</string> </item>
+        <item> <string name="txt_spanish"> Spanish</string></item>
     </string-array>
     <string-array name="pref_entry_values_languages">
         <item>en</item>

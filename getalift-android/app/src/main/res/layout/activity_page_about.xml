@@ -38,6 +38,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/black"
                 android:text="@string/txt_about1"
                 android:textStyle="bold" />
 
@@ -49,6 +50,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/black"
                 android:text="@string/txt_about2" />
 
             <TextView
@@ -59,6 +61,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/black"
                 android:text="@string/txt_about3" />
 
             <TextView
@@ -69,6 +72,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/black"
                 android:text="@string/txt_about4" />
 
             <TextView
@@ -80,6 +84,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/black"
                 android:text="@string/txt_about5"
                 android:textStyle="bold" />
 
@@ -91,6 +96,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:textColor="@color/black"
                 android:text="@string/txt_about6" />
         </LinearLayout>
     </ScrollView>

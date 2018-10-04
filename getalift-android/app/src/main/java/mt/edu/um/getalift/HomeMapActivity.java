@@ -496,13 +496,12 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                 searchRide();
                             }
                         } catch (JSONException e) {
-
+                            Log.i("Erreur",response);
                             Toast.makeText(getApplicationContext(), "Unable to connect to Google Maps API",
                                     Toast.LENGTH_LONG).show();
                             e.printStackTrace();
                         }
                     }
-
                 },
                 new Response.ErrorListener(){
 

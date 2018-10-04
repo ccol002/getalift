@@ -107,5 +107,20 @@
     <string name="text_title_edit_profile">Get A Lift - Editar el perfil</string>
     <string name="txt_comment">Su mensaje</string>
     <string name="txt_todo_edit_profile">Si no quieres cambiar, deja el estuche vacío.</string>
+    <string name="txt_choice_language">Tu elegiste</string>
+    <string name="txt_english">Inglés</string>
+    <string name="txt_spanish">Español</string>
+    <string name="txt_franch">Francés</string>
+
+    <string-array name="pref_list_languages">
+        <item> Inglés </item>
+        <item> Francés </item>
+        <item>Español </item>
+    </string-array>
+    <string-array name="pref_entry_values_languages">
+        <item>en</item>
+        <item>fr</item>
+        <item>es</item>
+    </string-array>
 
 </resources>
