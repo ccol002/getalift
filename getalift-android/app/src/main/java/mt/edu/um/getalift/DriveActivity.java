@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.LongToIntFunction;
 
-public class DriveActivity extends AppCompatActivity implements DriveList.OnClientSelectedListener{
+public class DriveActivity extends AppCompatActivity implements DriveList.OnClientSelectedListener, PassengerList.OnClientSelectedListener{
 
     // Tag utilisé pour les LOG
     private static final String TAG = "DriveTAGAct";
@@ -109,6 +109,15 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
     @Override
     public void onClientSelected(int id) {
         Intent intent = new Intent(DriveActivity.this,DriveDetails.class);
+        intent.putExtra("userId",userID);
+        startActivity(intent);
+    }
+
+    //On doit faire la même chose pour le deuxième liste
+    @Override
+    public void onClientSelectedPassenger(int id) {
+        Intent intent = new Intent(DriveActivity.this,DriveDetails.class);
+        intent.putExtra("userId",userID);
         startActivity(intent);
     }
 }

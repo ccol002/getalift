@@ -38,7 +38,7 @@ public class PassengerList extends ListFragment{
     List<Drive> data = new ArrayList();
 
     public interface OnClientSelectedListener{
-        void onClientSelected(int id);
+        void onClientSelectedPassenger(int id);
     }
 
     private OnClientSelectedListener litstener;
@@ -59,7 +59,7 @@ public class PassengerList extends ListFragment{
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         if (litstener != null) {
-            litstener.onClientSelected(position);
+            litstener.onClientSelectedPassenger(position);
         }
     }
 
