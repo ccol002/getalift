@@ -51,6 +51,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONArray;
@@ -71,7 +72,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private static final String TAG = "HomeMapActivity";
 
     private final static int MY_ACCESS_PERMISSION_CODE = 1;
-    private final static String GoogleMapsAPIKey = "AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0";
+    private final static String GoogleMapsAPIKey = "AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY";
+    //AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0  AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY
+
 
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
@@ -391,7 +394,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         this.googleMap = googleMap;
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -402,6 +405,13 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         public void onSuccess(Location location) {
                             if (location != null) {
                                 setCameraPosition(location);
+                            }
+                            else {
+                                // Add a marker in the University of Malta
+                                float zoomLevel = 16.0f; //This goes up to 21
+                                LatLng universityMsida = new LatLng(35.902163, 14.483748);
+                                googleMap.addMarker(new MarkerOptions().position(universityMsida).title("Marker in the University of Malta (Msida)"));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(universityMsida, zoomLevel));
                             }
                         }
                     });

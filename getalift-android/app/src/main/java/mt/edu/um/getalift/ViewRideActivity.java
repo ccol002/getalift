@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +41,7 @@ public class ViewRideActivity extends AppCompatActivity implements
     private MyPoint meetingPoint;
     private MyPoint droppingPoint;
 
+    private Button btn_go_ride;
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
@@ -63,6 +65,9 @@ public class ViewRideActivity extends AppCompatActivity implements
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
         meetingPoint = ride.getClosestPointStart();
         droppingPoint = ride.getClosestPointEnd();
+
+        btn_go_ride = findViewById(R.id.btn_go_ride);
+        btn_go_ride.setText("Go !");
 
         setTitle(ride.getUser_name()+"'s route");
     }
