@@ -171,6 +171,8 @@ public class ResultSearchActivity extends AppCompatActivity {
                 intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
                 intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
 
+                // Recover the id of the user who drives the selected item to display his info after
+                intent.putExtra("driver_id",selectedItem.getUser_id());
 
                 intent.putExtra("startingTimeDriver", selectedItem.getDate().getTextArriveAt(0));
 

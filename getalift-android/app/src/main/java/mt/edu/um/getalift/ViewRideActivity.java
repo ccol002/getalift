@@ -1,12 +1,15 @@
 package mt.edu.um.getalift;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +44,12 @@ public class ViewRideActivity extends AppCompatActivity implements
     private MyPoint meetingPoint;
     private MyPoint droppingPoint;
 
+    //Creation of the intent which recovers the id of the driver selected by the user
+    Intent intent_View_Ride_activity;
+    private int driverId;
+
+    private TextView txt_driver_id;
+
     private Button btn_go_ride;
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -69,7 +78,31 @@ public class ViewRideActivity extends AppCompatActivity implements
         btn_go_ride = findViewById(R.id.btn_go_ride);
         btn_go_ride.setText("Go !");
 
+        btn_go_ride.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //We transfer to ViewRideInfo the id of the driver selected by teh user
+                Intent intentViewRideInfo = new Intent(getApplicationContext(), ViewRideInfoActivity.class);
+                intentViewRideInfo.putExtra("driver_id",driverId);
+                intentViewRideInfo.putExtra("passengerStartingPointLat", getIntent().getDoubleExtra("passengerStartingPointLat",0.0));
+                intentViewRideInfo.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
+                intentViewRideInfo.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
+                intentViewRideInfo.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+                startActivity(intentViewRideInfo);
+            }
+        });
         setTitle(ride.getUser_name()+"'s route");
+
+        // Recovering the ride selected
+        txt_driver_id = (TextView) findViewById(R.id.textView15);
+        intent_View_Ride_activity = getIntent();
+        if (intent_View_Ride_activity != null) {
+            driverId = intent_View_Ride_activity.getIntExtra("driver_id",0);
+            txt_driver_id.setText("The id of the driver : " + driverId);
+
+        }
+
+
     }
 
     @Override
