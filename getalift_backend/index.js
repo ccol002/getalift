@@ -706,14 +706,12 @@ router.post("/rides", function(req, res){
 // Description	:
 //					This route give the rideID about the chosen route.
 
-router.get("/rides/test/:routeID", function(req, res){
-	// First, we check if the username already exists in the database.
-	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.params.routeID], function(err, result){
-		if (err) throw err;
+router.get("/rides/test/:routeId", function(req, res){
+	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.params.routeId], function(err, result){
+		if(err) throw err;
 		res.json(result);
-				}
-			);
 	});
+});
 
 
 
