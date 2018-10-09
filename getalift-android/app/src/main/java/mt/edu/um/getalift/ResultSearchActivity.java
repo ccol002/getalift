@@ -54,6 +54,7 @@ public class ResultSearchActivity extends AppCompatActivity {
         populateRideList();
         populateListView();
 
+        //Button : I want to drive
         btn_create_route = findViewById(R.id.btn_create_route);
         btn_create_route.setText(R.string.btn_create_route);
 
@@ -72,8 +73,9 @@ public class ResultSearchActivity extends AppCompatActivity {
         intentResultSearch = getIntent();
         if (intentResultSearch != null) {
             userID = intentResultSearch.getIntExtra("userId", 0);
-            Log.i("TAG_USERID", Integer.toString(userID));
-            textViewTest.setText("Id du user : " + userID);
+            double startPointLat = intentResultSearch.getDoubleExtra("passengerStartingPointLat", 0.0);
+            Log.i("TAG_STARTING", Integer.toString(userID));
+            textViewTest.setText("Start Point lat : " + startPointLat);
         }
     }
 
@@ -84,7 +86,6 @@ public class ResultSearchActivity extends AppCompatActivity {
         intent.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
         intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
         intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
-        //intent.putExtra("userID",userID);
         startActivity(intent);
     }
 

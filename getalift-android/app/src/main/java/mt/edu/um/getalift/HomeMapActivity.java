@@ -68,7 +68,7 @@ import java.util.Map;
 //Google maps places API KEY AIzaSyD7ElaUB44FMGItFL3H6RbB7G-R8kJUAWI
 
 public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, GoogleApiClient.OnConnectionFailedListener {
-
+    public Intent intentHomePage = getIntent();
     private static final String TAG = "HomeMapActivity";
 
     private final static int MY_ACCESS_PERMISSION_CODE = 1;
@@ -548,12 +548,19 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         Intent intent_result_search_activity = new Intent(getBaseContext(), ResultSearchActivity.class);
                         SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
                         intent_result_search_activity.putExtra("JSON_RESULT", response);
+
+                        intent_result_search_activity.putExtra("passengerStartingPointLat", startLat);
+                        intent_result_search_activity.putExtra("passengerStartingPointLng", startLng);
+                        intent_result_search_activity.putExtra("passengerEndingPointLat",endLat);
+                        intent_result_search_activity.putExtra("passengerEndingPointLng", endLng);
+
                         try {
                             JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
                             Log.i("Home",Integer.toString(user.getInt("id"),0));
+
                             intent_result_search_activity.putExtra("userId", user.getInt("id"));
-                            int userID = intent_result_search_activity.getIntExtra("userId", 0);
-                            Log.i("TAG_User",Integer.toString(userID));
+                            //int userID = intent_result_search_activity.getIntExtra("userId", 0);
+                            //Log.i("TAG_User",Integer.toString(userID));
                             startActivity(intent_result_search_activity);
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -85,7 +85,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewRideInfoActivity"
-            android:parentActivityName=".ViewRideActivity"></activity>
+            android:parentActivityName=".HomeMapActivity"></activity>
     </application>
 
 </manifest>

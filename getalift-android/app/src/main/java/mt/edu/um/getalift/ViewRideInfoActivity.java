@@ -109,8 +109,8 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         btn_confirm_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //createPassenger();
-                RecoverRideId();
+                createPassenger();
+                //RecoverRideId();
             }
         });
 
@@ -193,8 +193,8 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d("Response", response.toString());
-                        Toast.makeText(getBaseContext(),"Vous avez été ajouté en tant que passager, veuillez attendre la confirmation du conducteur",Toast.LENGTH_SHORT).show();
-                        NavUtils.navigateUpFromSameTask(activity);
+                        Toast.makeText(getBaseContext(),"Vous avez été ajouté en tant que passager, veuillez attendre la confirmation du conducteur",Toast.LENGTH_LONG).show();
+                        NavUtils.navigateUpTo(activity, getParentActivityIntent());
                     }
                 },
                 new Response.ErrorListener()
@@ -215,7 +215,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 //headers.put("Content-Type", "application/json");
                 //or try with this:
                 headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
-                //headers.put("Content-Type", "application/x-www-form-urlencoded");
+                headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
             }
 
@@ -224,7 +224,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                     //ride, passenger, inTheCar
-                params.put("ride",Integer.toString(route_id));
+                params.put("ride","29");
                 params.put("passenger",Integer.toString(user_id));
                 params.put("inTheCar","0");
 

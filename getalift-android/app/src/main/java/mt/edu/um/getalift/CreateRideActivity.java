@@ -1,8 +1,10 @@
 package mt.edu.um.getalift;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,11 +20,14 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.List;
 
-public class CreateRideActivity extends AppCompatActivity implements
-        OnMapReadyCallback{
+public class CreateRideActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private MyPoint startingPoint;
     private MyPoint endingPoint;
+
+    private Ride ride;
+
+    private Intent intentCreateRide;
 
     private Button btn_create_ride;
     private Button btn_edit_ride;
@@ -47,6 +52,9 @@ public class CreateRideActivity extends AppCompatActivity implements
         startingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerStartingPointLat",0.0),getIntent().getDoubleExtra("passengerStartingPointLng",0.0),0,0);
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
 
+        Log.i("TAG_START", startingPoint.getLng().toString());
+        Log.i("TAG_END", endingPoint.getLng().toString());
+
         btn_create_ride = findViewById(R.id.btn_create_ride);
         btn_create_ride.setText(R.string.btn_create_ride);
 
@@ -57,8 +65,8 @@ public class CreateRideActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        // Position the map's camera near Alice Springs in the center of Australia,
+    public void onMapReady(GoogleMap googleMap){
+       // Position the map's camera near Alice Springs in the center of Australia,
         // and set the zoom factor so most of Australia shows on the screen.
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(startingPoint.getLat(),startingPoint.getLng()), 12));
 
@@ -74,4 +82,5 @@ public class CreateRideActivity extends AppCompatActivity implements
                 .title("Your destination point"));
 
     }
+
 }
