@@ -707,7 +707,7 @@ router.post("/rides", function(req, res){
 //					This route give the rideID about the chosen route.
 
 router.get("/rides/test/:routeId", function(req, res){
-	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.params.routeId], function(err, result){
+	db_con.query("SELECT id FROM Ride WHERE route = ?", [req.params.routeId], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
