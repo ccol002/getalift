@@ -33,6 +33,12 @@ public class ResultSearchActivity extends AppCompatActivity {
 
     private Button btn_create_route;
 
+    private TextView textViewTest;
+
+    //Recover UserID
+    Intent intentResultSearch;
+    private int userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +60,21 @@ public class ResultSearchActivity extends AppCompatActivity {
         TextView txt_create_route = findViewById(R.id.txt_create_route);
         txt_create_route.setText(R.string.txt_create_route);
 
+       textViewTest = findViewById(R.id.text_View_test404);
+
         btn_create_route.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startCreateRouteActivity();
             }
         });
+        //Recovering of the ID of the current user
+        intentResultSearch = getIntent();
+        if (intentResultSearch != null) {
+            userID = intentResultSearch.getIntExtra("userId", 0);
+            Log.i("TAG_USERID", Integer.toString(userID));
+            textViewTest.setText("Id du user : " + userID);
+        }
     }
 
     private void startCreateRouteActivity(){
@@ -69,6 +84,7 @@ public class ResultSearchActivity extends AppCompatActivity {
         intent.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
         intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
         intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+        //intent.putExtra("userID",userID);
         startActivity(intent);
     }
 
@@ -158,6 +174,8 @@ public class ResultSearchActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Get the selected item text from ListView
                 Ride selectedItem = (Ride) parent.getItemAtPosition(position);
+                int routeId = selectedItem.getRoute_id();
+
 
                 Log.i(TAG,"Selected item size: "+selectedItem.getRoutePoints().size());
 
@@ -171,15 +189,18 @@ public class ResultSearchActivity extends AppCompatActivity {
                 intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
                 intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
 
+
                 // Recover the id of the user who drives the selected item to display his info after
                 intent.putExtra("driver_id",selectedItem.getUser_id());
+                intent.putExtra("route_id",routeId);
+                intent.putExtra("userID",userID);
 
                 intent.putExtra("startingTimeDriver", selectedItem.getDate().getTextArriveAt(0));
 
                 intent.putExtra("meetingTime", selectedItem.getDate().getTextArriveAt((int) selectedItem.getClosestPointStart().seconds_from_start/60));
 
                 intent.putExtra("droppingTime", selectedItem.getDate().getTextArriveAt((int) selectedItem.getClosestPointEnd().seconds_from_start/60));
-
+                Log.i("TAG_ERROR_START",Integer.toString(routeId));
                 startActivity(intent);
             }
         });

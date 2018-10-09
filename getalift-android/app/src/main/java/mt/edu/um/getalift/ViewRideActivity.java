@@ -39,14 +39,18 @@ public class ViewRideActivity extends AppCompatActivity implements
         GoogleMap.OnPolygonClickListener{
 
     private Ride ride;
+
     private MyPoint startingPoint;
     private MyPoint endingPoint;
     private MyPoint meetingPoint;
     private MyPoint droppingPoint;
 
+
     //Creation of the intent which recovers the id of the driver selected by the user
     Intent intent_View_Ride_activity;
     private int driverId;
+    private  int userID;
+    int routeId;
 
     private TextView txt_driver_id;
 
@@ -69,14 +73,28 @@ public class ViewRideActivity extends AppCompatActivity implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ride = (Ride) getIntent().getExtras().getParcelable("UserRide");
+        setTitle(ride.getUser_name()+"'s route");
+
+
 
         startingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerStartingPointLat",0.0),getIntent().getDoubleExtra("passengerStartingPointLng",0.0),0,0);
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
         meetingPoint = ride.getClosestPointStart();
         droppingPoint = ride.getClosestPointEnd();
 
-        btn_go_ride = findViewById(R.id.btn_go_ride);
+                btn_go_ride = findViewById(R.id.btn_go_ride);
         btn_go_ride.setText("Go !");
+
+        // Recovering the ride selected
+        txt_driver_id = (TextView) findViewById(R.id.textView15);
+        intent_View_Ride_activity = getIntent();
+        if (intent_View_Ride_activity != null) {
+            driverId = intent_View_Ride_activity.getIntExtra("driver_id",0);
+            routeId = intent_View_Ride_activity.getIntExtra("route_id",0);
+            userID = intent_View_Ride_activity.getIntExtra("userID",0);
+            txt_driver_id.setText("The id of the driver : " + routeId);
+
+        }
 
         btn_go_ride.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,19 +106,14 @@ public class ViewRideActivity extends AppCompatActivity implements
                 intentViewRideInfo.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
                 intentViewRideInfo.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
                 intentViewRideInfo.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+                intentViewRideInfo.putExtra("route_id",routeId);
+                intentViewRideInfo.putExtra("userID",userID);
                 startActivity(intentViewRideInfo);
             }
         });
-        setTitle(ride.getUser_name()+"'s route");
 
-        // Recovering the ride selected
-        txt_driver_id = (TextView) findViewById(R.id.textView15);
-        intent_View_Ride_activity = getIntent();
-        if (intent_View_Ride_activity != null) {
-            driverId = intent_View_Ride_activity.getIntExtra("driver_id",0);
-            txt_driver_id.setText("The id of the driver : " + driverId);
 
-        }
+
 
 
     }

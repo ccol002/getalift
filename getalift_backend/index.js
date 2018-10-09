@@ -696,6 +696,27 @@ router.post("/rides", function(req, res){
 
 });
 
+//Méthode pour récupérer Ride Id à partir de la route ID
+// Route				: GET /api/rides/:routeID
+// URL Params		:  
+//		- routeID					: The ID of the route you want to edit the info.		
+// Body Params	: None
+// Return		:
+// 		- the mysql object for this ride.
+// Description	:
+//					This route give the rideID about the chosen route.
+
+router.get("/rides", function(req, res){
+	// First, we check if the username already exists in the database.
+	db_con.query("SELECT * FROM Ride WHERE route = ?", [req.body.route], function(err, result){
+		if (err) throw err;
+		res.json(result);
+				}
+			);
+	});
+
+
+
 // Route				: PUT /api/rides/:rideid
 // URL Params		:
 //		- rideid					: The ID of the ride you want to edit the info.
@@ -813,6 +834,7 @@ router.post("/passenger", function(req, res){
 	);
 });
 
+
 // Route				: PUT /api/passenger/:passid
 // URL Params		:
 //		- passid					: The ID of the passenger you want to edit the info.
@@ -915,7 +937,7 @@ router.put("/passenger/alert/:passid", function(req, res){
 	);
 });	
 
-/// Route				: GET /passenger/route/:passId
+/// Route				: GET api/passenger/route/:passId
 // URL Params		:
 //		- passId					: The ID of the user/driver who connect
 // Body Params	: None

@@ -75,6 +75,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private final static String GoogleMapsAPIKey = "AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY";
     //AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0  AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY
 
+    public static String ORIGIN = "nul";
+    public static String DESTINATION = "nul";
+
 
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
@@ -542,8 +545,22 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 new Response.Listener<String>(){
                     @Override
                     public void onResponse(String response){
+                        Intent intent_result_search_activity = new Intent(getBaseContext(), ResultSearchActivity.class);
+                        SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
                         intent_result_search_activity.putExtra("JSON_RESULT", response);
-                        startActivity(intent_result_search_activity);
+                        try {
+                            JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+                            Log.i("Home",Integer.toString(user.getInt("id"),0));
+                            intent_result_search_activity.putExtra("userId", user.getInt("id"));
+                            int userID = intent_result_search_activity.getIntExtra("userId", 0);
+                            Log.i("TAG_User",Integer.toString(userID));
+                            startActivity(intent_result_search_activity);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
                     }
                 },
                 new Response.ErrorListener(){

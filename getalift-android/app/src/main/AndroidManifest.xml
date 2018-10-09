@@ -84,7 +84,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewRideInfoActivity"></activity>
+        <activity android:name=".ViewRideInfoActivity"
+            android:parentActivityName=".ViewRideActivity"></activity>
     </application>
 
 </manifest>

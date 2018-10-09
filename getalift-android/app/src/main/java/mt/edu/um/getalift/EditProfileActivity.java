@@ -199,7 +199,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         Log.d("Response", response.toString());
                         Toast.makeText(getBaseContext(),"Database Updated !", Toast.LENGTH_SHORT).show();
                         NavUtils.navigateUpFromSameTask(activity);
-                        ;                    }
+                                          }
                 },
                 new Response.ErrorListener()
                 {
