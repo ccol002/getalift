@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.NavUtils;
@@ -12,6 +13,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -19,6 +22,8 @@ import com.google.android.gms.maps.model.LatLng;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,6 +31,9 @@ public class CreateRideInfo extends AppCompatActivity {
 
     private TextView txt_origin_address;
     private TextView txt_destination_address;
+    private TextView txt_distance_route;
+    private TextView txt_duration;
+    private Button btn_create_route_confirm;
 
     Intent intentCreateRideInfo;
     private double newStartingPointLat;
@@ -47,6 +55,10 @@ public class CreateRideInfo extends AppCompatActivity {
         //TextViews
         txt_origin_address = (TextView) findViewById(R.id.txt_origin_address);
         txt_destination_address = (TextView) findViewById(R.id.txt_destination_address);
+        txt_distance_route = (TextView) findViewById(R.id.txt_distance_route);
+        txt_duration = (TextView) findViewById(R.id.txt_duration);
+        btn_create_route_confirm = (Button)  findViewById(R.id.btn_create_route_confirm);
+
 
         //Recover the LatLat points from the last page
         intentCreateRideInfo =getIntent();
@@ -59,16 +71,43 @@ public class CreateRideInfo extends AppCompatActivity {
            // txt_origin_address.setText(Double.toString(newStartingPointLat)+","+Double.toString(newStartingPointLng));
             //txt_destination_address.setText(Double.toString(newEndingPointLat)+","+Double.toString(newEndingPointLng));
 
+            //Display the 2 addresses (origin and destination)
             txt_origin_address.setText(getAddressFromLocation(newStartingPointLat,newStartingPointLng,this));
             txt_destination_address.setText(getAddressFromLocation(newEndingPointLat,newEndingPointLng,this));
         }
 
+
+        float[] distance_array = new float[1];
+        double distance = calculateDistance(newStartingPointLat, newStartingPointLng,
+                newEndingPointLat, newEndingPointLng, distance_array);
+
+        //Calculate Time aproximatively between the 2 points
+        int speedIs1KmMinute = 100;
+        int estimatedDriveTimeInMinutes = (int) distance / speedIs1KmMinute;
+        txt_duration.setText("Duration of the ride : " + estimatedDriveTimeInMinutes +" min");
+        //To complete the database with the good unity : sec
+        int estimatedDriveTimeInSecondes = estimatedDriveTimeInMinutes * 60;
+
+    btn_create_route_confirm.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            createRoute();
+
+        }
+    });
+
     } //end of OnCreate
+
+    private void createRoute() {
+
+
+    }
 
     public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 String result = null;
-                String addressFind ="";
+                String locality, zip, country, street, featureName;
+
                 try {
                     List< Address > addressList = geocoder.getFromLocation(latitude, longitude, 1);
                     if (addressList != null && addressList.size() > 0) {
@@ -77,9 +116,33 @@ public class CreateRideInfo extends AppCompatActivity {
                         for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                             sb.append(address.getAddressLine(i)); //.append("\n");
                         }
-                        sb.append(address.getLocality()).append("\n");
-                        sb.append(address.getPostalCode()).append("\n");
-                        sb.append(address.getCountryName());
+                        //Make sure the information for the address are not null before displaying them
+                        if(address.getLocality() != null)
+                            locality = address.getLocality() +", ";
+                        else
+                            locality = "";
+                        if(address.getPostalCode() != null)
+                            zip = address.getPostalCode() + ", ";
+                        else
+                            zip ="";
+                        if(address.getCountryName() != null)
+                            country = address.getCountryName();
+                        else
+                            country = "";
+                        if(address.getThoroughfare() != null)
+                            street = address.getThoroughfare() +", ";
+                        else
+                            street ="";
+                        if(address.getFeatureName() != null)
+                            featureName = address.getFeatureName() +", ";
+                        else
+                            featureName ="";
+
+                        sb.append(featureName);
+                        sb.append(street);
+                        sb.append(locality);
+                        sb.append(zip);
+                        sb.append(country);
                         result = sb.toString();
                     }
                 } catch (IOException e) {
@@ -87,13 +150,31 @@ public class CreateRideInfo extends AppCompatActivity {
                 } finally {
 
                     if (result != null) {
-                        addressFind = result;
+                        //addressFind = result;
                     } else {
-                        addressFind = " Unable to get address for this location.";
+                        result = " Unable to get address for this location.";
                     }
 
                 }
-                return addressFind;
+                return result;
+            }
+
+
+            public double calculateDistance(double startLat, double startLng, double endLat, double endLng, float[] resultArray ){
+                //To round the values
+                NumberFormat nf = new DecimalFormat("0.#");
+                NumberFormat nff = new DecimalFormat("0");
+                //String s = nf.format(monNombre);
+
+                //Calculate the distance between the two points
+
+                Location.distanceBetween(startLat, startLng,
+                        endLat, endLng, resultArray);
+                float distance = resultArray[0];
+                String distance_round = nf.format(distance);
+                txt_distance_route.setText("Distance : " + distance_round +" m");
+
+                return Double.parseDouble(distance_round);
             }
 
             //Return to the last activity

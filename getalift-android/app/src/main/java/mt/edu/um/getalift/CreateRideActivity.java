@@ -43,6 +43,9 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
     private double endingPointLat;
     private double endingPointLng;
 
+    private String GAME_STATE_KEY = "CreateRideActivity";
+    private String mGameState;
+
     private MyPoint startingPoint;
     private MyPoint endingPoint;
 
@@ -76,9 +79,15 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(id.tlb_create_map);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // recovering the instance state
+        if (savedInstanceState != null) {
+            mGameState = savedInstanceState.getString(GAME_STATE_KEY);
+        }
+
+
+        //Create the starting and the ending points to use
         startingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerStartingPointLat",0.0),getIntent().getDoubleExtra("passengerStartingPointLng",0.0),0,0);
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
 
@@ -97,6 +106,15 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
 
     }
+
+    // invoked when the activity may be temporarily destroyed, save the instance state here
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(GAME_STATE_KEY, mGameState);
+        // call superclass to save any view hierarchy
+        super.onSaveInstanceState(outState);
+    }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -118,6 +136,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
                 .title("Your destination point"));
 
+        //When the user click on "edit" it shows a message and he can create a route
         btn_edit_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
