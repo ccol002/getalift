@@ -6,7 +6,7 @@
 
 To work on the GAL project, you have to use Xcode. Xcode downloads directly on the App Store.
 \\\\
-To open the project on Xcode, launch Xcode and click on \textit{File/Open} and select in the  \textit{getalift-ios} folder the \textit{GALDev.xcodeproject} and click on \textit{Open}
+To open the project on Xcode, launch Xcode and click on \textit{File/Open} and select in the  \textit{getalift-ios} folder the \textit{GALDev.xcworkspace} and click on \textit{Open}
 
 \subsection{GALDev.xcodeprojet}
 
@@ -93,6 +93,8 @@ pod install
 \caption{GALDev iOS Application}
 \end{figure}
 
+Don't forget to open "GalDev.xcworkspace" in Xcode and not GALDev.xcodeproject otherwise you will have errors.
+
 \subsection{App preview}
 
 \subsubsection{Application homepage}
@@ -144,6 +146,8 @@ Once authenticated, the user arrives on this page, which is the main page of the
 \\\\
 At the top left, there is the button to access the menu and the right is the button to access the search interface of a trip. The button at the bottom right makes it possible to refocus the map on the position of the user.
 \\\\
+If the user is the driver for routes where the are passengers, alert message will be displayed when he connect. He had to confirm if the passenger was in his car or not. If he click on "Yes", the passenger could see the route in his "MyRides" tab. If he click on "No", the passenger is deleted in the database of the Passenger tab. 
+
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale = 0.3]{diagrams/MainPage.png} 

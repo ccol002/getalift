@@ -280,7 +280,7 @@ router.get("/users/:usrid", function(req, res){
 // 		- surname				: His last name
 // 		- email					: His email
 // 		- mobileNumber	: His mobile number
-//		- isVerified		: Is the user is verified ?
+//		- isVerified		: Is the user is verified ?s
 // Return		:
 // 		- the mysql object for this user.
 // Description	:
@@ -1016,8 +1016,6 @@ router.get("/ratings/Comment/:targetid", function(req, res){
 	});
 });
 
-
-
 // Route				: POST /api/ratings/
 // URL Params		: None
 // Body Params	:
@@ -1046,7 +1044,10 @@ router.post("/ratings/existingRate", function(req, res){
 				[req.body.author, req.body.target, req.body.stars, req.body.comment, req.body.postDate, req.body.routeId],
 				function(err, result){
 					if(err) throw err;
-					res.json(result);
+					res.json({
+						success: true,
+						message: "The ride have been rate"
+					});
 				}
 			);
 		}
