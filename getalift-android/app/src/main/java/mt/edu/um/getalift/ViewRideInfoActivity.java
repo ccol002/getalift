@@ -95,7 +95,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
 
 
             //Recover address of the starting point
-           /* try {
+            /*try {
                 txt_view_starting_point.setText(onHandleIntent(intent_View_Ride_Info_activity, startingPoint));
                 txt_view_ending_point.setText(onHandleIntent(intent_View_Ride_Info_activity, endingPoint));
             } catch (IOException e) {

@@ -74,8 +74,11 @@ public class ResultSearchActivity extends AppCompatActivity {
         if (intentResultSearch != null) {
             userID = intentResultSearch.getIntExtra("userId", 0);
             double startPointLat = intentResultSearch.getDoubleExtra("passengerStartingPointLat", 0.0);
+            double startPointLng = intentResultSearch.getDoubleExtra("passengerStartingPointLng", 0.0);
+            double endPointLat = intentResultSearch.getDoubleExtra("passengerEndingPointLat", 0.0);
+            double endPointLng = intentResultSearch.getDoubleExtra("passengerEndingPointLng", 0.0);
             Log.i("TAG_STARTING", Integer.toString(userID));
-            textViewTest.setText("Start Point lat : " + startPointLat);
+            textViewTest.setText("Coordonées: " + startPointLat +","+ startPointLng +"|"+ endPointLat+","+endPointLng);
         }
     }
 

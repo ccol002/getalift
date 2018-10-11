@@ -70,10 +70,10 @@
             android:name=".PageAboutActivity"
             android:label="@string/txt_title_about"
             android:parentActivityName=".HelpActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".HomeMapActivity"></activity>
+            android:parentActivityName=".HomeMapActivity" />
         <activity
             android:name=".EditProfileActivity"
             android:label="EditProfile"
@@ -84,8 +84,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewRideInfoActivity"
-            android:parentActivityName=".HomeMapActivity"></activity>
+        <activity
+            android:name=".ViewRideInfoActivity"
+            android:parentActivityName=".CreateRideActivity" />
+        <activity android:name=".CreateRideInfo"></activity>
     </application>
 
 </manifest>

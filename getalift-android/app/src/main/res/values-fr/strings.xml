@@ -107,6 +107,7 @@
     <string name="txt_english">Anglais</string>
     <string name="txt_franch">Français</string>
     <string name="txt_spanish">Espagnol</string>
+    <string name="txt_edit_create_route">Now, you can create your route by clicking on the map</string>
 
     <string-array name="pref_list_languages">
         <item> Anglais </item>

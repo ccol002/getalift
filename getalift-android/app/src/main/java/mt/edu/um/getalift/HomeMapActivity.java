@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -63,12 +65,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //Google maps places API KEY AIzaSyD7ElaUB44FMGItFL3H6RbB7G-R8kJUAWI
 
 public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, GoogleApiClient.OnConnectionFailedListener {
-    public Intent intentHomePage = getIntent();
+
     private static final String TAG = "HomeMapActivity";
 
     private final static int MY_ACCESS_PERMISSION_CODE = 1;
@@ -233,8 +236,41 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
     private void startResultSearchActivity() {
-        getLatLongFromGivenAddress(mTextSearchDestination.getText().toString(),"destination");
-        getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
+       // getLatLongFromGivenAddress(mTextSearchDestination.getText().toString(),"destination");
+        //getLatLongFromGivenAddress(mTextSearchOrigin.getText().toString(),"origin");
+
+        //Convert the address given by the user into Lat and Lng
+        double [] lat_lng_origin = getLocationFromAddress(mTextSearchOrigin.getText().toString());
+        double [] lat_lng_destination = getLocationFromAddress(mTextSearchDestination.getText().toString());
+
+        originPoint[0] = lat_lng_origin[0];
+        originPoint[1] = lat_lng_origin[1];
+
+        destinationPoint[0] =lat_lng_destination[0];
+        destinationPoint[1] = lat_lng_destination[1];
+        searchRide();
+    }
+
+    public double[] getLocationFromAddress(String strAddress) {
+
+        Geocoder coder = new Geocoder(getApplicationContext());
+        List<Address> address;
+        double[] tab_latlng ={0.0,0.0};
+
+        try {
+            address = coder.getFromLocationName(strAddress, 1);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            double lat = location.getLatitude();
+            double lng = location.getLongitude();
+            tab_latlng[0] = lat;
+            tab_latlng[1] =lng;
+            return tab_latlng;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public void switchView() {
@@ -535,10 +571,15 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         String url = ConnectionManager.SERVER_URL+"/api/findTarget";
 
         // We retrieve the search parameters
-        final String startLat = Double.toString(originPoint[0]);
+       /* final String startLat = Double.toString(originPoint[0]);
         final String startLng = Double.toString(originPoint[1]);
         final String endLat = Double.toString(destinationPoint[0]);
-        final String endLng = Double.toString(destinationPoint[1]);
+        final String endLng = Double.toString(destinationPoint[1]);*/
+
+       final double startLat = originPoint[0];
+       final double startLng = originPoint[1];
+       final double endLat = destinationPoint[0];
+       final double endLng =destinationPoint[1];
         final String startDate = ((EditText) findViewById(R.id.edt_home_time)).getText().toString().trim();
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -553,6 +594,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         intent_result_search_activity.putExtra("passengerStartingPointLng", startLng);
                         intent_result_search_activity.putExtra("passengerEndingPointLat",endLat);
                         intent_result_search_activity.putExtra("passengerEndingPointLng", endLng);
+                        Log.i("TAG_startLat",Double.toString(startLat));
+                        Log.i("TAG_startLng",Double.toString(startLng));
+                        Log.i("TAG_endLat",Double.toString(endLat));
+                        Log.i("TAG_endLng",Double.toString(endLng));
 
                         try {
                             JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
@@ -579,10 +624,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("startLng", startLng);
-                params.put("startLat", startLat);
-                params.put("endLng", endLng);
-                params.put("endLat", endLat);
+                params.put("startLng", Double.toString(startLng));
+                params.put("startLat", Double.toString(startLat));
+                params.put("endLng", Double.toString(endLng));
+                params.put("endLat", Double.toString(endLat));
                 params.put("startDate", startDate);
 
                 return params;

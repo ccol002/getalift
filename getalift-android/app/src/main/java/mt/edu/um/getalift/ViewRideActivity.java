@@ -92,10 +92,11 @@ public class ViewRideActivity extends AppCompatActivity implements
             driverId = intent_View_Ride_activity.getIntExtra("driver_id",0);
             routeId = intent_View_Ride_activity.getIntExtra("route_id",0);
             userID = intent_View_Ride_activity.getIntExtra("userID",0);
-            txt_driver_id.setText("The id of the driver : " + routeId);
+            txt_driver_id.setText("The id of the driver : " + endingPoint.getLat());
 
         }
 
+        //Go to the Ride Info View
         btn_go_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
