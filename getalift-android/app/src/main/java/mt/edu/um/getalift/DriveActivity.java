@@ -34,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.LongToIntFunction;
@@ -54,6 +55,9 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
     //On fait la même chose pour la deuxième liste
     FragmentTransaction transactionPas = getSupportFragmentManager().beginTransaction();
     final Bundle bundlePas = new Bundle();
+
+    //On test des trucs
+    Intent intentDriveResult;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -108,8 +112,10 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
 
     @Override
     public void onClientSelected(int id) {
+        Log.i(TAG,String.valueOf(id));
         Intent intent = new Intent(DriveActivity.this,DriveDetails.class);
-        intent.putExtra("userId",userID);
+        intent.putExtra("userId",id);
+
         startActivity(intent);
     }
 

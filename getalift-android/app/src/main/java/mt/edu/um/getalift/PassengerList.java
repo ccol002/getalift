@@ -59,9 +59,9 @@ public class PassengerList extends ListFragment{
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         if (litstener != null) {
-            litstener.onClientSelectedPassenger(position);
-            //Log.i(TAG,String.valueOf(position)); // Quelle place dans la liste
-            //Log.i(TAG,String.valueOf(data.get(position).getInfo())); // Les données de la route
+            litstener.onClientSelectedPassenger(data.get(position).getId());
+            Log.i(TAG,String.valueOf(position)); // Quelle place dans la liste
+            Log.i(TAG,String.valueOf(data.get(position).getInfo())); // Les données de la route
         }
     }
 

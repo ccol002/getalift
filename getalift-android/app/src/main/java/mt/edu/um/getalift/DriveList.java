@@ -39,6 +39,8 @@ public class DriveList extends ListFragment {
     //Création de la liste qui va recevoir les données des destinations
     List<Drive> data = new ArrayList();
 
+
+
     public interface OnClientSelectedListener{
         void onClientSelected(int id);
     }
@@ -61,10 +63,9 @@ public class DriveList extends ListFragment {
 
     public void onListItemClick(ListView l, View v, int position, long id) {
             if (litstener != null) {
-                litstener.onClientSelected(position);
-                // On veut savoir quelle élément de la liste on a selectionner
-                //Log.i(TAG,String.valueOf(position)); // Quelle place dans la liste
-                //Log.i(TAG,String.valueOf(data.get(position).getInfo())); // Les données de la route selectionnée
+                litstener.onClientSelected(data.get(position).getId());
+                Log.i(TAG,String.valueOf(position)); // Quelle place dans la liste
+                Log.i(TAG,String.valueOf(data.get(position).getInfo())); // Les données de la route selectionnée
             }
     }
 
@@ -83,11 +84,12 @@ public class DriveList extends ListFragment {
                             int length = new JSONArray(response).length();
                             for (int i = 0;i<length;i++ ){
                                 JSONObject jo = new JSONArray(response).getJSONObject(i);
-                                Drive drive = new Drive(jo.getInt("id"),jo.getString("originAdress"),jo.getString("destinationAdress"),jo.getString("route_date"));
+                                Drive drive = new Drive(jo.getInt("route"),jo.getString("originAdress"),jo.getString("destinationAdress"),jo.getString("route_date"));
                                 data.add(drive);
                             }
                             DriveAdapter adapter = new DriveAdapter(getActivity(), data);
                             setListAdapter(adapter);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
