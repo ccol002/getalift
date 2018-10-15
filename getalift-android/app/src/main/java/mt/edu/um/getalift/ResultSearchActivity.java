@@ -89,6 +89,7 @@ public class ResultSearchActivity extends AppCompatActivity {
         intent.putExtra("passengerStartingPointLng", getIntent().getDoubleExtra("passengerStartingPointLng",0.0));
         intent.putExtra("passengerEndingPointLat", getIntent().getDoubleExtra("passengerEndingPointLat",0.0));
         intent.putExtra("passengerEndingPointLng", getIntent().getDoubleExtra("passengerEndingPointLng",0.0));
+        intent.putExtra("userID",userID);
         startActivity(intent);
     }
 

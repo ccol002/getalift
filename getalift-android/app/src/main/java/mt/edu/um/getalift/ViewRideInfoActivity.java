@@ -334,11 +334,19 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 else
                     featureName ="";
 
-                sb.append(featureName);
-                sb.append(street);
-                sb.append(locality);
-                sb.append(zip);
-                sb.append(country);
+                if(featureName != street) {
+                    sb.append(featureName);
+                    sb.append(street);
+                    sb.append(locality);
+                    sb.append(zip);
+                    sb.append(country);
+                }
+                else{
+                    sb.append(street);
+                    sb.append(locality);
+                    sb.append(zip);
+                    sb.append(country);
+                }
                 result = sb.toString();
             }
         } catch (IOException e) {

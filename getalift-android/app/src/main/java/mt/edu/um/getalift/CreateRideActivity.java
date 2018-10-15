@@ -38,22 +38,16 @@ import static mt.edu.um.getalift.R.*;
 
 public class CreateRideActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private double startingPointLat;
-    private double startingPointLng;
-    private double endingPointLat;
-    private double endingPointLng;
-
     private String GAME_STATE_KEY = "CreateRideActivity";
     private String mGameState;
 
     private MyPoint startingPoint;
     private MyPoint endingPoint;
+    private int userID;
 
 
     private LatLng newStartingPoint;
     private LatLng newEndingPoint;
-
-    private Ride ride;
 
     private Intent intentCreateRide;
 
@@ -86,7 +80,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
             mGameState = savedInstanceState.getString(GAME_STATE_KEY);
         }
 
-
+        userID = getIntent().getIntExtra("userID",0);
         //Create the starting and the ending points to use
         startingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerStartingPointLat",0.0),getIntent().getDoubleExtra("passengerStartingPointLng",0.0),0,0);
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
@@ -153,6 +147,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
                 intentCreatedRouteInfo.putExtra("newStartingPointLng", newStartingPoint.longitude);
                 intentCreatedRouteInfo.putExtra("newEndingPointLat",newEndingPoint.latitude);
                 intentCreatedRouteInfo.putExtra("newEndingPointLng",newEndingPoint.longitude);
+                intentCreatedRouteInfo.putExtra("userID",userID);
                 startActivity(intentCreatedRouteInfo);
             }
         });

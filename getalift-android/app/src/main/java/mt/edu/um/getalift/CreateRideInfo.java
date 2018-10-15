@@ -1,31 +1,56 @@
 package mt.edu.um.getalift;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.DatePicker.OnDateChangedListener;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.model.LatLng;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class CreateRideInfo extends AppCompatActivity {
 
@@ -34,6 +59,14 @@ public class CreateRideInfo extends AppCompatActivity {
     private TextView txt_distance_route;
     private TextView txt_duration;
     private Button btn_create_route_confirm;
+    private DatePicker mDatePicker;
+    private TimePicker mTimePicker;
+    private String date;
+    private String time;
+    private int userID;
+    private String originAddress;
+    private String destinationAddress;
+    private String adresse = "SAlut addresse";
 
     Intent intentCreateRideInfo;
     private double newStartingPointLat;
@@ -41,6 +74,7 @@ public class CreateRideInfo extends AppCompatActivity {
     private double newEndingPointLat;
     private double newEndingPointLng;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +92,54 @@ public class CreateRideInfo extends AppCompatActivity {
         txt_distance_route = (TextView) findViewById(R.id.txt_distance_route);
         txt_duration = (TextView) findViewById(R.id.txt_duration);
         btn_create_route_confirm = (Button)  findViewById(R.id.btn_create_route_confirm);
+        mDatePicker = (DatePicker) findViewById(R.id.datePicker);
+        mTimePicker = (TimePicker) findViewById(R.id.timePicker);
 
 
+        userID = getIntent().getIntExtra("userID",0);
+        //Get the date of the day
+        Calendar rightNow = Calendar.getInstance();
+
+        //Initialise the DatePicker to display the date of the day
+        int currentYear = rightNow.get(Calendar.YEAR);
+        int currentMonth = rightNow.get(Calendar.MONTH)+1;
+        int currentDayOfTheMonth = rightNow.get(Calendar.DAY_OF_MONTH);
+        date = currentYear+"-"+currentMonth+"-"+currentDayOfTheMonth;
+        Log.i("TAG_DATE_CURRENT", date);
+        mDatePicker.init( currentYear, currentMonth-1,currentDayOfTheMonth , new OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+                date = year+"-"+(monthOfYear+1)+"-"+dayOfMonth;
+                Log.i("TAG_DATE_NEW", date);
+            }
+        });
+       /* int hours = rightNow.get(Calendar.HOUR_OF_DAY) +2;
+        int minutes = rightNow.get(Calendar.MINUTE);
+        Log.i("TAG_TIME", Integer.toString(hours)+":"+ Integer.toString(minutes));*/
+
+
+        int currentHour = mTimePicker.getCurrentHour()+2;
+        int currentMinute = mTimePicker.getCurrentMinute();
+        Log.i("TAG_CURRENT_TIME",currentHour +":"+currentMinute);
+
+        mTimePicker.setHour(currentHour);
+        mTimePicker.setMinute(currentMinute);
+
+        time=currentHour+":"+currentMinute+":00";
+        mTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                String minuteDouble;
+                if(minute <10){
+                    minuteDouble = "0"+minute;
+                }
+                else
+                    minuteDouble = Integer.toString(minute);
+                time = hourOfDay +":"+minuteDouble+":00";
+                Log.i("TAG_TIME_new_listener",time);
+            }
+        });
         //Recover the LatLat points from the last page
         intentCreateRideInfo =getIntent();
         if(intentCreateRideInfo != null){
@@ -68,13 +148,13 @@ public class CreateRideInfo extends AppCompatActivity {
             newEndingPointLat = intentCreateRideInfo.getDoubleExtra("newEndingPointLat",0.0);
             newEndingPointLng = intentCreateRideInfo.getDoubleExtra("newEndingPointLng",0.0);
 
-           // txt_origin_address.setText(Double.toString(newStartingPointLat)+","+Double.toString(newStartingPointLng));
-            //txt_destination_address.setText(Double.toString(newEndingPointLat)+","+Double.toString(newEndingPointLng));
-
             //Display the 2 addresses (origin and destination)
-            txt_origin_address.setText(getAddressFromLocation(newStartingPointLat,newStartingPointLng,this));
-            txt_destination_address.setText(getAddressFromLocation(newEndingPointLat,newEndingPointLng,this));
+            originAddress = getAddressFromLocation(newStartingPointLat,newStartingPointLng,this);
+            destinationAddress = getAddressFromLocation(newEndingPointLat,newEndingPointLng,this);
+            txt_origin_address.setText(originAddress);
+            txt_destination_address.setText(destinationAddress);
         }
+        Log.i("TAG_User", Integer.toString(userID));
 
 
         float[] distance_array = new float[1];
@@ -84,7 +164,7 @@ public class CreateRideInfo extends AppCompatActivity {
         //Calculate Time aproximatively between the 2 points
         int speedIs1KmMinute = 100;
         int estimatedDriveTimeInMinutes = (int) distance / speedIs1KmMinute;
-        txt_duration.setText("Duration of the ride : " + estimatedDriveTimeInMinutes +" min");
+       // txt_duration.setText("Duration of the ride : " + estimatedDriveTimeInMinutes +" min");
         //To complete the database with the good unity : sec
         int estimatedDriveTimeInSecondes = estimatedDriveTimeInMinutes * 60;
 
@@ -92,20 +172,86 @@ public class CreateRideInfo extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             createRoute();
-
         }
     });
 
     } //end of OnCreate
 
     private void createRoute() {
-        //TODO
+            // We first setup the queue for the API Request
+            RequestQueue queue = Volley.newRequestQueue(this);
+            // We get the URL of the server.
+            String url = ConnectionManager.SERVER_URL+"/api/routes";
 
-    }
+            final Activity activity = this;
+
+
+                // If everything is correct,
+                // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
+                // it looks like it's more stable.
+                StringRequest sr = new StringRequest(Request.Method.PUT, url,
+                        new Response.Listener<String>(){
+
+                            @Override
+                            public void onResponse(String response) {
+                                // We got a response from our server.
+                                try {
+                                    // We create a JSONObject from the server response.
+                                    JSONObject jo = new JSONArray(response).getJSONObject(0);
+                                    Toast.makeText(getApplicationContext(), "Route added to the database",Toast.LENGTH_SHORT).show();
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener(){
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), "Unable to add the route to the database",Toast.LENGTH_SHORT).show();
+                                Log.d("GetALift", error.toString());
+                            }
+
+                        }
+                ){
+                    @Override
+                    protected Map<String,String> getParams(){
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("startLat",Double.toString(newStartingPointLat));
+                        params.put("startLng",Double.toString(newStartingPointLng));
+                        params.put("endLat",Double.toString(newEndingPointLat));
+                        params.put("endLng",Double.toString(newEndingPointLng));
+                        params.put("driverId",Integer.toString(userID));
+                        params.put("origin",originAddress);
+                        params.put("destination",destinationAddress);
+                        params.put("dates",date+";"+time);
+
+                        Log.i("TAG_create_startLat",Double.toString(newStartingPointLat));
+                        Log.i("TAG_create,start_lng",Double.toString(newStartingPointLng));
+                        Log.i("TAG_create_end_lat",Double.toString(newEndingPointLat));
+                        Log.i("TAG_create_end_lng",Double.toString(newEndingPointLng));
+                        Log.i("TAG_create_user",Integer.toString(userID));
+                        Log.i("TAG_create_origin",originAddress);
+                        Log.i("TAG_create_destination",destinationAddress);
+                        Log.i("TAG_create_date_time",date+";"+time);
+
+                        return params;
+                    }
+                };
+                queue.add(sr);
+            }
+
+
+
+
+
+
 
     public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-                String result = null;
+                String result=null;
                 String locality, zip, country, street, featureName;
 
                 try {
@@ -133,25 +279,23 @@ public class CreateRideInfo extends AppCompatActivity {
                             street = address.getThoroughfare() +", ";
                         else
                             street ="";
-                        if(address.getFeatureName() != null)
+                       /* if(address.getFeatureName() != null)
                             featureName = address.getFeatureName() +", ";
                         else
-                            featureName ="";
+                            featureName ="";*/
 
-                        sb.append(featureName);
-                        sb.append(street);
-                        sb.append(locality);
-                        sb.append(zip);
-                        sb.append(country);
+                            sb.append(street);
+                            sb.append(locality);
+                            sb.append(zip);
+                            sb.append(country);
+
                         result = sb.toString();
                     }
                 } catch (IOException e) {
                     Log.e("Location Address Loader", "Unable connect to Geocoder", e);
                 } finally {
 
-                    if (result != null) {
-                        //addressFind = result;
-                    } else {
+                    if (result == null) {
                         result = " Unable to get address for this location.";
                     }
 
