@@ -549,7 +549,7 @@ router.put("/routes", function(req, res){
 					for (var i = 0; i < dates.length-1; i=i+2){
 						query += mysql.format(
 							"INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
-							[result.insertId, dates[i], dates[i+1]]
+							[result.insertId, dates[i], 0]
 						);
 						//Ajout
 						console.log("OK 3");

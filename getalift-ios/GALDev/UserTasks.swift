@@ -14,8 +14,6 @@ class UserTasks {
     
     var user : User = User.init()
     
-    var correctPassword: Bool = false
-    
     func user(driverId: Int!, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let driverIdString = String(driverId)
@@ -98,8 +96,6 @@ class UserTasks {
     
     func authentification(username: String, password: String, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
-        
-        
         let url = URL(string: ServerAdress+":7878/api/auth")!
         
         var request = URLRequest(url: url)
@@ -120,21 +116,23 @@ class UserTasks {
             {
                 print("Error")
                 return
+                
             } else {
                 /// Convert server json response to NSDictionary
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                     
                     if let parseJSON = json {
+                        DispatchQueue.main.async {
+                            /// Recovery of request state
+                            let success = parseJSON["success"] as? Bool
                         
-                        /// Recovery of request state
-                        let success = parseJSON["success"] as? Bool
-                        
-                        /// If the request has worked
-                        if success == true {
-                            self.correctPassword = true
-                        } else {
-                            self.correctPassword = false
+                            /// If the request has worked
+                            if success == true {
+                                completionHandler("",true)
+                            } else {
+                                completionHandler("",false)
+                            }
                         }
                     }
                 } catch let error as NSError {

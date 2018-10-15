@@ -14,6 +14,8 @@ class EditProfile: UIViewController {
     //Mark: Variables
     var user : User = Home.UserConnectedInformations.user
     
+    var authentificationConfirm: Bool = false
+    
     //Mark: Tasks
     var userTasks = UserTasks()
     
@@ -85,47 +87,60 @@ class EditProfile: UIViewController {
             mobileNumber = self.phone.text!
         }
         
+        
+        
         if self.actualPassword.text != "" {
-            
-            if newPassword.text != "" || confirmNewPassword.text != "" {
-                if newPassword.text != confirmNewPassword.text {
-                    let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
-                    let banner = NotificationBanner(title: "Error", subtitle: "New password is not the same in the 2 fields", leftView: imageView, style: .danger)
-                    banner.show()
-                } else {
-                    password = newPassword.text!
-                }
-            } else {
-                password = actualPassword.text!
-            }
-            
-            if (newPassword.text == confirmNewPassword.text) || (newPassword.text! == "" && confirmNewPassword.text! == "") {
-                self.userTasks.editUser(driverId: self.user.id, username: username, password: String(password), name: name, surname: surname, email: email, mobileNumber: mobileNumber) { (status, success) in
-                    if success {
-                    
-                        DispatchQueue.main.async() {
-                            /// Recovery Main.storyboard
-                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                            
-                            /// Create a transition page to access the main page
-                            let transitionPage = storyboard.instantiateViewController(withIdentifier: "transitionPage") as! SWRevealViewController
-                            
-                            /// Acces to the main page
-                            self.present(transitionPage, animated: true, completion: { () -> Void in
-                                DispatchQueue.main.async() {
-                                    let imageView = UIImageView(image: #imageLiteral(resourceName: "success"))
-                                    let banner = NotificationBanner(title: "Successful", subtitle: "Your profil was edited with success", leftView: imageView, style: .success)
-                                    banner.show()
+            self.userTasks.authentification(username: user.username, password: actualPassword.text!) { (status, success) in
+                if success {
+                        if self.newPassword.text != "" || self.confirmNewPassword.text != "" {
+                            if self.newPassword.text != self.confirmNewPassword.text {
+                                let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
+                                let banner = NotificationBanner(title: "Error", subtitle: "New password is not the same in the 2 fields", leftView: imageView, style: .danger)
+                                banner.show()
+                            } else {
+                                password = self.newPassword.text!
+                            }
+                        } else {
+                            password = self.actualPassword.text!
+                        }
+                        
+                        if (self.newPassword.text == self.confirmNewPassword.text) || (self.newPassword.text! == "" && self.confirmNewPassword.text! == "") {
+                            self.userTasks.editUser(driverId: self.user.id, username: username, password: String(password), name: name, surname: surname, email: email, mobileNumber: mobileNumber) { (status, success) in
+                                if success {
+                                    
+                                    DispatchQueue.main.async() {
+                                        /// Recovery Main.storyboard
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        
+                                        /// Create a transition page to access the main page
+                                        let transitionPage = storyboard.instantiateViewController(withIdentifier: "transitionPage") as! SWRevealViewController
+                                        
+                                        /// Acces to the main page
+                                        self.present(transitionPage, animated: true, completion: { () -> Void in
+                                            DispatchQueue.main.async() {
+                                                let imageView = UIImageView(image: #imageLiteral(resourceName: "success"))
+                                                let banner = NotificationBanner(title: "Successful", subtitle: "Your profil was edited with success", leftView: imageView, style: .success)
+                                                banner.show()
+                                            }
+                                        })
+                                    }
+                                } else {
+                                    DispatchQueue.main.async {
+                                        let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
+                                        let banner = NotificationBanner(title: "Bad connection", subtitle: "Please retry", leftView: imageView, style: .danger)
+                                        banner.show()
+                                    }
                                 }
-                            })
-                        }
+                            }
                     } else {
-                        DispatchQueue.main.async {
-                            let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
-                            let banner = NotificationBanner(title: "Bad connection", subtitle: "Please retry", leftView: imageView, style: .danger)
-                            banner.show()
-                        }
+                        let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
+                        let banner = NotificationBanner(title: "Not the good password", subtitle: "Your password is not correct", leftView: imageView, style: .danger)
+                        banner.show()
                     }
+                } else {
+                    let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
+                    let banner = NotificationBanner(title: "Bad password", subtitle: "Not the good password", leftView: imageView, style: .danger)
+                    banner.show()
                 }
             }
         } else {
