@@ -24,6 +24,7 @@ class MapTasks : NSObject, CLLocationManagerDelegate {
     
     var fetchedAddressLatitude: Double!
     
+    let key = "AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY"
     
     // Direction
     
@@ -123,7 +124,7 @@ class MapTasks : NSObject, CLLocationManagerDelegate {
                 
                 let originLocation = originLocation.replacingOccurrences(of:" ", with: "+").replacingOccurrences(of: ",", with: "+")
                 let destinationLocation = destinationLocation.replacingOccurrences(of:" ", with: "+").replacingOccurrences(of: ",", with: "+")
-                let directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation
+                let directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation + "&key=" + key
                 
                 
             
