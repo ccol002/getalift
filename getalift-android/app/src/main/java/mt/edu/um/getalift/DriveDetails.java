@@ -30,8 +30,6 @@ public class DriveDetails extends AppCompatActivity {
         txtTest = findViewById(R.id.textView);
         txtTest.setText(String.valueOf(userID));
 
-
-
     }
 
 
