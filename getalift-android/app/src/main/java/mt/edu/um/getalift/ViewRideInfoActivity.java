@@ -95,12 +95,12 @@ public class ViewRideInfoActivity extends AppCompatActivity {
 
 
             //Recover address of the starting point
-            /*try {
-                txt_view_starting_point.setText(onHandleIntent(intent_View_Ride_Info_activity, startingPoint));
-                txt_view_ending_point.setText(onHandleIntent(intent_View_Ride_Info_activity, endingPoint));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
+
+        String adresseOrigin = getAddressFromLocation(startingPoint.getLat(),startingPoint.getLng(),getApplicationContext());
+        String adresseDestination = getAddressFromLocation(endingPoint.getLat(),endingPoint.getLng(),getApplicationContext());
+                txt_view_starting_point.setText(adresseOrigin);
+                txt_view_ending_point.setText(adresseDestination);
+
 
 
         //Complete the fields with the info of the driver
@@ -299,16 +299,62 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     }
 
 
-  /*  public String onHandleIntent(Intent intent, MyPoint point) throws IOException {
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+    public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        String result = null;
+        String locality, zip, country, street, featureName;
 
-        List<Address> addresses;
-        //geocoder = new Geocoder(this.getBaseContext(),Locale.getDefault());
+        try {
+            List< Address > addressList = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addressList != null && addressList.size() > 0) {
+                Address address = addressList.get(0);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                    sb.append(address.getAddressLine(i)); //.append("\n");
+                }
+                //Make sure the information for the address are not null before displaying them
+                if(address.getLocality() != null)
+                    locality = address.getLocality() +", ";
+                else
+                    locality = "";
+                if(address.getPostalCode() != null)
+                    zip = address.getPostalCode() + ", ";
+                else
+                    zip ="";
+                if(address.getCountryName() != null)
+                    country = address.getCountryName();
+                else
+                    country = "";
+                if(address.getThoroughfare() != null)
+                    street = address.getThoroughfare() +", ";
+                else
+                    street ="";
+                if(address.getFeatureName() != null)
+                    featureName = address.getFeatureName() +", ";
+                else
+                    featureName ="";
 
-        addresses = geocoder.getFromLocation(point.getLat(), point.getLng(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-        return address;
-    }*/
+                sb.append(featureName);
+                sb.append(street);
+                sb.append(locality);
+                sb.append(zip);
+                sb.append(country);
+                result = sb.toString();
+            }
+        } catch (IOException e) {
+            Log.e("Location Address Loader", "Unable connect to Geocoder", e);
+        } finally {
+
+            if (result != null) {
+                //addressFind = result;
+            } else {
+                result = " Unable to get address for this location.";
+            }
+
+        }
+        return result;
+    }
+
 
 
 }

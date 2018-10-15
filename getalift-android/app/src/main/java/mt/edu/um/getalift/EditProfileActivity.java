@@ -45,7 +45,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private TextView txtPhoneNumber;
     private TextView txtEmail;
     private TextView txtComment;
-    private TextView txtTestId;
+    private TextView txtOldPassword;
     private TextView txtPassword;
 
     private Button mValidButton;
@@ -63,6 +63,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private String password;
     private int phoneNumber;
 
+    private boolean password_ok;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         setTitle(getString(R.string.text_title_edit_profile));
         info = false;
+        password_ok =false;
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
@@ -83,6 +86,7 @@ public class EditProfileActivity extends AppCompatActivity {
         txtSurname = findViewById(R.id.edt_edit_surname);
         txtUsername = findViewById(R.id.edt_edit_username);
         txtPassword = findViewById(R.id.edt_edit_password);
+        txtOldPassword = findViewById(R.id.edt_edit_old_password);
 
         mValidButton = (Button) findViewById(R.id.btn_valid_edit_profile);
         mClearButton = (Button) findViewById(R.id.btn_clear_edit);
@@ -108,7 +112,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fillOutTheEditForm();
-                if (info ){
+                if (info /*&& password_ok*/ ){
                     editDataBase(view);
                 }
             }
@@ -131,6 +135,7 @@ public class EditProfileActivity extends AppCompatActivity {
         // final String comment = ((EditText) findViewById(R.id.edt_edit_comment)).getText().toString().trim();
         final String username = ((EditText) findViewById(R.id.edt_edit_username)).getText().toString().trim();
         final String password = ((EditText) findViewById(R.id.edt_edit_password)).getText().toString().trim();
+        final String oldPassword = ((EditText) findViewById(R.id.edt_edit_old_password)).getText().toString().trim();
 
         // We check a bunch of things from what the user type.
         if (name.length() < 6 && name.length() > 0 ) {
@@ -158,10 +163,35 @@ public class EditProfileActivity extends AppCompatActivity {
         } else if (password.length() > 63){
             Toast.makeText(getApplicationContext(), getString(R.string.error_password_long), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplicationContext(), "All information is correct", Toast.LENGTH_SHORT).show();
+           /* if (password.length() != 0){
+                verifyOldPassword(oldPassword);
+            }*/
             info = true;
+            Toast.makeText(getApplicationContext(), "All information is correct", Toast.LENGTH_SHORT).show();
+
         }
 
+    }
+
+    //Verify that his old password correspond to the one in teh database before edit the password
+    private void verifyOldPassword(String oldPassword) {
+        if (oldPassword.length() == 0){
+            Toast.makeText(getApplicationContext(), getString(R.string.error_old_password_missing), Toast.LENGTH_SHORT).show();
+        }
+        //Check the old password
+        else{
+            login();
+            /*if(oldPassword.equals(password)){
+                Log.i("TAG_PASSWORD",password);
+                password_ok = true;
+                Toast.makeText(getApplicationContext(), "Old password correct", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Log.i("TAG_PASSWORD2",password);
+                Log.i("TAG_PASSWORD3",oldPassword);
+                Toast.makeText(getApplicationContext(), getString(R.string.error_old_password_incorrect), Toast.LENGTH_SHORT).show();
+            }*/
+        }
     }
 
     /**
@@ -296,6 +326,72 @@ public class EditProfileActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //To check the old password
+    public void login(){
+        // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(this);
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/auth";
+
+        final String oldPassword = ((EditText) findViewById(R.id.edt_edit_old_password)).getText().toString().trim();
+
+        // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
+        // it looks like it's more stable.
+        StringRequest sr = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response){
+                        // We got a response from our server.
+                        try {
+                            // We create a JSONObject from the server response.
+                            JSONObject jo = new JSONObject(response);
+
+                            if (jo.getBoolean("success")){
+                                Log.i("TAG_PASSWORD",password);
+                                password_ok = true;
+                                Toast.makeText(getApplicationContext(), "Old password correct", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Log.i("TAG_PASSWORD2",password);
+                                Log.i("TAG_PASSWORD3",oldPassword);
+                                Toast.makeText(getApplicationContext(), getString(R.string.error_old_password_incorrect), Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("GetALift", error.toString());
+                    }
+
+                }
+        ){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("username",username);
+                params.put("password",oldPassword);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+
+        queue.add(sr);
+    }
 
 
 }

@@ -95,10 +95,10 @@
         android:text="From :"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_your_route"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.058" />
 
     <TextView
         android:id="@+id/txt_To"
@@ -111,15 +111,15 @@
         android:text="To :"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_From"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <TextView
         android:id="@+id/txt_origin_address"
-        android:layout_width="295dp"
-        android:layout_height="36dp"
+        android:layout_width="299dp"
+        android:layout_height="41dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -149,7 +149,6 @@
         app:layout_constraintStart_toEndOf="@+id/txt_To"
         app:layout_constraintTop_toBottomOf="@+id/txt_origin_address"
         app:layout_constraintVertical_bias="0.0" />
-
 
     <DatePicker
         android:id="@+id/datePicker"

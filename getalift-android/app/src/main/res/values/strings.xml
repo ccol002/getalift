@@ -44,6 +44,8 @@
     <string name="error_username_short">The username must be more than 6 character long.</string>
     <string name="error_password_short">The password must be more than 6 character long.</string>
     <string name="error_password_long">The password must be less than 63 character long.</string>
+    <string name="error_old_password_missing">To edit your password, you have to enter your old password !</string>
+    <string name="error_old_password_incorrect">Your old password is incorrect !</string>
     <string name="error_username_long">The username must be less than 63 character long.</string>
     <string name="error_email_valid">You must enter a valid email adress.</string>
     <string name="error_firstname_notset">You must tell your firstname.</string>
@@ -111,7 +113,7 @@
     <string name="txt_Profil"> Profile </string>
     <string name="txt_choice_language"> You chose </string>
     <string name="txt_edit_profile"> Edit my profile </string>
-
+    <string name="txt_old_password">Old Password</string>
 
     <string name="pref_title_change_language">Change language</string>
     <string-array name="pref_list_languages">
