@@ -60,6 +60,8 @@ public class PassengerList extends ListFragment{
     public void onListItemClick(ListView l, View v, int position, long id) {
         if (litstener != null) {
             litstener.onClientSelectedPassenger(position);
+            //Log.i(TAG,String.valueOf(position)); // Quelle place dans la liste
+            //Log.i(TAG,String.valueOf(data.get(position).getInfo())); // Les données de la route
         }
     }
 
@@ -74,11 +76,11 @@ public class PassengerList extends ListFragment{
                     public void onResponse(String response) {
                         // We got a response from our server.
                         try {
-                            Log.i(TAG + "Rep",response);
+                            //Log.i(TAG + "Rep",response);
                             int length = new JSONArray(response).length();
                             for (int i = 0;i<length;i++ ){
                                 JSONObject jo = new JSONArray(response).getJSONObject(i);
-                                Drive drive = new Drive(jo.getString("originAdress"),jo.getString("destinationAdress"),jo.getString("route_date"));
+                                Drive drive = new Drive(jo.getInt("id"),jo.getString("originAdress"),jo.getString("destinationAdress"),jo.getString("route_date"));
                                 data.add(drive);
                             }
                             DriveAdapter adapter = new DriveAdapter(getActivity(), data);
@@ -107,7 +109,4 @@ public class PassengerList extends ListFragment{
         };
         queue.add(sr);
     }
-
-
-
 }
