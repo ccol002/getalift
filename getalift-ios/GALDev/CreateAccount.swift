@@ -109,7 +109,7 @@ class CreateAccount : UIViewController {
                                     self.present(homePage, animated: true, completion: { () -> Void in
                                         DispatchQueue.main.async() {
                                             let imageView = UIImageView(image: #imageLiteral(resourceName: "success"))
-                                            let banner = NotificationBanner(title: "Succes", subtitle: "You have created your account", leftView: imageView, style: .success)
+                                            let banner = NotificationBanner(title: "Success", subtitle: "You have created your account", leftView: imageView, style: .success)
                                             banner.show()
                                         }
                                     })

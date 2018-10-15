@@ -50,7 +50,7 @@ class FirstView: UIViewController, CLLocationManagerDelegate {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-        /// Initialize the Map view to a position of the University of Mata
+        /// Initialize the Map view to a position of the University of Malta
         let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 48.857165, longitude: 2.354613, zoom: 8.0)
         viewMap?.camera = camera
         
@@ -69,6 +69,20 @@ class FirstView: UIViewController, CLLocationManagerDelegate {
         
         SearchRoute.SearchedRoute.seeCurrentRoute = Route.init()
         
+        //For the alert message
+        self.passengerTask.passengerNames(driverId: self.user.id, completionHandler: {(status, success) -> Void in
+            if success {
+                self.passengers = self.passengerTask.passengers
+                
+                DispatchQueue.main.async {
+                    for index in 0...(self.passengers).count-1 {
+                        self.alerts.append(self.createUIAlertController(passengerUsername: self.passengers[index].username))
+                        self.passIDs.append(self.passengers[index].id)
+                    }
+                    self.showAlert()
+                }
+            }
+        })
 
     }
     
@@ -127,6 +141,67 @@ class FirstView: UIViewController, CLLocationManagerDelegate {
         viewMap?.camera = camera
 
         locationManager.stopUpdatingLocation()
+    }
+    
+    
+    // --------- Alert message ---------
+    
+    // ---Variables---
+    var passengers: [Passenger] = []
+    
+    var passengerTask = PassengerTasks()
+    var userTask = UserTasks()
+    
+    var alerts: [UIAlertController] = []
+    var passIDs: [Int] = []
+    
+    var user : User = Home.UserConnectedInformations.user
+    
+    //---Functions---
+    
+    func createUIAlertController(passengerUsername: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Please confirm!", message: "\(passengerUsername) was your passenger?", preferredStyle: UIAlertControllerStyle.alert)
+        return alert
+    }
+    
+    func showAlert(){
+        if let alert = alerts.first {
+            if let passID = passIDs.first {
+                let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
+                    self.confirmPassenger(passID: passID)
+                    self.alerts.remove(at: 0)
+                    self.passIDs.remove(at: 0)
+                    self.showAlert()
+                }
+                let noAction = UIAlertAction(title: "No", style: .default) { action in
+                    self.notConfirmPassenger(passID: passID)
+                    self.alerts.remove(at: 0)
+                    self.passIDs.remove(at: 0)
+                    self.showAlert()
+                }
+                alert.addAction(yesAction)
+                alert.addAction(noAction)
+                present(alert, animated: true, completion: nil)
+            }
+        } else {
+            print("All alerts shown")
+        }
+    }
+
+    func confirmPassenger(passID : Int) {
+        passengerTask.changeInTheCarColumn(passID: passID, completionHandler: {(status, success) -> Void in
+            if success {
+                print("inTheCar column successfully changed")
+            }
+        })
+    }
+
+    func notConfirmPassenger(passID : Int) {
+        passengerTask.deletePassenger(passengerID: passID, completionHandler: {(status, success) -> Void in
+            if success {
+                print("successfully deleted")
+            }
+        })
     }
     
 }

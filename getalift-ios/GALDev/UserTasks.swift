@@ -14,6 +14,8 @@ class UserTasks {
     
     var user : User = User.init()
     
+    var correctPassword: Bool = false
+    
     func user(driverId: Int!, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let driverIdString = String(driverId)
@@ -62,4 +64,85 @@ class UserTasks {
         }
         task.resume()
     }
+    
+    func editUser(driverId: Int, username: String, password: String, name: String, surname: String, email: String, mobileNumber: String, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+        
+        let url = URL(string: ServerAdress+":7878/api/users/"+String(driverId))!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+    
+        let parameters = "username=" + username + "&password=" + password + "&name=" + name + "&surname=" + surname + "&email=" + email + "&mobileNumber=" + mobileNumber + "&isVerified=0"
+        
+        request.httpBody = parameters.data(using: String.Encoding.utf8)
+        
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.addValue(token, forHTTPHeaderField: "x-access-token")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            // Check for error
+            if error != nil
+            {
+                print("Error")
+                return
+            }
+            
+            do{
+                completionHandler("Ok", true)
+            }
+        }
+        task.resume()
+    }
+    
+    func authentification(username: String, password: String, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+        
+        
+        
+        let url = URL(string: ServerAdress+":7878/api/auth")!
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        
+        let parameters = "username=" + username + "&password=" + password
+        
+        request.httpBody = parameters.data(using: String.Encoding.utf8)
+        
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            /// Check for error
+            if error != nil
+            {
+                print("Error")
+                return
+            } else {
+                /// Convert server json response to NSDictionary
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    if let parseJSON = json {
+                        
+                        /// Recovery of request state
+                        let success = parseJSON["success"] as? Bool
+                        
+                        /// If the request has worked
+                        if success == true {
+                            self.correctPassword = true
+                        } else {
+                            self.correctPassword = false
+                        }
+                    }
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        task.resume()
+    }
+    
 }

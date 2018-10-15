@@ -8,6 +8,7 @@
 
 import Foundation
 import GoogleMaps
+import NotificationBannerSwift
 
 
 /// Class to display the information of an existing route
@@ -42,10 +43,14 @@ class RouteView : UIViewController {
     var userTasks = UserTasks()
     var dateTasks = DateTasks()
     var calculationForMapDisplay = CalculationForMapDisplay()
+    var rideTasks = RideTasks()
+    var passengerTasks = PassengerTasks()
     
     
     /// User's Token
     var token = Home.UserConnectedInformations.userToken
+    
+    var user : User = Home.UserConnectedInformations.user
     
     var routes : [Route] = []
     
@@ -87,8 +92,18 @@ class RouteView : UIViewController {
             target: self,
             action: #selector(displayWalkPath(sender:))
         )
-        self.navigationItem.rightBarButtonItem = rightButtonItem
-        self.navigationItem.rightBarButtonItems?.append(walkrightButtonItem)
+        
+        // The right button to add a route to rides
+        let addToRidesButtonItem = UIBarButtonItem.init(
+            image: #imageLiteral(resourceName: "addToRides"),
+            style: .done,
+            target: self,
+            action: #selector(addToRides(sender:))
+        )
+        
+        self.navigationItem.rightBarButtonItems = [rightButtonItem, walkrightButtonItem, addToRidesButtonItem]
+        /*self.navigationItem.rightBarButtonItem = rightButtonItem
+        self.navigationItem.rightBarButtonItems?.append(walkrightButtonItem)*/
     }
     
     /// To diplay the driver view
@@ -120,6 +135,42 @@ class RouteView : UIViewController {
                 self.navigationItem.rightBarButtonItems![1].image = #imageLiteral(resourceName: "car")
             }
         }
+    }
+    
+    //CHARLY
+    ///Add the route to the ride
+    
+    var insertId: Int = 0
+    
+    @IBAction func addToRides(sender: Any) {
+        rideTasks.addRide(routeID: self.routes[myIndex].id, completitionHandler: { (status, success) -> Void in
+            if success {
+                DispatchQueue.main.async() {
+                    self.insertId = self.rideTasks.insertId
+                    self.passengerTasks.addpass(ride: self.insertId, passenger: self.user.id)
+                    
+                    let imageView = UIImageView(image: #imageLiteral(resourceName: "success"))
+                    let banner = NotificationBanner(title: "Route added to your Rides", subtitle: "Driver must confirm this Ride", leftView: imageView, style: .success)
+                    banner.show()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.passengerTasks.addPassengerExistingRide(passengerID: self.user.id, routeID: self.routes[myIndex].id, completitionHandler: { (status, success) in
+                        DispatchQueue.main.async {
+                            if success {
+                                let imageView = UIImageView(image: #imageLiteral(resourceName: "success"))
+                                let banner = NotificationBanner(title: "Route added to your Rides", subtitle: "Driver must confirm this Ride", leftView: imageView, style: .success)
+                                banner.show()
+                            } else {
+                                let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
+                                let banner = NotificationBanner(title: "This route is already in your Ride", subtitle: "You already had this route to your Rides", leftView: imageView, style: .danger)
+                                banner.show()
+                            }
+                        }
+                    })
+                }
+            }
+        })
     }
     
     /// If tasks are finished, we can display the maps with his informations

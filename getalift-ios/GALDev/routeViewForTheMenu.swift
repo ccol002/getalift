@@ -43,6 +43,8 @@ class RouteViewForTheMenu : UIViewController {
     
     var routes : [Route] = []
     
+    var ridesSegue: Bool = false
+    
     /// Labels pour affichage des informations
     @IBOutlet var originLabel : UILabel?
     @IBOutlet var destinationLabel : UILabel?
@@ -76,6 +78,9 @@ class RouteViewForTheMenu : UIViewController {
         if segue.identifier == "driverViewSegue" {
             if let destination = segue.destination as? DriverView {
                 destination.routes = self.routes
+                if ridesSegue == true {
+                    destination.ridesSegue = true
+                }
             }
         }
     }

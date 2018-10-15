@@ -9,6 +9,7 @@
 import UIKit
 import MessageUI
 import NotificationBannerSwift
+import Cosmos
 
 /// Class to display information of the driver of the selected route
 class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
@@ -30,6 +31,8 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
     
     var searchedRoute : Route = SearchRoute.SearchedRoute.searchedRoute
     
+    var ridesSegue: Bool = false
+    
     /// Driver's informations
     @IBOutlet var firstNameLabel : UILabel!
     @IBOutlet var lastNameLabel : UILabel!
@@ -37,6 +40,7 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
     @IBOutlet var mobileNumberLabel : UILabel!
     @IBOutlet var emailLabel : UILabel!
     
+    @IBOutlet weak var cosmosView: CosmosView!
     
      //  #################### Functions ####################
     
@@ -54,8 +58,34 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
                 }
                 self.driverEmail = self.userTasks.user.email
                 self.mobileNumber = self.userTasks.user.mobileNumber
+                
+                let rateButtonItem = UIBarButtonItem.init(
+                    image: #imageLiteral(resourceName: "podium"),
+                    style: .done,
+                    target: self,
+                    action: #selector(self.displayRatingView(sender:))
+                )
+                
+                if self.ridesSegue == true {
+                     self.navigationItem.rightBarButtonItems = [rateButtonItem]
+                }
+                
             }
         })
+        
+        cosmosView.settings.updateOnTouch = false
+        self.ratingTask.getRating(targetId: driverId!, completitionHandler: { (status, sucess) -> Void in
+            if sucess {
+                DispatchQueue.main.async {
+                    self.rate = self.ratingTask.rate
+                    self.updateRating()
+                }
+            }
+        })
+    }
+    
+    @IBAction func displayRatingView(sender: AnyObject) {
+        performSegue(withIdentifier: "rateSegue", sender: self)
     }
     
     @IBAction func addToFavoriteRoute(sender: AnyObject){
@@ -157,10 +187,35 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
         }
     }
     
+    @IBAction func unwindToDriverView(segue:UIStoryboardSegue) { }
+    
     func alert(title: String, message: String){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "commentsViewSegue" {
+            if let destination = segue.destination as? Comments {
+                destination.routes = self.routes
+            }
+        } else if segue.identifier == "rateSegue" {
+            if let destination = segue.destination as? Rating {
+                destination.routes = self.routes
+            }
+        }
+    }
+    
+    //---------Rating System--------
+    
+    var rate: Float = 0
+    
+    var ratingTask = RatingTasks()
+    
+    private func updateRating() {
+        cosmosView.rating = Double(self.rate)
+    }
+    
 }

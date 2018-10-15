@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class UserProfile : UIViewController {
     
     
@@ -41,5 +40,34 @@ class UserProfile : UIViewController {
         mobileNumberLabel.text = user.mobileNumber
         emailLabel.text = user.email
         
+        //Edit profil
+        
+        let rightButtonItem = UIBarButtonItem.init(
+            image: UIImage(named: "edit"),
+            style: .done,
+            target: self,
+            action: #selector(displayDriverView(sender:))
+        )
+        
+        self.navigationItem.rightBarButtonItems = [rightButtonItem]
+        
     }
+    
+    @IBAction func displayDriverView(sender: AnyObject){
+        performSegue(withIdentifier: "editProfileViewSegue", sender: self)
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

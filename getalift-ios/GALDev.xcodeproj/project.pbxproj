@@ -63,8 +63,20 @@
 		4CB63F271F94F4ED008E8881 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB63F261F94F4ED008E8881 /* RouteTests.swift */; };
 		4CBC78921F8B847D00C9930F /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC78911F8B847D00C9930F /* SearchTextField.swift */; };
 		4CF30A4C1F66A4D5001B3AF3 /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF30A4B1F66A4D5001B3AF3 /* RouteView.swift */; };
+		9C1BB7112151279800926491 /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BB7102151279800926491 /* Passenger.swift */; };
+		9C1BB7172151285F00926491 /* PassengerTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1BB7162151285F00926491 /* PassengerTasks.swift */; };
+		9C7C1F72215B85C00074E3A4 /* RidesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C1F71215B85C00074E3A4 /* RidesTableViewCell.swift */; };
+		9C7C1F79215B8D2E0074E3A4 /* Rides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C1F78215B8D2E0074E3A4 /* Rides.swift */; };
+		9C7C1F7F215BB2750074E3A4 /* CommentaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C1F7E215BB2750074E3A4 /* CommentaryTableViewCell.swift */; };
+		9C7C1F81215BB5D00074E3A4 /* CommentsTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C1F80215BB5D00074E3A4 /* CommentsTasks.swift */; };
+		9C7C1F83215BB65F0074E3A4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C1F82215BB65F0074E3A4 /* Comment.swift */; };
+		9C7C1F85215BBF8B0074E3A4 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7C1F84215BBF8B0074E3A4 /* Comments.swift */; };
 		9C9DF0C3211DD5A400C35B73 /* Pods_GALDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */; };
+		9CB40BF821528264004CEEAC /* RatingTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB40BF721528264004CEEAC /* RatingTasks.swift */; };
 		9CD9B6CB2121755C00FF8C14 /* routeSaved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0916101F9E250E00E94F83 /* routeSaved.swift */; };
+		9CDD529C2153C821009CE16E /* RideTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDD529B2153C821009CE16E /* RideTasks.swift */; };
+		9CE7944421625D7700CA1A94 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE7944321625D7700CA1A94 /* Rating.swift */; };
+		9CFACF98216CC602008471D7 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFACF97216CC602008471D7 /* EditProfile.swift */; };
 		C301201B1FA2161600FCCE5E /* SeeCurrentRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301201A1FA2161600FCCE5E /* SeeCurrentRoute.swift */; };
 		C306DD5E1FA8D35800DA70A5 /* routeViewForTheMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306DD5D1FA8D35800DA70A5 /* routeViewForTheMenu.swift */; };
 		C306DD601FA8DE2800DA70A5 /* GetMoreInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C306DD5F1FA8DE2800DA70A5 /* GetMoreInformation.swift */; };
@@ -80,6 +92,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4C312A4A1F4EE5B000555D0E;
 			remoteInfo = GALDev;
+		};
+		9CB40BFE21528267004CEEAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23B5DE57980D03452A614C7C1E6E00EE;
+			remoteInfo = Cosmos;
 		};
 		9CD9B6D621217BE800FF8C14 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -174,8 +193,20 @@
 		4CB63F261F94F4ED008E8881 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
 		4CBC78911F8B847D00C9930F /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		4CF30A4B1F66A4D5001B3AF3 /* RouteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
+		9C1BB7102151279800926491 /* Passenger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
+		9C1BB7162151285F00926491 /* PassengerTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassengerTasks.swift; sourceTree = "<group>"; };
+		9C7C1F71215B85C00074E3A4 /* RidesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidesTableViewCell.swift; sourceTree = "<group>"; };
+		9C7C1F78215B8D2E0074E3A4 /* Rides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rides.swift; sourceTree = "<group>"; };
+		9C7C1F7E215BB2750074E3A4 /* CommentaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentaryTableViewCell.swift; sourceTree = "<group>"; };
+		9C7C1F80215BB5D00074E3A4 /* CommentsTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTasks.swift; sourceTree = "<group>"; };
+		9C7C1F82215BB65F0074E3A4 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		9C7C1F84215BBF8B0074E3A4 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		9CB40BF721528264004CEEAC /* RatingTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTasks.swift; sourceTree = "<group>"; };
 		9CD298EB30D0053A94F0D44A /* Pods_GALDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GALDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD9B6CF21217BE800FF8C14 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		9CDD529B2153C821009CE16E /* RideTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideTasks.swift; sourceTree = "<group>"; };
+		9CE7944321625D7700CA1A94 /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		9CFACF97216CC602008471D7 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		B4F0FD8CD784B4278919A266 /* Pods-GALDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GALDev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GALDev/Pods-GALDev.debug.xcconfig"; sourceTree = "<group>"; };
 		C301201A1FA2161600FCCE5E /* SeeCurrentRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeCurrentRoute.swift; sourceTree = "<group>"; };
 		C306DD5D1FA8D35800DA70A5 /* routeViewForTheMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = routeViewForTheMenu.swift; sourceTree = "<group>"; };
@@ -335,6 +366,10 @@
 				4C2E970A1FA6312100E31E49 /* PageViewController.swift */,
 				C306DD5F1FA8DE2800DA70A5 /* GetMoreInformation.swift */,
 				C306DD611FA8E4E600DA70A5 /* Settings.swift */,
+				9C7C1F78215B8D2E0074E3A4 /* Rides.swift */,
+				9C7C1F84215BBF8B0074E3A4 /* Comments.swift */,
+				9CE7944321625D7700CA1A94 /* Rating.swift */,
+				9CFACF97216CC602008471D7 /* EditProfile.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -347,6 +382,10 @@
 				4C3EF1741F7E6DDC001F4F8C /* RouteTasks.swift */,
 				4C56C9D01F7F991F005DFD99 /* DateTasks.swift */,
 				C38644A51FA1CB6600EE7BD1 /* FavoriteRouteTasks.swift */,
+				9C1BB7162151285F00926491 /* PassengerTasks.swift */,
+				9CB40BF721528264004CEEAC /* RatingTasks.swift */,
+				9CDD529B2153C821009CE16E /* RideTasks.swift */,
+				9C7C1F80215BB5D00074E3A4 /* CommentsTasks.swift */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -358,6 +397,8 @@
 				4C312ADD1F4F3F2B00555D0E /* BoutonArrondi.swift */,
 				4C312AE61F50404A00555D0E /* SelectedButton.swift */,
 				C38644A71FA1FB0700EE7BD1 /* BouttonArrondi2.swift */,
+				9C7C1F71215B85C00074E3A4 /* RidesTableViewCell.swift */,
+				9C7C1F7E215BB2750074E3A4 /* CommentaryTableViewCell.swift */,
 			);
 			name = CustomItem;
 			sourceTree = "<group>";
@@ -381,6 +422,8 @@
 				4CAA29241F86944B00813FA9 /* User.swift */,
 				4CAA29261F8695F200813FA9 /* Route.swift */,
 				4CAA29281F8696E600813FA9 /* DateTime.swift */,
+				9C1BB7102151279800926491 /* Passenger.swift */,
+				9C7C1F82215BB65F0074E3A4 /* Comment.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -388,6 +431,7 @@
 		9CD9B6D021217BE800FF8C14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9CB40BFF21528267004CEEAC /* Cosmos.framework */,
 				9CD9B6D721217BE800FF8C14 /* MarqueeLabel.framework */,
 				9CD9B6D921217BE800FF8C14 /* NotificationBannerSwift.framework */,
 				9CD9B6DB21217BE800FF8C14 /* Pods_GALDev.framework */,
@@ -496,6 +540,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9CB40BFF21528267004CEEAC /* Cosmos.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Cosmos.framework;
+			remoteRef = 9CB40BFE21528267004CEEAC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9CD9B6D721217BE800FF8C14 /* MarqueeLabel.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -556,12 +607,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GALDev/Pods-GALDev-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -618,34 +671,46 @@
 				4C3EF1751F7E6DDC001F4F8C /* RouteTasks.swift in Sources */,
 				4C2E970D1FA665ED00E31E49 /* HomePage.swift in Sources */,
 				4C0916111F9E250E00E94F83 /* routeSaved.swift in Sources */,
+				9C7C1F7F215BB2750074E3A4 /* CommentaryTableViewCell.swift in Sources */,
 				4C312ADC1F4F364700555D0E /* Help.swift in Sources */,
 				4C312A851F4EE7E500555D0E /* MapTasks.swift in Sources */,
 				C306DD621FA8E4E600DA70A5 /* Settings.swift in Sources */,
 				4C312A951F4F157B00555D0E /* SearchRoute.swift in Sources */,
 				4CF30A4C1F66A4D5001B3AF3 /* RouteView.swift in Sources */,
 				C306DD5E1FA8D35800DA70A5 /* routeViewForTheMenu.swift in Sources */,
+				9C7C1F85215BBF8B0074E3A4 /* Comments.swift in Sources */,
 				4C56C9D11F7F991F005DFD99 /* DateTasks.swift in Sources */,
+				9CDD529C2153C821009CE16E /* RideTasks.swift in Sources */,
+				9C7C1F81215BB5D00074E3A4 /* CommentsTasks.swift in Sources */,
 				4CAA29291F8696E600813FA9 /* DateTime.swift in Sources */,
 				4C312A871F4EE7F000555D0E /* FirstView.swift in Sources */,
 				4C312ADE1F4F3F2B00555D0E /* BoutonArrondi.swift in Sources */,
+				9C1BB7112151279800926491 /* Passenger.swift in Sources */,
 				4C47EAF61F5570A800FD60DC /* RouteList.swift in Sources */,
 				4C47EAFC1F56DA5A00FD60DC /* UserProfile.swift in Sources */,
 				4C312A891F4EE7F800555D0E /* CreateAccount.swift in Sources */,
 				4C312ADA1F4F341500555D0E /* SWRevealViewController.m in Sources */,
 				C38644A81FA1FB0700EE7BD1 /* BouttonArrondi2.swift in Sources */,
 				4C2E970B1FA6312100E31E49 /* PageViewController.swift in Sources */,
+				9C7C1F83215BB65F0074E3A4 /* Comment.swift in Sources */,
+				9CB40BF821528264004CEEAC /* RatingTasks.swift in Sources */,
 				C38644A61FA1CB6600EE7BD1 /* FavoriteRouteTasks.swift in Sources */,
 				4C50CD711F6FD27800B7E14E /* DriverView.swift in Sources */,
 				4C76FAC41F838DF800A4FFF6 /* myRoutes.swift in Sources */,
 				4C057C2B1F87EC49002178E5 /* CalculationForMapDisplay.swift in Sources */,
+				9C7C1F79215B8D2E0074E3A4 /* Rides.swift in Sources */,
 				4C3EF1731F7E4513001F4F8C /* UserTasks.swift in Sources */,
+				9CFACF98216CC602008471D7 /* EditProfile.swift in Sources */,
 				4CBC78921F8B847D00C9930F /* SearchTextField.swift in Sources */,
+				9C7C1F72215B85C00074E3A4 /* RidesTableViewCell.swift in Sources */,
 				4C47EAFA1F56B25300FD60DC /* Menu.swift in Sources */,
 				4C47EAF81F55743700FD60DC /* CreateYourRoute.swift in Sources */,
 				4C3EF1711F7E4050001F4F8C /* MyCustomCell.swift in Sources */,
 				4C312A8B1F4EE7FD00555D0E /* Login.swift in Sources */,
+				9C1BB7172151285F00926491 /* PassengerTasks.swift in Sources */,
 				C301201B1FA2161600FCCE5E /* SeeCurrentRoute.swift in Sources */,
 				4C312AE71F50404A00555D0E /* SelectedButton.swift in Sources */,
+				9CE7944421625D7700CA1A94 /* Rating.swift in Sources */,
 				4CAA29271F8695F200813FA9 /* Route.swift in Sources */,
 				4C312A4F1F4EE5B000555D0E /* AppDelegate.swift in Sources */,
 				4CAA29251F86944B00813FA9 /* User.swift in Sources */,
