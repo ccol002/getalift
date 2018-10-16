@@ -90,13 +90,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/EditProfile.swift"
-            timestampString = "561312722.108483"
+            timestampString = "561375423.906929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "editInformations()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GALDev.EditProfile.(editInformations in _E713483682BAB8D6697276AD66921D2E)() -&gt; ()"
+                  moduleName = "GALDev"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/charlyjoncheray/Documents/GitHub/getalift/getalift-ios/GALDev/EditProfile.swift"
+                  timestampString = "561388116.423445"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "94"
+                  endingLineNumber = "94"
+                  offsetFromSymbolStart = "10838">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[4] = Value Promoted from Box, Arg[5] = Value Promoted from Box, Arg[6] = Value Promoted from Box, Arg[7] = Value Promoted from Box, Arg[8] = Value Promoted from Box&gt; of closure #1 (Swift.String, Swift.Bool) -&gt; () in GALDev.EditProfile.(editInformations in _E713483682BAB8D6697276AD66921D2E)() -&gt; ()"
+                  moduleName = "GALDev"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/charlyjoncheray/Documents/GitHub/getalift/getalift-ios/GALDev/EditProfile.swift"
+                  timestampString = "561388116.427381"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "179">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
