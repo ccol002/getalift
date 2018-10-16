@@ -556,7 +556,7 @@ router.put("/routes", function(req, res){
 						console.log("OK 3");
 					}*/
 					db_con.query("INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
-						[result.insertId, dates[0]+ " "+dates[1], 0]
+						[result.insertId, dates[0]+ " " +dates[1], 0]
 						);
 					console.log("OK 3");
 					
