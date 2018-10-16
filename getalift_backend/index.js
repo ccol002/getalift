@@ -966,7 +966,7 @@ router.get("/passenger/route/:passId", function(req, res){
 // Done by : AD
 
 router.get("/passenger/route/information/:routeId", function(req, res){
-	db_con.query("SELECT u.id, u.surname FROM Route ro, Ride ri, Passenger p, User u WHERE ro.id = ? and ro.id = ri.route and ri.id = p.ride and p.passenger = u.id", [req.params.passId], function(err, result){
+	db_con.query("SELECT u.id, u.surname FROM Route ro, Ride ri, Passenger p, User u WHERE ro.id = ? and ro.id = ri.route and ri.id = p.ride and p.passenger = u.id", [req.params.routeId], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
