@@ -87,9 +87,11 @@ class Rating: UIViewController {
         }
     }
     
-    //Mark: -Actions
-    @IBAction func postButtonPressed(_ sender: UIButton) {
-        self.rateFunction()
+    private func setupTextFieldManager() {
+        comment.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,6 +100,15 @@ class Rating: UIViewController {
                 destination.routes = self.routes
             }
         }
+    }
+    
+    //Mark: -Actions
+    @IBAction func postButtonPressed(_ sender: UIButton) {
+        self.rateFunction()
+    }
+    
+    @IBAction func hideKeyboard() {
+        comment.resignFirstResponder()
     }
     
 }
@@ -120,3 +131,11 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 }
+
+extension Rating: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+

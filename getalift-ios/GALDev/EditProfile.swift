@@ -34,6 +34,7 @@ class EditProfile: UIViewController {
     //Mark: function
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupTextFieldManager()
 
         self.lastName.placeholder = user.surname
         self.firstName.placeholder = user.name
@@ -150,10 +151,49 @@ class EditProfile: UIViewController {
         }
     }
     
+    private func setupTextFieldManager() {
+        lastName.delegate = self
+        firstName.delegate = self
+        username.delegate = self
+        phone.delegate = self
+        email.delegate = self
+        actualPassword.delegate = self
+        newPassword.delegate = self
+        confirmNewPassword.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
     //Mark: -Actions
     @IBAction func editInformationsButtonPressed(_ sender: UIButton) {
         return editInformations()
     }
-    
 
+    @IBAction func hideKeyboard() {
+        lastName.resignFirstResponder()
+        firstName.resignFirstResponder()
+        username.resignFirstResponder()
+        phone.resignFirstResponder()
+        email.resignFirstResponder()
+        actualPassword.resignFirstResponder()
+        newPassword.resignFirstResponder()
+        confirmNewPassword.resignFirstResponder()
+    }
+    
 }
+
+extension EditProfile: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+
+
+
+
+
+
+

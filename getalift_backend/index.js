@@ -547,14 +547,18 @@ router.put("/routes", function(req, res){
 					// Next, we store the weekly repeat in the database.
 					// Each line of the RouteMeta table store a date, and an time interval from this date.
 
-					for (var i = 0; i < dates.length-1; i=i+2){
+					/*for (var i = 0; i < dates.length-1; i=i+2){
 						query += mysql.format(
 							"INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
 							[result.insertId, dates[i], 0]
 						);
 						//Ajout
 						console.log("OK 3");
-					}
+					}*/
+					db_con.query("INSERT INTO `RouteDate` (`id`, `route`, `route_date`, `weekly_repeat`) VALUES (NULL, ?, ?, ?);",
+						[result.insertId, dates[0]+ " "+dates[1], 0]
+						);
+					console.log("OK 3");
 					
 					/*var heure = dates[0].split(" ")[1];
 					var date = dates[0].split(" ")[0];
