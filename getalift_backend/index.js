@@ -956,6 +956,22 @@ router.get("/passenger/route/:passId", function(req, res){
 	});
 });
 
+/// Route				: GET api/passenger/route/information/:routeId
+// URL Params		:
+//		- routeId					: The ID of the route 
+// Body Params	: None
+// Return		:
+// 		- the mysql return object.
+// Description	: Query that returns the information of passengers who are using the ride 
+// Done by : AD
+
+router.get("/passenger/route/information/:routeId", function(req, res){
+	db_con.query("SELECT u.id, u.surname FROM Route ro, Ride ri, Passenger p, User u WHERE ro.id = ? and ro.id = ri.route and ri.id = p.ride and p.passenger = u.id", [req.params.passId], function(err, result){
+		if(err) throw err;
+		res.json(result);
+	});
+});
+
 // --- Ratings ---
 
 // Route				: GET /api/ratings

@@ -25,9 +25,12 @@ import java.util.Map;
 
 public class DriveDetails extends AppCompatActivity {
 
-    private String TAG = "DriveDetails";
+    private static final String TAG = "DriveTAGDetails";
     Intent intentDetails;
     private int id;
+
+    //Varaiable contenant l' id du driver obtenu par la première requete (elle est sous forme d'un string car la requete le donne dans ce format )
+    private int driverIdQ;
 
     private TextView origins;
     private TextView destionation;
@@ -49,16 +52,17 @@ public class DriveDetails extends AppCompatActivity {
         if (intentDetails != null) {
             id = intentDetails.getIntExtra("userId",0);
         }
-        /*
-        txtTest = findViewById(R.id.textView);
-        txtTest.setText(String.valueOf(id));
-        */
+
         origins = findViewById(R.id.idOrigins);
         destionation = findViewById(R.id.idDestination);
         driver = findViewById(R.id.idDriver);
         druration = findViewById(R.id.idDuration);
 
+        //On met les requetes les unes apres les autres
         driveDetailsList();
+        Log.i(TAG,"HALO?");
+
+
     }
 
     public void driveDetailsList(){
@@ -77,6 +81,11 @@ public class DriveDetails extends AppCompatActivity {
                             destionation.setText(jo.getString("destinationAdress"));
                             druration.setText(jo.getString("duration"));
 
+                            Log.i(TAG,jo.getString("driver"));
+                            driverIdQ = Integer.parseInt(jo.getString("driver"));
+                            Log.i(TAG,String.valueOf(driverIdQ));
+
+                            driverDetails(driverIdQ);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -100,6 +109,54 @@ public class DriveDetails extends AppCompatActivity {
             }
         };
         queue.add(sr);
+
+
+    }
+
+    // On parametre la requete pour qu'elle est besoin de la donnée que l'on recupère dans la première requete pour un problème de temporalité
+    public void driverDetails(int driverId){
+
+    // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/users/" + driverId;
+
+        StringRequest srDriver = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response) {
+
+                        // We got a response from our server.
+                        try {
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            Log.i(TAG,jo.getString("username"));
+                            driver.setText(jo.getString("username"));
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, error.toString());
+                    }
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
+                return params;
+            }
+        };
+        queue.add(srDriver);
+
     }
 
 
