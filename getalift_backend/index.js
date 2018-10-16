@@ -956,7 +956,7 @@ router.get("/passenger/route/:passId", function(req, res){
 	});
 });
 
-/// Route				: GET api/passenger/route/information/:routeId
+/// Route				: GET api/passenger/information/:routeId
 // URL Params		:
 //		- routeId					: The ID of the route 
 // Body Params	: None
@@ -965,7 +965,7 @@ router.get("/passenger/route/:passId", function(req, res){
 // Description	: Query that returns the information of passengers who are using the ride 
 // Done by : AD
 
-router.get("/passenger/route/information/:routeId", function(req, res){
+router.get("/passenger/information/:routeId", function(req, res){
 	db_con.query("SELECT u.id, u.surname FROM Route ro, Ride ri, Passenger p, User u WHERE ro.id = ? and ro.id = ri.route and ri.id = p.ride and p.passenger = u.id", [req.params.routeId], function(err, result){
 		if(err) throw err;
 		res.json(result);
