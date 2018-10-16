@@ -130,13 +130,19 @@ public class CreateRideInfo extends AppCompatActivity {
 
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                String minuteDouble;
+                String minuteDouble, hoursDouble;
                 if(minute <10){
                     minuteDouble = "0"+minute;
                 }
                 else
                     minuteDouble = Integer.toString(minute);
-                time = hourOfDay +":"+minuteDouble+":00";
+
+                if(hourOfDay <10){
+                    hoursDouble = "0"+hourOfDay;
+                }
+                else
+                    hoursDouble = Integer.toString(hourOfDay);
+                time = hoursDouble +":"+minuteDouble+":00";
                 Log.i("TAG_TIME_new_listener",time);
             }
         });
@@ -164,7 +170,7 @@ public class CreateRideInfo extends AppCompatActivity {
         //Calculate Time aproximatively between the 2 points
         int speedIs1KmMinute = 100;
         int estimatedDriveTimeInMinutes = (int) distance / speedIs1KmMinute;
-       // txt_duration.setText("Duration of the ride : " + estimatedDriveTimeInMinutes +" min");
+        txt_duration.setText("Duration of the ride : " + estimatedDriveTimeInMinutes +" min");
         //To complete the database with the good unity : sec
         int estimatedDriveTimeInSecondes = estimatedDriveTimeInMinutes * 60;
 
@@ -189,58 +195,69 @@ public class CreateRideInfo extends AppCompatActivity {
                 // If everything is correct,
                 // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
                 // it looks like it's more stable.
-                StringRequest sr = new StringRequest(Request.Method.PUT, url,
-                        new Response.Listener<String>(){
-
-                            @Override
-                            public void onResponse(String response) {
-                                // We got a response from our server.
-                                try {
-                                    // We create a JSONObject from the server response.
-                                    JSONObject jo = new JSONArray(response).getJSONObject(0);
-                                    Toast.makeText(getApplicationContext(), "Route added to the database",Toast.LENGTH_SHORT).show();
 
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        },
-                        new Response.ErrorListener(){
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "Unable to add the route to the database",Toast.LENGTH_SHORT).show();
-                                Log.d("GetALift", error.toString());
-                            }
-
-                        }
-                ){
+        StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
+                new Response.Listener<String>()
+                {
                     @Override
-                    protected Map<String,String> getParams(){
-                        Map<String,String> params = new HashMap<String, String>();
-                        params.put("startLat",Double.toString(newStartingPointLat));
-                        params.put("startLng",Double.toString(newStartingPointLng));
-                        params.put("endLat",Double.toString(newEndingPointLat));
-                        params.put("endLng",Double.toString(newEndingPointLng));
-                        params.put("driverId",Integer.toString(userID));
-                        params.put("origin",originAddress);
-                        params.put("destination",destinationAddress);
-                        params.put("dates",date+";"+time);
-
-                        Log.i("TAG_create_startLat",Double.toString(newStartingPointLat));
-                        Log.i("TAG_create,start_lng",Double.toString(newStartingPointLng));
-                        Log.i("TAG_create_end_lat",Double.toString(newEndingPointLat));
-                        Log.i("TAG_create_end_lng",Double.toString(newEndingPointLng));
-                        Log.i("TAG_create_user",Integer.toString(userID));
-                        Log.i("TAG_create_origin",originAddress);
-                        Log.i("TAG_create_destination",destinationAddress);
-                        Log.i("TAG_create_date_time",date+";"+time);
-
-                        return params;
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("TAG_Response", response);
+                        Toast.makeText(getApplicationContext(), "Route added to the database",Toast.LENGTH_SHORT).show();
+                        NavUtils.getParentActivityIntent(activity);
                     }
-                };
-                queue.add(sr);
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Toast.makeText(getApplicationContext(), "Unable to add the route to the database",Toast.LENGTH_SHORT).show();
+                        Log.d("GetALift", error.toString());
+                    }
+                }
+
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                //or try with this:
+                headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                headers.put("Content-Type", "application/x-www-form-urlencoded");
+                return headers;
+            }
+
+
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String> ();
+                params.put("startLat",Double.toString(newStartingPointLat));
+                params.put("startLng",Double.toString(newStartingPointLng));
+                params.put("endLat",Double.toString(newEndingPointLat));
+                params.put("endLng",Double.toString(newEndingPointLng));
+                params.put("driverId",Integer.toString(userID));
+                params.put("origin",originAddress);
+                params.put("destination",destinationAddress);
+                params.put("dates",date+";"+time);
+
+                Log.i("TAG_create_startLat",Double.toString(newStartingPointLat));
+                Log.i("TAG_create,start_lng",Double.toString(newStartingPointLng));
+                Log.i("TAG_create_end_lat",Double.toString(newEndingPointLat));
+                Log.i("TAG_create_end_lng",Double.toString(newEndingPointLng));
+                Log.i("TAG_create_user",Integer.toString(userID));
+                Log.i("TAG_create_origin",originAddress);
+                Log.i("TAG_create_destination",destinationAddress);
+                Log.i("TAG_create_date_time",date+";"+time);
+
+                return params;
+            }
+
+        };
+
+        queue.add(putRequest);
             }
 
 

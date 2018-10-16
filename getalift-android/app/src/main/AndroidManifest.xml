@@ -87,7 +87,10 @@
         <activity
             android:name=".ViewRideInfoActivity"
             android:parentActivityName=".HomeMapActivity" />
-        <activity android:name=".CreateRideInfo"></activity>
+        <activity
+            android:name=".CreateRideInfo"
+            android:parentActivityName=".HomeMapActivity"
+            ></activity>
     </application>
 
 </manifest>
