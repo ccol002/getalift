@@ -146,6 +146,7 @@ public class CreateRideInfo extends AppCompatActivity {
                 Log.i("TAG_TIME_new_listener",time);
             }
         });
+
         //Recover the LatLat points from the last page
         intentCreateRideInfo =getIntent();
         if(intentCreateRideInfo != null){
@@ -204,8 +205,8 @@ public class CreateRideInfo extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d("TAG_Response", response);
-                        Toast.makeText(getApplicationContext(), "Route added to the database",Toast.LENGTH_SHORT).show();
-                        NavUtils.getParentActivityIntent(activity);
+                        Toast.makeText(getApplicationContext(), "Your route has been created, you can see it in \"My routes\"",Toast.LENGTH_SHORT).show();
+                        NavUtils.navigateUpFromSameTask(activity);
                     }
                 },
                 new Response.ErrorListener()
@@ -259,6 +260,7 @@ public class CreateRideInfo extends AppCompatActivity {
 
         queue.add(putRequest);
             }
+
 
 
 
