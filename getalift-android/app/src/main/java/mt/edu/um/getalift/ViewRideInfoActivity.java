@@ -1,13 +1,19 @@
 package mt.edu.um.getalift;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.NavUtils;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -47,12 +53,14 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     //Tag for the LOG
     private static final String TAG = "ViewRideInfoActivity";
 
-    private TextView txt_driver_id;
+    private TextView edt_message;
     private TextView txt_driver_phoneNumber;
     private TextView txt_driver_email;
     private TextView txt_driver_name;
     private TextView txt_view_starting_point;
     private TextView txt_view_ending_point;
+
+    private String text_message;
 
     private Button btn_confirm_ride;
     private MyPoint startingPoint;
@@ -73,12 +81,12 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //We assimilate the variables created above with the Id of the layout
-        //txt_driver_id = (TextView) findViewById(R.id.txt_driver_name);
         txt_driver_phoneNumber = findViewById(R.id.txt_driver_phoneNumber);
         txt_driver_email = findViewById(R.id.txt_driver_email);
         txt_driver_name = findViewById(R.id.txt_driver_name);
         txt_view_starting_point = findViewById(R.id.txt_start_point);
         txt_view_ending_point= findViewById(R.id.txt_end_point);
+        edt_message = findViewById(R.id.edt_passenger_message);
 
         btn_confirm_ride = findViewById(R.id.btn_confirm_ride);
 
@@ -111,15 +119,30 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         btn_confirm_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addRide();
+                text_message = edt_message.getText().toString().trim();
+                if(text_message.length() == 0){
+                    addRide();
+                }
+                else {
+                     if (text_message.length() > 100){
+                        Toast.makeText(getApplicationContext(), getString(R.string.error_message_20_long), Toast.LENGTH_SHORT).show();
+                    } else if (text_message.length() < 20){
+                        Toast.makeText(getApplicationContext(), getString(R.string.error_message_20_short), Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                         addRide();
+                     }
+                }
+
+
 
             }
         });
 
     }
 
-//When the user click on "Confirm", the app creates a ride corresponding to the route selected before
-    //To add the route to the ride table in the database :
+/**When the user click on "Confirm", the app creates a ride corresponding to the route selected before
+    To add the route to the ride table in the database :*/
     private void addRide(){
         final int route_id = routeId ;
 
@@ -202,9 +225,8 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     }
 
 
-    //When the user click on confirm, the route is added in the ride table
-    //If the ride already exist, the addRide() send an error with the errorCode==1 and say  "This route is already attributed to a ride"
-    //
+    /**When the user click on confirm, the route is added in the ride table
+      If the ride already exist, the addRide() send an error with the errorCode==1 and say  "This route is already attributed to a ride"*/
     private void addUserToExistingRide(int route) {
         final int route_id = route;
         final int user_id = userID ;
@@ -226,17 +248,18 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                             // If the server respond with a success...
                             if (jo.has("insertId")) {
                                 Log.i("GetALift_2_error", jo.getString("serverStatus"));
-                                Toast.makeText(getApplicationContext(),"You have been added as a passenger on the route selected, you can see it in your lifts",Toast.LENGTH_LONG).show();
-                                NavUtils.navigateUpTo(activity, getParentActivityIntent());
+                                //Toast.makeText(getApplicationContext(),"You have been added as a passenger on the route selected, you can see it in your lifts",Toast.LENGTH_LONG).show();
+                                AlertCall("You have been added as a passenger on the route selected, you can see it in your lifts");
+                                //Come back to the home page
+                                //NavUtils.navigateUpTo(activity, getParentActivityIntent());
                             } else if(!jo.getBoolean("success")) {
                                 Log.i("GetALift_2_already", "Already passenger");
                                 // We tell the user his ride is now created...
-                                Toast.makeText(getBaseContext(),"You are already passenger on this ride !", Toast.LENGTH_SHORT).show();                                //Come Back
-                                NavUtils.navigateUpTo(activity, getParentActivityIntent());
-
+                               // Toast.makeText(getBaseContext(),"You are already passenger on this ride !", Toast.LENGTH_SHORT).show();
+                                AlertCall("You are already passenger on this ride !");
+                                //Come back to the home page
+                               // NavUtils.navigateUpTo(activity, getParentActivityIntent());
                             }
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -284,7 +307,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         queue.add(putRequest);
     }
 
-    //To add the passenger to the database
+    /**To add the passenger to the database*/
     private void createPassenger(final int ride_id) {
 
         //final int route_id = routeId;
@@ -301,8 +324,9 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("GetALift_3", response.toString());
-                        Toast.makeText(getBaseContext(),"Vous avez été ajouté en tant que passager, veuillez attendre la confirmation du conducteur",Toast.LENGTH_LONG).show();
-                        NavUtils.navigateUpTo(activity, getParentActivityIntent());
+                        //Toast.makeText(getBaseContext(),"Vous avez été ajouté en tant que passager, veuillez attendre la confirmation du conducteur",Toast.LENGTH_LONG).show();
+                        //NavUtils.navigateUpTo(activity, getParentActivityIntent());
+                        AlertCall("You have been added as a passenger on the route selected, you can see it in your lifts");
                     }
                 },
                 new Response.ErrorListener()
@@ -345,7 +369,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
 
     }
 
-    // Return to the last page when clicking on the arrow
+    /** Return to the last page when clicking on the arrow*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // If we select the "Go back" button
@@ -357,7 +381,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Complete the fields with the info t=of teh driver
+    /**Complete the fields with the info t=of teh driver*/
     public void completeDriverInfo(){
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -405,7 +429,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         queue.add(sr);
     }
 
-//Convert the coordinates into addresses ti display them to the driver
+/**Convert the coordinates into addresses ti display them to the driver*/
     public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         String result = null;
@@ -470,6 +494,29 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         return result;
     }
 
+    public void AlertCall(String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder
+                .setTitle("New notification")
+                .setIcon(R.drawable.ic_notifications)
+                .setMessage(message)
+                .setPositiveButton("Okay",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        Intent intent = new Intent(getApplicationContext(), HomeMapActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
 
 
 }

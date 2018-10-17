@@ -1,11 +1,13 @@
 package mt.edu.um.getalift;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -68,6 +70,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.android.volley.VolleyLog.TAG;
+
 //Google maps places API KEY AIzaSyD7ElaUB44FMGItFL3H6RbB7G-R8kJUAWI
 
 public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener, DatePickerDialog.OnDateSetListener, GoogleApiClient.OnConnectionFailedListener {
@@ -80,6 +84,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     public static String ORIGIN = "nul";
     public static String DESTINATION = "nul";
+
+    private int user_id;
 
 
     private GoogleMap googleMap;
@@ -114,6 +120,9 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private double[] destinationPoint = {-360,-360};
 
     Intent intent_result_search_activity;
+
+    public HomeMapActivity() throws JSONException {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,7 +242,26 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         showDateView = findViewById(R.id.edt_home_date);
 
         intent_result_search_activity =  new Intent(getApplicationContext(), ResultSearchActivity.class);
+
+        SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+        JSONObject user = null;
+        try {
+            user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+            user_id = user.getInt("id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        //Notification to the user if he is driver and he has passengers on his rides
+        newPassengerOnMyRides();
     }
+
+    private void newPassengerOnMyRides() {
+        RecoverPassengers(user_id);
+        Log.i("TAG_user_id", Integer.toString(user_id));
+    }
+
 
     private void startResultSearchActivity() {
        // getLatLongFromGivenAddress(mTextSearchDestination.getText().toString(),"destination");
@@ -647,5 +675,155 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         originPoint[1] = -360;
         destinationPoint[0] = -360;
         destinationPoint[1] = -360;
+    }
+
+    private void RecoverPassengers(int user_id) {
+
+        // We first setup the queue for the API Request
+        RequestQueue queue =  Volley.newRequestQueue(this);
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/passenger/alert/" + Integer.toString(user_id);
+
+        StringRequest sr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        //Display the repsonse of the server
+                        Log.i("TAG_response", response);
+                        try {
+                            // We create a JSONObject from the server response.
+                            // We create a JSONObject from the server response.
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            JSONArray joArray =  new JSONArray(response);
+                            int size = joArray.length();
+                            Log.i("TAG_size_response", "taille : "+size);
+
+                           if(size != 0) {
+                               Log.i("TAG_array_null", "array PAS null!!!");
+                               for (int i = 0; i < 1; i++) {
+                                   JSONObject jo_route = new JSONArray(response).getJSONObject(i);
+                                   String passengerName = jo_route.getString("username");
+                                   int passId = jo_route.getInt("id");
+                                   Log.i("TAG_passengers", "passenger" + i + " : " + passengerName);
+                                   AlertCall(passengerName, passId);
+                               }
+                           }
+                            else {
+                                   Log.i("TAG_array_null", "array null!!!");
+                                   Toast.makeText(getApplicationContext(), "You don't have any passenger yet", Toast.LENGTH_SHORT).show();
+                                }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, error.toString());
+
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                //or try with this:
+                headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                headers.put("Content-Type", "application/x-www-form-urlencoded");
+                return headers;
+            }
+        };
+        queue.add(sr);
+    }
+
+    public void AlertCall(String username, int passId){
+        final String name = username;
+        final int nb_passId = passId;
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder
+                .setTitle("New notification")
+                .setIcon(R.drawable.ic_notifications)
+                .setMessage(username + " wants to go with you")
+                .setPositiveButton("Okay",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        changeInTheCar(name, nb_passId);
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        dialog.cancel();
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
+
+    public void changeInTheCar(String username, int passId){
+        final String username_display = username;
+        final int passengerId = passId;
+        Log.i("TAG_PassId", Integer.toString(passId));
+        // We first setup the queue for the API Request
+        RequestQueue queue =  Volley.newRequestQueue(this);
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/passenger/alert/" + Integer.toString(passengerId);
+
+        StringRequest sr = new StringRequest(Request.Method.PUT, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        //Display the response of the server
+                        Log.i("TAG_ChangeInTheCar", response);
+                        Toast.makeText(getApplicationContext(), username_display + " a été ajouté à votre tajet !", Toast.LENGTH_LONG).show();
+
+                       /* try {
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            Toast.makeText(getApplicationContext(), username_display + " a été ajouté à votre tajet !", Toast.LENGTH_SHORT).show();
+                            Log.i("TAG_ChangeInTheCar2", username_display + " a été ajouté à votre tajet !");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }*/
+
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                //or try with this:
+                headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                headers.put("Content-Type", "application/x-www-form-urlencoded");
+                return headers;
+            }
+
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                    params.put("inTheCar", Integer.toString(1));
+                    return params;
+                }
+        };
+
+        queue.add(sr);
     }
 }
