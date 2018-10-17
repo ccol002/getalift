@@ -96,7 +96,9 @@ public class CreateRideInfo extends AppCompatActivity {
         mTimePicker = (TimePicker) findViewById(R.id.timePicker);
 
 
+        //Recover the ID of the user (who becomes the driverId in this activity
         userID = getIntent().getIntExtra("userID",0);
+
         //Get the date of the day
         Calendar rightNow = Calendar.getInstance();
 
@@ -104,6 +106,8 @@ public class CreateRideInfo extends AppCompatActivity {
         int currentYear = rightNow.get(Calendar.YEAR);
         int currentMonth = rightNow.get(Calendar.MONTH)+1;
         int currentDayOfTheMonth = rightNow.get(Calendar.DAY_OF_MONTH);
+
+        //To not have null if teh user doesn't change the date
         date = currentYear+"-"+currentMonth+"-"+currentDayOfTheMonth;
         Log.i("TAG_DATE_CURRENT", date);
         mDatePicker.init( currentYear, currentMonth-1,currentDayOfTheMonth , new OnDateChangedListener() {
@@ -125,12 +129,14 @@ public class CreateRideInfo extends AppCompatActivity {
         mTimePicker.setHour(currentHour);
         mTimePicker.setMinute(currentMinute);
 
+        //To not have null if the user doesn't change the hour
         time=currentHour+":"+currentMinute+":00";
         mTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
 
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
                 String minuteDouble, hoursDouble;
+                //to have the good format for the request
                 if(minute <10){
                     minuteDouble = "0"+minute;
                 }
@@ -164,26 +170,30 @@ public class CreateRideInfo extends AppCompatActivity {
         Log.i("TAG_User", Integer.toString(userID));
 
 
+        //Calculate Distance aproximatively between the 2 points : to display it's not to add it as parameters in the database (the request does it)
         float[] distance_array = new float[1];
         double distance = calculateDistance(newStartingPointLat, newStartingPointLng,
                 newEndingPointLat, newEndingPointLng, distance_array);
 
-        //Calculate Time aproximatively between the 2 points
+        //Calculate Time aproximatively between the 2 points: to display it's not to add it as parameters in the database (the request does it)
         int speedIs1KmMinute = 100;
         int estimatedDriveTimeInMinutes = (int) distance / speedIs1KmMinute;
         txt_duration.setText("Duration of the ride : " + estimatedDriveTimeInMinutes +" min");
-        //To complete the database with the good unity : sec
-        int estimatedDriveTimeInSecondes = estimatedDriveTimeInMinutes * 60;
+
 
     btn_create_route_confirm.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             createRoute();
+            //To create the ride corresponding to the route to be able to add a passenger after (parameters ride_id to ad a passenger and now, we have just the route_id)
+            createRide();
         }
     });
 
     } //end of OnCreate
 
+
+    //To add the route to the database
     private void createRoute() {
             // We first setup the queue for the API Request
             RequestQueue queue = Volley.newRequestQueue(this);
@@ -191,12 +201,6 @@ public class CreateRideInfo extends AppCompatActivity {
             String url = ConnectionManager.SERVER_URL+"/api/routes";
 
             final Activity activity = this;
-
-
-                // If everything is correct,
-                // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
-                // it looks like it's more stable.
-
 
         StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
                 new Response.Listener<String>()
@@ -261,13 +265,12 @@ public class CreateRideInfo extends AppCompatActivity {
         queue.add(putRequest);
             }
 
+            //to add the route in the Ride table in teh database
+    private void createRide() {
 
+    }
 
-
-
-
-
-
+//Convert the GPS coordinates into addresses to display it to the user
     public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 String result=null;

@@ -108,17 +108,11 @@
             android:layout_height="wrap_content"
             android:text="Passengers are : " />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dony" />
+        <ListView
+            android:id="@+id/idList"
+            android:layout_width="250dp"
+            android:layout_height="250dp" />
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Jean-Louis" />
     </LinearLayout>
 
     <LinearLayout
