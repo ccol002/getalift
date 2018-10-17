@@ -44,11 +44,14 @@ class RatingTasks {
                     
                     let jsonObject = (json[0]) as AnyObject
                     
-                    let average = jsonObject["AVG(stars)"] as! Float
+                    if let average = jsonObject["AVG(stars)"] as? NSNumber {
+                        self.rate = Float(average)
+                        completitionHandler("Ok", true)
+                    } else {
+                        self.rate = 0
+                        completitionHandler("Ok", true)
+                    }
                     
-                    self.rate = average
-                    
-                    completitionHandler("Ok", true)
                 }
             } catch let error {
                 print(error.localizedDescription)

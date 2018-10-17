@@ -28,6 +28,7 @@ class Rating: UIViewController {
     //Mark: -Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextFieldManager()
     }
 
     private func rateFunction() {

@@ -97,8 +97,11 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
         let stringLongitudeOfDestination = String(self.longitudeOfDestination)
         let stringDriverId = String(driverId)
         
+        var dateTab = self.date.split(separator: "-")
+        let dateInvert: String = dateTab[2] + "-" + dateTab[1] + "-" + dateTab[0]
+        print(dateInvert)
         
-        let postString = "startLat="+stringLatitudeofOrigin+"&endLat="+stringLatitudeOfDestination+"&startLng="+stringLongitudeOfOrigin+"&endLng="+stringLongitudeOfDestination+"&origin="+self.origin+"&destination="+self.destination+"&distance="+self.distance+"&duration="+self.duration+"&driverId="+stringDriverId+"&dates="+self.date+" "+self.time+";"+reccurenceString
+        let postString = "startLat="+stringLatitudeofOrigin+"&endLat="+stringLatitudeOfDestination+"&startLng="+stringLongitudeOfOrigin+"&endLng="+stringLongitudeOfDestination+"&origin="+self.origin+"&destination="+self.destination+"&distance="+self.distance+"&duration="+self.duration+"&driverId="+stringDriverId+"&dates="+dateInvert+";"+self.time
         
         request.httpBody = postString.data(using: .utf8)
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "transitionPage")
@@ -187,7 +190,6 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
             self.distanceLabel?.text = self.distance
         }
     }
-    
     
 }
 

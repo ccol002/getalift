@@ -167,7 +167,7 @@ class PassengerTasks {
         var request = URLRequest(url: url)
         request.httpMethod = "POST" //set http method as POST
         
-        let parameters = "passId="+String(passengerID)+"&routeId"+String(routeID)
+        let parameters = "passId="+String(passengerID)+"&routeId="+String(routeID)
         
         request.httpBody = parameters.data(using: String.Encoding.utf8)
         
