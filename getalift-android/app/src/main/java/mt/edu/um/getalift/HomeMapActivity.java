@@ -705,8 +705,13 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                for (int i = 0; i < 1; i++) {
                                    JSONObject jo_route = new JSONArray(response).getJSONObject(i);
                                    String passengerName = jo_route.getString("username");
+                                   //The id of the line in the database
                                    int passId = jo_route.getInt("id");
                                    Log.i("TAG_passengers", "passenger" + i + " : " + passengerName);
+                                   //Recover the id of the passenger added in the ride
+                                   int passengerid= jo_route.getInt("passenger");
+                                   //Recover ride_id where was added the passenger
+                                   int ride_id = jo_route.getInt("ride");
                                    AlertCall(passengerName, passId);
                                }
                            }
@@ -744,9 +749,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         queue.add(sr);
     }
 
-    public void AlertCall(String username, int passId){
+    public void AlertCall(String username, final int passId){
         final String name = username;
         final int nb_passId = passId;
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder
                 .setTitle("New notification")
@@ -758,16 +764,68 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         dialog.cancel();
                     }
                 })
-                .setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
+                .setNegativeButton("I can't",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        suppressPassenger(name,passId);
+                        dialog.cancel();
+                    }
+                })
+                .setNeutralButton("Cancel",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.cancel();
                     }
-                });
+                })
+       ;
         // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
 
         // show it
         alertDialog.show();
+    }
+
+    private void suppressPassenger(String username, int passId) {
+        final int pass_id = passId;
+        final String username_supp = username;
+        Log.i("TAG_PassId", Integer.toString(passId));
+        // We first setup the queue for the API Request
+        RequestQueue queue =  Volley.newRequestQueue(this);
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/passenger/" + Integer.toString(pass_id);
+
+        StringRequest sr = new StringRequest(Request.Method.DELETE, url,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        //Display the response of the server
+                        Log.i("TAG_suppress_pass", response);
+                        Toast.makeText(getApplicationContext(), username_supp + " a été retiré de ce tajet !", Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("TAG_suppress_error", error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                //headers.put("Content-Type", "application/json");
+                //or try with this:
+               // headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                //headers.put("Content-Type", "application/x-www-form-urlencoded");
+
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                headers.put("x-access-token","eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                return headers;
+            }
+        };
+
+        queue.add(sr);
     }
 
     public void changeInTheCar(String username, int passId){
@@ -788,15 +846,6 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         //Display the response of the server
                         Log.i("TAG_ChangeInTheCar", response);
                         Toast.makeText(getApplicationContext(), username_display + " a été ajouté à votre tajet !", Toast.LENGTH_LONG).show();
-
-                       /* try {
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-                            Toast.makeText(getApplicationContext(), username_display + " a été ajouté à votre tajet !", Toast.LENGTH_SHORT).show();
-                            Log.i("TAG_ChangeInTheCar2", username_display + " a été ajouté à votre tajet !");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }*/
-
                     }
                 },
                 new Response.ErrorListener(){
@@ -817,7 +866,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 return headers;
             }
 
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                     params.put("inTheCar", Integer.toString(1));
                     return params;
