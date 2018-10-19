@@ -87,7 +87,6 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
     private int user_id;
 
-
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
 
@@ -677,6 +676,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         destinationPoint[1] = -360;
     }
 
+    //Find all new Passenger of the current user
+    // parameter : id of the current user
     private void RecoverPassengers(int user_id) {
 
         // We first setup the queue for the API Request
@@ -693,9 +694,8 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         //Display the repsonse of the server
                         Log.i("TAG_response", response);
                         try {
-                            // We create a JSONObject from the server response.
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            // We create a JSONArray from the server response to have each route where
+                            // there is a new passenger of our current user
                             JSONArray joArray =  new JSONArray(response);
                             int size = joArray.length();
                             Log.i("TAG_size_response", "taille : "+size);
@@ -708,11 +708,18 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                                    //The id of the line in the database
                                    int passId = jo_route.getInt("id");
                                    Log.i("TAG_passengers", "passenger" + i + " : " + passengerName);
-                                   //Recover the id of the passenger added in the ride
-                                   int passengerid= jo_route.getInt("passenger");
+
                                    //Recover ride_id where was added the passenger
                                    int ride_id = jo_route.getInt("ride");
-                                   AlertCall(passengerName, passId);
+
+                                   //To have the id of the route and after the info chose by the passenger
+                                   //Passenger Name : His name to display it in the Alert Call
+                                   //passId : the line in the passenger table if the driver do not wants to accept the passenger
+                                   //ride_id : to find the route_id then the info of teh route chose by the passenger
+
+                                   //I pass the info in the methods
+                                   RouteId_Passenger(passengerName, passId,ride_id);
+
                                }
                            }
                             else {
@@ -739,8 +746,6 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
-                //or try with this:
                 headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
                 headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
@@ -749,15 +754,16 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         queue.add(sr);
     }
 
-    public void AlertCall(String username, final int passId){
+    public void AlertCall(String username, final int passId, String origin, String destination, String date){
         final String name = username;
         final int nb_passId = passId;
+
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder
                 .setTitle("New notification")
                 .setIcon(R.drawable.ic_notifications)
-                .setMessage(username + " wants to go with you")
+                .setMessage(username + " wants to go with you \n From :" +origin +"\n To :" + destination +"\n Date :"+date)
                 .setPositiveButton("Okay",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         changeInTheCar(name, nb_passId);
@@ -797,7 +803,6 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
                     @Override
                     public void onResponse(String response) {
-                        // We got a response from our server.
                         //Display the response of the server
                         Log.i("TAG_suppress_pass", response);
                         Toast.makeText(getApplicationContext(), username_supp + " a été retiré de ce tajet !", Toast.LENGTH_LONG).show();
@@ -814,11 +819,6 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
-                //or try with this:
-               // headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
-                //headers.put("Content-Type", "application/x-www-form-urlencoded");
-
                 headers.put("Content-Type","application/x-www-form-urlencoded");
                 headers.put("x-access-token","eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
                 return headers;
@@ -828,6 +828,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         queue.add(sr);
     }
 
+    /**When the driver receive the alert whoch says : "user... wants to go with you" and he click on okay
+    // it means he wants to take this user as passenger
+    //the app change the "inTheCar" into 1 in the database
+    // = Confirm that the passenger is accepted by the driver*/
     public void changeInTheCar(String username, int passId){
         final String username_display = username;
         final int passengerId = passId;
@@ -875,4 +879,124 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
 
         queue.add(sr);
     }
+
+    //To have the id of the route the passenger wants to go with the user if he is driver
+    //After we make this id in parameter for the fi=unction :     to recover all the information about the route (origin and destination adresses, date)
+    public void RouteId_Passenger(String passengerName, int passId, int rideId){
+        final int passID = passId;
+        final String usernamePassenger = passengerName;
+        // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/rides/" + Integer.toString(rideId);
+        Log.i("TAG_rideId_chose",Integer.toString(rideId));
+
+        StringRequest sr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        try {
+                            Log.i("TAG_Route_NewPassenger",response);
+                            // We create a JSONObject from the server response.
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            // Retrieve the route_id of the route the passenger of the driver wants to go
+                            int route_id_chose = jo.getInt("route");
+                            Log.i("TAG_RouteId_chose",Integer.toString(route_id_chose));
+                            RecoverRouteInfo(usernamePassenger, passID, route_id_chose);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("TAG_error_routeIdPass", error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
+    /**To have all the route where our user is driver
+       Then find the one corresponding to the route chose by the new passenger with the routeId_chose in parameter
+       So, after we will have the origin and destination Adress and also the time
+       It avoids to do 2 requests*/
+    private void RecoverRouteInfo(String usernamePassenger, int passId,  int routeId_chose) {
+        final int passID = passId;
+    final int routeID_chose = routeId_chose;
+     final String PassengerUsername = usernamePassenger;
+
+        // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/driverroutesdate/" + Integer.toString(user_id);
+
+        StringRequest sr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        try {
+                            Log.i("TAG_RecoverInfoRoute",response);
+
+                            // We create a JSONArray from the server response to have each route where
+                            // there is a new passenger of our driver who is our current user there
+                            JSONArray joArray =  new JSONArray(response);
+                            int size = joArray.length();
+
+                            if(size != 0) {
+                                Log.i("TAG_array_null", "array not null !");
+                                for (int i = 0; i < size; i++) {
+                                    JSONObject jo_route = new JSONArray(response).getJSONObject(i);
+                                    Log.i("TAG_boucle", "Boucle For");
+                                    //Find in the JSON response the route chose by the passenger and stock the info into the String array
+                                    if(jo_route.getInt("route") == routeID_chose){
+                                        //Send an alert to the driver whith all the information
+                                        AlertCall(PassengerUsername, passID, jo_route.getString("originAdress"),
+                                                jo_route.getString("destinationAdress"),jo_route.getString("route_date"));
+                                    }
+                                }
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("TAG_error", error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
 }
