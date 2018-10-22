@@ -458,7 +458,7 @@
                                 </constraints>
                                 <state key="normal" image="email"/>
                                 <connections>
-                                    <action selector="mailComposeWithSender:" destination="CB4-hJ-dC7" eventType="touchUpInside" id="Sn2-M2-klg"/>
+                                    <action selector="mailCompose:" destination="CB4-hJ-dC7" eventType="touchUpInside" id="Igh-Qp-FTU"/>
                                 </connections>
                             </button>
                         </subviews>

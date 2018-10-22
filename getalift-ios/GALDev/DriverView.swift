@@ -152,23 +152,48 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
         }
     }
     
-    
-    
-    @IBAction func mailCompose (sender: Any){
+    func configureMailController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
         
-        //Envoie d'un mail
-        //On crée un composeur de mails
-        let mc = MFMailComposeViewController()
-        //On lui donne son "délégué"
-        mc.mailComposeDelegate = self
-        //On donne des destinataires au mail
-        mc.setToRecipients([driverEmail])
-        //On donne un sujet
-        mc.setSubject("From my first app")
-        //Et on peut même écrire le corps du texte
-        mc.setMessageBody("Hi there,\n I am interested in your route", isHTML: false)
-        //On le montre
-        self.present(mc, animated: true, completion: nil)
+        mailComposerVC.setToRecipients([driverEmail])
+        mailComposerVC.setSubject("From my first app")
+        mailComposerVC.setMessageBody("Hi there, \n I am interested in your route", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func showMailError() {
+        let sendMailErrorAlert = UIAlertController(title: "Could not send email", message: "Your device could not send email", preferredStyle: .alert)
+        let dismiss = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        sendMailErrorAlert.addAction(dismiss)
+        self.present(sendMailErrorAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func mailCompose (_ sender: Any){
+        
+        let mailComposeViewController = configureMailController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            showMailError()
+        }
+        
+        /*if !MFMailComposeViewController.canSendMail() {
+            //Envoie d'un mail
+            //On crée un composeur de mails
+            let mc = MFMailComposeViewController()
+            //On lui donne son "délégué"
+            mc.mailComposeDelegate = self
+            //On donne des destinataires au mail
+            mc.setToRecipients([driverEmail])
+            //On donne un sujet
+            mc.setSubject("From my first app")
+            //Et on peut même écrire le corps du texte
+            mc.setMessageBody("Hi there,\n I am interested in your route", isHTML: false)
+            //On le montre
+            self.present(mc, animated: true, completion: nil)
+        }*/
         
     }
     

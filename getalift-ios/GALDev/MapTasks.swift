@@ -125,8 +125,6 @@ class MapTasks : NSObject, CLLocationManagerDelegate {
                 let originLocation = originLocation.replacingOccurrences(of:" ", with: "+").replacingOccurrences(of: ",", with: "+")
                 let destinationLocation = destinationLocation.replacingOccurrences(of:" ", with: "+").replacingOccurrences(of: ",", with: "+")
                 let directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation + "&key=" + key
-                
-                
             
                 let directionsURL = URL(string: directionsURLString)!
                 
@@ -195,7 +193,7 @@ class MapTasks : NSObject, CLLocationManagerDelegate {
                 
                 let originLocation = originLocation.replacingOccurrences(of:" ", with: "+").replacingOccurrences(of: ",", with: "+")
                 let destinationLocation = destinationLocation.replacingOccurrences(of:" ", with: "+").replacingOccurrences(of: ",", with: "+")
-                let directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation + "&mode=walking"
+                let directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation + "&mode=walking" + "&key=" + key
                 
                 let directionsURL = URL(string: directionsURLString)!
                 

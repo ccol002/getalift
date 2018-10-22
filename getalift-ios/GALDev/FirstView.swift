@@ -70,20 +70,21 @@ class FirstView: UIViewController, CLLocationManagerDelegate {
         SearchRoute.SearchedRoute.seeCurrentRoute = Route.init()
         
         //For the alert message
-        self.passengerTask.passengerNames(driverId: self.user.id, completionHandler: {(status, success) -> Void in
-            if success {
-                self.passengers = self.passengerTask.passengers
-                
-                DispatchQueue.main.async {
-                    for index in 0...(self.passengers).count-1 {
-                        self.alerts.append(self.createUIAlertController(passengerUsername: self.passengers[index].username))
-                        self.passIDs.append(self.passengers[index].id)
+        if self.user.id != nil {
+            self.passengerTask.passengerNames(driverId: self.user.id, completionHandler: {(status, success) -> Void in
+                if success {
+                    self.passengers = self.passengerTask.passengers
+                    
+                    DispatchQueue.main.async {
+                        for index in 0...(self.passengers).count-1 {
+                            self.alerts.append(self.createUIAlertController(passengerUsername: self.passengers[index].username))
+                            self.passIDs.append(self.passengers[index].id)
+                        }
+                        self.showAlert()
                     }
-                    self.showAlert()
                 }
-            }
-        })
-
+            })
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -129,7 +129,15 @@ class RouteTasks {
         var request = URLRequest(url: url)
         request.httpMethod = "POST" //set http method as POST
         
-        let parameters = "startDate="+date+"&startLng="+String(startLong)+"&endLng="+String(endLong)+"&startLat="+String(startLat)+"&endLat="+String(endLat)
+        let date1 = date[...9]
+        let heure = date[NSRange(location: 10, length: 5)]
+        
+        var dateTab = date1.split(separator: "-")
+        let dateInvert: String = dateTab[2] + "-" + dateTab[1] + "-" + dateTab[0]
+        
+        let datefinale = dateInvert + " " + heure
+        
+        let parameters = "startDate="+datefinale+"&startLng="+String(startLong)+"&endLng="+String(endLong)+"&startLat="+String(startLat)+"&endLat="+String(endLat)
         
         request.httpBody = parameters.data(using: String.Encoding.utf8)
         
@@ -404,5 +412,47 @@ class RouteTasks {
         }
         task.resume()
         
+    }
+}
+
+extension String {
+    subscript(value: NSRange) -> Substring {
+        return self[value.lowerBound..<value.upperBound]
+    }
+}
+
+extension String {
+    subscript(value: CountableClosedRange<Int>) -> Substring {
+        get {
+            return self[index(at: value.lowerBound)...index(at: value.upperBound)]
+        }
+    }
+    
+    subscript(value: CountableRange<Int>) -> Substring {
+        get {
+            return self[index(at: value.lowerBound)..<index(at: value.upperBound)]
+        }
+    }
+    
+    subscript(value: PartialRangeUpTo<Int>) -> Substring {
+        get {
+            return self[..<index(at: value.upperBound)]
+        }
+    }
+    
+    subscript(value: PartialRangeThrough<Int>) -> Substring {
+        get {
+            return self[...index(at: value.upperBound)]
+        }
+    }
+    
+    subscript(value: PartialRangeFrom<Int>) -> Substring {
+        get {
+            return self[index(at: value.lowerBound)...]
+        }
+    }
+    
+    func index(at offset: Int) -> String.Index {
+        return index(startIndex, offsetBy: offset)
     }
 }

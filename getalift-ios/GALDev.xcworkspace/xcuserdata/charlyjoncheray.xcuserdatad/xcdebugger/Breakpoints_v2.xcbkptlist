@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/RatingTasks.swift"
-            timestampString = "561476313.721797"
+            timestampString = "561643221.988608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/RatingTasks.swift"
-            timestampString = "561476313.721881"
+            timestampString = "561643221.989327"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/FirstView.swift"
-            timestampString = "561298552.6215349"
+            timestampString = "561646423.317952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "confirmPassenger(passID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,7 +90,7 @@
                   moduleName = "GALDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/charlyjoncheray/Documents/GitHub/getalift/getalift-ios/GALDev/EditProfile.swift"
-                  timestampString = "561476313.805858"
+                  timestampString = "561899236.756752"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "94"
@@ -105,7 +105,7 @@
                   moduleName = "GALDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/charlyjoncheray/Documents/GitHub/getalift/getalift-ios/GALDev/EditProfile.swift"
-                  timestampString = "561476313.8104579"
+                  timestampString = "561899236.760208"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/MapTasks.swift"
-            timestampString = "561476313.7219909"
+            timestampString = "561899236.513993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/MapTasks.swift"
-            timestampString = "561476313.722424"
+            timestampString = "561899236.514086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
@@ -154,28 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/MapTasks.swift"
-            timestampString = "561476313.722705"
+            timestampString = "561899236.514153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "calculateTotalDistanceAndDuration()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GALDev/CreateYourRoute.swift"
-            timestampString = "561476313.723267"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "routeOnDataBase()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -192,22 +176,6 @@
             startingLineNumber = "170"
             endingLineNumber = "170"
             landmarkName = "addPassengerExistingRide(passengerID:routeID:completitionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GALDev/RatingTasks.swift"
-            timestampString = "561476313.72339"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "getRating(targetId:completitionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
