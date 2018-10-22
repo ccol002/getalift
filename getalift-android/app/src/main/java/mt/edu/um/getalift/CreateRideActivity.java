@@ -99,6 +99,8 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         btn_edit_ride.setText(string.btn_edit_ride);
 
 
+
+
     }
 
     // invoked when the activity may be temporarily destroyed, save the instance state here

@@ -1,5 +1,6 @@
 package mt.edu.um.getalift;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -66,7 +67,7 @@ public class CreateRideInfo extends AppCompatActivity {
     private int userID;
     private String originAddress;
     private String destinationAddress;
-    private String adresse = "SAlut addresse";
+
 
     Intent intentCreateRideInfo;
     private double newStartingPointLat;
@@ -74,7 +75,8 @@ public class CreateRideInfo extends AppCompatActivity {
     private double newEndingPointLat;
     private double newEndingPointLng;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,8 +128,9 @@ public class CreateRideInfo extends AppCompatActivity {
         int currentMinute = mTimePicker.getCurrentMinute();
         Log.i("TAG_CURRENT_TIME",currentHour +":"+currentMinute);
 
-        mTimePicker.setHour(currentHour);
-        mTimePicker.setMinute(currentMinute);
+        //Do not work with the Android phone (API level 22)
+        //mTimePicker.setHour(currentHour);
+        //mTimePicker.setMinute(currentMinute);
 
         //To not have null if the user doesn't change the hour
         time=currentHour+":"+currentMinute+":00";
@@ -185,8 +188,6 @@ public class CreateRideInfo extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             createRoute();
-            //To create the ride corresponding to the route to be able to add a passenger after (parameters ride_id to ad a passenger and now, we have just the route_id)
-            createRide();
         }
     });
 
@@ -209,7 +210,7 @@ public class CreateRideInfo extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d("TAG_Response", response);
-                        Toast.makeText(getApplicationContext(), "Your route has been created, you can see it in \"My routes\"",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Your route has been created, you can see it in \"My routes\"",Toast.LENGTH_LONG).show();
                         NavUtils.navigateUpFromSameTask(activity);
                     }
                 },
@@ -264,11 +265,6 @@ public class CreateRideInfo extends AppCompatActivity {
 
         queue.add(putRequest);
             }
-
-            //to add the route in the Ride table in teh database
-    private void createRide() {
-
-    }
 
 //Convert the GPS coordinates into addresses to display it to the user
     public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
@@ -354,5 +350,6 @@ public class CreateRideInfo extends AppCompatActivity {
                 }
                 return super.onOptionsItemSelected(item);
             }
+
 }
 

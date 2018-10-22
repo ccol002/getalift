@@ -757,26 +757,32 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     public void AlertCall(String username, final int passId, String origin, String destination, String date){
         final String name = username;
         final int nb_passId = passId;
+        String new_pass, want_to_go, accept, cancel, cannot;
 
+        //To display a date format like : yyyy-mm-dd  hh:mm:ss and not yyyy-mm-ddThh:mm:ss.00Z
+        String[] date_converted = date.split("T");
+        String time_converted = date_converted[1].substring(0,8);
+        Log.i("TAG_time_converted", time_converted);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder
-                .setTitle("New notification")
+                .setTitle(getString(R.string.txt_new_passenger))
                 .setIcon(R.drawable.ic_notifications)
-                .setMessage(username + " wants to go with you \n From :" +origin +"\n To :" + destination +"\n Date :"+date)
-                .setPositiveButton("Okay",new DialogInterface.OnClickListener(){
+                .setMessage(username + getString(R.string.txt_want_to_go)+ "\n \n "+ getString(R.string.txt_from) +origin +"\n" + getString(R.string.txt_to) + destination +"\n Date : "+date_converted[0] + " at : " +time_converted)
+                //If the driver is okay to have this user as passenger, he clicks and the app change "inTheCar" in the database into 1
+                .setPositiveButton(getString(R.string.txt_accept),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         changeInTheCar(name, nb_passId);
                         dialog.cancel();
                     }
                 })
-                .setNegativeButton("I can't",new DialogInterface.OnClickListener(){
+                .setNegativeButton(getString(R.string.txt_cannot),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         suppressPassenger(name,passId);
                         dialog.cancel();
                     }
                 })
-                .setNeutralButton("Cancel",new DialogInterface.OnClickListener(){
+                .setNeutralButton(getString(R.string.txt_cancel),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.cancel();
                     }

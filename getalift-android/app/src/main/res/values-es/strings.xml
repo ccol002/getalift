@@ -123,5 +123,13 @@
         <item>fr</item>
         <item>es</item>
     </string-array>
+    <string name="txt_from">Desde</string>
+    <string name="txt_to">A</string>
+    <string name="txt_driver_info">"Información del conductor "</string>
+    <string name="txt_new_passenger">" ¡Nuevo pasajero!"</string>
+    <string name="txt_cannot">No puedo</string>
+    <string name="txt_accept">Acepto</string>
+    <string name="txt_cancel">Cancelar</string>
+    <string name="txt_want_to_go">"quiere ir contigo en este siguiente viaje "</string>
 
 </resources>

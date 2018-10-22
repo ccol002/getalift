@@ -1,5 +1,6 @@
 package mt.edu.um.getalift;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -12,6 +13,7 @@ import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +62,8 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     private TextView txt_driver_name;
     private TextView txt_view_starting_point;
     private TextView txt_view_ending_point;
+    private ImageView img_view_tel;
+    private String phoneNumber;
 
     private String text_message;
 
@@ -86,7 +91,9 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         txt_driver_name = findViewById(R.id.txt_driver_name);
         txt_view_starting_point = findViewById(R.id.txt_start_point);
         txt_view_ending_point= findViewById(R.id.txt_end_point);
-        edt_message = findViewById(R.id.edt_passenger_message);
+        img_view_tel = findViewById(R.id.img_view_tel);
+
+        //edt_message = findViewById(R.id.edt_passenger_message);
 
         btn_confirm_ride = findViewById(R.id.btn_confirm_ride);
 
@@ -110,8 +117,6 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 txt_view_starting_point.setText(adresseOrigin);
                 txt_view_ending_point.setText(adresseDestination);
 
-
-
         //Complete the fields with the info of the driver
         completeDriverInfo();
 
@@ -119,7 +124,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         btn_confirm_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                text_message = edt_message.getText().toString().trim();
+                /*text_message = edt_message.getText().toString().trim();
                 if(text_message.length() == 0){
                     addRide();
                 }
@@ -129,12 +134,13 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                     } else if (text_message.length() < 20){
                         Toast.makeText(getApplicationContext(), getString(R.string.error_message_20_short), Toast.LENGTH_SHORT).show();
                     }
-                    else{
+                    else{*/
                          addRide();
-                     }
-                }
 
 
+
+                //We transform the TextView into
+               img_view_tel.setOnClickListener(txtPhoneBtn);
 
             }
         });
@@ -402,6 +408,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                             Log.i("Test",response);
                             txt_driver_email.setText(jo.getString("email"));
                             txt_driver_phoneNumber.setText(jo.getString("mobileNumber"));
+                            phoneNumber = jo.getString("mobileNumber");
                             txt_driver_name.setText(jo.getString("name")+ " " + jo.getString("surname"));
 
                         } catch (JSONException e) {
@@ -441,7 +448,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 Address address = addressList.get(0);
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-                    sb.append(address.getAddressLine(i)); //.append("\n");
+                    sb.append(address.getAddressLine(i));
                 }
                 //Make sure the information for the address are not null before displaying them
                 if(address.getLocality() != null)
@@ -506,7 +513,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 })
-                .setNegativeButton("Cancel",new DialogInterface.OnClickListener(){
+                .setNegativeButton(getString(R.string.txt_cancel),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.cancel();
                     }
@@ -518,5 +525,16 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    //To call the driver
+    private View.OnClickListener txtPhoneBtn = new View.OnClickListener() {
+        @SuppressLint("MissingPermission")
+        @Override
+        public void onClick(View view) {
+
+            Intent call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
+            startActivity(call);
+
+        }
+    };
 
 }

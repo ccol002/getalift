@@ -86,13 +86,12 @@ public class ViewRideActivity extends AppCompatActivity implements
         btn_go_ride.setText("Go !");
 
         // Recovering the ride selected
-        txt_driver_id = (TextView) findViewById(R.id.textView15);
         intent_View_Ride_activity = getIntent();
         if (intent_View_Ride_activity != null) {
             driverId = intent_View_Ride_activity.getIntExtra("driver_id",0);
             routeId = intent_View_Ride_activity.getIntExtra("route_id",0);
             userID = intent_View_Ride_activity.getIntExtra("userID",0);
-            txt_driver_id.setText("The id of the driver : " + endingPoint.getLat());
+           // txt_driver_id.setText("The id of the driver : " + endingPoint.getLat());
 
         }
 
