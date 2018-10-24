@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     private TextView txt_driver_name;
     private TextView txt_view_starting_point;
     private TextView txt_view_ending_point;
-    private ImageView img_view_tel;
+    private ImageButton img_button_tel;
     private String phoneNumber;
 
     private String text_message;
@@ -91,7 +92,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         txt_driver_name = findViewById(R.id.txt_driver_name);
         txt_view_starting_point = findViewById(R.id.txt_start_point);
         txt_view_ending_point= findViewById(R.id.txt_end_point);
-        img_view_tel = findViewById(R.id.img_view_tel);
+        img_button_tel = findViewById(R.id.img_btn_tel);
 
         //edt_message = findViewById(R.id.edt_passenger_message);
 
@@ -137,14 +138,20 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                     else{*/
                          addRide();
 
-
-
                 //We transform the TextView into
-               img_view_tel.setOnClickListener(txtPhoneBtn);
+
 
             }
         });
 
+        img_button_tel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
+                Log.i("TAG_phone_call", "Passer appel avec : " + phoneNumber);
+                startActivity(call);
+            }
+        });
     }
 
 /**When the user click on "Confirm", the app creates a ride corresponding to the route selected before
@@ -206,8 +213,6 @@ public class ViewRideInfoActivity extends AppCompatActivity {
            @Override
             public Map<String, String> getHeaders()/* throws AuthFailureError*/ {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
-                //or try with this:
                 headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
                 //headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
@@ -525,16 +530,5 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    //To call the driver
-    private View.OnClickListener txtPhoneBtn = new View.OnClickListener() {
-        @SuppressLint("MissingPermission")
-        @Override
-        public void onClick(View view) {
-
-            Intent call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
-            startActivity(call);
-
-        }
-    };
 
 }
