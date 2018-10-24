@@ -91,6 +91,10 @@
             android:name=".CreateRideInfo"
             android:parentActivityName=".HomeMapActivity"
             ></activity>
+
+        <activity
+            android:name=".RatingSystem"
+            android:parentActivityName=".ProfileActivity"/>
     </application>
 
 </manifest>
