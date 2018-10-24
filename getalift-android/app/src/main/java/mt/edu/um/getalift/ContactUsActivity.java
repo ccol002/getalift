@@ -251,7 +251,7 @@ public class ContactUsActivity extends AppCompatActivity {
         intentMail.putExtra(Intent.EXTRA_EMAIL, emailList);
         intentMail.putExtra(Intent.EXTRA_SUBJECT,  txtSubject.getText());
         intentMail.putExtra(Intent.EXTRA_TEXT, txtMessage.getText() +"\n You can call" + txtName.getText()+ " with this phone number :" + txtPhoneNumber.getText());
-        startActivity(Intent.createChooser(intentMail, "Message of " + txtName.getText()));
+        startActivity(Intent.createChooser(intentMail, "@string/txt_message_of" + txtName.getText()));
 
     }
 }

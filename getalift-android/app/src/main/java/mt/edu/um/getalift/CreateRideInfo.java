@@ -181,7 +181,7 @@ public class CreateRideInfo extends AppCompatActivity {
         //Calculate Time aproximatively between the 2 points: to display it's not to add it as parameters in the database (the request does it)
         int speedIs1KmMinute = 100;
         int estimatedDriveTimeInMinutes = (int) distance / speedIs1KmMinute;
-        txt_duration.setText("Duration of the ride : " + estimatedDriveTimeInMinutes +" min");
+        txt_duration.setText("Duration : " + estimatedDriveTimeInMinutes +" min");
 
 
     btn_create_route_confirm.setOnClickListener(new View.OnClickListener() {

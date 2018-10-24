@@ -87,6 +87,8 @@
     <string name="txt_message">Your message</string>
     <string name="txt_subject">Subject</string>
 
+    <string name="txt_message_of">Message of </string>
+
     <string name="txt_about1"> What is Get A Lift ?</string>
     <string name="txt_about2">" → As you can see, it’s an mobile application for Android. But what else ? This application was designed to connect people who want to make daily commutes. It mainly favors short and regular trips.   The application must allow users to find the best route offered by other users. Indeed, if the user leaves Sliema to go to Valletta for example every day and another user makes the same trip or part of this journey, they can be put in contact and make the trip together. It will only take one car instead of two, reducing the number of cars on the island.   "</string>
     <string name="txt_about3">" → He can create his own account from which he can create one or more trips, save them and search for a trip.  The trip created can be his daily commute or the one he wants to do with another user. Once saved, the app can compare it to other users for similarities. This will determine if one or more users are making more or less similar journeys."</string>

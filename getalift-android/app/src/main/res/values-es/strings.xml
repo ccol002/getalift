@@ -131,5 +131,6 @@
     <string name="txt_accept">Acepto</string>
     <string name="txt_cancel">Cancelar</string>
     <string name="txt_want_to_go">"quiere ir contigo en este siguiente viaje "</string>
+    <string name="txt_message_of">Mensaje de</string>
 
 </resources>

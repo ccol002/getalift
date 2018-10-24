@@ -127,4 +127,5 @@
     <string name="txt_accept">J\'accepte</string>
     <string name="txt_cancel">Annuler</string>
     <string name="txt_want_to_go">"veut partager le trajet suivant avec vous "</string>
+    <string name="txt_message_of">"Message de "</string>
 </resources>

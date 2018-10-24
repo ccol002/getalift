@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tlb_profile"
+        android:layout_width="0dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="4dp"
+        android:background="#40E0D0"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_faq"
+        android:layout_width="191dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/txt_faq"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_about"
+        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintStart_toStartOf="@+id/text_about" />
+
+
+    <ImageButton
+        android:id="@+id/image_about"
+        android:layout_width="75dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:title="@string/txt_help"
+        app:layout_constraintBottom_toTopOf="@+id/image_faq_button"
+        app:layout_constraintEnd_toEndOf="@+id/image_contact_us"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/image_contact_us"
+        app:layout_constraintTop_toBottomOf="@+id/image_contact_us"
+        app:layout_constraintVertical_bias="0.492"
+        app:srcCompat="@drawable/ic_info_help" />
+
+    <ImageButton
+        android:id="@+id/image_contact_us"
+        android:layout_width="75dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="192dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
+        app:srcCompat="@drawable/ic_mail_help"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/text_contact_us"
+        android:layout_width="163dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_contact_us"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_about"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/image_contact_us"
+        app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
+        app:layout_constraintVertical_bias="0.817" />
+
+    <TextView
+        android:id="@+id/text_about"
+        android:layout_width="165dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="68dp"
+        android:text="@string/txt_about"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_faq"
+        app:layout_constraintEnd_toEndOf="@+id/text_contact_us"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_contact_us" />
+
+    <ImageView
+        android:id="@+id/image_help"
+        android:layout_width="72dp"
+        android:layout_height="78dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
+        app:srcCompat="@drawable/ic_info2_help"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageButton
+        android:id="@+id/image_faq_button"
+        android:layout_width="75dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/image_about"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/image_about"
+        app:srcCompat="@drawable/ic_question_help" />
+
+
+</android.support.constraint.ConstraintLayout>

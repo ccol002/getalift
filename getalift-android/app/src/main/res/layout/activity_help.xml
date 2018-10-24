@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:srcCompat="@drawable/help_image" />
+        app:srcCompat="@drawable/ic_info_help" />
 
     <ImageButton
         android:id="@+id/image_contact_us"
@@ -59,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:srcCompat="@drawable/contact_us_image"
+        app:srcCompat="@drawable/ic_mail_help"
         tools:ignore="MissingConstraints" />
 
 
@@ -111,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:srcCompat="@drawable/info_image"
+        app:srcCompat="@drawable/ic_info_help"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
@@ -144,7 +144,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
         app:layout_constraintVertical_bias="0.952"
-        app:srcCompat="@drawable/faq_image" />
+        app:srcCompat="@drawable/ic_question_help" />
 
 
 </android.support.constraint.ConstraintLayout>
