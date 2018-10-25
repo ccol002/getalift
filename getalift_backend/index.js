@@ -915,7 +915,7 @@ router.post("/passenger/existingRide", function(req, res){
 
 //Requête qui renvoie toutes les informations sur un passager par rapport à un driver
 router.get("/passenger/alert/:driverId", function(req, res){
-	db_con.query("SELECT passenger.*, passager.username From User passager,User conducteur,Route route,Ride ride,Passenger passenger Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = ? and passenger.inTheCar = 0", [req.params.driverId], function(err, result){
+	db_con.query("SELECT passenger.*, passager.username From User passager,User conducteur,Route route,Ride ride,Passenger passenger, RouteDate routeDate Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = ? and passenger.inTheCar = 0 and routeDate.route = route.id and routeDate.route_date > " + Date() + ";", [req.params.driverId], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
