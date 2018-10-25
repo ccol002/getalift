@@ -144,14 +144,14 @@ public class ViewRideInfoActivity extends AppCompatActivity {
             }
         });
 
-        img_button_tel.setOnClickListener(new View.OnClickListener() {
+       /* img_button_tel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
                 Log.i("TAG_phone_call", "Passer appel avec : " + phoneNumber);
                 startActivity(call);
             }
-        });
+        });*/
     }
 
 /**When the user click on "Confirm", the app creates a ride corresponding to the route selected before
