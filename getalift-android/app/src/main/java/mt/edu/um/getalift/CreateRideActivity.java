@@ -63,7 +63,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
         // Retrieve the content view that renders the map.
         setContentView(layout.activity_create_ride);
-        setTitle("Create your route");
+        setTitle(getString(R.string.title_activity_create_ride));
 
         // Get the SupportMapFragment and request notification when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -178,10 +178,10 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
                 if (markerPoints.size() == 1) {
                     options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                    options.title("New origin Point");
+                    options.title(getString(string.txt_new_origin_point));
                 } else if (markerPoints.size() == 2) {
                     options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                    options.title("New Destination Point");
+                    options.title(getString(string.txt_new_destination_point));
                 }
 
                 // Add new marker to the Google Map Android API V2

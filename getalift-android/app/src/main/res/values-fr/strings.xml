@@ -107,7 +107,7 @@
     <string name="txt_english">Anglais</string>
     <string name="txt_franch">Français</string>
     <string name="txt_spanish">Espagnol</string>
-    <string name="txt_edit_create_route">Now, you can create your route by clicking on the map</string>
+    <string name="txt_edit_create_route">Maintenant, vous pouvez creér votre route en cliquant sur la carte.</string>
 
     <string-array name="pref_list_languages">
         <item> Anglais </item>
@@ -128,4 +128,9 @@
     <string name="txt_cancel">Annuler</string>
     <string name="txt_want_to_go">"veut partager le trajet suivant avec vous "</string>
     <string name="txt_message_of">"Message de "</string>
+    <string name="title_activity_create_ride">Gget A Lift - Créer votre trajet</string>
+    <string name="txt_new_origin_point">Nouveau point d\'origine</string>
+    <string name="txt_new_destination_point">Nouveau point de destination</string>
+    <string name="txt_new_route">Votre nouveau trajet</string>
+    <string name="btn_create_route1">Créer le trajet</string>
 </resources>

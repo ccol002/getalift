@@ -156,10 +156,24 @@
     <string name="txt_driver_info">Driver\'s Info</string>
 
     <!-- Driver's notifications -->
+    <string name="txt_new_notification">New notification </string>
     <string name="txt_new_passenger"> New passenger ! </string>
     <string name="txt_cannot"> I can\'t </string>
     <string name="txt_accept"> I accept </string>
     <string name="txt_cancel"> Cancel </string>
     <string name="txt_want_to_go">" wants to go with you on this following ride "</string>
+    <string name="txt_okay">Okay</string>
 
+    <!-- Strings related to Create route Page -->
+
+    <string name="title_activity_create_ride">Get A Lift - Create your route </string>
+    <string name="txt_new_origin_point"> New origin point</string>
+    <string name="txt_new_destination_point"> New destination point</string>
+
+    <!-- Strings related to Created route's info Page -->
+    <string name="title_activity_create_ride_info"> Get A Lift - Created route\'s info</string>
+    <string name="txt_new_route">Your new route</string>
+    <string name="btn_create_route1">Create route </string>
+    <string name="txt_distance">Distance</string>
+    <string name="txt_duration">Duration</string>
 </resources>
