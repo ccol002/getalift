@@ -346,6 +346,14 @@ router.get("/routes/:routeid", function(req, res){
 	});
 });
 
+// Route				: GET /api/routes/:routeid
+// URL Params		:
+//		- routeid					: The ID of the route you want to retrieve the info.
+// Body Params	: None
+// Return		:
+// 		- the mysql object for this route.
+// Description	:
+//					This route send back the public informations about the chosen route.
 router.get("/driverroutes/:driverid", function(req, res){
 	db_con.query("SELECT * FROM Route, RouteDate WHERE (Route.id = RouteDate.route) AND (Route.driver = ?)", [req.params.driverid], function(err, result){
 		if(err) throw err;
@@ -880,7 +888,7 @@ router.delete("/passenger/:passid", function(req, res){
 // Return		:
 // 		- the mysql return object.
 // Description	:
-//					This route create a passenger for a already existing Ride where the id of the route is in parameter whith the id of the passenger
+//					This route create a passenger for a already existing Ride where the id of the route is in parameter with the id of the passenger
 router.post("/passenger/existingRide", function(req, res){
 	db_con.query("SELECT * FROM Passenger WHERE passenger = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.passId, req.body.routeId], function(err, result){
 		if (err) throw err;
@@ -913,10 +921,44 @@ router.post("/passenger/existingRide", function(req, res){
 // 		- the mysql return object.
 // Description	: Query that returns the name of all passengers in relation to a driver (For the alert message at startup)
 
+//The function NOW returns today's date to return the alert to the driver only if the date of the route has passed.
+function NOW() {
+
+    var date = new Date();
+    var aaaa = date.getUTCFullYear();
+    var gg = date.getUTCDate();
+    var mm = (date.getUTCMonth() + 1);
+
+    if (gg < 10)
+        gg = "0" + gg;
+
+    if (mm < 10)
+        mm = "0" + mm;
+
+    var cur_day = aaaa + "-" + mm + "-" + gg;
+
+    var hours = date.getUTCHours() + 2;
+    var minutes = date.getUTCMinutes();
+    var seconds = date.getUTCSeconds();
+
+    if (hours < 10)
+        hours = "0" + hours;
+
+    if (minutes < 10)
+        minutes = "0" + minutes;
+
+    if (seconds < 10)
+        seconds = "0" + seconds;
+
+    return cur_day + " " + hours + ":" + minutes + ":" + seconds;
+
+}
+
 //Requête qui renvoie toutes les informations sur un passager par rapport à un driver
 router.get("/passenger/alert/:driverId", function(req, res){
-	var todayDate = Date()
-	db_con.query("SELECT DISTINCT passenger.*, passager.username From User passager,User conducteur,Route route,Ride ride,Passenger passenger, RouteDate routeDate Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = 31 and passenger.inTheCar = 0 and routeDate.route = route.id and routeDate.route_date < ?", [req.params.driverId, todayDate], function(err, result){
+	var todayDate = NOW()
+	console.log(todayDate);
+	db_con.query("SELECT DISTINCT passenger.*, passager.username From User passager,User conducteur,Route route,Ride ride,Passenger passenger, RouteDate routeDate Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = ? and passenger.inTheCar = 0 and routeDate.route = route.id and routeDate.route_date < ?", [req.params.driverId, todayDate], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
@@ -928,9 +970,7 @@ router.get("/passenger/alert/:driverId", function(req, res){
 // Body Params	: None
 // Return		:
 // 		- the mysql return object.
-// Description	: Query that returns the name of all passengers in relation to a driver (For the alert message at startup)
-
-
+// Description	: This route create a passenger for an unexisting Ride where the id of the route is in parameter with the id of the passenger
 router.put("/passenger/alert/:passid", function(req, res){
 	db_con.query("UPDATE Passenger SET inTheCar = ? WHERE id = ?",
 		[req.body.inTheCar, req.params.passid],
@@ -949,7 +989,6 @@ router.put("/passenger/alert/:passid", function(req, res){
 // 		- the mysql return object.
 // Description	: Query that returns the information of route where the user is a passenger order by date
 // Done by : AD
-
 router.get("/passenger/route/:passId", function(req, res){
 	db_con.query("SELECT ro.id, ro.originAdress, ro.destinationAdress, rd.route_date FROM Passenger p, Ride ri, Route ro, RouteDate rd WHERE p.passenger = ? and p.ride = ri.id and ri.route = ro.id and rd.route = ro.id ORDER BY rd.route_date", [req.params.passId], function(err, result){
 		if(err) throw err;
@@ -965,7 +1004,6 @@ router.get("/passenger/route/:passId", function(req, res){
 // 		- the mysql return object.
 // Description	: Query that returns the information of passengers who are using the ride 
 // Done by : AD
-
 router.get("/passenger/information/:routeId", function(req, res){
 	db_con.query("SELECT u.id, u.surname FROM Route ro, Ride ri, Passenger p, User u WHERE ro.id = ? and ro.id = ri.route and ri.id = p.ride and p.passenger = u.id", [req.params.routeId], function(err, result){
 		if(err) throw err;
@@ -990,21 +1028,6 @@ router.get("/ratings", function(req, res){
 	});
 });
 
-// Route				: GET /api/ratings/:rateid
-// URL Params		:
-//		- usrid					: The ID of the rate you want to retrieve the info.
-// Body Params	: None
-// Return		:
-// 		- the mysql object for this rate.
-// Description	:
-//					This route send back the public informations about the chosen rate.
-/*	db_con.query("SELECT * FROM Rating WHERE id = ?", [req.params.rateid], function(err, result){
-		if(err) throw err;
-		res.json(result);
-	});
-});*/
-
-//Rajouter par Charly
 // Route				: GET /api/ratings/:targetid
 // URL Params		:
 //		- usrid					: The ID of the target you want to retrieve the average of rate.
@@ -1012,16 +1035,14 @@ router.get("/ratings", function(req, res){
 // Return		:
 // 		- the mysql object for this rate.
 // Description	:
-//					This route send back the public informations about the chosen rate.
+//					This route send back the the average of rate concerning the target.
 router.get("/ratings/:targetid", function(req, res){
-	console.log("OK 1");
 	db_con.query("SELECT AVG(stars) FROM Rating WHERE target = ?", [req.params.targetid], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
 });
 
-//Rajouter par Charly 2
 // Route				: GET /api/ratings/:targetid
 // URL Params		:
 //		- usrid					: The ID of the target you want to retrieve the average of rate.
@@ -1029,9 +1050,8 @@ router.get("/ratings/:targetid", function(req, res){
 // Return		:
 // 		- the mysql object for this rate.
 // Description	:
-//					This route send back the public informations about the chosen rate.
+//					This route send back the comments regarding the chosen target
 router.get("/ratings/Comment/:targetid", function(req, res){
-	console.log("OK 2");
 	db_con.query("SELECT u.username, r.comment, r.postDate FROM User u, Rating r WHERE r.target = ? and u.id = r.author", [req.params.targetid], function(err, result){
 		if(err) throw err;
 		res.json(result);
@@ -1050,7 +1070,7 @@ router.get("/ratings/Comment/:targetid", function(req, res){
 // Return		:
 // 		- the mysql object for this ride.
 // Description	:
-//					This route can create a rate in the database.
+//					This route can modify a rate in the database if the rate already exist
 router.post("/ratings/existingRate", function(req, res){
 	db_con.query("SELECT * FROM Rating WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.author, req.body.routeId], function(err, result){
 		if (err) throw err;

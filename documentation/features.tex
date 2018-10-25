@@ -84,6 +84,13 @@ Here is a list of the routes already availables from the backend API. All the ro
 \end{itemize}
 
 \begin{itemize}
+	\item GET "driverroutesdate/:driverid"
+	\begin{itemize}
+		\item To get the route where the user's id is the driver order by date.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
 	\item PUT "/routes"
 	\begin{itemize}
 		\item This route create a new Route in the database. It search the optimal directions with the google maps API, in order to store the best route.
@@ -135,6 +142,20 @@ Here is a list of the routes already availables from the backend API. All the ro
 \end{itemize}
 
 \begin{itemize}
+	\item GET "/rides/route/:passengerId"
+	\begin{itemize}
+		\item This route show all the routes that the passenger add to his rides.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/rides/routeId/:routeId"
+	\begin{itemize}
+		\item This route show the ride id corresponding to this route id.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
 	\item POST "/rides"
 	\begin{itemize}
 		\item This route create a ride in the database.
@@ -172,9 +193,30 @@ Here is a list of the routes already availables from the backend API. All the ro
 \end{itemize}
 
 \begin{itemize}
+	\item GET "/passengers/route/:passId"
+	\begin{itemize}
+		\item Query that returns the information of route where the user is a passenger order by date.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/passengers/information/:routeId"
+	\begin{itemize}
+		\item Query that returns the information of passengers who are using the ride.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
 	\item POST "/passenger"
 	\begin{itemize}
 		\item 	This route can create a passenger in the database.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/passenger/existingRide"
+	\begin{itemize}
+		\item 	This route create a passenger for a already existing Ride where the id of the route is in parameter with the id of the passenger.
 	\end{itemize}
 \end{itemize}
 
@@ -189,6 +231,27 @@ Here is a list of the routes already availables from the backend API. All the ro
 	\item DELTE "/passenger/:passid"
 	\begin{itemize}
 		\item This route deletes the chosen passenger.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/passenger/alert/:driverId"
+	\begin{itemize}
+		\item Query that returns the name of all passengers in relation to a driver (For the alert message at startup)
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item POST "/passenger/alert/:driverId"
+	\begin{itemize}
+		\item This route create a passenger for a already existing Ride where the id of the route is in parameter with the id of the passenger
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item PUT "/passenger/alert/:passId"
+	\begin{itemize}
+		\item This route create a passenger for an un-existing Ride where the id of the route is in parameter with the id of the passenger
 	\end{itemize}
 \end{itemize}
 
@@ -208,6 +271,13 @@ Here is a list of the routes already availables from the backend API. All the ro
 \end{itemize}
 
 \begin{itemize}
+	\item GET "/ratings/:targetid"
+	\begin{itemize}
+		\item This route send back the the average of rate concerning the target.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
 	\item POST "/ratings"
 	\begin{itemize}
 		\item This route create a rate in the database.
@@ -215,9 +285,9 @@ Here is a list of the routes already availables from the backend API. All the ro
 \end{itemize}
 
 \begin{itemize}
-	\item 
+	\item POST "/ratings/existingRate"
 	\begin{itemize}
-		\item 
+		\item This route can modify a rate in the database if the rate already exist.
 	\end{itemize}
 \end{itemize}
 
@@ -225,6 +295,13 @@ Here is a list of the routes already availables from the backend API. All the ro
 	\item DELETE "/ratings/:rateid"
 	\begin{itemize}
 		\item This route update the information about the chosen rating.
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item GET "/ratings/Comment/:targetid"
+	\begin{itemize}
+		\item This route send back the comments regarding the chosen target
 	\end{itemize}
 \end{itemize}
 
