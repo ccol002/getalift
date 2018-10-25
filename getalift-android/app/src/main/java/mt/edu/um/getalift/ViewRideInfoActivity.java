@@ -509,7 +509,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     public void AlertCall(String message){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder
-                .setTitle("New notification")
+                .setTitle(getString(R.string.txt_new_notification))
                 .setIcon(R.drawable.ic_notifications)
                 .setMessage(message)
                 .setPositiveButton("Okay",new DialogInterface.OnClickListener(){

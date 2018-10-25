@@ -2,9 +2,11 @@ package mt.edu.um.getalift;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -81,7 +83,7 @@ public class CreateRideInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_ride_info);
-        setTitle("Your created route's info");
+        setTitle(getString(R.string.title_activity_create_ride_info));
 
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
@@ -119,16 +121,12 @@ public class CreateRideInfo extends AppCompatActivity {
                 Log.i("TAG_DATE_NEW", date);
             }
         });
-       /* int hours = rightNow.get(Calendar.HOUR_OF_DAY) +2;
-        int minutes = rightNow.get(Calendar.MINUTE);
-        Log.i("TAG_TIME", Integer.toString(hours)+":"+ Integer.toString(minutes));*/
-
 
         int currentHour = mTimePicker.getCurrentHour()+2;
         int currentMinute = mTimePicker.getCurrentMinute();
         Log.i("TAG_CURRENT_TIME",currentHour +":"+currentMinute);
 
-        //Do not work with the Android phone (API level 22)
+        //Do not work with the Android phone (API level 22) but it seems
         //mTimePicker.setHour(currentHour);
         //mTimePicker.setMinute(currentMinute);
 
@@ -173,15 +171,16 @@ public class CreateRideInfo extends AppCompatActivity {
         Log.i("TAG_User", Integer.toString(userID));
 
 
-        //Calculate Distance aproximatively between the 2 points : to display it's not to add it as parameters in the database (the request does it)
+        //Calculate Distance approximately between the 2 points : to display it's not to add it as parameters in the database (the request does it)
+        //To display the info
         float[] distance_array = new float[1];
         double distance = calculateDistance(newStartingPointLat, newStartingPointLng,
                 newEndingPointLat, newEndingPointLng, distance_array);
 
-        //Calculate Time aproximatively between the 2 points: to display it's not to add it as parameters in the database (the request does it)
+        //Calculate Time approximately between the 2 points: to display it's not to add it as parameters in the database (the request does it)
         int speedIs1KmMinute = 100;
         int estimatedDriveTimeInMinutes = (int) distance / speedIs1KmMinute;
-        txt_duration.setText("Duration : " + estimatedDriveTimeInMinutes +" min");
+        txt_duration.setText(getString(R.string.txt_duration)+" :"+ estimatedDriveTimeInMinutes +" min");
 
 
     btn_create_route_confirm.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +209,7 @@ public class CreateRideInfo extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d("TAG_Response", response);
+                        AlertCall("Your route has been created, you can see it in \"My routes\"");
                         Toast.makeText(getApplicationContext(), "Your route has been created, you can see it in \"My routes\"",Toast.LENGTH_LONG).show();
                         NavUtils.navigateUpFromSameTask(activity);
                     }
@@ -219,7 +219,7 @@ public class CreateRideInfo extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Toast.makeText(getApplicationContext(), "Unable to add the route to the database",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Unable to add the route into the database",Toast.LENGTH_SHORT).show();
                         Log.d("GetALift", error.toString());
                     }
                 }
@@ -334,7 +334,7 @@ public class CreateRideInfo extends AppCompatActivity {
                         endLat, endLng, resultArray);
                 float distance = resultArray[0];
                 String distance_round = nf.format(distance);
-                txt_distance_route.setText("Distance : " + distance_round +" m");
+                txt_distance_route.setText(getString(R.string.txt_distance)+" : distance_round"+" m");
 
                 return Double.parseDouble(distance_round);
             }
@@ -350,6 +350,25 @@ public class CreateRideInfo extends AppCompatActivity {
                 }
                 return super.onOptionsItemSelected(item);
             }
+
+    public void AlertCall(String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder
+                .setTitle(getString(R.string.txt_new_notification))
+                .setIcon(R.drawable.ic_notifications)
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.txt_okay),new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id){
+                        Intent intent = new Intent(getApplicationContext(), HomeMapActivity.class);
+                        startActivity(intent);
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+    }
 
 }
 
