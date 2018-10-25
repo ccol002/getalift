@@ -913,6 +913,7 @@ router.post("/passenger/existingRide", function(req, res){
 // 		- the mysql return object.
 // Description	: Query that returns the name of all passengers in relation to a driver (For the alert message at startup)
 
+//The function NOW returns today's date to return the alert to the driver only if the date of the route has passed.
 function NOW() {
 
     var date = new Date();
@@ -928,7 +929,7 @@ function NOW() {
 
     var cur_day = aaaa + "-" + mm + "-" + gg;
 
-    var hours = date.getUTCHours();
+    var hours = date.getUTCHours() + 2;
     var minutes = date.getUTCMinutes();
     var seconds = date.getUTCSeconds();
 
