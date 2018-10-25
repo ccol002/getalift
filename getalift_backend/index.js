@@ -913,11 +913,43 @@ router.post("/passenger/existingRide", function(req, res){
 // 		- the mysql return object.
 // Description	: Query that returns the name of all passengers in relation to a driver (For the alert message at startup)
 
+function NOW() {
+
+    var date = new Date();
+    var aaaa = date.getUTCFullYear();
+    var gg = date.getUTCDate();
+    var mm = (date.getUTCMonth() + 1);
+
+    if (gg < 10)
+        gg = "0" + gg;
+
+    if (mm < 10)
+        mm = "0" + mm;
+
+    var cur_day = aaaa + "-" + mm + "-" + gg;
+
+    var hours = date.getUTCHours();
+    var minutes = date.getUTCMinutes();
+    var seconds = date.getUTCSeconds();
+
+    if (hours < 10)
+        hours = "0" + hours;
+
+    if (minutes < 10)
+        minutes = "0" + minutes;
+
+    if (seconds < 10)
+        seconds = "0" + seconds;
+
+    return cur_day + " " + hours + ":" + minutes + ":" + seconds;
+
+}
+
 //Requête qui renvoie toutes les informations sur un passager par rapport à un driver
 router.get("/passenger/alert/:driverId", function(req, res){
-	var todayDate = Date();
+	var todayDate = NOW()
 	console.log(todayDate);
-	db_con.query("SELECT DISTINCT passenger.*, passager.username From User passager,User conducteur,Route route,Ride ride,Passenger passenger, RouteDate routeDate Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = 31 and passenger.inTheCar = 0 and routeDate.route = route.id and routeDate.route_date < ?", [req.params.driverId, todayDate], function(err, result){
+	db_con.query("SELECT DISTINCT passenger.*, passager.username From User passager,User conducteur,Route route,Ride ride,Passenger passenger, RouteDate routeDate Where ride.route = route.id and passenger.ride = ride.id and conducteur.id = route.driver and passenger.passenger = passager.id and conducteur.id = ? and passenger.inTheCar = 0 and routeDate.route = route.id and routeDate.route_date < ?, [req.params.driverId, todayDate], function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
