@@ -101,9 +101,7 @@ public class DriveDetails extends AppCompatActivity {
                             origins.setText(jo.getString("originAdress"));
                             destionation.setText(jo.getString("destinationAdress"));
                             druration.setText(jo.getString("duration"));
-
                             driverIdQ = Integer.parseInt(jo.getString("driver"));
-
                             driverDetails(driverIdQ);
 
                         } catch (JSONException e) {
@@ -205,13 +203,14 @@ public class DriveDetails extends AppCompatActivity {
                             // Set an item click listener for ListView
                             passengers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long idl) {
                                     // Get the selected item text from ListView
                                     User selectedItem = (User) parent.getItemAtPosition(position);
                                     int passengerId = selectedItem.getId();
 
                                     Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                                     intent.putExtra("userId",passengerId);
+                                    intent.putExtra("routeId",id);
                                     startActivity(intent);
                                 }
                             });
@@ -272,6 +271,8 @@ public class DriveDetails extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent(DriveDetails.this,ProfileActivity.class);
             intent.putExtra("userId",test);
+            intent.putExtra("routeId",id);
+            Log.i(TAG,String.valueOf(id));
             startActivity(intent);
         }
     };

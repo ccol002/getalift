@@ -40,6 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView txtPhone;
     private TextView txtEmail;
     private TextView txtNote;
+    private TextView txtRate;
 
     // Tag utilsié pour les LOG
     private static final String TAG = "ProfileActivityTag";
@@ -50,6 +51,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     //Variable utilisée pour passer l'appel
     private int phoneNumber;
+
+    //Variable utilisée pour la route (rating)
+    private int routeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,17 +73,24 @@ public class ProfileActivity extends AppCompatActivity {
         txtPhone = findViewById(R.id.textPhoneNumber);
         txtEmail = findViewById(R.id.textEmail);
         txtNote = findViewById(R.id.textNote);
+        txtRate = findViewById(R.id.textAdd);
 
         // On recupere l'Id
         intent_profile_activity = getIntent();
 
         if (intent_profile_activity != null) {
             userID = intent_profile_activity.getIntExtra("userId",0);
-            txtNote.setText(Integer.toString(userID));
+            routeId = intent_profile_activity.getIntExtra("routeId",0);
+            Log.i(TAG,String.valueOf(routeId));
         }
 
         // On transforme le TextView en boutton pour pouvoir appeller quand on appuie dessus
         txtPhone.setOnClickListener(txtPhoneBtn);
+
+        // On fait pareil pour la note
+        txtRate.setOnClickListener(txtRateBtn);
+
+        //Il faut ajouter la note
 
         profil();
     }
@@ -152,13 +163,22 @@ public class ProfileActivity extends AppCompatActivity {
         @SuppressLint("MissingPermission")
         @Override
         public void onClick(View view) {
-
             Intent appel = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
             // Pourquoi 0 + phone ? Aucune idée
             startActivity(appel);
-
         }
     };
 
+    // Pour noter un utilisateur
+    private View.OnClickListener txtRateBtn = new View.OnClickListener() {
+        @SuppressLint("MissingPermission")
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(),RatingSystem.class);
+            intent.putExtra("userId ",userID);
+            intent.putExtra("routeId",routeId);
+            startActivity(intent);
+        }
+    };
 
 }
