@@ -10,6 +10,10 @@ import UIKit
 
 class Rides: UITableViewController {
 
+    @IBOutlet var menuButton: UIBarButtonItem!
+    
+    var token = Home.UserConnectedInformations.userToken
+    
     // ---- PROPEERTIES ----
     var rides = [Route]()
     
@@ -23,7 +27,12 @@ class Rides: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if revealViewController() != nil {
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+        }
+        
         tableView.rowHeight = 87
         
         let userId = Home.UserConnectedInformations.user.id
@@ -38,7 +47,7 @@ class Rides: UITableViewController {
         }
         
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

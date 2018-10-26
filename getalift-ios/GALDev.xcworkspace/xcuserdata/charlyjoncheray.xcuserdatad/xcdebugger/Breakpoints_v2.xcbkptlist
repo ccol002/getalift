@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GALDev/FirstView.swift"
-            timestampString = "561646423.317952"
+            timestampString = "562250806.387495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "192"
@@ -90,12 +90,12 @@
                   moduleName = "GALDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/charlyjoncheray/Documents/GitHub/getalift/getalift-ios/GALDev/EditProfile.swift"
-                  timestampString = "561899236.756752"
+                  timestampString = "562251315.955011"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "94"
                   endingLineNumber = "94"
-                  offsetFromSymbolStart = "7308">
+                  offsetFromSymbolStart = "10838">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -105,12 +105,12 @@
                   moduleName = "GALDev"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/charlyjoncheray/Documents/GitHub/getalift/getalift-ios/GALDev/EditProfile.swift"
-                  timestampString = "561899236.760208"
+                  timestampString = "562251315.959115"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
                   endingLineNumber = "54"
-                  offsetFromSymbolStart = "100">
+                  offsetFromSymbolStart = "179">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -1891,6 +1891,7 @@
                         <segue destination="wah-Sp-IPB" kind="custom" customClass="SWRevealViewControllerSegueSetController" id="joo-0u-S9y"/>
                         <segue destination="ujI-AU-EhU" kind="custom" customClass="SWRevealViewControllerSegueSetController" id="m14-1d-0rF"/>
                         <segue destination="KOe-OM-zk0" kind="custom" customClass="SWRevealViewControllerSegueSetController" id="7x5-0W-CVl"/>
+                        <segue destination="eA3-9b-S6W" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="nnJ-tR-ss3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSm-MI-39g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1983,7 +1984,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="eA3-9b-S6W" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="K2v-0O-BZe"/>
+                                            <segue destination="eA3-9b-S6W" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="Nu2-3c-9jo"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vrS-gv-zYK">
@@ -2656,8 +2657,11 @@
                             <outlet property="delegate" destination="Fng-br-d7l" id="bx4-sA-KIN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Rides" id="QlY-n0-zXU"/>
+                    <navigationItem key="navigationItem" title="My Rides" id="QlY-n0-zXU">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu" id="DRq-0I-j8Z"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="menuButton" destination="DRq-0I-j8Z" id="glY-E4-cIG"/>
                         <segue destination="gHa-j5-AL5" kind="show" identifier="segueFromRidesToDriverView" id="iop-JU-iJW"/>
                     </connections>
                 </tableViewController>
@@ -2679,7 +2683,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zl0-d9-0Su" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2114" y="-3065"/>
+            <point key="canvasLocation" x="-2064" y="-3065"/>
         </scene>
         <!--Favorite Routes-->
         <scene sceneID="hqP-0w-1Nb">
@@ -3304,13 +3308,14 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iop-JU-iJW"/>
-        <segue reference="m14-1d-0rF"/>
-        <segue reference="joo-0u-S9y"/>
-        <segue reference="7x5-0W-CVl"/>
-        <segue reference="v9W-GP-9na"/>
-        <segue reference="gNE-lb-dMF"/>
-        <segue reference="8yY-bI-RVd"/>
-        <segue reference="ucM-ba-udE"/>
+        <segue reference="YiX-Jt-XYb"/>
+        <segue reference="Nu2-3c-9jo"/>
+        <segue reference="Vw1-0G-vDG"/>
+        <segue reference="fYb-89-jWA"/>
+        <segue reference="WVl-ad-OcA"/>
+        <segue reference="qIk-Pg-8Xp"/>
+        <segue reference="KBQ-go-8kH"/>
+        <segue reference="iXv-eR-S1u"/>
         <segue reference="Q4M-7G-TNh"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
