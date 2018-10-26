@@ -180,7 +180,7 @@ public class CreateRideInfo extends AppCompatActivity {
         //Calculate Time approximately between the 2 points: to display it's not to add it as parameters in the database (the request does it)
         int speedIs1KmMinute = 100;
         int estimatedDriveTimeInMinutes = (int) distance / speedIs1KmMinute;
-        txt_duration.setText(getString(R.string.txt_duration)+" :"+ estimatedDriveTimeInMinutes +" min");
+        txt_duration.setText(getString(R.string.txt_duration)+" : "+ estimatedDriveTimeInMinutes +" min");
 
 
     btn_create_route_confirm.setOnClickListener(new View.OnClickListener() {
@@ -209,9 +209,9 @@ public class CreateRideInfo extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d("TAG_Response", response);
-                        AlertCall("Your route has been created, you can see it in \"My routes\"");
-                        Toast.makeText(getApplicationContext(), "Your route has been created, you can see it in \"My routes\"",Toast.LENGTH_LONG).show();
-                        NavUtils.navigateUpFromSameTask(activity);
+                        AlertCall(getString(R.string.txt_route_created_notification));
+                        //Toast.makeText(getApplicationContext(), "Your route has been created, you can see it in \"My routes\"",Toast.LENGTH_LONG).show();
+                        //NavUtils.navigateUpFromSameTask(activity);
                     }
                 },
                 new Response.ErrorListener()
@@ -326,6 +326,7 @@ public class CreateRideInfo extends AppCompatActivity {
                 //To round the values
                 NumberFormat nf = new DecimalFormat("0.#");
                 NumberFormat nff = new DecimalFormat("0");
+                float distance_round_km;
                 //String s = nf.format(monNombre);
 
                 //Calculate the distance between the two points
@@ -334,7 +335,15 @@ public class CreateRideInfo extends AppCompatActivity {
                         endLat, endLng, resultArray);
                 float distance = resultArray[0];
                 String distance_round = nf.format(distance);
-                txt_distance_route.setText(getString(R.string.txt_distance)+" : distance_round"+" m");
+                String distance_round_km_string;
+                if(distance_round.length() > 3){
+                    distance_round_km = distance/1000;
+                    distance_round_km_string = nf.format(distance_round_km);
+
+                txt_distance_route.setText(getString(R.string.txt_distance)+"  :  " + distance_round_km_string+" km");}
+                else{
+                    txt_distance_route.setText(getString(R.string.txt_distance)+"  :  " + distance_round+" m");
+                }
 
                 return Double.parseDouble(distance_round);
             }

@@ -136,7 +136,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         btn_edit_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),getString(string.txt_edit_create_route), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.txt_edit_create_route), Toast.LENGTH_LONG).show();
                 onMapClick(view);
             }
         });

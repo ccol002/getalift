@@ -110,7 +110,7 @@
     <string name="txt_choice_language">Tu elegiste</string>
     <string name="txt_english">Inglés</string>
     <string name="txt_spanish">Español</string>
-    <string name="txt_franch">Francés</string>
+    <string name="txt_french">Francés</string>
     <string name="txt_edit_create_route">Ahora, puedes crear tu ruta haciendo clic en el mapa.</string>
 
     <string-array name="pref_list_languages">
@@ -123,8 +123,8 @@
         <item>fr</item>
         <item>es</item>
     </string-array>
-    <string name="txt_from">Desde</string>
-    <string name="txt_to">A</string>
+    <string name="txt_from">Desde :</string>
+    <string name="txt_to">A :</string>
     <string name="txt_driver_info">"Información del conductor "</string>
     <string name="txt_new_passenger">" ¡Nuevo pasajero!"</string>
     <string name="txt_cannot">No puedo</string>
@@ -137,5 +137,14 @@
     <string name="txt_new_destination_point">" Nuevo punto de destino"</string>
     <string name="txt_new_route">Tu nueva ruta</string>
     <string name="btn_create_route1">Crear tu ruta</string>
+    <string name="txt_distance">Distancia</string>
+    <string name="txt_duration">Duración</string>
+    <string name="txt_okay">Vale</string>
+    <string name="title_activity_create_ride_info">Get A Lift - Información de la ruta creada</string>
+    <string name="txt_new_notification">"Nueva notificación "</string>
+    <string name="txt_old_password">"Contraseña anterior "</string>
+    <string name="txt_route_created_notification">Tu ruta ha sido creada, puedes verla en \"Sus viajes\"</string>
+    <string name="txt_passenger_added_notification">Se le ha agregado como pasajero en la ruta seleccionada, puede verla en \"Sus viajes\"</string>
+    <string name="txt_passenger_already_added_notification">¡Ya eres pasajero en esta ruta!</string>
 
 </resources>

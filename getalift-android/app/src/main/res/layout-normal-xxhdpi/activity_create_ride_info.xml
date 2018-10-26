@@ -26,7 +26,7 @@
 
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,9 +42,9 @@
         android:layout_height="46dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="92dp"
         app:layout_constraintEnd_toStartOf="@+id/datePicker"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_To"
         app:srcCompat="@drawable/calendar_icon" />
@@ -53,17 +53,14 @@
         android:id="@+id/img_clock"
         android:layout_width="38dp"
         android:layout_height="44dp"
-
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="92dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/timePicker"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@+id/img_calendar"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="@+id/img_calendar"
         app:layout_constraintTop_toBottomOf="@+id/img_calendar"
-        app:layout_constraintVertical_bias="0.214"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_clock" />
 
     <TextView
@@ -72,7 +69,6 @@
         android:layout_height="33dp"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:text="@string/txt_new_route"
         android:textColor="@color/black"
@@ -111,10 +107,10 @@
         android:text="@string/txt_to"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_From"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintVertical_bias="0.047" />
 
     <TextView
         android:id="@+id/txt_origin_address"
@@ -165,27 +161,27 @@
         android:startYear="2017"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.797"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.297" />
+        app:layout_constraintVertical_bias="0.097" />
 
     <TimePicker
         android:id="@+id/timePicker"
-        android:layout_width="250dp"
-        android:layout_height="71dp"
+        android:layout_width="257dp"
+        android:layout_height="101dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginBottom="18dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:timePickerMode="spinner"
         app:layout_constraintBottom_toTopOf="@+id/btn_create_route_confirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@+id/datePicker"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/datePicker"
         app:layout_constraintTop_toBottomOf="@+id/datePicker"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.56" />
 
     <Button
         android:id="@+id/btn_create_route_confirm"
@@ -202,8 +198,8 @@
 
     <TextView
         android:id="@+id/txt_distance_route"
-        android:layout_width="160dp"
-        android:layout_height="23dp"
+        android:layout_width="143dp"
+        android:layout_height="42dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -212,14 +208,14 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_destination_address"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.011" />
 
     <TextView
         android:id="@+id/txt_duration"
-        android:layout_width="173dp"
+        android:layout_width="146dp"
         android:layout_height="43dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -233,7 +229,7 @@
         app:layout_constraintStart_toEndOf="@+id/txt_distance_route"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_destination_address"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.011" />
 
 
 </android.support.constraint.ConstraintLayout>

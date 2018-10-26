@@ -74,6 +74,8 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     private int routeId;
     private int userID;
     private int ride_id;
+    private String driver_email;
+    private ImageButton img_button_mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         txt_view_starting_point = findViewById(R.id.txt_start_point);
         txt_view_ending_point= findViewById(R.id.txt_end_point);
         img_button_tel = findViewById(R.id.img_btn_tel);
+        img_button_mail = findViewById(R.id.img_button_mail);
 
         //edt_message = findViewById(R.id.edt_passenger_message);
 
@@ -144,14 +147,21 @@ public class ViewRideInfoActivity extends AppCompatActivity {
             }
         });
 
-       /* img_button_tel.setOnClickListener(new View.OnClickListener() {
+        img_button_tel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
                 Log.i("TAG_phone_call", "Passer appel avec : " + phoneNumber);
                 startActivity(call);
             }
-        });*/
+        });
+
+        img_button_mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMail();
+            }
+        });
     }
 
 /**When the user click on "Confirm", the app creates a ride corresponding to the route selected before
@@ -163,7 +173,6 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL+"/api/rides/";
-        final Activity activity = this;
 
         StringRequest putRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -245,7 +254,6 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL+"/api/passenger/existingRide";
-        final Activity activity = this;
 
         StringRequest putRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -260,14 +268,14 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                             if (jo.has("insertId")) {
                                 Log.i("GetALift_2_error", jo.getString("serverStatus"));
                                 //Toast.makeText(getApplicationContext(),"You have been added as a passenger on the route selected, you can see it in your lifts",Toast.LENGTH_LONG).show();
-                                AlertCall("You have been added as a passenger on the route selected, you can see it in your lifts");
+                                AlertCall(getString(R.string.txt_passenger_added_notification));
                                 //Come back to the home page
                                 //NavUtils.navigateUpTo(activity, getParentActivityIntent());
                             } else if(!jo.getBoolean("success")) {
                                 Log.i("GetALift_2_already", "Already passenger");
                                 // We tell the user his ride is now created...
                                // Toast.makeText(getBaseContext(),"You are already passenger on this ride !", Toast.LENGTH_SHORT).show();
-                                AlertCall("You are already passenger on this ride !");
+                                AlertCall(getString(R.string.txt_passenger_already_added_notification));
                                 //Come back to the home page
                                // NavUtils.navigateUpTo(activity, getParentActivityIntent());
                             }
@@ -335,9 +343,9 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d("GetALift_3", response.toString());
-                        //Toast.makeText(getBaseContext(),"Vous avez été ajouté en tant que passager, veuillez attendre la confirmation du conducteur",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getBaseContext(),"Passenger added to this ride",Toast.LENGTH_LONG).show();
                         //NavUtils.navigateUpTo(activity, getParentActivityIntent());
-                        AlertCall("You have been added as a passenger on the route selected, you can see it in your lifts");
+                        AlertCall(getString(R.string.txt_passenger_added_notification));
                     }
                 },
                 new Response.ErrorListener()
@@ -412,6 +420,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                             // Display the info of the user
                             Log.i("Test",response);
                             txt_driver_email.setText(jo.getString("email"));
+                            driver_email = jo.getString("email");
                             txt_driver_phoneNumber.setText(jo.getString("mobileNumber"));
                             phoneNumber = jo.getString("mobileNumber");
                             txt_driver_name.setText(jo.getString("name")+ " " + jo.getString("surname"));
@@ -528,6 +537,17 @@ public class ViewRideInfoActivity extends AppCompatActivity {
 
         // show it
         alertDialog.show();
+    }
+
+    /** To send a mail to the driver by clicking on the icon */
+    public void sendMail(){
+        //send message to the email of the enterprise
+        String emailList [] = {driver_email}; //TO change with the good address
+        Intent intentMail = new Intent(Intent.ACTION_SEND);
+        intentMail.setType("message/rfc822");
+        intentMail.putExtra(Intent.EXTRA_EMAIL, emailList);
+        startActivity(Intent.createChooser(intentMail, " "));
+
     }
 
 

@@ -88,10 +88,10 @@
         </activity>
         <activity
             android:name=".ViewRideInfoActivity"
-            android:parentActivityName=".HomeMapActivity" />
+            android:parentActivityName=".ResultSearchActivity" />
         <activity
             android:name=".CreateRideInfo"
-            android:parentActivityName=".HomeMapActivity"
+            android:parentActivityName=".ResultSearchActivity"
             ></activity>
 
         <activity

@@ -633,6 +633,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                             intent_result_search_activity.putExtra("userId", user.getInt("id"));
                             //int userID = intent_result_search_activity.getIntExtra("userId", 0);
                             //Log.i("TAG_User",Integer.toString(userID));
+                            if(intent_result_search_activity != null)
                             startActivity(intent_result_search_activity);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -768,7 +769,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         alertDialogBuilder
                 .setTitle(getString(R.string.txt_new_passenger))
                 .setIcon(R.drawable.ic_notifications)
-                .setMessage(username + getString(R.string.txt_want_to_go)+ "\n \n "+ getString(R.string.txt_from) +origin +"\n" + getString(R.string.txt_to) + destination +"\n Date : "+date_converted[0] + " at : " +time_converted)
+                .setMessage(username + " "+ getString(R.string.txt_want_to_go)+ "!"+ "\n \n "+ getString(R.string.txt_from) +origin +"\n" + getString(R.string.txt_to) + destination +"\n \n Date : "+date_converted[0] + " at : " +time_converted)
                 //If the driver is okay to have this user as passenger, he clicks and the app change "inTheCar" in the database into 1
                 .setPositiveButton(getString(R.string.txt_accept),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){

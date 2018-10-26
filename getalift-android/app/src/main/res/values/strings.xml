@@ -176,4 +176,10 @@
     <string name="btn_create_route1">Create route </string>
     <string name="txt_distance">Distance</string>
     <string name="txt_duration">Duration</string>
+
+    <!-- Other texts for the notifications -->
+    <string name="txt_route_created_notification">Your route has been created, you can see it in \"My lifts\"</string>
+    <string name="txt_passenger_added_notification">You have been added as a passenger on the route selected, you can see it in your lifts</string>
+    <string name="txt_passenger_already_added_notification">You are already passenger on this ride !</string>
+
 </resources>
