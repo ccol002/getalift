@@ -638,9 +638,6 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-
                     }
                 },
                 new Response.ErrorListener(){
@@ -692,7 +689,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                     @Override
                     public void onResponse(String response) {
                         // We got a response from our server.
-                        //Display the repsonse of the server
+                        //Display the response of the server
                         Log.i("TAG_response", response);
                         try {
                             // We create a JSONArray from the server response to have each route where

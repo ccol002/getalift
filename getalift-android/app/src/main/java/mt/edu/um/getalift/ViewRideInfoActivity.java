@@ -56,8 +56,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
 
     //Tag for the LOG
     private static final String TAG = "ViewRideInfoActivity";
-
-    private TextView edt_message;
+    
     private TextView txt_driver_phoneNumber;
     private TextView txt_driver_email;
     private TextView txt_driver_name;
