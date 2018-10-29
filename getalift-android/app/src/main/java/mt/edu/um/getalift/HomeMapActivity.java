@@ -684,7 +684,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         // We first setup the queue for the API Request
         RequestQueue queue =  Volley.newRequestQueue(this);
         // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/passenger/alert/" + Integer.toString(user_id);
+        String url = ConnectionManager.SERVER_URL+"/api/passenger/alert/withoutDateVerification/" + Integer.toString(user_id);
 
         StringRequest sr = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>(){
