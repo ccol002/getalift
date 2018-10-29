@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity  {
         loadLocale();
         setContentView(R.layout.activity_settings);
 
-        //Set the ttitle of the tootlbar
+        //Set the title of the tootlbar
         setTitle(getString(R.string.text_title_settings));
 
         //Display the toolbar
@@ -79,7 +79,7 @@ public class SettingsActivity extends AppCompatActivity  {
         // Display the settings screen in the frameLayout of the activity_settings (replace it by that)
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
 
-        //When the user click on validate the language of the application changes in fonction of the choice of the user
+        //When the user click on validate the language of the application changes in function of the choice of the user
         mValidButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,6 +139,7 @@ public class SettingsActivity extends AppCompatActivity  {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    Toast.makeText(getContext(), "Edit profile cliquer ! " , Toast.LENGTH_SHORT).show();
 
                     return true;
                 }
@@ -170,17 +171,17 @@ public class SettingsActivity extends AppCompatActivity  {
         String language = prefs.getString("change language", "Default");
         if(language.equals("fr")){
             //English
-            Toast.makeText(getApplicationContext(),"@string/txt_choice_language :" + language, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
             setLocale("fr");
             recreate();
         }else if(language.equals("en")){
             //French
-            Toast.makeText(getApplicationContext(), "@string/txt_choice_language :" + language, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
             setLocale("en");
             recreate();
         }if(language.equals("es")){
             //Spanish
-            Toast.makeText(getApplicationContext(), "@string/txt_choice_language :" + language, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
             setLocale("es");
             recreate();
         }

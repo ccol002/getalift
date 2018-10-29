@@ -105,11 +105,11 @@
     <string name="txt_faq5">And if I want to drive ?</string>
     <string name="txt_faq6">" → After recording my trip, by clicking on I want to drive, I can propose to be a driver   Then, a page to create your route will be displayed."</string>
     <string name="txt_faq7"> How to access my profile ?</string>
-    <string name="txt_faq8">" → On the home page, click on the menu at the top left of the screen.  → Click on My profile "</string>
+    <string name="txt_faq8">" → On the home page, click on the menu at the top left of the screen.  \n → Click on My profile "</string>
     <string name="txt_faq9"> How to contact someone who is on the same trip as me ? </string>
-    <string name="txt_faq10">"→ Once the trip is saved, a page with the available routes appears   → Click on the person with whom you wish to travel   → A page showing the route of it appears   → Click on Contact "</string>
+    <string name="txt_faq10">"→ Once the trip is saved, a page with the available routes appears \n  → Click on the person with whom you wish to travel \n  → A page showing the route of it appears   \n → Click on Contact "</string>
     <string name="txt_faq11"> How to save the journey of a person making the same trip as me ?</string>
-    <string name="txt_faq12">" Once the trip is saved, a page with the available routes appears  → Click on the person with whom you wish to travel            → A page showing the route of it appears   → Click on Save"</string>
+    <string name="txt_faq12">" Once the trip is saved, a page with the available routes appears  \n → Click on the person with whom you wish to travel \n → A page showing the route of it appears   \n→ Click on Save"</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
