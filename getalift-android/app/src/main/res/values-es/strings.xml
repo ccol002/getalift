@@ -149,5 +149,9 @@
     <string name="txt_confirm_ride">"Confirmar paseo "</string>
     <string name="title_ViewRideInfo_activity">Get A Lift - Información del viaje</string>
     <string name="txt_error_driver">"Usted es el conductor en este viaje! No se puede añadir como pasajero. "</string>
+    <string name="txt_new_password">"Nueva contraseña "</string>
+    <string name="txt_edit_pwd">Editar mi contraseña</string>
+    <string name="error_old_password_incorrect">Tu contraseña actual es incorrecta</string>
+    <string name="error_old_password_missing">" Para editar su contraseña, debe ingresar su contraseña actual."</string>
 
 </resources>

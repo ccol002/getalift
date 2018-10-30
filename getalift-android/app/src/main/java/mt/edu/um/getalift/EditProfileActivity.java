@@ -206,7 +206,6 @@ public class EditProfileActivity extends AppCompatActivity {
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL + "/api/users/" + userID;
 
-
         // We retrieve what the user taped in the form
         final String edt_name = ((EditText) findViewById(R.id.edt_edit_name)).getText().toString().trim();
         final String edt_surname = ((EditText) findViewById(R.id.edt_edit_surname)).getText().toString().trim();
@@ -215,8 +214,6 @@ public class EditProfileActivity extends AppCompatActivity {
         final String edt_username = ((EditText) findViewById(R.id.edt_edit_username)).getText().toString().trim();
         final String edt_password = ((EditText) findViewById(R.id.edt_edit_password)).getText().toString().trim();
         //final String comment = ((EditText) findViewById(R.id.edt_edit_comment)).getText().toString().trim();
-
-
 
         final Activity activity = this;
 

@@ -25,6 +25,10 @@
             android:title="@string/txt_edit_profile"
             android:key="pref_edit_key">
         </Preference>
+        <Preference
+            android:title="@string/txt_edit_pwd"
+            android:key="pref_edit_pwd_key">
+        </Preference>
 </PreferenceCategory>
 
 <PreferenceCategory

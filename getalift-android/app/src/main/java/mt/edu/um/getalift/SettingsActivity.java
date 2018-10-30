@@ -117,6 +117,8 @@ public class SettingsActivity extends AppCompatActivity  {
             addPreferencesFromResource(R.xml.settings_screen);
 
            Preference myPref = (Preference) findPreference("pref_edit_key");
+           Preference myPrefPwd = (Preference) findPreference("pref_edit_pwd_key");
+
             myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 public boolean onPreferenceClick(Preference preference) {
@@ -146,6 +148,38 @@ public class SettingsActivity extends AppCompatActivity  {
 
 
             });
+
+            myPrefPwd.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
+                public boolean onPreferenceClick(Preference preference) {
+                    //open intent here
+                    //Transfer of the information of the user for the EditProfile page
+                    Intent intentEditProfile = new Intent(getActivity(), EditPasswordActivity.class);
+                    startActivity(intentEditProfile);
+                    SharedPreferences sh = getContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
+                    try {
+                        JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+                        Log.i("Home", Integer.toString(user.getInt("id"), 0));
+                        intentEditProfile.putExtra("userId", user.getInt("id"));
+                        intentEditProfile.putExtra("name", user.getString("name"));
+                        intentEditProfile.putExtra("username", user.getString("username"));
+                        intentEditProfile.putExtra("email", user.getString("email"));
+                        intentEditProfile.putExtra("surname", user.getString("surname"));
+                        intentEditProfile.putExtra("password", user.getString("password"));
+                        intentEditProfile.putExtra("mobileNumber", user.getInt("mobileNumber"));
+                        startActivity(intentEditProfile);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(getContext(), "Edit profile cliquer ! " , Toast.LENGTH_SHORT).show();
+
+                    return true;
+                }
+
+
+            });
+
+
         }
     }
 

@@ -94,6 +94,7 @@
         <activity
             android:name=".RatingSystem"
             android:parentActivityName=".ProfileActivity" />
+        <activity android:name=".EditPasswordActivity"></activity>
     </application>
 
 </manifest>

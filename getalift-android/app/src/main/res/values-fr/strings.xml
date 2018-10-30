@@ -145,5 +145,9 @@
     <string name="txt_confirm_ride">Confirmer le trajet</string>
     <string name="title_ViewRideInfo_activity">Get A Lift - Infos de la route</string>
     <string name="txt_error_driver">Vous êtes conducteur sur ce trajet ! Vous ne pouvez pas être ajouté en tant que passager.</string>
+    <string name="txt_new_password">Nouveau Mot de Passe</string>
+    <string name="txt_edit_pwd">Modifier mon mot de passe</string>
+    <string name="error_old_password_incorrect">Votre mot de passe actuel est incorrect !</string>
+    <string name="error_old_password_missing">Pour modifier votre mot de passe, vous devez taper votre mot de passe actuel !</string>
 
 </resources>
