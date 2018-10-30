@@ -146,5 +146,7 @@
     <string name="txt_route_created_notification">Tu ruta ha sido creada, puedes verla en \"Sus viajes\"</string>
     <string name="txt_passenger_added_notification">Se le ha agregado como pasajero en la ruta seleccionada, puede verla en \"Sus viajes\"</string>
     <string name="txt_passenger_already_added_notification">¡Ya eres pasajero en esta ruta!</string>
+    <string name="txt_confirm_ride">"Confirmar paseo "</string>
+    <string name="title_ViewRideInfo_activity">Get A Lift - Información del viaje</string>
 
 </resources>

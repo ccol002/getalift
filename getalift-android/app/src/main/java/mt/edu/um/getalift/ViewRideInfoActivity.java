@@ -48,6 +48,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static mt.edu.um.getalift.CreateRideInfo.getAddressFromLocation;
+
 public class ViewRideInfoActivity extends AppCompatActivity {
 
     //Creation of the intent which recovers the id of the driver selected by the user
@@ -56,7 +58,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
 
     //Tag for the LOG
     private static final String TAG = "ViewRideInfoActivity";
-    
+
     private TextView txt_driver_phoneNumber;
     private TextView txt_driver_email;
     private TextView txt_driver_name;
@@ -64,7 +66,6 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     private TextView txt_view_ending_point;
     private ImageButton img_button_tel;
     private String phoneNumber;
-
     private String text_message;
 
     private Button btn_confirm_ride;
@@ -80,7 +81,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_ride_info);
-        setTitle("Ride's Info");
+        setTitle(getString(R.string.title_ViewRideInfo_activity));
 
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
@@ -99,6 +100,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         //edt_message = findViewById(R.id.edt_passenger_message);
 
         btn_confirm_ride = findViewById(R.id.btn_confirm_ride);
+        btn_confirm_ride.setText(getString(R.string.txt_confirm_ride));
 
         // Recovering the ride selected
         intent_View_Ride_Info_activity = getIntent();
@@ -108,63 +110,102 @@ public class ViewRideInfoActivity extends AppCompatActivity {
             endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
             routeId = intent_View_Ride_Info_activity.getIntExtra("route_id",0);
             userID = intent_View_Ride_Info_activity.getIntExtra("userID",0);
-            txt_view_ending_point.setText("UserID :" + userID);
-            txt_view_starting_point.setText("Route ID : "+ routeId);
-            }
+            //txt_view_ending_point.setText("UserID :" + userID);
+            //txt_view_starting_point.setText("Route ID : "+ routeId);
+        }
 
-
-            //Recover address of the starting point
-
+        //Display the addresses of origin and destination
         String adresseOrigin = getAddressFromLocation(startingPoint.getLat(),startingPoint.getLng(),getApplicationContext());
         String adresseDestination = getAddressFromLocation(endingPoint.getLat(),endingPoint.getLng(),getApplicationContext());
-                txt_view_starting_point.setText(adresseOrigin);
-                txt_view_ending_point.setText(adresseDestination);
+        txt_view_starting_point.setText(adresseOrigin);
+        txt_view_ending_point.setText(adresseDestination);
 
         //Complete the fields with the info of the driver
         completeDriverInfo();
 
-        //Add ride and the passenger to the ride by clicking on this button
+        //When the user click on this button, it add the route to the ride in the database if it's not already the case
+        //Then add the user as passenger on this ride
+        //Or say : you are already passenger on this ride (if it's the case)
         btn_confirm_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*text_message = edt_message.getText().toString().trim();
-                if(text_message.length() == 0){
-                    addRide();
-                }
-                else {
-                     if (text_message.length() > 100){
-                        Toast.makeText(getApplicationContext(), getString(R.string.error_message_20_long), Toast.LENGTH_SHORT).show();
-                    } else if (text_message.length() < 20){
-                        Toast.makeText(getApplicationContext(), getString(R.string.error_message_20_short), Toast.LENGTH_SHORT).show();
-                    }
-                    else{*/
-                         addRide();
-
-                //We transform the TextView into
-
-
+                addRide();
             }
         });
 
-        img_button_tel.setOnClickListener(new View.OnClickListener() {
+        //This works but not on the emulator
+        //These functions work on a real Android phone
+        //To allow the user to call the driver by clicking on the icon
+        /*img_button_tel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
-                Log.i("TAG_phone_call", "Passer appel avec : " + phoneNumber);
-                startActivity(call);
+                //Intent call = new Intent(Intent.ACTION_DIAL, Uri.parse("tel: 0" + phoneNumber));
+                //Log.i("TAG_phone_call", "Passer appel avec : " + phoneNumber);
+                //startActivity(call);
             }
         });
 
+        //To allow the user to contact the driver (by mail) by clicking on the icon
         img_button_mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMail();
+               // sendMail();
             }
-        });
+        });*/
     }
 
-/**When the user click on "Confirm", the app creates a ride corresponding to the route selected before
-    To add the route to the ride table in the database :*/
+    /**Complete the fields with the info t=of teh driver*/
+    public void completeDriverInfo(){
+        // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(this);
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/users/" + Integer.toString(driverId);
+
+        StringRequest sr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        try {
+                            // We create a JSONObject from the server response.
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+
+                            // Display the info of the user
+                            Log.i("Test",response);
+                            txt_driver_email.setText(jo.getString("email"));
+                            driver_email = jo.getString("email");
+                            txt_driver_phoneNumber.setText(jo.getString("mobileNumber"));
+                            phoneNumber = jo.getString("mobileNumber");
+                            txt_driver_name.setText(jo.getString("name")+ " " + jo.getString("surname"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
+    /**When the user click on "Confirm", the app creates a ride corresponding to the route selected before
+     To add the route to the ride table in the database :*/
     private void addRide(){
         final int route_id = routeId ;
 
@@ -197,7 +238,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                                     // We tell the user his account is now created...
                                     Toast.makeText(getApplicationContext(), jo.getString("message"), Toast.LENGTH_SHORT).show();
                                     addUserToExistingRide(route_id);
-                               }
+                                }
                             }
 
                         } catch (JSONException e) {
@@ -217,15 +258,13 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                     }
                 }
         ) {
-
-           @Override
+            @Override
             public Map<String, String> getHeaders()/* throws AuthFailureError*/ {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
                 //headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
             }
-
             @Override
             //Parameters for the SQL request, we need all the information
             protected Map<String, String> getParams()/* throws AuthFailureError*/ {
@@ -234,18 +273,13 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 params.put("route",Integer.toString(route_id));
 
                 return params;
-
             }
         };
-
         queue.add(putRequest);
-
-
     }
 
-
     /**When the user click on confirm, the route is added in the ride table
-      If the ride already exist, the addRide() send an error with the errorCode==1 and say  "This route is already attributed to a ride"*/
+     If the ride already exist, the addRide() send an error with the errorCode==1 and say  "This route is already attributed to a ride"*/
     private void addUserToExistingRide(int route) {
         final int route_id = route;
         final int user_id = userID ;
@@ -273,10 +307,10 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                             } else if(!jo.getBoolean("success")) {
                                 Log.i("GetALift_2_already", "Already passenger");
                                 // We tell the user his ride is now created...
-                               // Toast.makeText(getBaseContext(),"You are already passenger on this ride !", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(getBaseContext(),"You are already passenger on this ride !", Toast.LENGTH_SHORT).show();
                                 AlertCall(getString(R.string.txt_passenger_already_added_notification));
                                 //Come back to the home page
-                               // NavUtils.navigateUpTo(activity, getParentActivityIntent());
+                                // NavUtils.navigateUpTo(activity, getParentActivityIntent());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -358,7 +392,6 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                     }
                 }
         ) {
-
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
@@ -368,150 +401,18 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
             }
-
             @Override
             //Parameters for the SQL request, we need all the information
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                    //ride, passenger, inTheCar
+                //ride, passenger, inTheCar
                 params.put("ride",Integer.toString(ride_id));
                 params.put("passenger",Integer.toString(user_id));
                 params.put("inTheCar","0");
-
                 return params;
-
             }
         };
-
         queue.add(putRequest);
-
-    }
-
-    /** Return to the last page when clicking on the arrow*/
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // If we select the "Go back" button
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**Complete the fields with the info t=of teh driver*/
-    public void completeDriverInfo(){
-        // We first setup the queue for the API Request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/users/" + Integer.toString(driverId);
-
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-
-                    @Override
-                    public void onResponse(String response) {
-                        // We got a response from our server.
-                        try {
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-
-                            // Display the info of the user
-                            Log.i("Test",response);
-                            txt_driver_email.setText(jo.getString("email"));
-                            driver_email = jo.getString("email");
-                            txt_driver_phoneNumber.setText(jo.getString("mobileNumber"));
-                            phoneNumber = jo.getString("mobileNumber");
-                            txt_driver_name.setText(jo.getString("name")+ " " + jo.getString("surname"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
-                    }
-
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
-                params.put("x-access-token", sh.getString("token", null));
-                return params;
-            }
-        };
-        queue.add(sr);
-    }
-
-/**Convert the coordinates into addresses ti display them to the driver*/
-    public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-        String result = null;
-        String locality, zip, country, street, featureName;
-
-        try {
-            List< Address > addressList = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addressList != null && addressList.size() > 0) {
-                Address address = addressList.get(0);
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-                    sb.append(address.getAddressLine(i));
-                }
-                //Make sure the information for the address are not null before displaying them
-                if(address.getLocality() != null)
-                    locality = address.getLocality() +", ";
-                else
-                    locality = "";
-                if(address.getPostalCode() != null)
-                    zip = address.getPostalCode() + ", ";
-                else
-                    zip ="";
-                if(address.getCountryName() != null)
-                    country = address.getCountryName();
-                else
-                    country = "";
-                if(address.getThoroughfare() != null)
-                    street = address.getThoroughfare() +", ";
-                else
-                    street ="";
-                if(address.getFeatureName() != null)
-                    featureName = address.getFeatureName() +", ";
-                else
-                    featureName ="";
-
-                if(featureName != street) {
-                    sb.append(featureName);
-                    sb.append(street);
-                    sb.append(locality);
-                    sb.append(zip);
-                    sb.append(country);
-                }
-                else{
-                    sb.append(street);
-                    sb.append(locality);
-                    sb.append(zip);
-                    sb.append(country);
-                }
-                result = sb.toString();
-            }
-        } catch (IOException e) {
-            Log.e("Location Address Loader", "Unable connect to Geocoder", e);
-        } finally {
-
-            if (result != null) {
-                //addressFind = result;
-            } else {
-                result = " Unable to get address for this location.";
-            }
-
-        }
-        return result;
     }
 
     public void AlertCall(String message){
@@ -548,6 +449,5 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(intentMail, " "));
 
     }
-
 
 }
