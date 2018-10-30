@@ -152,6 +152,11 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                // sendMail();
             }
         });*/
+
+        /** To avoid the user to be added as passenger if he is driver on the ride */
+        if(driverId == userID){
+            AlertCall(getString(R.string.txt_error_driver));
+        }
     }
 
     /**Complete the fields with the info t=of teh driver*/
@@ -178,6 +183,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                             txt_driver_phoneNumber.setText(jo.getString("mobileNumber"));
                             phoneNumber = jo.getString("mobileNumber");
                             txt_driver_name.setText(jo.getString("name")+ " " + jo.getString("surname"));
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -426,12 +432,12 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), HomeMapActivity.class);
                         startActivity(intent);
                     }
-                })
-                .setNegativeButton(getString(R.string.txt_cancel),new DialogInterface.OnClickListener(){
+                });
+                /*.setNegativeButton(getString(R.string.txt_cancel),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         dialog.cancel();
                     }
-                });
+                });*/
         // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
 

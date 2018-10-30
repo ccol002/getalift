@@ -184,8 +184,8 @@
 
     <!-- Text for ViewRideActivityInfo -->
     <string name="txt_confirm_ride">Confirm ride</string>
-    <string name="title_ViewRideInfo_activity">Get A Lift - Ride's Info</string>
-
+    <string name="title_ViewRideInfo_activity">Get A Lift - Ride\'s Info</string>
+    <string name="txt_error_driver">You are driver on this ride ! You can\'t be added as passenger.</string>
 
 
 </resources>

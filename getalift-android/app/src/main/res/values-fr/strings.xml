@@ -144,5 +144,6 @@
     <string name="txt_passenger_already_added_notification">Vous êtes déjà passager sur ce trajet !</string>
     <string name="txt_confirm_ride">Confirmer le trajet</string>
     <string name="title_ViewRideInfo_activity">Get A Lift - Infos de la route</string>
+    <string name="txt_error_driver">Vous êtes conducteur sur ce trajet ! Vous ne pouvez pas être ajouté en tant que passager.</string>
 
 </resources>

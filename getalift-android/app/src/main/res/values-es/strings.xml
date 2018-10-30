@@ -148,5 +148,6 @@
     <string name="txt_passenger_already_added_notification">¡Ya eres pasajero en esta ruta!</string>
     <string name="txt_confirm_ride">"Confirmar paseo "</string>
     <string name="title_ViewRideInfo_activity">Get A Lift - Información del viaje</string>
+    <string name="txt_error_driver">"Usted es el conductor en este viaje! No se puede añadir como pasajero. "</string>
 
 </resources>
