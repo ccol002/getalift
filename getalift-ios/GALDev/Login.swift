@@ -10,7 +10,6 @@ import NotificationBannerSwift
 import UIKit
 
 /// The address of the server user
-//var ServerAdress : String = "http://10.68.119.81"
 var ServerAdress : String = "http://10.249.45.149"
 
 

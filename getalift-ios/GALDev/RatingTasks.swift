@@ -111,7 +111,7 @@ class RatingTasks {
     }
     
     
-    func putRide(stars: Int, comment: String, postDate: String, author: Int, routeId: Int, completitionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
+    func putRate(stars: Int, comment: String, postDate: String, author: Int, routeId: Int, completitionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         //create the url with URL
         let url  = URL(string: ServerAdress+":7878/api/ratings")!

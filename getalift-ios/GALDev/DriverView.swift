@@ -179,22 +179,6 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
             showMailError()
         }
         
-        /*if !MFMailComposeViewController.canSendMail() {
-            //Envoie d'un mail
-            //On crée un composeur de mails
-            let mc = MFMailComposeViewController()
-            //On lui donne son "délégué"
-            mc.mailComposeDelegate = self
-            //On donne des destinataires au mail
-            mc.setToRecipients([driverEmail])
-            //On donne un sujet
-            mc.setSubject("From my first app")
-            //Et on peut même écrire le corps du texte
-            mc.setMessageBody("Hi there,\n I am interested in your route", isHTML: false)
-            //On le montre
-            self.present(mc, animated: true, completion: nil)
-        }*/
-        
     }
     
     // Appelée lorsque l'utilisateur a fini avec ses mails

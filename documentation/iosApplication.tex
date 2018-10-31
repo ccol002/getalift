@@ -85,7 +85,9 @@ pod install
 \end{verbatim}
 \end{DDbox}
 \clearpage
+
 \section{GetALift iOS Application}
+
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale = 0.35]{diagrams/iOSApplication.png} 
@@ -285,13 +287,323 @@ The user to find this trip in the list of routes he has created, available in th
 \\\\
 Likewise with the list of his favorite journeys.
 
+\section{GetALift iOS Classes}
 
+\subsection{Model View Controller (MVC)}
 
+MVC is an acronym that stands for Model View Controller. With the VMC, we divide our program into 3 parts:
+\begin{itemize}
+\item Model: that's what the application does. This is the logic, the brain of the application. He is responsible for the manipulation of the data. In the case of the GetALift application, this part deals with tasks such as saving data, saving, retrieving user data, searching for routes by search parameters, etc.
+\item Controller: It retrieves model information and posters in the view.
+\item View: that's what the user sees, it's the interface of the application (storyboard)
+\end{itemize}
 
+\subsection{Controller}
 
+The code is directly detailed on each corresponding file but this part of the documentation generally describes the classes and their main functions.
 
+In each UIViewController class :
 
+\begin{itemize}
+\item the ViewDidLoad function is the function that is called when the page is created.
+\item the ViewWillAppear is the function that is called even time that the page appears after it creation
+\end{itemize}
 
+\subsubsection{HomePage}
+
+The home page when the user open the application.
+
+\subsubsection{Login}
+
+The first page that opens when the user launch the application.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item Authentification : This function creates a new user object in the case where the fields "username" and "password" have been correctly completed and the authentication on the backend has 	worked.
+\end{itemize}
+
+\subsubsection{FirstView}
+
+The first view of the app when the user is authenticated.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item createUIAlertController : Create an object of type alert.	
+
+\item showAlert : Display the alert and the 2 actions « Yes » and « No »
+
+\item confirmPassenger : Execute the changeInTheCarColumn request which change the value of the « inTheCar » 		column in the dataBase to confirm the presence of the passenger in the car
+
+\item notConfirmPassenger : Execute the deletePassenger request which delete the user from the database in the case 		where the driver don’t confirm the presence of the passenger in his car.
+\end{itemize}
+
+\subsubsection{CreateAccount}
+
+View for that the user create an account on the dataBase.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item createAccount : This function creates a new user object and a new user in the database in the case where the different fields have been correctly completed and the creation of a new user on the database has worked.
+\end{itemize}
+
+\subsubsection{SearchRoute}
+
+The view to research or create a route.
+
+\subsubsection{Help}
+
+Help page.
+
+\subsubsection{RouteList}
+
+The page which display the list of route after a research.
+
+\subsubsection{RouteView}
+
+Class to display the information of an existing route.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item addToRide : This function execute first the ddRide request. If the POST request works (if « success == true »), a route is associated to a new ride on the database. A passenger is created for the corresponding ride in the database. In the case, where « success == false » which means that an already created ride exist for the current route, there is only a new passenger for the corresponding ride who is created on the database by executing the « addPassengerExistingRide » request.
+\end{itemize}
+
+\subsubsection{DriverView}
+
+Class to display information of the driver of the selected route.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item addToFavoriteRoute : This function execute the addFavoriteRoute request to allow the user to save a route in his Favorite Route tab. If the route is already in your favorite route tab, an error message appears. Otherwise, the route is added to your Favorite Route.	
+
+\item message, mail, phone : Several function in this class allow the user to call, send a message or a mail to the driver
+\end{itemize}
+
+\subsubsection{CreateYourRoute}
+
+Class which allow creation of the route on the database and allow the display of the route
+
+\subsubsection{Menu}
+
+\subsubsection{UserProfile}
+
+Class to display the information of the user
+
+\subsubsection{myRoutes}
+
+Class to display the different routes the connected user created
+
+\subsubsection{routeSaved}
+
+Class to display the different routes the connected user add to his favorite routes
+
+\subsubsection{SeeCurrentRoute}
+
+Class to show the route being edited on the research interface
+
+\subsubsection{routeViewForTheMenu}
+
+Class allowing to display informations of an existing route
+
+\subsubsection{PageViewController}
+
+\subsubsection{GetMoreInformation}
+
+Get Morte information page
+
+\subsubsection{Settings}
+
+Settings Page
+
+\subsubsection{Rides}
+
+Class to display the different Rides (route that user made and where the driver confirmed his presence.
+
+\subsubsection{Comments}
+
+Class to display the different comments relative to a driver.
+
+\subsubsection{Rating}
+
+Class which allow to the user to rate and comment the driver for a ride he made. If it is the first time, he rate the driver, it use a POST request and if he modify his rate, it use a PUT request.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}	
+\item rateFunction : This function execute first the postRating request. If the POST request works, the rate is creating in the database and a notification banner inform the user that his rate have been created. If the POST request didn’t work, it means that a rate already exist for this route by the user in the database. The function then execute the putRate function which modify the existing rate if the user click on « Yes » on the alert message which appear or not if he click 	on « No »
+\end{itemize}
+
+\subsubsection{EditProfile}
+
+Class which allow the user to modify his personal information on the database.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item editInformations : This function allow the user to modify his information. The user must to enter his actual password if he want change an information of his profile. If he want to change his password, he must to complete the two fields in the same way or an error banner appears. If his information are correctly modified on the database, a notification banner appears.
+\end{itemize}
+
+\subsection{Model}
+
+\subsubsection{User}
+
+This class define the object User
+
+\subsubsection{Route}
+
+This class define the object Route
+
+\subsubsection{DateTime}
+
+This class defines the object date
+
+\subsubsection{Passenger}
+
+This class defines the object Passenger
+
+\subsubsection{Comment}
+
+This class defines the object Comment
+
+\subsection{Tasks}
+
+\subsubsection{MapTasks}
+
+Regroup all the requests concerning the map.
+
+\subsubsection{UserTasks}
+
+Regroup all the requests concerning users.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item user: Perform GET request which create a user object when it is called.
+\item editUser: Perform PUT request which allow to modify an existing user on the database regarding his id
+\item authentification: Perform POST request which allow to confirm or not the authentication of a user.
+\end{itemize}
+
+\subsubsection{RouteTasks}
+
+Regroup all the requests concerning routes.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item route POST: It is the POST request which is perform when a user search a route. It create one or several object of type Route in an array to display them after.
+\item route (date) GET: Perform GET request which throw back a route regarding it date.
+\item route (driverId) GET: Perform GET request which throw back a route regarding it driver.
+\item deleteRoute: Perform DELETE request which delete a route regarding it id.
+\end{itemize}
+
+\subsubsection{DateTasks}
+
+Regroup all the requests concerning the date.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item date(routeId): Perform GET request which create a date object regarding the route id when it is called.
+\end{itemize}
+
+\subsubsection{FavoriteRouteTasks}
+
+Regroup all the requests concerning favorite routes.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item favoriteRoute: Perform GET request which create object of type Route regarding the user id to display the different route saved by the user.
+\item deleteFavoriteRoute: Perform DELETE request to delete a favorite route regarding the route id.
+\item addFavoriteRoute: Perform POST request which save a route regarding a user id in the favoriteRoute tab on the database
+\end{itemize}
+
+\subsubsection{PassengerTasks}
+
+Regroup all the requests concerning passengers.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item passengerNames: Perform GET request that returns a table of all passengers in relation to a driver
+\item deletePassenger: Perform DELETE request which allows to delete a passenger according to the id
+\item changeInTheCarColumn: Perform PUT request that allows to pass inTheCar to the value 1 if the driver confirms the presence of the passenger
+\item addpass: Perform POST request that adds a passenger in the Database regarding the ride Id
+\item addPassengerExistingRide: Perform POST request that adds a passenger in the database regarding his id and the route id when a ride already exist regarding the route.
+\end{itemize}
+
+\subsubsection{RatingTasks}
+
+Regroup all the requests concerning rates.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item getRating: Perform GET request which allow to recover the average of the rate o a driver.
+\item postRating: Perform POST request which allow to create a rate on the database regarding a driver and a route
+\item putRate: Perform PUT request which allow to modify on the database an already existing rate 
+\end{itemize}
+
+\subsubsection{RideTasks}
+
+Regroup all the requests concerning rides.
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item rides: Perform GET request hat returns a table of all rides in relation to a passenger.
+\item addRide: Perform POST function which create a ride regarding a Route if a ride doesn’t already exist for the route
+\end{itemize}
+
+\subsubsection{CommentsTasks}
+
+Regroup all the requests concerning the display of the comments
+\\\\
+\textbf{Function(s) :}
+
+\begin{itemize}
+\item commentaries: Perform GET request that returns all the comments regarding a driver id.
+\end{itemize}
+
+\subsection{Others}
+
+\subsubsection{SearchTextField}
+
+Class that manages the operation of the different search bars
+
+\subsubsection{CalculationForMapDisplay}
+
+Class that manage the the display of the map on the screen regarding the zoom.
+
+\subsection{Custom Item}
+
+\subsubsection{MyCustomCell}
+
+Class that manage customCell cells in UITableView
+
+\subsubsection{BoutonArrondi}
+
+Class that manage BoutonArrondi button.
+
+\subsubsection{SelectedButton}
+
+Class that manage the selected button
+
+\subsubsection{BoutonArrondi2}
+
+Class that manage BoutonArrondi2 button.
+
+\subsubsection{RidesTableViewCell}
+
+Class that manage RidesTableViewCell cell in the UITableView table on the Rides page.
+
+\subsubsection{CommentaryTableViewCell}
+
+Class that manage CommentaryTableViewCell cell in the UITableView table on the Comment page.
 
 
 

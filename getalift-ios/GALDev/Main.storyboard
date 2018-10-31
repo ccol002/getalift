@@ -2981,11 +2981,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5e-mk-tfQ" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw3-qp-HQ9">
-                                <rect key="frame" x="0.0" y="398" width="320" height="170"/>
+                                <rect key="frame" x="0.0" y="354" width="320" height="170"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGP-FP-lIZ">
                                         <rect key="frame" x="0.0" y="91" width="375" height="79"/>
@@ -3307,7 +3307,7 @@
         <image name="user1" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iop-JU-iJW"/>
+        <segue reference="mCb-Ct-wP6"/>
         <segue reference="YiX-Jt-XYb"/>
         <segue reference="Nu2-3c-9jo"/>
         <segue reference="Vw1-0G-vDG"/>

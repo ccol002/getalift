@@ -10,8 +10,7 @@ import Foundation
 import Foundation
 import GoogleMaps
 
-
-/// Classe permettant d'afficher les informations d'une route existente
+//Class allowing to display informations of an existing routea
 class RouteViewForTheMenu : UIViewController {
     
     //  #################### Variables ####################

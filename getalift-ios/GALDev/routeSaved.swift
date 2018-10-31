@@ -90,14 +90,7 @@ class routeSaved : UIViewController, UITableViewDataSource, UITableViewDelegate 
             tableView.backgroundView = nil
             return self.routes.count
         }
-    }
-    /*func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-     switch section {
-     case 0: return "Routes : "
-     default: return ""
-     }
-     }*/
-    
+    }    
     
     //Cellule à l'index concerné
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

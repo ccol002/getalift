@@ -62,7 +62,7 @@ class Rating: UIViewController {
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "You already rate this route", message: "Modify your rate?", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-                            self.ratingTasks.putRide(stars: rate!, comment: comment!, postDate: todayString, author: self.userId!, routeId: routeId!, completitionHandler: { (status, success) in
+                            self.ratingTasks.putRate(stars: rate!, comment: comment!, postDate: todayString, author: self.userId!, routeId: routeId!, completitionHandler: { (status, success) in
                                 if success {
                                     DispatchQueue.main.async {
                                         print("rate modify")
