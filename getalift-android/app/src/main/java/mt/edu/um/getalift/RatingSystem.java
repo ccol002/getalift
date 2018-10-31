@@ -18,6 +18,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,9 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,8 +46,13 @@ public class RatingSystem extends AppCompatActivity {
 
     //Création de l'intent qui récupere l'Id de l'utilisateur
     Intent intentRating;
-    private int userID;
+    private int targetID;
     private int routeId;
+
+    // Données à envoyer
+    Date currentTime;
+    int rideId;
+    int userID;
 
 
     @Override
@@ -72,24 +78,25 @@ public class RatingSystem extends AppCompatActivity {
         intentRating = getIntent();
 
         if (intentRating != null) {
-            userID = intentRating.getIntExtra("userId",2);
-            Log.i(TAG,String.valueOf(userID));
+            targetID = intentRating.getIntExtra("userId",2);
+            //Log.i(TAG + "target ID",String.valueOf(targetID));
             routeId = intentRating.getIntExtra("routeId",0);
-            Log.i(TAG,String.valueOf(routeId));
+            //Log.i(TAG + "target ID",String.valueOf(routeId));
         }
 
         // récupération de l'utilisateur actuel
         SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
         try {
             JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
-            Log.i(TAG,Integer.toString(user.getInt("id"),0));
+            userID = user.getInt("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         // récupération de la date et l'heure
 
-        Date currentTime = Calendar.getInstance().getTime();
-        Log.i(TAG,currentTime.toString());
+        currentTime = Calendar.getInstance().getTime();
+        //Log.i(TAG,currentTime.toString());
 
 
         commitBtn.setOnClickListener(new View.OnClickListener() {
@@ -102,39 +109,113 @@ public class RatingSystem extends AppCompatActivity {
             }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        validationBtn.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
+                rateThis(view);
                 Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
-                intent.putExtra("userId",userID);
+                intent.putExtra("userId",targetID);
+                intent.putExtra("routeId",routeId);
+                intent.putExtra("canRate",1);
                 startActivity(intent);
             }
         });
 
-
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+                intent.putExtra("userId",targetID);
+                startActivity(intent);
+            }
+        });
 
     }
-
-
-
-
-    public void signIn(View view){
+    /*
+    public int getRideId(int idRoute){
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/ratings";
+        String url = ConnectionManager.SERVER_URL+"/api/rides/test/" + Integer.toString(idRoute);
+
+        StringRequest sr = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>(){
+
+                    @Override
+                    public void onResponse(String response) {
+                        // We got a response from our server.
+                        try {
+                            // We create a JSONObject from the server response.
+                            JSONObject jo = new JSONArray(response).getJSONObject(0);
+                            rideId = jo.getInt("id");
+                            Log.i(TAG + "ntm",String.valueOf(jo.getInt("id")));
+                            Log.i(TAG + "ntm",String.valueOf(rideId));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, error.toString());
+                    }
+
+                }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                params.put("x-access-token", sh.getString("token", null));
+                return params;
+            }
+        };
+        queue.add(sr);
+        Log.i(TAG + "ride ID",String.valueOf(rideId));
+        return rideId;
+    }*/
+
+
+    public void rateThis(View view){
+
+        // We first setup the queue for the API Request
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        // We get the URL of the server.
+        String url = ConnectionManager.SERVER_URL+"/api/ratings/";
 
         // We retrieve what the user select in the form
-        final String commentaire = ((EditText) findViewById(R.id.editCommentaire)).getText().toString();
-        final float password =  ratingBar.getRating();
+        final String comment = ((EditText) findViewById(R.id.editCommentaire)).getText().toString();
+        final String stars = String.valueOf((int)ratingBar.getRating());
+        final String author = String.valueOf(userID);
+        final String ride = String.valueOf(29);
+        final String target = String.valueOf(targetID);
+        //final String postDate = currentTime.toString();
+        final String postDate = "2018-10-22 00:00:00";
 
-        final Activity activity = this;
+        /*
+        Log.i(TAG,comment);
+        Log.i(TAG,stars);
+        Log.i(TAG,author);
+        Log.i(TAG,ride);
+        Log.i(TAG,target);
+        Log.i(TAG,postDate);
+        */
+
+        //On vérifie que les données ne sont pas vide ou incompatible au format
+        if (comment.length() < 5) {
+            Toast.makeText(getApplicationContext(), getString(R.string.error_commentRate_long), Toast.LENGTH_SHORT).show();
+        } else {
 
 
             // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
             // it looks like it's more stable.
             StringRequest sr = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>(){
+                    new Response.Listener<String>() {
 
                         @Override
                         public void onResponse(String response) {
@@ -144,15 +225,18 @@ public class RatingSystem extends AppCompatActivity {
                                 // We create a JSONObject from the server response.
                                 JSONObject jo = new JSONObject(response);
                                 // If the server respond with a success...
-                                if (jo.getBoolean("success")){
-                                    // We tell the user his account is now created...
-                                    Toast.makeText(getApplicationContext(), getString(R.string.success_account_created), Toast.LENGTH_SHORT).show();
-                                    // And we move him back to the login activity.
-                                    NavUtils.navigateUpFromSameTask(activity);
+                                if (jo.getBoolean("success")) {
+                                    // We tell the user his rate is created and back to the last page
+                                    Toast.makeText(getApplicationContext(), getString(R.string.success_rate_created), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                                    intent.putExtra("userId", userID);
+                                    intent.putExtra("routeId", routeId);
+                                    intent.putExtra("canRate", 1);
+                                    startActivity(intent);
                                 } else {
-                                    if (jo.getInt("errorCode") == 1){
-                                        // We tell the user his account is now created...
-                                        Toast.makeText(getApplicationContext(), getString(R.string.error_username_exists), Toast.LENGTH_SHORT).show();
+                                    if (jo.getInt("errorCode") == 1) {
+                                        // We tell the user he can't rate 2 times
+                                        Toast.makeText(getApplicationContext(), getString(R.string.error_rate_exists), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -162,7 +246,7 @@ public class RatingSystem extends AppCompatActivity {
                         }
 
                     },
-                    new Response.ErrorListener(){
+                    new Response.ErrorListener() {
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
@@ -170,19 +254,21 @@ public class RatingSystem extends AppCompatActivity {
                         }
 
                     }
-            ){
+            ) {
                 @Override
-                protected Map<String,String> getParams(){
-                    Map<String,String> params = new HashMap<String, String>();
-                    //params.put("username",username);
-                    //params.put("password",password);
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("author", author);
+                    params.put("target", target);
+                    params.put("ride", ride);
+                    params.put("stars", stars);
+                    params.put("comment", comment);
+                    params.put("postDate", postDate);
                     return params;
                 }
             };
             queue.add(sr);
-
-
-
+        }
     }
 
 
@@ -194,7 +280,6 @@ public class RatingSystem extends AppCompatActivity {
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
 
     }

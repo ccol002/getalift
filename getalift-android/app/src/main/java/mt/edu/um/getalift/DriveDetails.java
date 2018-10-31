@@ -211,6 +211,7 @@ public class DriveDetails extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                                     intent.putExtra("userId",passengerId);
                                     intent.putExtra("routeId",id);
+                                    intent.putExtra("canRate",1);
                                     startActivity(intent);
                                 }
                             });
@@ -272,7 +273,7 @@ public class DriveDetails extends AppCompatActivity {
             Intent intent = new Intent(DriveDetails.this,ProfileActivity.class);
             intent.putExtra("userId",test);
             intent.putExtra("routeId",id);
-            Log.i(TAG,String.valueOf(id));
+            intent.putExtra("canRate",1);
             startActivity(intent);
         }
     };
