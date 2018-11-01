@@ -121,8 +121,9 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
     //On doit faire la même chose pour le deuxième liste
     @Override
     public void onClientSelectedPassenger(int id) {
+        Log.i(TAG,String.valueOf(id));
         Intent intent = new Intent(DriveActivity.this,DriveDetails.class);
-        intent.putExtra("userId",userID);
+        intent.putExtra("userId",id);
         startActivity(intent);
     }
 }
