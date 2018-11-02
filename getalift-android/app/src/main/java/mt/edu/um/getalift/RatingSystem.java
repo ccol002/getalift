@@ -186,7 +186,7 @@ public class RatingSystem extends AppCompatActivity {
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/ratings/";
+        String url = ConnectionManager.SERVER_URL+"/api/ratings/existingRate";
 
         // We retrieve what the user select in the form
         final String comment = ((EditText) findViewById(R.id.editCommentaire)).getText().toString();
@@ -195,7 +195,7 @@ public class RatingSystem extends AppCompatActivity {
         final String ride = String.valueOf(29);
         final String target = String.valueOf(targetID);
         //final String postDate = currentTime.toString();
-        final String postDate = "2018-10-22 00:00:00";
+        final String postDate = "2018-11-02 00:00:00";
 
         /*
         Log.i(TAG,comment);
@@ -255,6 +255,18 @@ public class RatingSystem extends AppCompatActivity {
 
                     }
             ) {
+
+                @Override
+                public Map<String, String> getHeaders()
+                {
+                    Map<String, String> headers = new HashMap<String, String>();
+                    //headers.put("Content-Type", "application/json");
+                    //or try with this:
+                    headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                    headers.put("Content-Type", "application/x-www-form-urlencoded");
+                    return headers;
+                }
+
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();

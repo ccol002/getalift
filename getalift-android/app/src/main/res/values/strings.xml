@@ -193,7 +193,7 @@
 
     <!-- Strings related to Rating  Page -->
     <string name="error_rate_exists">You already have rate this user.</string>
-    <string name="success_rate_created">Your ratehave been register.</string>
+    <string name="success_rate_created">Your rate have been register.</string>
     <string name="error_commentRate_long">The comment must be less than 5 character long.</string>
     <string name="error_rate_autorisation">You can t rate this user.</string>
 
