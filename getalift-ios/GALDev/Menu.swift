@@ -17,29 +17,29 @@ class Menu : UITableViewController, MFMailComposeViewControllerDelegate {
     /// Function to open the mail composer
     @IBAction func mailCompose (sender: Any){
 
-        //Envoie d'un mail
-        //On crée un composeur de mails
+        //Send an email
+        //We create an email composer
         let mc = MFMailComposeViewController()
-        //On lui donne son "délégué"
+        //We give him his "delegate"
         mc.mailComposeDelegate = self
-        //On donne des destinataires au mail
+        //We give recipients to the mail
         mc.setToRecipients(["contact@firstapp.com"])
-        //On donne un sujet
+        //We give a subject
         mc.setSubject("From my first app")
-        //Et on peut même écrire le corps du texte
+        //And we can even write the body of the text
         mc.setMessageBody("Hi there,\n this is a fake body for my email", isHTML: false)
-        //On le montre
+        //We show it
         self.present(mc, animated: true, completion: nil)
                 
     }
     
-    // Fonction pour ouvrir le navigateur internet avec un site internet, mais on a pas de site pour l'intant
+    // Function to open the internet browser with a website, but we have no site for intant
     @IBAction func openBrowser(sender: Any){
         UIApplication.shared.open(NSURL(string: "https://firstapp.com")! as URL)
     }
     
     
-    // Appelée lorsque l'utilisateur a fini avec ses mails
+    // Called when the user has finished with his mails
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }

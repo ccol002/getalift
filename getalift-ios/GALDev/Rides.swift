@@ -37,6 +37,7 @@ class Rides: UITableViewController {
         
         let userId = Home.UserConnectedInformations.user.id
         
+        //Perform rides request to recover a user's rides
         ridesTasks.rides(passengerId: userId!) { (status, success) in
             if success {
                 self.rides = self.ridesTasks.rides
@@ -55,7 +56,6 @@ class Rides: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return rides.count
     }
     
@@ -102,6 +102,7 @@ class Rides: UITableViewController {
         
     }
     
+    //To send data from one page to another
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueFromRidesToDriverView" {
             if let destination = segue.destination as? RouteViewForTheMenu {

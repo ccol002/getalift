@@ -104,7 +104,7 @@ This is the home page of the app, the one that first appears when the user opens
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale = 0.3]{diagrams/ApplicationHomepage.png} 
+\includegraphics[scale = 0.25]{diagrams/ApplicationHomepage.png} 
 \end{center}
 \caption{Application homepage}
 \end{figure}
@@ -114,14 +114,17 @@ This is the home page of the app, the one that first appears when the user opens
 This page allows the authentication of the user.
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale = 0.3]{diagrams/AuthentificationPage.png} 
+\includegraphics[scale = 0.25]{diagrams/AuthentificationPage.png} 
 \end{center}
 \caption{Authentification Page}
 \end{figure}
+
+\newpage
+
 When the "Connection" button is pressed, the system checks that all the fields are filled in, otherwise it returns an error message in the form of a notification of this type:
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale = 0.3]{diagrams/AuthentificationPageFailed.png} 
+\includegraphics[scale = 0.25]{diagrams/AuthentificationPageFailed.png} 
 \end{center}
 \end{figure}
 \\\\
@@ -157,17 +160,17 @@ If the user is the driver for routes where the are passengers, alert message wil
 \caption{Main Page}
 \end{figure}
 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale = 0.3]{diagrams/AlertMessage.png} 
+\end{center}
+\caption{Alert message}
+\end{figure}
 
 \subsubsection{Menu}
 
 We can access to different functionality from the menu :
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[scale = 0.3]{diagrams/Menu.png} 
-\end{center}
-\caption{Menu}
-\end{figure}
-
+\\\\
 We can :
 \begin{itemize}
 \item go to the main page
@@ -178,7 +181,15 @@ We can :
 \item Sign out.
 \item see the section "My routes" which is the list of the routes that the authenticated user has created as a driver
 \item see the section "Favorite Routes" which is the list of trips that the user has saved as a passenger.
+\item see the section "My Rides" which is the list of the route he made and where his presence was confirm by the driver.
 \end{itemize}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale = 0.3]{diagrams/Menu.png} 
+\end{center}
+\caption{Menu}
+\end{figure}
 
 To access the route search interface, click on the button:
 \begin{figure}[h!]
@@ -190,6 +201,12 @@ To access the route search interface, click on the button:
 \subsubsection{Search interface of a route}
 
 This interface groups together the search and the creation of a trip in order to highlight carpooling. Indeed, if a user wants to create a route as a driver he will in any case access the list of available routes according to his criteria. This will show this user that other people are making the same trip as him and that he is not obliged to create another trip. This makes it possible to promote carpooling and to simplify the use of the application.
+\\\\
+Here we specify its point of departure and its point of arrival. When you click on the text entry field a drop-down menu is displayed to make suggestions to the user. He can also click on the locate button to display the current position of the user in the text entry field.
+\\\\
+Once this information is entered, the user can display and fine-tune his journey using a map. By clicking on the "See and edit the route" button.
+
+\newpage
 
 \begin{figure}[h!]
 \begin{center}
@@ -197,11 +214,6 @@ This interface groups together the search and the creation of a trip in order to
 \end{center}
 \caption{Search interface of a route}
 \end{figure}
-
-Here we specify its point of departure and its point of arrival. When you click on the text entry field a drop-down menu is displayed to make suggestions to the user. He can also click on the locate button to display the current position of the user in the text entry field.
-\\\\
-Once this information is entered, the user can display and fine-tune his journey using a map. By clicking on the "See and edit the route" button.
-\\\\
 
 \subsubsection{Preview of the desired route}
 
@@ -248,6 +260,7 @@ In this view we find all the information on the trip. We can see the road on a m
 \\\\
 The user can also access the driver's information to contact him or save the trip by clicking on his or her pseudonym or by clicking on the small contact icon at the top right of the screen.
 \\\\
+If the user will make this route, he can click on the tick button to add this route to his Rides. The rides of a driver are the routes he made. The route will appear in his rides only after that the driver confirm the presence of the user in his car.
 
 \subsubsection{Overview of a driver}
 
@@ -258,10 +271,15 @@ The user can also access the driver's information to contact him or save the tri
 \caption{Overview of a driver}
 \end{figure}
 
-The user can call him driver, send him an SMS or an email directly from the application by pressing the dedicated buttons. It can also save this trip to its preferred route list to keep it.
-
+The user can call him driver, send him an SMS or an email directly from the application by pressing the dedicated buttons. It can also save this trip to its preferred route list to keep it. He can also see the average of the notes received by the driver and see all the comments let by other users regarding this driver.
 
 \subsubsection{Interface to create a route}
+
+In the case where the user does not find corresponding paths to his trip, he can create a trip by returning to the list of available trips and clicking on the button "I want to drive".
+\\\\
+We get a summary page of the route that we want to create, if we want to change this it will be enough to go back and change what we want in the search interface / creation. The user presses the "Create your route" button to finalize the creation, a confirmation alert will be displayed on the screen and the user will be redirected to the main page of the application.
+
+\newpage
 
 \begin{figure}[h!]
 \begin{center}
@@ -269,10 +287,7 @@ The user can call him driver, send him an SMS or an email directly from the appl
 \end{center}
 \caption{Interface to create a route}
 \end{figure}
-In the case where the user does not find corresponding paths to his trip, he can create a trip by returning to the list of available trips and clicking on the button "I want to drive".
-\\\\
-We get a summary page of the route that we want to create, if we want to change this it will be enough to go back and change what we want in the search interface / creation. The user presses the "Create your route" button to finalize the creation, a confirmation alert will be displayed on the screen and the user will be redirected to the main page of the application.
-\\\\
+
 
 \subsubsection{List of created routes}
 
@@ -286,6 +301,56 @@ We get a summary page of the route that we want to create, if we want to change 
 The user to find this trip in the list of routes he has created, available in the application menu. From this list, the user can see in more detail the routes he has created and delete them.
 \\\\
 Likewise with the list of his favorite journeys.
+
+\newpage
+
+\subsubsection{List of Rides}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale = 0.3]{diagrams/MyRides.png} 
+\end{center}
+\caption{List of rides}
+\end{figure}
+
+The list of rides is the list of the routes that the user made. Since this tab, he can access to the overview of the route he made and to the driver profile.
+
+\subsubsection{Overview of a driver by the tab : "My Rides"}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale = 0.3]{diagrams/DriverViewRides} 
+\end{center}
+\caption{Driver View (by passing My Rides tab)}
+\end{figure}
+
+The overview of the driver is different when the user display it passing by the My Rides tab. A button appear which allow him to rate and comment the driver.
+
+\newpage
+
+\subsubsection{Rate page}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale = 0.3]{diagrams/RatePage} 
+\end{center}
+\caption{Rate page}
+\end{figure}
+
+On the rate page, the user can rate and comment the driver. If he already post a comment or a rate, an alert message message inform him that he will modify his rate. He can choose if he want modify his rate or not.
+
+\subsubsection{Comments page}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale = 0.3]{diagrams/Comments} 
+\end{center}
+\caption{Comments page}
+\end{figure}
+
+On the comment page, the user can display all the comments related to a driver.
+
+
 
 \section{GetALift iOS Classes}
 

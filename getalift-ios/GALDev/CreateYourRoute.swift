@@ -15,7 +15,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
     
     //  #################### Variables ####################
 
-    // Variables transmises par la requetes
+    // Variables transmitted by the requests
     var user : User = Home.UserConnectedInformations.user
     var token = Home.UserConnectedInformations.userToken
     
@@ -34,7 +34,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
     var duration : String! = SearchRoute.SearchedRoute.searchedRoute.duration
     
     
-    // Variables utilisés pour afficher la map
+    // Variables used to display the map
     @IBOutlet var viewMap : GMSMapView?
     
     var originMarker: GMSMarker!
@@ -47,7 +47,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
     
     var calculationForMapDisplay = CalculationForMapDisplay()
     
-    // Variables pour l'affichage des données
+    // Variables for displaying data
     
     @IBOutlet var originLabel : UILabel?
     @IBOutlet var destinationLabel : UILabel?
@@ -57,7 +57,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
     @IBOutlet var distanceLabel : UILabel?
     
     
-    // Variable pour ajouter la route dans la base de donnée
+    // Variable to add the route to the database
     
     @IBOutlet var button : UIButton?
     
@@ -75,6 +75,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
         
     }
 
+    //Perform the request to create a new route on the database and add it in the user's route.
     @IBAction func routeOnDataBase() {
         
         let reccurenceString : String = (self.reccurence ? "1" : "0")
@@ -163,7 +164,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
         viewMap?.camera = GMSCameraPosition.camera(withLatitude: self.calculationForMapDisplay.xCenter, longitude: self.calculationForMapDisplay.yCenter, zoom: zoom)
         
         
-        // Mise en place des marqueurs
+        // Setting up markers
         let originCoordinate = CLLocationCoordinate2DMake(self.latitudeOfOrigin,self.longitudeOfOrigin)
         originMarker = GMSMarker(position: originCoordinate)
         originMarker.map = self.viewMap
@@ -176,7 +177,7 @@ class CreateYourRoute : UIViewController, CLLocationManagerDelegate {
         destinationMarker.icon = GMSMarker.markerImage(with: UIColor.red)
         destinationMarker.title = self.destination
         
-        // Ajout des adresses dans la barre du haut
+        // Adding addresses in the top bar
         DispatchQueue.main.async(execute: {
             self.originLabel?.text = self.origin
             self.destinationLabel?.text = self.destination

@@ -16,7 +16,7 @@ class RatingTasks {
     
     var rate: Float = 0.0
     
-    //Fonction qui permet de récupérer la note d'un driver.
+    //Perform GET request which allow to recover the average of the rate of a driver.
     func getRating(targetId : Int, completitionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let targetId = targetId
@@ -61,6 +61,7 @@ class RatingTasks {
         task.resume()
     }
     
+    //Perform POST request which allow to create a rate on the database regarding a drive and a route
     func postRating(author: Int, target: Int, routeId: Int, stars: Int, comment: String, postDate: String, completitionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         //create the url with URL
         let url  = URL(string: ServerAdress+":7878/api/ratings/existingRate")!
@@ -110,7 +111,7 @@ class RatingTasks {
         task.resume()
     }
     
-    
+    //Perform PUT request which allow to modify on the database an already existing rate
     func putRate(stars: Int, comment: String, postDate: String, author: Int, routeId: Int, completitionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         //create the url with URL

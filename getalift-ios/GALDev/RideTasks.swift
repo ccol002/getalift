@@ -16,7 +16,7 @@ class RideTasks {
     
     var rides: [Route] = []
     
-    //Pour afficher les rides par rapport à un passager
+    //Perform GET request hat returns a table of all rides in relation to a passenger.
     func rides (passengerId : Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let url = NSURL(string: ServerAdress+":7878/api/rides/route/"+String(passengerId))!
@@ -95,7 +95,7 @@ class RideTasks {
         task.resume()
     }
     
-    //Pour ajouter un ride
+    //Perform POST function which create a ride regarding a Route if a ride doesn’t already exist for the route
     func addRide(routeID: Int, completitionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         //create the url with URL
         let url  = URL(string: ServerAdress+":7878/api/rides/")!

@@ -73,6 +73,7 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
             }
         })
         
+        //Display the average of rates of the driver
         cosmosView.settings.updateOnTouch = false
         self.ratingTask.getRating(targetId: driverId!, completitionHandler: { (status, sucess) -> Void in
             if sucess {
@@ -84,10 +85,12 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
         })
     }
     
+    //Perform the segue when the user click on the podium button to display the rate view
     @IBAction func displayRatingView(sender: AnyObject) {
         performSegue(withIdentifier: "rateSegue", sender: self)
     }
     
+    //Function which perform the favoriteRoute request
     @IBAction func addToFavoriteRoute(sender: AnyObject){
         let userId = Home.UserConnectedInformations.user.id
         let routeId = self.routes[myIndex].id
@@ -125,7 +128,7 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
         })
     }
     
-    
+    //Launches the message application of the iphone with a parameterized message
     @IBAction func sendMessage(sender: AnyObject) {
         let messageVC = MFMessageComposeViewController()
         
@@ -152,6 +155,7 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
         }
     }
     
+    //Launches the email application if the iphone with a parameterized email
     func configureMailController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
@@ -181,7 +185,7 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
         
     }
     
-    // Appelée lorsque l'utilisateur a fini avec ses mails
+    // Called when the user has finished with his mails
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
@@ -205,6 +209,7 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
         present(alertController, animated: true, completion: nil)
     }
     
+    //To send data from one page to another
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "commentsViewSegue" {
             if let destination = segue.destination as? Comments {
@@ -223,6 +228,7 @@ class DriverView : UIViewController, MFMailComposeViewControllerDelegate, MFMess
     
     var ratingTask = RatingTasks()
     
+    //Update the driver rate
     private func updateRating() {
         cosmosView.rating = Double(self.rate)
     }

@@ -27,6 +27,7 @@ class Comments: UITableViewController {
         
         let driverId = self.routes[myIndex].driver
 
+        //Perform the request to recover the comments regarding a driver
         commentsTasks.commentaries(targetId: driverId!) { (status, success) in
             if success {
                 self.comments = self.commentsTasks.commentary

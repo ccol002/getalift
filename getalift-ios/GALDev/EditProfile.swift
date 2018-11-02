@@ -91,8 +91,10 @@ class EditProfile: UIViewController {
         
         
         if self.actualPassword.text != "" {
+            //The user must complete his actual password if he want edit informations of his profile
             self.userTasks.authentification(username: user.username, password: actualPassword.text!) { (status, success) in
                 if success {
+                        //If he want to change of password, he had to complete both textField in the same way.
                         if self.newPassword.text != "" || self.confirmNewPassword.text != "" {
                             if self.newPassword.text != self.confirmNewPassword.text {
                                 let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
@@ -106,6 +108,7 @@ class EditProfile: UIViewController {
                         }
                         
                         if (self.newPassword.text == self.confirmNewPassword.text) || (self.newPassword.text! == "" && self.confirmNewPassword.text! == "") {
+                            //Perform the request which edit the user's information.
                             self.userTasks.editUser(driverId: self.user.id, username: username, password: String(password), name: name, surname: surname, email: email, mobileNumber: mobileNumber) { (status, success) in
                                 if success {
                                     
@@ -151,6 +154,7 @@ class EditProfile: UIViewController {
         }
     }
     
+    //Allow to hide the keybord when a user click on an other part of the screen than the different textFields.
     private func setupTextFieldManager() {
         lastName.delegate = self
         firstName.delegate = self
@@ -183,6 +187,7 @@ class EditProfile: UIViewController {
     
 }
 
+//To hide keyboard when the user press return button
 extension EditProfile: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

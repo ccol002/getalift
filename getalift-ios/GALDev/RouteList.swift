@@ -52,7 +52,7 @@ class RouteList : UIViewController, UITableViewDataSource, UITableViewDelegate {
         let endLat : Double = self.searchedRoute.latitudeOfEndPoint
         let endLong : Double = self.searchedRoute.longitudeOfEndPoint
         
-        // Chargement de la liste des routes 
+        // Loading the routes list
         self.routeTasks.route(date: fullDate, startLat : startLat, startLong : startLong, endLat : endLat, endLong : endLong,  completionHandler: { (status, success) -> Void in
             if success {
                 self.routes = self.routeTasks.routes
@@ -82,6 +82,7 @@ class RouteList : UIViewController, UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     
+    //Display "No routes available !" when the request does not return any route
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.routes.count == 0 {
             let emptyStateLabel = UILabel(frame: tableView.frame)
@@ -164,6 +165,7 @@ class RouteList : UIViewController, UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: "routeViewSegue", sender: self)
     }
     
+    //To send data from one page to another
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "routeViewSegue" {
             if let destination = segue.destination as? RouteView {

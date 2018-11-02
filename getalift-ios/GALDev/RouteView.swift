@@ -54,7 +54,7 @@ class RouteView : UIViewController {
     
     var routes : [Route] = []
     
-    /// Labels pour affichage des informations
+    /// Labels for displaying information
     @IBOutlet var originLabel : UILabel?
     @IBOutlet var destinationLabel : UILabel?
     @IBOutlet var usernameDriverLabel : UILabel?
@@ -102,8 +102,6 @@ class RouteView : UIViewController {
         )
         
         self.navigationItem.rightBarButtonItems = [rightButtonItem, walkrightButtonItem, addToRidesButtonItem]
-        /*self.navigationItem.rightBarButtonItem = rightButtonItem
-        self.navigationItem.rightBarButtonItems?.append(walkrightButtonItem)*/
     }
     
     /// To diplay the driver view
@@ -111,6 +109,7 @@ class RouteView : UIViewController {
         performSegue(withIdentifier: "driverViewSegue", sender: self)
     }
     
+    //To send data from one page to another
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "driverViewSegue" {
             if let destination = segue.destination as? DriverView {
@@ -137,31 +136,33 @@ class RouteView : UIViewController {
         }
     }
     
-    //CHARLY
     ///Add the route to the ride
     
+    //id of ride which is created
     var insertId: Int = 0
     
     @IBAction func addToRides(sender: Any) {
         rideTasks.addRide(routeID: self.routes[myIndex].id, completitionHandler: { (status, success) -> Void in
-            if success {
+            if success { //When there is no existing ride for the selected route and a new ride is created
                 DispatchQueue.main.async() {
                     self.insertId = self.rideTasks.insertId
+                    
+                    //Creation of the passenger regarding the ride which was created before
                     self.passengerTasks.addpass(ride: self.insertId, passenger: self.user.id)
                     
                     let imageView = UIImageView(image: #imageLiteral(resourceName: "success"))
                     let banner = NotificationBanner(title: "Route added to your Rides", subtitle: "Driver must confirm this Ride", leftView: imageView, style: .success)
                     banner.show()
                 }
-            } else {
+            } else { //When a ride already exists for the selected route
                 DispatchQueue.main.async {
                     self.passengerTasks.addPassengerExistingRide(passengerID: self.user.id, routeID: self.routes[myIndex].id, completitionHandler: { (status, success) in
                         DispatchQueue.main.async {
-                            if success {
+                            if success { //When the user is not yet a passenger for the ride
                                 let imageView = UIImageView(image: #imageLiteral(resourceName: "success"))
                                 let banner = NotificationBanner(title: "Route added to your Rides", subtitle: "Driver must confirm this Ride", leftView: imageView, style: .success)
                                 banner.show()
-                            } else {
+                            } else { //When the user is already a passenger for the ride
                                 let imageView = UIImageView(image: #imageLiteral(resourceName: "failed"))
                                 let banner = NotificationBanner(title: "This route is already in your Ride", subtitle: "You already had this route to your Rides", leftView: imageView, style: .danger)
                                 banner.show()
@@ -190,7 +191,6 @@ class RouteView : UIViewController {
         
         let driverIndex = self.routes[myIndex].driver
         let driverOrigin = self.routes[myIndex].nameOfStartingPoint
-       //Ligne 143 et 144 rajoutées
         let closestPointStart = String(self.routes[myIndex].latitudeOfStartingPoint)+","+String(self.routes[myIndex].longitudeOfStartingPoint)
         let closestPointEnd = String(self.routes[myIndex].latitudeOfEndPoint)+","+String(self.routes[myIndex].longitudeOfEndPoint)
         let driverDestination = self.routes[myIndex].nameOfEndpoint
@@ -203,7 +203,7 @@ class RouteView : UIViewController {
             self.destinationLabel?.text = self.routes[myIndex].nameOfEndpoint
         }
         
-        // Requete pour trouver le nom du conducteur
+        // Request to find the driver's name
         self.userTasks.user(driverId: driverIndex, completionHandler: { (status, success) -> Void in
             if success {
                 DispatchQueue.main.async() {
@@ -211,7 +211,7 @@ class RouteView : UIViewController {
                 }
             }
         })
-        // Chemin parcouru par le conducteur
+        // Path traveled by the driver
         self.mapTasks.getDirections(origin: driverOrigin, destination: driverDestination, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 self.mapTasks.calculateTotalDistanceAndDuration()
@@ -245,7 +245,7 @@ class RouteView : UIViewController {
             }
         })
         
-        // Premier chemin parcouru par le passager à pied (Remplacement de driverOrigin par closestPointStart)
+        // First path traveled by the passenger on foot
         self.mapTasks.getDirectionsWalking(origin: searchedOrigin, destination: closestPointStart, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 let nameOfStartingPoint = self.mapTasks.originAddress
@@ -272,7 +272,7 @@ class RouteView : UIViewController {
             }
         })
         
-        // Deuxieme chemin parcouru par le passager à pied (Remplacement de driverDestination par closestPointEnd)
+        // Second path traveled by the passenger on foot
         self.mapTasks.getDirectionsWalking(origin: closestPointEnd, destination: searchedDestination, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 let nameOfStartingPoint = self.mapTasks.originAddress
@@ -313,13 +313,13 @@ class RouteView : UIViewController {
 
     func drawDriverRoute(){
         self.viewMap?.clear()
-        // Premier Marker
+        // First Marker
         driverOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfStartingPoint as Double, self.driverRoute.longitudeOfStartingPoint as Double))
         driverOriginMarker.map = self.viewMap
         driverOriginMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 0.0471, green: 0.5686, blue: 0.0275, alpha: 1))
         driverOriginMarker.title = self.driverRoute.nameOfStartingPoint
         
-        // Deuxieme Marker
+        // Second Marker
         driverDestinationMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfEndPoint as Double, self.driverRoute.longitudeOfEndPoint as Double))
         driverDestinationMarker.map = self.viewMap
         driverDestinationMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 0.6824, green: 0.0863, blue: 0.0863, alpha: 1))
@@ -336,17 +336,16 @@ class RouteView : UIViewController {
         routePolyline.isTappable = true
         routePolyline.title = "Car ride"
         
-        // Configuration de la camera
-        // On recupere les coordonner des deux points
+        // Camera configuration
+        // We recover the coordinates of the two points
         let oLat = self.driverRoute.latitudeOfStartingPoint
         let oLong = self.driverRoute.longitudeOfStartingPoint
         let dLat = self.driverRoute.latitudeOfEndPoint
         let dLong = self.driverRoute.longitudeOfEndPoint
         
         self.calculationForMapDisplay.centerCalcul(xA: oLat!, yA: oLong!, xB: dLat!, yB: dLong!)
-        // On centre la camera par rapport au deux points
-        // On applique le zoom en fonction de la distance
-        
+        // We center the camera in relation to the two points
+        // We apply the zoom according to the distance
         let totalDistance = (self.driverRoute.totalDistanceInMetter!)
         let zoom : Float = self.calculationForMapDisplay.zoomCalcul(distance: Double(totalDistance/1000))
         viewMap?.camera = GMSCameraPosition.camera(withLatitude: self.calculationForMapDisplay.xCenter, longitude: self.calculationForMapDisplay.yCenter, zoom: zoom)
@@ -357,9 +356,9 @@ class RouteView : UIViewController {
     func drawRoutesWithWalkPath(){
         self.viewMap?.clear()
         
-        // Premier chemin
+        // First path
         
-        // Premier Marker
+        // First Marker
         userOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.routeOnFootOne.latitudeOfStartingPoint as Double, self.routeOnFootOne.longitudeOfStartingPoint as Double))
         userOriginMarker.map = self.viewMap
         userOriginMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 146/255, green: 215/255, blue: 148/255, alpha: 1))
@@ -377,15 +376,15 @@ class RouteView : UIViewController {
         routeOnePolyline.title = "On foot"
         
         
-        // Deuxieme chemin
+        // Second path
         
-        // Premier Marker
+        // First Marker
         driverOriginMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfStartingPoint as Double, self.driverRoute.longitudeOfStartingPoint as Double))
         driverOriginMarker.map = self.viewMap
         driverOriginMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 0.0471, green: 0.5686, blue: 0.0275, alpha: 1))
         driverOriginMarker.title = self.driverRoute.nameOfStartingPoint
         
-        // Deuxieme Marker
+        // Second Marker
         driverDestinationMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.driverRoute.latitudeOfEndPoint as Double, self.driverRoute.longitudeOfEndPoint as Double))
         driverDestinationMarker.map = self.viewMap
         driverDestinationMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 0.6824, green: 0.0863, blue: 0.0863, alpha: 1))
@@ -402,7 +401,7 @@ class RouteView : UIViewController {
         routePolyline.isTappable = true
         routePolyline.title = "Car ride"
         
-        // Troisieme chemin
+        // Third path
         
         let routeOneFootTwo = self.routeOnFootTwo.overviewPolyline["points"] as! String
         
@@ -414,22 +413,22 @@ class RouteView : UIViewController {
         routeTwoPolyline.isTappable = true
         routeTwoPolyline.title = "On foot"
         
-        // Deuxieme Marker
+        // Second Marker
         userDestinationMarker = GMSMarker(position: CLLocationCoordinate2DMake(self.routeOnFootTwo.latitudeOfEndPoint as Double, self.routeOnFootTwo.longitudeOfEndPoint as Double))
         userDestinationMarker.map = self.viewMap
         userDestinationMarker.icon = GMSMarker.markerImage(with: UIColor.init(red: 243/255, green: 166/255, blue: 166/255, alpha: 1))
         userDestinationMarker.title = self.routeOnFootTwo.nameOfEndpoint
         
-        // Configuration de la camera
-        // On recupere les coordonner des deux points
+        // Camera configuration
+        // We recover the coordinates of the two points
         let oLat = self.routeOnFootOne.latitudeOfStartingPoint
         let oLong = self.routeOnFootOne.longitudeOfStartingPoint
         let dLat = self.routeOnFootTwo.latitudeOfEndPoint
         let dLong = self.routeOnFootTwo.longitudeOfEndPoint
         
         self.calculationForMapDisplay.centerCalcul(xA: oLat!, yA: oLong!, xB: dLat!, yB: dLong!)
-        // On centre la camera par rapport au deux points
-        // On applique le zoom en fonction de la distance
+        // We center the camera in relation to the two points
+        // We apply the zoom according to the distance
         
         let totalDistance = (self.driverRoute.totalDistanceInMetter! + self.routeOnFootOne.totalDistanceInMetter! + self.routeOnFootTwo.totalDistanceInMetter!)
         let zoom : Float = self.calculationForMapDisplay.zoomCalcul(distance: Double(totalDistance/1000))
