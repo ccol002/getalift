@@ -134,7 +134,7 @@ class CreateAccount : UIViewController {
         }
     }
     
-    /// To move the screen when the keyboard is displayed
+    //To raise the view when the keyboard appears
     @objc func keyboardWillShow(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y == 0{
@@ -143,7 +143,7 @@ class CreateAccount : UIViewController {
         }
     }
     
-    
+    //To go down the view when the keyboard appears
     @objc func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y != 0{

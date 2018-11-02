@@ -73,7 +73,7 @@ class routeSaved : UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
     
     
-    //Nombre de sections en tout
+    //Number of sections in all
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -92,7 +92,7 @@ class routeSaved : UIViewController, UITableViewDataSource, UITableViewDelegate 
         }
     }    
     
-    //Cellule à l'index concerné
+    //Cell at the index concerned
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MyCustomCell
         
@@ -162,6 +162,7 @@ class routeSaved : UIViewController, UITableViewDataSource, UITableViewDelegate 
         performSegue(withIdentifier: "segueFromFavoriteToDriverView", sender: self)
     }
     
+    //To send data from one page to another
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueFromFavoriteToDriverView" {
             if let destination = segue.destination as? RouteViewForTheMenu {

@@ -14,6 +14,7 @@ class CommentsTasks {
     
     var commentary: [Comment] = []
     
+    //Perform GET request that returns all the comments regarding a driver id.
     func commentaries (targetId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let url = NSURL(string: ServerAdress+":7878/api/ratings/Comment/"+String(targetId))!

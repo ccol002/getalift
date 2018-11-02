@@ -12,10 +12,10 @@ class FavoriteRouteTasks {
     
     var token = Home.UserConnectedInformations.userToken
 
-    // Variable de stockage
+    // Storage variable
     var routes : [Route] = []
     
-    // Route par rapport a un driver.
+    // Perform GET request which create object of type Route regarding the user id to display the different route saved by the user.
     func favoriteRoute(userId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let url = NSURL(string: ServerAdress+":7878/api/favoriteRoute/"+String(userId))!
@@ -95,10 +95,8 @@ class FavoriteRouteTasks {
         
     }
     
-    // Pour aviter d'ajouter des doublons
+    // To avoid adding duplicates
     func favoriteRoute(routeId : Int, userId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)){
-        
-        
         
         let url = NSURL(string: ServerAdress+":7878/api/favoriteRoute/?userId="+String(userId)+"&routeId="+String(routeId))!
         
@@ -134,12 +132,10 @@ class FavoriteRouteTasks {
         task.resume()
     }
     
-    // Pour supprimer une favoriteRoute à un identifiant donné
+    // Perform DELETE request to delete a favorite route regarding the route id.
     func deleteFavoriteRoute(routeId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let url = NSURL(string: ServerAdress+":7878/api/favoriteRoute/"+String(routeId))!
-        
-        //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
         
         var request = URLRequest(url: url as URL)
         
@@ -164,7 +160,7 @@ class FavoriteRouteTasks {
         
     }
     
-    // Pour ajouter une route favorite
+    // Perform POST request which save a route regarding a user id in the favoriteRoute tab on the database
     func addFavoriteRoute(userId: Int, routeId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let routeInformations = "userId="+String(userId)+"&routeId="+String(routeId)

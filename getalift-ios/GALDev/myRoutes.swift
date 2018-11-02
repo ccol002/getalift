@@ -74,7 +74,7 @@ class myRoutes : UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.refreshControl.endRefreshing()
     }
     
-    //Nombre de sections en tout
+    //Number of sections in all
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -154,6 +154,7 @@ class myRoutes : UIViewController, UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: "segueToDriverView", sender: self)
     }
     
+    //To send data from one page to another
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToDriverView" {
             if let destination = segue.destination as? RouteViewForTheMenu {

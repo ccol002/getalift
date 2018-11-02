@@ -165,6 +165,7 @@ class FirstView: UIViewController, CLLocationManagerDelegate {
         return alert
     }
     
+    //Function to create alert message with 2 possibles actions : "Yes" and "No"
     func showAlert(){
         if let alert = alerts.first {
             if let passID = passIDs.first {
@@ -189,6 +190,7 @@ class FirstView: UIViewController, CLLocationManagerDelegate {
         }
     }
 
+    //Execute changeInTheCarColumn request that change the value of the inTheCar column from 0 to 1 in the database
     func confirmPassenger(passID : Int) {
         passengerTask.changeInTheCarColumn(passID: passID, completionHandler: {(status, success) -> Void in
             if success {
@@ -197,6 +199,7 @@ class FirstView: UIViewController, CLLocationManagerDelegate {
         })
     }
 
+    //Execute deletePassenger request that deleate a passenger regarding his id
     func notConfirmPassenger(passID : Int) {
         passengerTask.deletePassenger(passengerID: passID, completionHandler: {(status, success) -> Void in
             if success {

@@ -16,7 +16,7 @@ class PassengerTasks {
     
     var userId = Home.UserConnectedInformations.user.id
     
-    //Fonction qui renvoie un tableau de tous les passagers par rapport à un conducteur
+    //Perform GET request that returns a table of all passengers in relation to a driver
     func passengerNames(driverId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let url = NSURL(string: ServerAdress+":7878/api/passenger/alert/"+String(driverId))!
@@ -77,7 +77,7 @@ class PassengerTasks {
         task.resume()
     }
     
-    //Fonction qui permet de supprimer un passager en fonction de l'id
+    //Perform DELETE request which allows to delete a passenger according to the id
     func deletePassenger(passengerID: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         //let url = NSURL(string: ServerAdress+":3000/api/routes/"+String(routeId))!
@@ -104,7 +104,7 @@ class PassengerTasks {
         task.resume()
     }
     
-    //Fonction qui permet de passer inTheCar à la valeur 1 si le driver confirme la presence du passager
+    //Perform PUT request that allows to pass inTheCar to the value 1 if the driver confirms the presence of the passenger
     func changeInTheCarColumn (passID : Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         //create the url with URL
         let url  = URL(string: ServerAdress+":7878/api/passenger/alert/"+String(passID))!
@@ -133,7 +133,7 @@ class PassengerTasks {
         task.resume()
     }
     
-    //Fonction qui ajoute un passager dans la base de donné passagé
+    //Perform POST request that adds a passenger in the Database regarding the ride Id
     func addpass (ride: Int, passenger: Int) {
         
         let url = URL(string: ServerAdress + ":7878/api/passenger")!
@@ -159,7 +159,7 @@ class PassengerTasks {
         task.resume()
     }
     
-    
+    //Perform POST request that adds a passenger in the database regarding his id and the route id when a ride already exist regarding the route.
     func addPassengerExistingRide(passengerID: Int, routeID: Int, completitionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         //create the url with URL
         let url  = URL(string: ServerAdress+":7878/api/passenger/existingRide")!

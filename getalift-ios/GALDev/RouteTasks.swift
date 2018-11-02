@@ -18,9 +18,10 @@ class RouteTasks {
     var mapTasks = MapTasks()
     
     
-    // Variable de stockage
+    // Storage variables
     var routes : [Route] = []
     
+    //It is the POST request which is perform when a user search a route. It create one or several object of type Route in an array to display them after.
     func route(date: String, startLat : Double, startLong : Double, endLat : Double, endLong : Double, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         //create the url with URL
@@ -50,14 +51,6 @@ class RouteTasks {
         
         //create dataTask using the session object to send data to the server
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            
-            /*guard error == nil else {
-                return
-            }
-            
-            guard let data = data else {
-                return
-            }*/
             
             // Check for error
             if error != nil
@@ -123,13 +116,12 @@ class RouteTasks {
         task.resume()
     }
     
+    //Perform GET request which throw back a route regarding it date.
     func route(date: String, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         //let url = NSURL(string: ServerAdress+":3000/api/search?date=")!
         let url = NSURL(string: ServerAdress+":7878/api/search?date=")!
         
-        //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
-        
         var request = URLRequest(url: url as URL)
         
         request.setValue(token, forHTTPHeaderField: "x-access-token")
@@ -205,14 +197,12 @@ class RouteTasks {
         
     }
     
-    // Route par rapport a un driver.
+    // Perform GET request which throw back a route regarding it driver.
     func route(driverId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         //let url = NSURL(string: ServerAdress+":3000/api/driverroutes/"+String(driverId))!
         let url = NSURL(string: ServerAdress+":7878/api/driverroutes/"+String(driverId))!
         
-        //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
-        
         var request = URLRequest(url: url as URL)
         
         request.setValue(token, forHTTPHeaderField: "x-access-token")
@@ -290,13 +280,10 @@ class RouteTasks {
     
     
     
-    // Pour supprimer une route à un identifiant donné
+    //Perform DELETE request which delete a route regarding it id.
     func deleteRoute(routeId: Int, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
-        //let url = NSURL(string: ServerAdress+":3000/api/routes/"+String(routeId))!
         let url = NSURL(string: ServerAdress+":7878/api/routes/"+String(routeId))!
-        
-        //let url = NSURL(string: ServerAdress+":3000/api/search2?date="+date+"&startLat="+String(startLat)+"&startLng="+String(startLong)+"&endLat="+String(endLat)+"&endLng="+String(endLong)
         
         var request = URLRequest(url: url as URL)
         

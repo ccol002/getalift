@@ -14,6 +14,7 @@ class UserTasks {
     
     var user : User = User.init()
     
+    //Perform GET request which create a user object when it is called.
     func user(driverId: Int!, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let driverIdString = String(driverId)
@@ -63,6 +64,7 @@ class UserTasks {
         task.resume()
     }
     
+    //Perform PUT request which allow to modify an existing user on the database regarding his id
     func editUser(driverId: Int, username: String, password: String, name: String, surname: String, email: String, mobileNumber: String, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let url = URL(string: ServerAdress+":7878/api/users/"+String(driverId))!
@@ -94,6 +96,8 @@ class UserTasks {
         task.resume()
     }
     
+    
+    //Perform POST request which allow to confirm or not the authentication of a user.
     func authentification(username: String, password: String, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         let url = URL(string: ServerAdress+":7878/api/auth")!

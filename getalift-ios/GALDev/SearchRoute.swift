@@ -116,12 +116,12 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
         self.mapTasks.getDirections(origin: origin, destination: destination, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
             if success {
                 
-                // Pour ne pas supprimer les données du texteview quand on revient sur la page de recherche
+                // To not delete textview data when returning to the search page
                 let origin = self.originTextField.text!
                 let destination = self.destinationTextField.text!
                 SearchedRoute.seeCurrentRoute = Route.init(origin: origin, destination: destination)
                 
-                // On enregistre les données de recherche
+                // We save research data
                 let originAdress = self.mapTasks.originAddress!
                 let destinationAdress = self.mapTasks.destinationAddress!
                 let latitudeOfOrigin = self.mapTasks.originCoordinate.latitude
@@ -152,12 +152,13 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
                     self.performSegue(withIdentifier: "RouteListSegue", sender: nil)
                 }
             } else {
-                // Afficher une erreur
+                // Display an error
             }
         })
         
     }
     
+    //To raise the view when the keyboard appears
     @objc func keyboardWillShow(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y == 0{
@@ -166,7 +167,7 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    
+    //To go down the view when the keyboard appears
     @objc func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if self.view.frame.origin.y != 0{
@@ -175,7 +176,7 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    
+    //Function to edit the date textField with the pickerView
     @IBAction func textFieldEditingDate(sender: UITextField) {
         let datePickerView:UIDatePicker = UIDatePicker()
         
@@ -198,7 +199,7 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    
+    //Function to edit the time textField with the pickerView
     @IBAction func textFieldEditingTime(sender: UITextField) {
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.time
@@ -220,7 +221,7 @@ class SearchRoute: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func autoOnOff (sender : UISwitch) {
-        affichageJour = sender.isOn    //On attribue à modeAuto la valeur du UISwitch
+        affichageJour = sender.isOn  
     }
     
     

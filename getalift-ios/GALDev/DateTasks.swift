@@ -17,7 +17,6 @@ class DateTasks {
     var date : String = ""
     var weeklyReccurence : Bool = false
     
-    
     func date(routeId : Int!, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
     
         let routeID = String(routeId)
