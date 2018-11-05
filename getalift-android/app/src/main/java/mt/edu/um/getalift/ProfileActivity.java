@@ -180,9 +180,9 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_rate_autorisation), Toast.LENGTH_SHORT).show();
             }else {
             Intent intent = new Intent(getApplicationContext(),RatingSystem.class);
-            intent.putExtra("userId ",userID);
             Log.i(TAG,String.valueOf(userID));
             intent.putExtra("routeId",routeId);
+            intent.putExtra("ratedId",userID);
             startActivity(intent);
             }
         }

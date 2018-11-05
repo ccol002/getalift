@@ -78,10 +78,10 @@ public class RatingSystem extends AppCompatActivity {
         intentRating = getIntent();
 
         if (intentRating != null) {
-            targetID = intentRating.getIntExtra("userId",2);
-            //Log.i(TAG + "target ID",String.valueOf(targetID));
+            targetID = intentRating.getIntExtra("ratedId",2);
+            Log.i(TAG + "target ID",String.valueOf(targetID));
             routeId = intentRating.getIntExtra("routeId",0);
-            //Log.i(TAG + "target ID",String.valueOf(routeId));
+            Log.i(TAG + "target ID",String.valueOf(routeId));
         }
 
         // récupération de l'utilisateur actuel
@@ -133,53 +133,6 @@ public class RatingSystem extends AppCompatActivity {
         });
 
     }
-    /*
-    public int getRideId(int idRoute){
-        // We first setup the queue for the API Request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/rides/test/" + Integer.toString(idRoute);
-
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-
-                    @Override
-                    public void onResponse(String response) {
-                        // We got a response from our server.
-                        try {
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-                            rideId = jo.getInt("id");
-                            Log.i(TAG + "ntm",String.valueOf(jo.getInt("id")));
-                            Log.i(TAG + "ntm",String.valueOf(rideId));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
-                    }
-
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
-                params.put("x-access-token", sh.getString("token", null));
-                return params;
-            }
-        };
-        queue.add(sr);
-        Log.i(TAG + "ride ID",String.valueOf(rideId));
-        return rideId;
-    }*/
-
 
     public void rateThis(View view){
 
@@ -192,10 +145,10 @@ public class RatingSystem extends AppCompatActivity {
         final String comment = ((EditText) findViewById(R.id.editCommentaire)).getText().toString();
         final String stars = String.valueOf((int)ratingBar.getRating());
         final String author = String.valueOf(userID);
-        final String ride = String.valueOf(29);
+        final String ride = String.valueOf(routeId);
         final String target = String.valueOf(targetID);
         //final String postDate = currentTime.toString();
-        final String postDate = "2018-11-02 00:00:00";
+        final String postDate = "2018-11-05";
 
         /*
         Log.i(TAG,comment);
@@ -210,8 +163,6 @@ public class RatingSystem extends AppCompatActivity {
         if (comment.length() < 5) {
             Toast.makeText(getApplicationContext(), getString(R.string.error_commentRate_long), Toast.LENGTH_SHORT).show();
         } else {
-
-
             // We create the Request. It's a StringRequest, and not directly a JSONObjectRequest because
             // it looks like it's more stable.
             StringRequest sr = new StringRequest(Request.Method.POST, url,
@@ -224,6 +175,7 @@ public class RatingSystem extends AppCompatActivity {
                                 Log.d("GetALift", response);
                                 // We create a JSONObject from the server response.
                                 JSONObject jo = new JSONObject(response);
+                                Log.i(TAG,response);
                                 // If the server respond with a success...
                                 if (jo.getBoolean("success")) {
                                     // We tell the user his rate is created and back to the last page
@@ -237,22 +189,23 @@ public class RatingSystem extends AppCompatActivity {
                                     if (jo.getInt("errorCode") == 1) {
                                         // We tell the user he can't rate 2 times
                                         Toast.makeText(getApplicationContext(), getString(R.string.error_rate_exists), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                                        intent.putExtra("userId", userID);
+                                        intent.putExtra("routeId", routeId);
+                                        intent.putExtra("canRate", 1);
+                                        startActivity(intent);
                                     }
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-
                     },
                     new Response.ErrorListener() {
-
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.d("GetALift", error.toString());
                         }
-
                     }
             ) {
 
@@ -260,8 +213,6 @@ public class RatingSystem extends AppCompatActivity {
                 public Map<String, String> getHeaders()
                 {
                     Map<String, String> headers = new HashMap<String, String>();
-                    //headers.put("Content-Type", "application/json");
-                    //or try with this:
                     headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
                     headers.put("Content-Type", "application/x-www-form-urlencoded");
                     return headers;
@@ -272,7 +223,7 @@ public class RatingSystem extends AppCompatActivity {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("author", author);
                     params.put("target", target);
-                    params.put("ride", ride);
+                    params.put("routeId", ride);
                     params.put("stars", stars);
                     params.put("comment", comment);
                     params.put("postDate", postDate);
