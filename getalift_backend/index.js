@@ -1081,7 +1081,7 @@ router.get("/ratings/Comment/:targetid", function(req, res){
 //					This route can modify a rate in the database if the rate already exist
 // Charly
 router.post("/ratings/existingRate", function(req, res){
-	db_con.query("SELECT * FROM Rating WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.author, req.body.routeId], function(err, result){
+	db_con.query("SELECT * FROM Rating WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ? AND target = ?)", [req.body.author, req.body.routeId,req.body.target], function(err, result){
 		if (err) throw err;
 		else if (result.length >= 1){
 			// If the rate for the route already exists, we send an error.
