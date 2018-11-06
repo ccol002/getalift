@@ -81,7 +81,7 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), getString(R.string.error_firstname_notset), Toast.LENGTH_SHORT).show();
         } else if (lastname.length() == 0) {
             Toast.makeText(getApplicationContext(), getString(R.string.error_lastname_notset), Toast.LENGTH_SHORT).show();
-        } else if (!Patterns.PHONE.matcher(phonenumber).matches()){
+        } else if (!Patterns.PHONE.matcher(phonenumber).matches() || phonenumber.length() <14 || phonenumber.length() > 10){
             Toast.makeText(getApplicationContext(), getString(R.string.error_phone_valid), Toast.LENGTH_SHORT).show();
         } else {
             // If everything is correct,

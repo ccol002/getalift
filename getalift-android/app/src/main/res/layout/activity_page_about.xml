@@ -76,7 +76,7 @@
                 android:text="@string/txt_about4" />
 
             <TextView
-                android:id="@+id/text_question5"
+                android:id="@+id/text_question2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -89,7 +89,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/text_answer5"
+                android:id="@+id/text_answer4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"

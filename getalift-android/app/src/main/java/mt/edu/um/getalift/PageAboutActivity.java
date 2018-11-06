@@ -18,13 +18,11 @@ public class PageAboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_page_about);
         setTitle(getString(R.string.txt_title_about));
 
-
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     // Come back to the help page

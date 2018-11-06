@@ -132,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // ... and we go to the main menu.
                                 Intent intent = new Intent(getBaseContext(), HomeMapActivity.class);
                                 finish();
+
                                 startActivity(intent);
                             } else {
                                 Context context = getApplicationContext();
