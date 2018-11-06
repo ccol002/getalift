@@ -51,6 +51,7 @@ public class DriveDetails extends AppCompatActivity {
 
     private List<User> passengerList = new ArrayList<>();
 
+    private int role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,8 @@ public class DriveDetails extends AppCompatActivity {
         intentDetails= getIntent();
         if (intentDetails != null) {
             id = intentDetails.getIntExtra("userId",0);
+            role = intentDetails.getIntExtra("role",2);
+            Log.i(TAG,String.valueOf(role));
         }
 
         origins = findViewById(R.id.idOrigins);
@@ -212,6 +215,7 @@ public class DriveDetails extends AppCompatActivity {
                                     intent.putExtra("userId",passengerId);
                                     intent.putExtra("routeId",id);
                                     intent.putExtra("canRate",1);
+                                    intent.putExtra("role",role);
                                     startActivity(intent);
                                 }
                             });

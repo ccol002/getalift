@@ -1066,7 +1066,7 @@ router.get("/ratings/Comment/:targetid", function(req, res){
 	});
 });
 
-// Route				: POST /api/ratings/
+// Route				: POST /api/ratings/existingRate
 // URL Params		: None
 // Body Params	:
 //		- author : the id of the user that creates this rating.
@@ -1079,8 +1079,49 @@ router.get("/ratings/Comment/:targetid", function(req, res){
 // 		- the mysql object for this ride.
 // Description	:
 //					This route can modify a rate in the database if the rate already exist
+// Charly
 router.post("/ratings/existingRate", function(req, res){
 	db_con.query("SELECT * FROM Rating WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ?)", [req.body.author, req.body.routeId], function(err, result){
+		if (err) throw err;
+		else if (result.length >= 1){
+			// If the rate for the route already exists, we send an error.
+			res.json({
+				success: 	false,
+				message: 	"The passenger already rate the route",
+				errorCode:	1
+			});
+		} else {
+			db_con.query("INSERT INTO Rating (author, target, ride, stars, comment, postDate) SELECT ?, ?, Ride.id, ?, ?, ? FROM Ride WHERE Ride.route = ? ",
+				[req.body.author, req.body.target, req.body.stars, req.body.comment, req.body.postDate, req.body.routeId],
+				function(err, result){
+					if(err) throw err;
+					res.json({
+						success: true,
+						message: "The ride have been rate"
+					});
+				}
+			);
+		}
+	});
+});
+
+
+// Route				: POST /api/ratings/existingRate/Driver
+// URL Params		: None
+// Body Params	:
+//		- author : the id of the user that creates this rating.
+//		- target : the id of the user that is the target of this rating.
+//		- ride	 : the id of the ride that is linked to this rating.
+//		- stars	 : the number of stars that are linked to this rating.
+//		- comment: the text linked to this rating.
+//		- postDate: the datetime of this rating.
+// Return		:
+// 		- the mysql object for this ride.
+// Description	:
+//					This allow the driver to rate this passenger
+// Alexandre D
+router.post("/ratings/existingRate/Driver", function(req, res){
+	db_con.query("SELECT * FROM Rating WHERE author = ? and ride IN (SELECT DISTINCT Ride.id FROM Ride WHERE route = ? AND target = ?)", [req.body.author, req.body.routeId,req.body.target], function(err, result){
 		if (err) throw err;
 		else if (result.length >= 1){
 			// If the rate for the route already exists, we send an error.

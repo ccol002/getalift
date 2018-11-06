@@ -58,6 +58,9 @@ public class ProfileActivity extends AppCompatActivity {
     //Variable utilsiée pour savoir si l'utilisateur peut noter la route
     private int canRate;
 
+    //Driver ou passenger
+    private int role;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +88,7 @@ public class ProfileActivity extends AppCompatActivity {
             userID = intent_profile_activity.getIntExtra("userId",0);
             routeId = intent_profile_activity.getIntExtra("routeId",0);
             canRate = intent_profile_activity.getIntExtra("canRate",0);
+            role = intent_profile_activity.getIntExtra("role",3);
         }
 
         // On transforme le TextView en boutton pour pouvoir appeller quand on appuie dessus
@@ -180,9 +184,10 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_rate_autorisation), Toast.LENGTH_SHORT).show();
             }else {
             Intent intent = new Intent(getApplicationContext(),RatingSystem.class);
-            intent.putExtra("userId ",userID);
             Log.i(TAG,String.valueOf(userID));
             intent.putExtra("routeId",routeId);
+            intent.putExtra("ratedId",userID);
+            intent.putExtra("role",role);
             startActivity(intent);
             }
         }

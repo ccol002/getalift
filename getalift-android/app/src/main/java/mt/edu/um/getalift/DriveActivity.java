@@ -115,6 +115,7 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         Log.i(TAG,String.valueOf(id));
         Intent intent = new Intent(DriveActivity.this,DriveDetails.class);
         intent.putExtra("userId",id);
+        intent.putExtra("role",0);
         startActivity(intent);
     }
 
@@ -124,6 +125,7 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         Log.i(TAG,String.valueOf(id));
         Intent intent = new Intent(DriveActivity.this,DriveDetails.class);
         intent.putExtra("userId",id);
+        intent.putExtra("role",1);
         startActivity(intent);
     }
 }
