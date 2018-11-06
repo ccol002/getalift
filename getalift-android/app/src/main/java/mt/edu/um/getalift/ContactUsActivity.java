@@ -164,7 +164,7 @@ public class ContactUsActivity extends AppCompatActivity {
         //We check if all the information is correct
         // We check a bunch of things from what the user type.
         if (name.length() < 6) {
-            Toast.makeText(getApplicationContext(), getString(R.string.error_username_short), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.error_name_short), Toast.LENGTH_SHORT).show();
         } else if (name.length() > 63){
             Toast.makeText(getApplicationContext(), getString(R.string.error_name_long), Toast.LENGTH_SHORT).show();
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -173,7 +173,7 @@ public class ContactUsActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), getString(R.string.error_phone_valid), Toast.LENGTH_SHORT).show();
         } else if (message.length() > 500){
             Toast.makeText(getApplicationContext(), getString(R.string.error_message_long), Toast.LENGTH_SHORT).show();
-        } else if (message.length() < 100){
+        } else if (message.length() < 20){
             Toast.makeText(getApplicationContext(), getString(R.string.error_message_short), Toast.LENGTH_SHORT).show();
         } else if (subject.length() < 10){
             Toast.makeText(getApplicationContext(), getString(R.string.error_subject_short), Toast.LENGTH_SHORT).show();

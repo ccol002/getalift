@@ -75,7 +75,7 @@
     <string name="error_surname_long">The surname must be less than 63 character long.</string>
     <string name="error_surname_short">The surname must be more than 5 character long.</string>
     <string name="error_message_long">The message must be less than 500 character long.</string>
-    <string name="error_message_short">The message must be more than 100 character long.</string>
+    <string name="error_message_short">The message must be more than 20 character long.</string>
     <string name="error_message_20_long">The message must be less than 100 character long.</string>
     <string name="error_message_20_short">The message must be more than 20 character long.</string>
     <string name="error_comment_long">The message must be less than 500 character long.</string>

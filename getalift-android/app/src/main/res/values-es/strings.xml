@@ -57,7 +57,7 @@
         <string name="text_title_contact_us">Get A Lift - Contáctenos</string>
         <string name="error_name_short">"El nombre debe tener más de 5 caracteres. "</string>
         <string name="error_message_long">"El mensaje debe tener menos de 500 caracteres de largo. "</string>
-        <string name="error_message_short">"El mensaje debe tener menos de 500 caracteres. El mensaje debe tener más de 100 caracteres. "</string>
+        <string name="error_message_short">"El mensaje debe tener más de 20 caracteres. "</string>
         <string name="error_subject_short">"El mensaje debe tener más de 10 caracteres. "</string>
         <string name="error_subject_long">"El mensaje debe tener menos de 100 caracteres. "</string>
         <string name="txt_title_about">"Get A Lift - Acerca de "</string>
