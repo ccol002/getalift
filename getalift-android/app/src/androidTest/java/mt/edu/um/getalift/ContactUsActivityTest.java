@@ -186,6 +186,77 @@ public class ContactUsActivityTest {
     }
 
     @Test
+    public void fillout_fail_invalid_email(){
+        Log.e("@Test", "Performing fill out form fail test");
+        //Fill out all the fields correctly
+        onView(withId(R.id.edt_contact_name)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_name)).perform(typeText(correct_name));
+
+        onView(withId(R.id.edt_contact_phoneNumber)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_phoneNumber)).perform(typeText(correct_phone))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.edt_contact_email)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_email)).perform(typeText(invalid_email))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.edt_contact_subject)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_subject)).perform(typeText(correct_subject))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.edt_contact_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_message)).perform(typeText(correct_message))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        //Click on "send message" button
+        onView(withId(R.id.contact_validate_button))
+                .perform(ViewActions.click());
+
+        onView(withText(String.valueOf(withId(R.string.error_email_valid)))).inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+        //Not Redirection to the homeMapActivity : ok
+        Log.i("TAG", String.valueOf(withId(R.string.error_email_valid)));
+    }
+
+    @Test
+    public void fillout_fail_invalid_phone(){
+        Log.e("@Test", "Performing fill out form fail test");
+        //Fill out all the fields correctly
+        onView(withId(R.id.edt_contact_name)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_name)).perform(typeText(correct_name));
+
+        onView(withId(R.id.edt_contact_phoneNumber)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_phoneNumber)).perform(typeText(invalid_phone))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.edt_contact_email)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_email)).perform(typeText(correct_email))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.edt_contact_subject)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_subject)).perform(typeText(correct_subject))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        onView(withId(R.id.edt_contact_message)).check(matches(isDisplayed()));
+        onView(withId(R.id.edt_contact_message)).perform(typeText(correct_message))
+                //To close the keyboard
+                .perform(closeSoftKeyboard());
+
+        //Click on "send message" button
+        onView(withId(R.id.contact_validate_button))
+                .perform(ViewActions.click());
+
+        onView(withText(String.valueOf(withId(R.string.error_phone_valid)))).inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+        //Not Redirection to the homeMapActivity : ok
+    }
+
+    @Test
     public void profilontactUs() {
     }
 
