@@ -1,0 +1,1010 @@
+{
+	"info": {
+		"_postman_id": "c925c20a-acf0-4deb-8f63-329121c02240",
+		"name": "getalift",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dodo",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dodo",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "dodo",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "dodo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "dodo@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "mobileNumber",
+							"value": "0606060606",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/users/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dodo",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dodo",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "dodo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "surname",
+							"value": "dodo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "dodo@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mobileNumber",
+							"value": "0606060606",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/auth/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "routes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-token-access",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dodo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "dodo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "dodo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "surname",
+							"value": "dodo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "dodo@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "mobileNumber",
+							"value": "0606060606",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/routes",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"routes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create route",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "startLat",
+							"value": "35.9021631",
+							"type": "text"
+						},
+						{
+							"key": "startLng",
+							"value": "14.483748300000002",
+							"type": "text"
+						},
+						{
+							"key": "endLat",
+							"value": "35.85411349999999",
+							"type": "text"
+						},
+						{
+							"key": "endLng",
+							"value": "14.48327949999998",
+							"type": "text"
+						},
+						{
+							"key": "dates",
+							"value": "01-08-2018",
+							"type": "text"
+						},
+						{
+							"key": "driverId",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "origin",
+							"value": "Msida MSD 2080, Malta",
+							"type": "text"
+						},
+						{
+							"key": "destination",
+							"value": "Luqa LQA 4000, Malta",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/routes",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"routes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hello world",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/users",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post rate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "author",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "target",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "routeId",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "stars",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "salut c'est cool",
+							"type": "text"
+						},
+						{
+							"key": "postDate",
+							"value": "2018-09-09",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/ratings/existingRate",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"ratings",
+						"existingRate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get average of rate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/ratings/3",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"ratings",
+						"3"
+					]
+				},
+				"description": "Pour récupérer la moyenne des notes"
+			},
+			"response": []
+		},
+		{
+			"name": "Get comment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/ratings/Comment/3",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"ratings",
+						"Comment",
+						"3"
+					]
+				},
+				"description": "Pour récupérer la moyenne des notes"
+			},
+			"response": []
+		},
+		{
+			"name": "Get passenger's route",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/rides/route/3",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"rides",
+						"route",
+						"3"
+					]
+				},
+				"description": "Renvoie les routes qu'un utilisateur à effectuer en temps que passager"
+			},
+			"response": []
+		},
+		{
+			"name": "Get passenger with driver id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/passenger/alert/2",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"passenger",
+						"alert",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change inTheCar column value",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "inTheCar",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/passenger/alert/1",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"passenger",
+						"alert",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Ride",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "route",
+							"value": "145",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/rides",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"rides"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findTarget",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "startLat",
+							"value": "35.90216",
+							"type": "text"
+						},
+						{
+							"key": "startLng",
+							"value": "14.48374",
+							"type": "text"
+						},
+						{
+							"key": "endLat",
+							"value": "35.9136775",
+							"type": "text"
+						},
+						{
+							"key": "endLng",
+							"value": "14.4472858",
+							"type": "text"
+						},
+						{
+							"key": "startDate",
+							"value": "18-08-2018 13:38",
+							"type": "text"
+						},
+						{
+							"key": "driverId",
+							"value": "3",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "origin",
+							"value": "Msida MSD 2080, Malta",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "destination",
+							"value": "Luqa LQA 4000, Malta",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/findTarget",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"findTarget"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post passenger",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ride",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "passenger",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "inTheCar",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/passenger",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"passenger"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "existingRide",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "passId",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "routeId",
+							"value": "398",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/passenger/existingRide",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"passenger",
+						"existingRide"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get ride Id with routeId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/rides/routeId/364",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"rides",
+						"routeId",
+						"364"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a rate",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "stars",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "marche pas",
+							"type": "text"
+						},
+						{
+							"key": "postDate",
+							"value": "2018-08-01",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "routeId",
+							"value": "364",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/ratings",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://10.249.45.149:7878/api/rides/test/364",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"disabled": false
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo",
+						"disabled": false
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/rides/test/364",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"rides",
+						"test",
+						"364"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit userprofile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test@email.com",
+							"type": "text"
+						},
+						{
+							"key": "mobileNumber",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "isVerified",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://10.249.45.149:7878/api/users/9",
+					"protocol": "http",
+					"host": [
+						"10",
+						"249",
+						"45",
+						"149"
+					],
+					"port": "7878",
+					"path": [
+						"api",
+						"users",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

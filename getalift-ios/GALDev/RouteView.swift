@@ -236,7 +236,7 @@ class RouteView : UIViewController {
                                          totalDistanceInMetter : Int(totalDistanceInMetter)
                 )
                 self.compteur = self.compteur + 1
-                self.drawDriverRoute()
+                //self.drawDriverRoute()
                 DispatchQueue.main.async() {
                     self.durationLabel?.text = duration
                     self.distanceLabel?.text = distance
