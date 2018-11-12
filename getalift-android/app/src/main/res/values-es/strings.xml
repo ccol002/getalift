@@ -153,5 +153,8 @@
     <string name="txt_edit_pwd">Editar mi contraseña</string>
     <string name="error_old_password_incorrect">Tu contraseña actual es incorrecta</string>
     <string name="error_old_password_missing">" Para editar su contraseña, debe ingresar su contraseña actual."</string>
+    <string name="txt_date">Fecha :</string>
+    <string name="txt_at">"Para : "</string>
+    <string name="txt_erase_passenger">ha sido retirado de tus viajes.</string>
 
 </resources>

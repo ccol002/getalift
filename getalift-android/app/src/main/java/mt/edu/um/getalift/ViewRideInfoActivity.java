@@ -427,7 +427,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 .setTitle(getString(R.string.txt_new_notification))
                 .setIcon(R.drawable.ic_notifications)
                 .setMessage(message)
-                .setPositiveButton("Okay",new DialogInterface.OnClickListener(){
+                .setPositiveButton(getString(R.string.txt_okay),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         Intent intent = new Intent(getApplicationContext(), HomeMapActivity.class);
                         startActivity(intent);
@@ -445,7 +445,8 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    /** To send a mail to the driver by clicking on the icon */
+    /** To send a mail to the driver by clicking on the icon
+     * It works on real device */
     public void sendMail(){
         //send message to the email of the enterprise
         String emailList [] = {driver_email}; //TO change with the good address

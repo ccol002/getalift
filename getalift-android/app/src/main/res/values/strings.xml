@@ -166,7 +166,7 @@
     <string name="txt_accept"> I accept </string>
     <string name="txt_cancel"> Cancel </string>
     <string name="txt_want_to_go">" wants to go with you on this following ride "</string>
-    <string name="txt_okay">Okay</string>
+
 
     <!-- Strings related to Create route Page -->
     <string name="title_activity_create_ride">Get A Lift - Create your route </string>
@@ -184,7 +184,10 @@
     <string name="txt_route_created_notification">Your route has been created, you can see it in \"My lifts\"</string>
     <string name="txt_passenger_added_notification">You have been added as a passenger on the route selected, you can see it in your lifts</string>
     <string name="txt_passenger_already_added_notification">You are already passenger on this ride !</string>
-    <string name="title_activity_test">TestActivity</string>
+    <string name="txt_erase_passenger">has been removed from your trips </string>
+    <string name="txt_date">Date : </string>
+    <string name="txt_at">At : </string>
+
 
     <!-- Text for ViewRideActivityInfo -->
     <string name="txt_confirm_ride">Confirm ride</string>
@@ -196,5 +199,6 @@
     <string name="success_rate_created">Your rate have been register.</string>
     <string name="error_commentRate_long">The comment must be less than 5 character long.</string>
     <string name="error_rate_autorisation">You can t rate this user.</string>
+    <string name="txt_okay">Okay</string>
 
 </resources>

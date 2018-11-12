@@ -767,7 +767,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
         alertDialogBuilder
                 .setTitle(getString(R.string.txt_new_passenger))
                 .setIcon(R.drawable.ic_notifications)
-                .setMessage(username + " "+ getString(R.string.txt_want_to_go)+ "!"+ "\n \n "+ getString(R.string.txt_from) +origin +"\n" + getString(R.string.txt_to) + destination +"\n \n Date : "+date_converted[0] + " at : " +time_converted)
+                .setMessage(username + " "+ getString(R.string.txt_want_to_go)+ "!"+ "\n \n "+ getString(R.string.txt_from) +origin +"\n" + getString(R.string.txt_to) + destination +"\n \n"+ getString(R.string.txt_date) +date_converted[0] + getString(R.string.txt_date) +time_converted)
                 //If the driver is okay to have this user as passenger, he clicks and the app change "inTheCar" in the database into 1
                 .setPositiveButton(getString(R.string.txt_accept),new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
@@ -810,7 +810,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                     public void onResponse(String response) {
                         //Display the response of the server
                         Log.i("TAG_suppress_pass", response);
-                        Toast.makeText(getApplicationContext(), username_supp + " a été retiré de ce tajet !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), username_supp + getString(R.string.txt_erase_passenger), Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener(){
