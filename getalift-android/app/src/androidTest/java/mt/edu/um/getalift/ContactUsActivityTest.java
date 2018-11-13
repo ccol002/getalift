@@ -23,6 +23,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static mt.edu.um.getalift.HelpActivityTest.navigationIconMatcher;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 /** Created by Thessalène JEAN-LOUIS**/
@@ -216,9 +217,9 @@ public class ContactUsActivityTest {
         onView(withId(R.id.contact_validate_button))
                 .perform(ViewActions.click());
 
-        onView(withText(String.valueOf(withId(R.string.error_email_valid)))).inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView()))).check(matches(isDisplayed()));
+
+        //onView(withText(String.valueOf(withId(R.string.error_email_valid)))).inRoot(withDecorView(not(contactUsActivity.getWindow().getDecorView()))).check(matches(isDisplayed()));
         //Not Redirection to the homeMapActivity : ok
-        Log.i("TAG", String.valueOf(withId(R.string.error_email_valid)));
     }
 
     @Test

@@ -117,11 +117,11 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         //Recover the map
         mMap = googleMap;
 
-        // Position the map's camera near Alice Springs in the center of Australia,
+        // Position the map's camera near the starting point,
         // and set the zoom factor so most of Australia shows on the screen.
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(startingPoint.getLat(),startingPoint.getLng()), 12));
 
-        //Setting the passenger markers (starting point and ending point)
+        //Setting the route markers (starting point and ending point)
         LatLng passenger_starting_point = new LatLng(startingPoint.getLat(),startingPoint.getLng());
         mMap.addMarker(new MarkerOptions().position(passenger_starting_point)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
@@ -167,6 +167,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
                     mMap.clear();
                 }
 
+                if (markerPoints.size()<3)
                 // Adding new item to the ArrayList
                 markerPoints.add(latLng);
 
@@ -175,6 +176,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
                 // Setting the position of the marker
                 options.position(latLng);
+                options.draggable(true);
 
                 if (markerPoints.size() == 1) {
                     options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
