@@ -48,7 +48,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import static mt.edu.um.getalift.CreateRideInfo.getAddressFromLocation;
+import static mt.edu.um.getalift.CreateRideActivity.getAddressFromLocation;
 
 public class ViewRideInfoActivity extends AppCompatActivity {
 

@@ -111,7 +111,7 @@
     <string name="txt_english">Inglés</string>
     <string name="txt_spanish">Español</string>
     <string name="txt_french">Francés</string>
-    <string name="txt_edit_create_route">Ahora, puedes crear tu ruta haciendo clic en el mapa.</string>
+    <string name="txt_edit_create_route">" Ahora, puede crear su propio camino arrastrando los marcadores en el mapa"</string>
 
     <string-array name="pref_list_languages">
         <item> Inglés </item>
@@ -133,8 +133,8 @@
     <string name="txt_want_to_go">"quiere ir contigo en este siguiente viaje "</string>
     <string name="txt_message_of">Mensaje de</string>
     <string name="title_activity_create_ride">" Get A Lift - Crea tu ruta"</string>
-    <string name="txt_new_origin_point">" Nuevo punto de origen"</string>
-    <string name="txt_new_destination_point">" Nuevo punto de destino"</string>
+    <string name="txt_new_origin_point">Punto de origen</string>
+    <string name="txt_new_destination_point">Punto de destino</string>
     <string name="txt_new_route">Tu nueva ruta</string>
     <string name="btn_create_route1">Crear tu ruta</string>
     <string name="txt_distance">Distancia</string>

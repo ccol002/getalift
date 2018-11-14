@@ -50,7 +50,7 @@
             android:parentActivityName=".ResultSearchActivity" />
         <activity
             android:name=".CreateRideActivity"
-            android:parentActivityName=".ResultSearchActivity" />
+            android:parentActivityName=".HomeMapActivity" />
         <activity
             android:name=".DriveActivity"
             android:parentActivityName=".ResultSearchActivity" />

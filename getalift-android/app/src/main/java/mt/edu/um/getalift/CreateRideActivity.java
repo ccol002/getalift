@@ -1,13 +1,20 @@
 package mt.edu.um.getalift;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -17,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.Polyline;
@@ -33,30 +41,24 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
+import static mt.edu.um.getalift.HomeMapActivity.GoogleMapsAPIKey;
 import static mt.edu.um.getalift.R.*;
 
 public class CreateRideActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    private String GAME_STATE_KEY = "CreateRideActivity";
-    private String mGameState;
 
     private MyPoint startingPoint;
     private MyPoint endingPoint;
     private int userID;
 
-
-    private LatLng newStartingPoint;
-    private LatLng newEndingPoint;
-
-    private Intent intentCreateRide;
-
-    private Button btn_create_ride;
-    private Button btn_edit_ride;
-
     private GoogleMap mMap;
-    ArrayList markerPoints= new ArrayList();
-    private String GoogleMapsAPIKey = "AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY";
+    private LatLng origin;
+    private LatLng destination;
+    private String adressOrigin;
+    private String adressDestination;
+    private Polyline line;
+    private FloatingActionButton btn_create_ride;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -75,42 +77,22 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // recovering the instance state
-        if (savedInstanceState != null) {
-            mGameState = savedInstanceState.getString(GAME_STATE_KEY);
-        }
+        btn_create_ride = findViewById(id.btn_create_ride);
 
         userID = getIntent().getIntExtra("userID",0);
         //Create the starting and the ending points to use
         startingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerStartingPointLat",0.0),getIntent().getDoubleExtra("passengerStartingPointLng",0.0),0,0);
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
 
-        newStartingPoint = new LatLng(startingPoint.getLat(),startingPoint.getLng());
-        newEndingPoint = new LatLng(endingPoint.getLat(),endingPoint.getLng());
-
-
         Log.i("TAG_START", startingPoint.getLng().toString());
         Log.i("TAG_END", endingPoint.getLng().toString());
 
-        btn_create_ride = findViewById(id.btn_create_ride);
-        btn_create_ride.setText(string.btn_create_ride);
 
-        btn_edit_ride = findViewById(id.btn_edit_ride);
-        btn_edit_ride.setText(string.btn_edit_ride);
-
-
-
+        View view = findViewById(android.R.id.content);
+        Snackbar.make(view, getString(R.string.txt_edit_create_route) + "   \n \n", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
 
     }
-
-    // invoked when the activity may be temporarily destroyed, save the instance state here
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putString(GAME_STATE_KEY, mGameState);
-        // call superclass to save any view hierarchy
-        super.onSaveInstanceState(outState);
-    }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -122,33 +104,51 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(startingPoint.getLat(),startingPoint.getLng()), 12));
 
         //Setting the route markers (starting point and ending point)
+
         LatLng passenger_starting_point = new LatLng(startingPoint.getLat(),startingPoint.getLng());
-        mMap.addMarker(new MarkerOptions().position(passenger_starting_point)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
-                .title("Your origin point"));
+        origin = passenger_starting_point;
+        adressOrigin = getAddressFromLocation(origin.latitude, origin.longitude, this);
+        Marker marker1 = mMap.addMarker(new MarkerOptions()
+                .position(origin)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                .snippet(adressOrigin)
+                .title(getString(string.txt_new_origin_point)));
 
         LatLng passenger_ending_point = new LatLng(endingPoint.getLat(),endingPoint.getLng());
-        mMap.addMarker(new MarkerOptions().position(passenger_ending_point)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN))
-                .title("Your destination point"));
+        destination = passenger_ending_point;
+        adressDestination= getAddressFromLocation(destination.latitude, destination.longitude, this);
+        Marker marker2 = mMap.addMarker(new MarkerOptions()
+                .position(destination)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                .snippet(adressDestination)
+                .title(getString(string.txt_new_destination_point)));
 
-        //When the user click on "edit" it shows a message and he can create a route
-        btn_edit_ride.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),getString(R.string.txt_edit_create_route), Toast.LENGTH_LONG).show();
-                onMapClick(view);
-            }
-        });
+        //To draw the route between the two markers
+        DownloadTask downloadTask = new DownloadTask();
+        // Getting URL to the Google Directions API
+        String url = getDirectionsUrl(origin, destination);
+        // Start downloading json data from Google Directions API
+        downloadTask.execute(url);
 
+        //We make the markers drawable to make teh user able to edit the route
+        marker1.setDraggable(true);
+        marker2.setDraggable(true);
+        //A tag to know which marker has been dragged
+        marker1.setTag("marker1"); //origin
+        marker2.setTag("marker2"); // Destination
+        mMap.setOnMarkerDragListener(dragmarker);
+
+        //Transfer of the info to add them to the database in the following page
         btn_create_ride.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentCreatedRouteInfo = new Intent(getApplicationContext(),CreateRideInfo.class);
-                intentCreatedRouteInfo.putExtra("newStartingPointLat", newStartingPoint.latitude);
-                intentCreatedRouteInfo.putExtra("newStartingPointLng", newStartingPoint.longitude);
-                intentCreatedRouteInfo.putExtra("newEndingPointLat",newEndingPoint.latitude);
-                intentCreatedRouteInfo.putExtra("newEndingPointLng",newEndingPoint.longitude);
+                intentCreatedRouteInfo.putExtra("newStartingPointLat", origin.latitude);
+                intentCreatedRouteInfo.putExtra("newStartingPointLng", origin.longitude);
+                intentCreatedRouteInfo.putExtra("newEndingPointLat",destination.latitude);
+                intentCreatedRouteInfo.putExtra("newEndingPointLng",destination.longitude);
+                intentCreatedRouteInfo.putExtra("originAddress",adressOrigin);
+                intentCreatedRouteInfo.putExtra("destinationAddress",adressDestination);
                 intentCreatedRouteInfo.putExtra("userID",userID);
                 startActivity(intentCreatedRouteInfo);
             }
@@ -156,62 +156,50 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
     }
 
+    public GoogleMap.OnMarkerDragListener dragmarker = new GoogleMap.OnMarkerDragListener() {
 
-    public void onMapClick(View view) {
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-
-                if (markerPoints.size() > 1) {
-                    markerPoints.clear();
-                    mMap.clear();
-                }
-
-                if (markerPoints.size()<3)
-                // Adding new item to the ArrayList
-                markerPoints.add(latLng);
-
-                // Creating MarkerOptions
-                MarkerOptions options = new MarkerOptions();
-
-                // Setting the position of the marker
-                options.position(latLng);
-                options.draggable(true);
-
-                if (markerPoints.size() == 1) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                    options.title(getString(string.txt_new_origin_point));
-                } else if (markerPoints.size() == 2) {
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                    options.title(getString(string.txt_new_destination_point));
-                }
-
-                // Add new marker to the Google Map Android API V2
-                mMap.addMarker(options);
-
-                // Checks, whether start and end locations are captured
-                if (markerPoints.size() >= 2) {
-                    LatLng origin = (LatLng) markerPoints.get(0);
-                    LatLng dest = (LatLng) markerPoints.get(1);
-
-                    // Getting URL to the Google Directions API
-                    String url = getDirectionsUrl(origin, dest);
-
-                    //Stock the new starting and ending points
-                    newStartingPoint = origin;
-                    newEndingPoint = dest;
-
-                    DownloadTask downloadTask = new DownloadTask();
-
-                    // Start downloading json data from Google Directions API
-                    downloadTask.execute(url);
-                }
-
+        @Override
+        public void onMarkerDrag(Marker marker) {
+            if(line != null){
+                line.remove();
             }
-        });
-    }
+        }
 
-    private class DownloadTask extends AsyncTask<String, Void, String> {
+        @Override
+        public void onMarkerDragEnd(Marker marker) {
+            //We want to know which marker has been dragged
+            Object tag = marker.getTag();
+
+            //The new position after dragging
+            LatLng dragPosition = marker.getPosition();
+            //arg0.setPosition(dragPosition);
+
+            DownloadTask downloadTask = new DownloadTask();
+
+            if(tag == "marker1") {
+                origin = dragPosition;
+                adressOrigin = getAddressFromLocation(origin.latitude, origin.longitude, getApplicationContext());
+                marker.setSnippet(adressOrigin);
+            }else if (tag == "marker2"){
+                destination = dragPosition;
+                adressDestination = getAddressFromLocation(destination.latitude, destination.longitude, getApplicationContext());
+                marker.setSnippet(adressDestination);
+            }
+
+            // Getting URL to the Google Directions API
+            String url = getDirectionsUrl(origin, destination);
+            // Start downloading json data from Google Directions API
+            downloadTask.execute(url);
+
+        }
+
+        @Override
+        public void onMarkerDragStart(Marker marker) {
+
+        }
+    };
+
+    public class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... url) {
@@ -242,7 +230,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
     /**
      * A class to parse the Google Places in JSON format
      */
-    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
+    public class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
 
         // Parsing the data in non-ui thread
         @Override
@@ -292,11 +280,11 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
             }
 
 // Drawing polyline in the Google Map for the i-th route
-            mMap.addPolyline(lineOptions);
+            line = mMap.addPolyline(lineOptions);
         }
     }
 
-    private String getDirectionsUrl(LatLng origin, LatLng dest) {
+    public String getDirectionsUrl(LatLng origin, LatLng dest) {
 
         // Origin of route
         String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
@@ -322,7 +310,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
     /**
      * A method to download json data from url
      */
-    private String downloadUrl(String strUrl) throws IOException {
+    public String downloadUrl(String strUrl) throws IOException {
         String data = "";
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
@@ -356,6 +344,63 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         }
         return data;
     }
+
+    //Convert the GPS coordinates into addresses to display it to the user
+    public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        String result=null;
+        String locality, zip, country, street, featureName;
+
+        try {
+            List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addressList != null && addressList.size() > 0) {
+                Address address = addressList.get(0);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                    sb.append(address.getAddressLine(i)); //.append("\n");
+                }
+                //Make sure the information for the address are not null before displaying them
+                if(address.getLocality() != null)
+                    locality = address.getLocality() +", ";
+                else
+                    locality = "";
+                if(address.getPostalCode() != null)
+                    zip = address.getPostalCode() + ", ";
+                else
+                    zip ="";
+                if(address.getCountryName() != null)
+                    country = address.getCountryName();
+                else
+                    country = "";
+                if(address.getThoroughfare() != null)
+                    street = address.getThoroughfare() +", ";
+                else
+                    street ="";
+                if(address.getFeatureName() != null && address.getFeatureName()!= street && address.getFeatureName()!= locality )
+                    featureName = address.getFeatureName() +", ";
+                else
+                    featureName ="";
+
+                //sb.append(featureName);  //Doublons
+                sb.append(street);
+                sb.append(locality);
+                sb.append(zip);
+                sb.append(country);
+
+                result = sb.toString();
+            }
+        } catch (IOException e) {
+            Log.e("Location Address Loader", "Unable connect to Geocoder", e);
+        } finally {
+
+            if (result == null) {
+                result = " Unable to get address for this location.";
+            }
+
+        }
+        return result;
+    }
+
 }
 
 

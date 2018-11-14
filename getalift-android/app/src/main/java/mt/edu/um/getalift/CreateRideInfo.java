@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -61,7 +62,7 @@ public class CreateRideInfo extends AppCompatActivity {
     private TextView txt_destination_address;
     private TextView txt_distance_route;
     private TextView txt_duration;
-    private Button btn_create_route_confirm;
+    private FloatingActionButton btn_create_route_confirm;
     private DatePicker mDatePicker;
     private TimePicker mTimePicker;
     private String date;
@@ -95,7 +96,7 @@ public class CreateRideInfo extends AppCompatActivity {
         txt_destination_address = (TextView) findViewById(R.id.txt_destination_address);
         txt_distance_route = (TextView) findViewById(R.id.txt_distance_route);
         txt_duration = (TextView) findViewById(R.id.txt_duration);
-        btn_create_route_confirm = (Button)  findViewById(R.id.btn_create_route_confirm);
+        btn_create_route_confirm = (FloatingActionButton)  findViewById(R.id.btn_create_route_confirm);
         mDatePicker = (DatePicker) findViewById(R.id.datePicker);
         mTimePicker = (TimePicker) findViewById(R.id.timePicker);
 
@@ -161,10 +162,10 @@ public class CreateRideInfo extends AppCompatActivity {
             newStartingPointLng = intentCreateRideInfo.getDoubleExtra("newStartingPointLng",0.0);
             newEndingPointLat = intentCreateRideInfo.getDoubleExtra("newEndingPointLat",0.0);
             newEndingPointLng = intentCreateRideInfo.getDoubleExtra("newEndingPointLng",0.0);
+            originAddress = intentCreateRideInfo.getStringExtra("originAddress");
+            destinationAddress = intentCreateRideInfo.getStringExtra("destinationAddress");
 
             //Display the 2 addresses (origin and destination)
-            originAddress = getAddressFromLocation(newStartingPointLat,newStartingPointLng,this);
-            destinationAddress = getAddressFromLocation(newEndingPointLat,newEndingPointLng,this);
             txt_origin_address.setText(originAddress);
             txt_destination_address.setText(destinationAddress);
         }
@@ -264,61 +265,6 @@ public class CreateRideInfo extends AppCompatActivity {
         };
 
         queue.add(putRequest);
-            }
-
-//Convert the GPS coordinates into addresses to display it to the user
-    public static String getAddressFromLocation(final double latitude, final double longitude, final Context context) {
-                Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-                String result=null;
-                String locality, zip, country, street, featureName;
-
-                try {
-                    List< Address > addressList = geocoder.getFromLocation(latitude, longitude, 1);
-                    if (addressList != null && addressList.size() > 0) {
-                        Address address = addressList.get(0);
-                        StringBuilder sb = new StringBuilder();
-                        for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
-                            sb.append(address.getAddressLine(i)); //.append("\n");
-                        }
-                        //Make sure the information for the address are not null before displaying them
-                        if(address.getLocality() != null)
-                            locality = address.getLocality() +", ";
-                        else
-                            locality = "";
-                        if(address.getPostalCode() != null)
-                            zip = address.getPostalCode() + ", ";
-                        else
-                            zip ="";
-                        if(address.getCountryName() != null)
-                            country = address.getCountryName();
-                        else
-                            country = "";
-                        if(address.getThoroughfare() != null)
-                            street = address.getThoroughfare() +", ";
-                        else
-                            street ="";
-                       /* if(address.getFeatureName() != null)
-                            featureName = address.getFeatureName() +", ";
-                        else
-                            featureName ="";*/
-
-                            sb.append(street);
-                            sb.append(locality);
-                            sb.append(zip);
-                            sb.append(country);
-
-                        result = sb.toString();
-                    }
-                } catch (IOException e) {
-                    Log.e("Location Address Loader", "Unable connect to Geocoder", e);
-                } finally {
-
-                    if (result == null) {
-                        result = " Unable to get address for this location.";
-                    }
-
-                }
-                return result;
             }
 
 

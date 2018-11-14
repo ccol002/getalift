@@ -79,7 +79,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
     private static final String TAG = "HomeMapActivity";
 
     private final static int MY_ACCESS_PERMISSION_CODE = 1;
-    private final static String GoogleMapsAPIKey = "AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY";
+    public final static String GoogleMapsAPIKey = "AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY";
     //AIzaSyCEOfYboyKL1Wb8R04sIFPFPKtxzTQG7M0  AIzaSyAVVmg3hP70Yj7j1ND3MQuD2_gdeFYrouY
 
     public static String ORIGIN = "nul";
@@ -723,7 +723,7 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                            }
                             else {
                                    Log.i("TAG_array_null", "array null!!!");
-                                   Toast.makeText(getApplicationContext(), "You don't have any passenger yet", Toast.LENGTH_SHORT).show();
+                                   //Toast.makeText(getApplicationContext(), "You don't have any passenger yet", Toast.LENGTH_SHORT).show();
                                 }
 
 

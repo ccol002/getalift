@@ -154,7 +154,7 @@
     <string name="txt_change_btn">Change language</string>
     <string name="txt_notifications">Notifications</string>
     <string name="txt_todo_edit_profile">If you don\'t want to change something, keep the case empty </string>
-    <string name="txt_edit_create_route">Now, you can create your route by clicking on the map</string>
+    <string name="txt_edit_create_route">Now, you can create your route by dragging the markers on the map</string>
     <string name="txt_from">From : </string>
     <string name="txt_to">To : </string>
     <string name="txt_driver_info">Driver\'s Info</string>
@@ -168,10 +168,10 @@
     <string name="txt_want_to_go">" wants to go with you on this following ride "</string>
 
 
-    <!-- Strings related to Create route Page -->
+    <!-- Strings related to Create ride Page -->
     <string name="title_activity_create_ride">Get A Lift - Create your route </string>
-    <string name="txt_new_origin_point"> New origin point</string>
-    <string name="txt_new_destination_point"> New destination point</string>
+    <string name="txt_new_origin_point"> Origin point</string>
+    <string name="txt_new_destination_point"> Destination point</string>
 
     <!-- Strings related to Created route's info Page -->
     <string name="title_activity_create_ride_info"> Get A Lift - Created route\'s info</string>
