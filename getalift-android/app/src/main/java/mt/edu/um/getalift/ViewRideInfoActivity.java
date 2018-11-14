@@ -50,6 +50,8 @@ import java.util.Map;
 
 import static mt.edu.um.getalift.CreateRideActivity.getAddressFromLocation;
 
+/**  Created by Thessalène JEAN-LOUIS **/
+
 public class ViewRideInfoActivity extends AppCompatActivity {
 
     //Creation of the intent which recovers the id of the driver selected by the user

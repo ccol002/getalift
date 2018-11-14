@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+/**  Created by Thessalène JEAN-LOUIS **/
+
 public class PageAboutActivity extends AppCompatActivity {
 
     @Override

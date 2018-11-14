@@ -46,6 +46,8 @@ import java.util.Locale;
 import static mt.edu.um.getalift.HomeMapActivity.GoogleMapsAPIKey;
 import static mt.edu.um.getalift.R.*;
 
+/**  Created by Thessalène JEAN-LOUIS **/
+
 public class CreateRideActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private MyPoint startingPoint;
@@ -163,6 +165,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
             if(line != null){
                 line.remove();
             }
+
         }
 
         @Override
@@ -190,12 +193,13 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
             String url = getDirectionsUrl(origin, destination);
             // Start downloading json data from Google Directions API
             downloadTask.execute(url);
+            marker.showInfoWindow();
 
         }
 
         @Override
         public void onMarkerDragStart(Marker marker) {
-
+            marker.hideInfoWindow();
         }
     };
 

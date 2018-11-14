@@ -45,7 +45,7 @@ import java.util.List;
 import static mt.edu.um.getalift.CreateRideActivity.getAddressFromLocation;
 import static mt.edu.um.getalift.HomeMapActivity.GoogleMapsAPIKey;
 
-/**  Created by Thessalène JEAN-LOUIS **/
+/**  Improved by Thessalène JEAN-LOUIS **/
 
 public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCallback{
 
@@ -367,4 +367,65 @@ public void createRouteDriver() {
         }
         return data;
     }
+
+    /** Old code**/
+
+  /*  @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        //Creating the polyline of the driver's route
+        PolylineOptions po = new PolylineOptions();
+        List<MyPoint> rp = ride.getRoutePoints();
+
+        for(int i=0; i<rp.size();i++){
+            po.add(new LatLng(rp.get(i).lat,rp.get(i).lng));
+        }
+
+        po.color(R.color.polylineAzur).width(10);
+
+        Polyline polyline = googleMap.addPolyline(po.clickable(true));
+
+        // Position the map's camera near Alice Springs in the center of Australia,
+        // and set the zoom factor so most of Australia shows on the screen.
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(rp.get(0).lat,rp.get(0).lng), 12));
+
+        //Setting the passenger markers (starting point and ending point)
+        LatLng passenger_starting_point = new LatLng(startingPoint.getLat(),startingPoint.getLng());
+        googleMap.addMarker(new MarkerOptions().position(passenger_starting_point)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                .title("Your origin point"));
+
+        LatLng passenger_ending_point = new LatLng(endingPoint.getLat(),endingPoint.getLng());
+        googleMap.addMarker(new MarkerOptions().position(passenger_ending_point)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                .title("Your destination point"));
+
+
+        //Setting the meeting points markers (starting point and ending point)
+        int seconds_from_start = (int) ride.getClosestPointStart().getSeconds_from_start()/60;
+        LatLng meeting_point = new LatLng(meetingPoint.getLat(),meetingPoint.getLng());
+        googleMap.addMarker(new MarkerOptions().position(meeting_point)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                .title("Meeting point with the driver").snippet("The driver arrives at "+ getIntent().getStringExtra("meetingTime")));
+
+        LatLng dropping_point = new LatLng(droppingPoint.getLat(),droppingPoint.getLng());
+        googleMap.addMarker(new MarkerOptions().position(dropping_point)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                .title("Dropping point").snippet("The driver drops you at "+ getIntent().getStringExtra("droppingTime")));
+
+        // Set listeners for click events.
+        googleMap.setOnPolylineClickListener(this);
+        googleMap.setOnPolygonClickListener(this);
+    }
+
+    @Override
+    public void onPolygonClick(Polygon polygon) {
+
+    }
+
+    @Override
+    public void onPolylineClick(Polyline polyline) {
+
+    }*/
+
 }

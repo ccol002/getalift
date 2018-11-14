@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+/**  Created by Thessalène JEAN-LOUIS **/
+
 public class PageFaqActivity extends AppCompatActivity {
 
     private TextView textfaq;
