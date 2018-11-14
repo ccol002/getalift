@@ -188,13 +188,11 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
                 adressDestination = getAddressFromLocation(destination.latitude, destination.longitude, getApplicationContext());
                 marker.setSnippet(adressDestination);
             }
-
             // Getting URL to the Google Directions API
             String url = getDirectionsUrl(origin, destination);
             // Start downloading json data from Google Directions API
             downloadTask.execute(url);
             marker.showInfoWindow();
-
         }
 
         @Override

@@ -135,9 +135,9 @@ public class ViewRideInfoActivity extends AppCompatActivity {
             }
         });
 
-        //This works but not on the emulator
-        //These functions work on a real Android phone
-        //To allow the user to call the driver by clicking on the icon
+
+        /** These functions work on a real Android phone but not on the emulator
+        //To allow the user to call  the driver by clicking on the icon */
         /*img_button_tel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,10 +145,10 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                 //Log.i("TAG_phone_call", "Passer appel avec : " + phoneNumber);
                 //startActivity(call);
             }
-        });
+        }); */
 
-        //To allow the user to contact the driver (by mail) by clicking on the icon
-        img_button_mail.setOnClickListener(new View.OnClickListener() {
+        /** To allow the user to contact the driver (by mail) by clicking on the icon */
+       /* img_button_mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                // sendMail();
@@ -234,7 +234,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                             // If the server respond with a success...
                             if (jo.getBoolean("success")){
                                 // We tell the user his ride is now created...
-                                Toast.makeText(getApplicationContext(), "Route added to your rides", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), "Route added to your rides", Toast.LENGTH_SHORT).show();
                                 //Get the ride_Id created
                                 ride_id = jo.getInt("insertId");
 
@@ -244,7 +244,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
                                 if (jo.getInt("errorCode") == 1){
                                     Log.i("TAG_ErrorCode_1", "on rentre dans error code");
                                     // We tell the user his account is now created...
-                                    Toast.makeText(getApplicationContext(), jo.getString("message"), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getApplicationContext(), jo.getString("message"), Toast.LENGTH_SHORT).show();
                                     addUserToExistingRide(route_id);
                                 }
                             }

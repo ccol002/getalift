@@ -136,10 +136,10 @@
     <string name="txt_distance">Distance</string>
     <string name="txt_duration">Durée</string>
     <string name="txt_okay">Ok</string>
-    <string name="title_activity_create_ride_info">Get A Lift - Informatins sur la route créée</string>
+    <string name="title_activity_create_ride_info">Get A Lift - Route créée</string>
     <string name="txt_new_notification">Nouvelle notification</string>
     <string name="txt_old_password">Ancien mot de passe</string>
-    <string name="txt_route_created_notification">Votre route a été créé, vosu pouvez la voir dans \"Vos trajets\"</string>
+    <string name="txt_route_created_notification">Votre route a été créé, vous pouvez la voir dans \"Vos trajets\"</string>
     <string name="txt_passenger_added_notification">Vous avez été ajouté en tant que passager sur le trajet sélectionné, vous pouvez le voir dans \"Vos trajets\"</string>
     <string name="txt_passenger_already_added_notification">Vous êtes déjà passager sur ce trajet !</string>
     <string name="txt_confirm_ride">Confirmer le trajet</string>

@@ -105,7 +105,7 @@ public class SettingsActivity extends AppCompatActivity  {
 //Load language saved in shared pref
     public void loadLocale(){
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = prefs.getString("My lang","");
+        String language = prefs.getString("My lang","en");
         setLocale(language);
     }
 
@@ -205,19 +205,22 @@ public class SettingsActivity extends AppCompatActivity  {
         String language = prefs.getString("change language", "Default");
         if(language.equals("fr")){
             //English
-            Toast.makeText(getApplicationContext(),getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
             setLocale("fr");
             recreate();
+
         }else if(language.equals("en")){
             //French
-            Toast.makeText(getApplicationContext(), getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
             setLocale("en");
             recreate();
+
         }if(language.equals("es")){
             //Spanish
-            Toast.makeText(getApplicationContext(), getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), getString(R.string.txt_choice_language)+" :" + language, Toast.LENGTH_SHORT).show();
             setLocale("es");
             recreate();
+
         }
 
     }
