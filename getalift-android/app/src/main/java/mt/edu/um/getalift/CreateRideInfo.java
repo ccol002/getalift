@@ -63,6 +63,7 @@ public class CreateRideInfo extends AppCompatActivity {
     private TextView txt_distance_route;
     private TextView txt_duration;
     private FloatingActionButton btn_create_route_confirm;
+    private FloatingActionButton btn_edit_ride;
     private DatePicker mDatePicker;
     private TimePicker mTimePicker;
     private String date;
@@ -97,6 +98,7 @@ public class CreateRideInfo extends AppCompatActivity {
         txt_distance_route = (TextView) findViewById(R.id.txt_distance_route);
         txt_duration = (TextView) findViewById(R.id.txt_duration);
         btn_create_route_confirm = (FloatingActionButton)  findViewById(R.id.btn_create_route_confirm);
+        btn_edit_ride = (FloatingActionButton)  findViewById(R.id.btn_edit_ride);
         mDatePicker = (DatePicker) findViewById(R.id.datePicker);
         mTimePicker = (TimePicker) findViewById(R.id.timePicker);
 
@@ -190,6 +192,12 @@ public class CreateRideInfo extends AppCompatActivity {
             createRoute();
         }
     });
+    btn_edit_ride.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              finish();
+            }
+        });
 
     } //end of OnCreate
 

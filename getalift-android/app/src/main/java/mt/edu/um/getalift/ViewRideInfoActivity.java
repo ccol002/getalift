@@ -14,6 +14,7 @@ import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -70,7 +71,7 @@ public class ViewRideInfoActivity extends AppCompatActivity {
     private String phoneNumber;
     private String text_message;
 
-    private Button btn_confirm_ride;
+    private FloatingActionButton btn_confirm_ride;
     private MyPoint startingPoint;
     private MyPoint endingPoint;
     private int routeId;
@@ -102,7 +103,6 @@ public class ViewRideInfoActivity extends AppCompatActivity {
         //edt_message = findViewById(R.id.edt_passenger_message);
 
         btn_confirm_ride = findViewById(R.id.btn_confirm_ride);
-        btn_confirm_ride.setText(getString(R.string.txt_confirm_ride));
 
         // Recovering the ride selected
         intent_View_Ride_Info_activity = getIntent();

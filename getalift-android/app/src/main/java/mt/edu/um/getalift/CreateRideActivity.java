@@ -57,9 +57,12 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
     private GoogleMap mMap;
     private LatLng origin;
     private LatLng destination;
+    private LatLng newOrigin;
+    private LatLng newDestination;
     private String adressOrigin;
     private String adressDestination;
     private Polyline line;
+    private Intent intent_create_ride;
     private FloatingActionButton btn_create_ride;
 
     public void onCreate(Bundle savedInstanceState){
@@ -89,7 +92,6 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         Log.i("TAG_START", startingPoint.getLng().toString());
         Log.i("TAG_END", endingPoint.getLng().toString());
 
-
         View view = findViewById(android.R.id.content);
         Snackbar.make(view, getString(R.string.txt_edit_create_route) + "   \n \n", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -107,8 +109,9 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
         //Setting the route markers (starting point and ending point)
 
-        LatLng passenger_starting_point = new LatLng(startingPoint.getLat(),startingPoint.getLng());
-        origin = passenger_starting_point;
+            LatLng passenger_starting_point = new LatLng(startingPoint.getLat(), startingPoint.getLng());
+            origin = passenger_starting_point;
+
         adressOrigin = getAddressFromLocation(origin.latitude, origin.longitude, this);
         Marker marker1 = mMap.addMarker(new MarkerOptions()
                 .position(origin)
@@ -116,8 +119,9 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
                 .snippet(adressOrigin)
                 .title(getString(string.txt_new_origin_point)));
 
-        LatLng passenger_ending_point = new LatLng(endingPoint.getLat(),endingPoint.getLng());
-        destination = passenger_ending_point;
+
+            LatLng passenger_ending_point = new LatLng(endingPoint.getLat(),endingPoint.getLng());
+            destination = passenger_ending_point;
         adressDestination= getAddressFromLocation(destination.latitude, destination.longitude, this);
         Marker marker2 = mMap.addMarker(new MarkerOptions()
                 .position(destination)
@@ -401,6 +405,29 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
         }
         return result;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Save away the original text, so we still have it if the activity
+        // needs to be killed while paused.
+        outState.putDouble("originSaved_lat", origin.latitude);
+        outState.putDouble("originSaved_lng", origin.longitude);
+        outState.putDouble("destinationSaved_lat", destination.latitude);
+        outState.putDouble("destinationSaved_lng", destination.latitude);
+        Log.i("TAG_SavedInstance", "onSaveInstanceState()");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // restore saved values
+        Bundle si = savedInstanceState;
+        origin = new LatLng(si.getDouble("originSaved_lat"),si.getDouble("originSaved_lng"));
+        destination = new LatLng(si.getDouble("destinationSaved_lat"),si.getDouble("destinationSaved_lng"));
+        Log.i("onRestoreInstanceState", "onRestoreInstanceState()");
+
     }
 
 }
