@@ -41,23 +41,23 @@ import java.util.function.LongToIntFunction;
 
 public class DriveActivity extends AppCompatActivity implements DriveList.OnClientSelectedListener, PassengerList.OnClientSelectedListener{
 
-    // Tag utilisé pour les LOG
+    // Tag use for LOG.i
     private static final String TAG = "DriveTAGAct";
 
     //Création de l'intent qui récupere l'Id de l'utilisateur
+    //Creation of the intent which recive the Id of the user
     Intent intent_drive_activity;
     private int userID;
 
     // On envoie l'id de l'utilisateur pour avoir les infos dans le fragment
+    // We send the id of the user into the fragment
     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
     final Bundle bundle = new Bundle();
 
     //On fait la même chose pour la deuxième liste
+    //Same thing but for the second list
     FragmentTransaction transactionPas = getSupportFragmentManager().beginTransaction();
     final Bundle bundlePas = new Bundle();
-
-    //On test des trucs
-    Intent intentDriveResult;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -72,6 +72,7 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // On recupere l'Id
+        // We get the ID
         intent_drive_activity = getIntent();
 
         if (intent_drive_activity != null) {
@@ -79,6 +80,7 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         }
 
         // On crée la drive list et on lui donne l'id de l'utilisateur
+        // We create a list and we give it the User's ID
         DriveList fragInfo = new DriveList();
         fragInfo.setArguments(bundle);
 
@@ -88,6 +90,7 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         transaction.commit();
 
         //On fait la même chose pour la liste des passengers
+        //Same thing but for the passenger list
 
         PassengerList fragInfoPass = new PassengerList();
         fragInfoPass.setArguments(bundlePas);
@@ -119,7 +122,6 @@ public class DriveActivity extends AppCompatActivity implements DriveList.OnClie
         startActivity(intent);
     }
 
-    //On doit faire la même chose pour le deuxième liste
     @Override
     public void onClientSelectedPassenger(int id) {
         Log.i(TAG,String.valueOf(id));

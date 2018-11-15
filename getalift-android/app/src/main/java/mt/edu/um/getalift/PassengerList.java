@@ -35,6 +35,7 @@ public class PassengerList extends ListFragment{
     int userID;
 
     //Création de la liste qui va recevoir les données des destinations
+    //List which will recive the destinations data
     List<Drive> data = new ArrayList();
 
     public interface OnClientSelectedListener{

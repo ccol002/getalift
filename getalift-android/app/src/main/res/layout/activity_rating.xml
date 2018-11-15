@@ -33,7 +33,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quelle note vous voulez lui donner ? " />
+            android:text=" What rating do you want to give it?" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -63,15 +63,14 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Entrez votre commentaire : " />
+            android:text="Enter your comment" />
 
         <EditText
             android:id="@+id/editCommentaire"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Commentaire" />
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout

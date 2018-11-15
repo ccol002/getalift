@@ -35,6 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     // Creation de variable pour stocker celle du Layout
+    //Variable create for the layout
     private TextView txtUser;
     private TextView txtName;
     private TextView txtPhone;
@@ -50,12 +51,15 @@ public class ProfileActivity extends AppCompatActivity {
     private int userID;
 
     //Variable utilisée pour passer l'appel
+    //Variable use for the phone call
     private int phoneNumber;
 
     //Variable utilisée pour la route (rating)
+    // Variable use for the route's Id (use in the rating system)
     private int routeId;
 
     //Variable utilsiée pour savoir si l'utilisateur peut noter la route
+    //Variable use to know if the user can rate the route
     private int canRate;
 
     //Driver ou passenger
@@ -74,6 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // On assimile les variables créées plus haut avec les Id des layout
+        // We link the variables with the id of the layout
         txtUser = findViewById(R.id.textTitle);
         txtName = findViewById(R.id.textFirst_Last);
         txtPhone = findViewById(R.id.textPhoneNumber);
@@ -92,12 +97,12 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         // On transforme le TextView en boutton pour pouvoir appeller quand on appuie dessus
+        // We change the txtPhone into a button
         txtPhone.setOnClickListener(txtPhoneBtn);
 
         // On fait pareil pour la note
+        // Same thing for the rate
         txtRate.setOnClickListener(txtRateBtn);
-
-        //Il faut ajouter la note
 
         profil();
     }
@@ -133,6 +138,7 @@ public class ProfileActivity extends AppCompatActivity {
                             JSONObject jo = new JSONArray(response).getJSONObject(0);
 
                             // On affiche les données de l'utilisateur
+                            // We display
                             txtUser.setText(jo.getString("surname"));
                             txtEmail.setText(jo.getString("email"));
                             txtPhone.setText(jo.getString("mobileNumber"));
@@ -165,6 +171,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     // Pour passer l'appel
+    //Function for the phone call
     private View.OnClickListener txtPhoneBtn = new View.OnClickListener() {
         @SuppressLint("MissingPermission")
         @Override
@@ -176,6 +183,7 @@ public class ProfileActivity extends AppCompatActivity {
     };
 
     // Pour noter un utilisateur
+    //Fucntion for the rating system
     private View.OnClickListener txtRateBtn = new View.OnClickListener() {
         @SuppressLint("MissingPermission")
         @Override

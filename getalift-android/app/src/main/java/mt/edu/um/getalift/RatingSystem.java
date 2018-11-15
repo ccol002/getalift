@@ -108,6 +108,7 @@ public class RatingSystem extends AppCompatActivity {
                 confirmation.setText("Press the button Commit again if you're Ok");
                 validationBtn.setVisibility(View.VISIBLE);
                 commitBtn.setVisibility(View.INVISIBLE);
+
             }
         });
 
@@ -116,6 +117,7 @@ public class RatingSystem extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                ratingBar.setFocusable(false);
                 if (role == 0){
                     rateDriver(view);
                 }else {
@@ -154,6 +156,7 @@ public class RatingSystem extends AppCompatActivity {
         final String ride = String.valueOf(routeId);
         final String target = String.valueOf(targetID);
         //final String postDate = currentTime.toString();
+        // Need a function that create a postDate in a good format --> the format of the data Base
         final String postDate = "2018-11-05";
 
         /*
@@ -166,6 +169,7 @@ public class RatingSystem extends AppCompatActivity {
         */
 
         //On vérifie que les données ne sont pas vide ou incompatible au format
+        //We need to implent to system that check if the format of the data when send is OK
         if (comment.length() < 5) {
             Toast.makeText(getApplicationContext(), getString(R.string.error_commentRate_long), Toast.LENGTH_SHORT).show();
         } else {
