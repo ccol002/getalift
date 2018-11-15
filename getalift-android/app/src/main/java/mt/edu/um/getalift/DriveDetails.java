@@ -40,6 +40,7 @@ public class DriveDetails extends AppCompatActivity {
     private int id;
 
     //Variable contenant l' id du driver obtenu par la première requete (elle est sous forme d'un string car la requete le donne dans ce format )
+    //Variable of the driver Id use in the request
     private int driverIdQ;
 
     private TextView origins;
@@ -134,6 +135,7 @@ public class DriveDetails extends AppCompatActivity {
     }
 
     // On parametre la requete pour qu'elle est besoin de la donnée que l'on recupère dans la première requete pour un problème de temporalité
+    //Due to a temporal problem, we change the function in order to it need a data that we get in the first request
     public void driverDetails(final int driverId){
 
     // We first setup the queue for the API Request

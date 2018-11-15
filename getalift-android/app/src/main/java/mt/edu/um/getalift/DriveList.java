@@ -31,12 +31,15 @@ import java.util.Objects;
 public class DriveList extends ListFragment {
 
     //Création d'un tag pour les log
+    // Tag use for LOG.i
     private static final String TAG = "DriveTAGList";
 
     //Récupération de l'id
+    // Variable use for the user's id
     int userID;
 
     //Création de la liste qui va recevoir les données des destinations
+    //List which will recive the destinations data
     List<Drive> data = new ArrayList();
 
 
