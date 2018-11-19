@@ -54,7 +54,7 @@ public class EditPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_password);
-        setTitle("Edit password ");
+        setTitle(getString(R.string.txt_edit_pwd));
 
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
@@ -66,7 +66,7 @@ public class EditPasswordActivity extends AppCompatActivity {
 
         txt_new_password = (EditText) findViewById(R.id.edt_new_password);
         txt_old_password = (EditText) findViewById(R.id.edt_old_password);
-        txt_view_message.setText("If you want to edit your password, enter your old one");
+        txt_view_message.setText(getString(R.string.txt_to_edit_pwd));
         //Recover the intent
         intent_edit_profile_activity = getIntent();
 
@@ -79,7 +79,7 @@ public class EditPasswordActivity extends AppCompatActivity {
             surname = intent_edit_profile_activity.getStringExtra("surname");
             password = intent_edit_profile_activity.getStringExtra("password");
             phoneNumber = intent_edit_profile_activity.getIntExtra("mobileNumber", 0000000000);
-            Log.i("TAG_Old_pwd_Recup", "Password recupéré :" + password);
+            //Log.i("TAG_Old_pwd_Recup", "Password recovered :" + password);
         }
 
         btn_valid.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +96,7 @@ public class EditPasswordActivity extends AppCompatActivity {
         Log.i("TAG_new_Password", "New password : " + new_password);
 
         if (new_password.equals(old_password)){
-            Toast.makeText(getApplicationContext(), "Your actual password and your new one are the same", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.error_same_password), Toast.LENGTH_LONG).show();
         }
         else {
             if (new_password.length() < 6 && new_password.length() > 0) {
@@ -109,36 +109,35 @@ public class EditPasswordActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_password_long), Toast.LENGTH_LONG).show();
                 //Log.i("TAG_new_Password", "New password too long");
             } else {
-                Toast.makeText(getApplicationContext(), "New password okay ! ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "New password okay ! ", Toast.LENGTH_SHORT).show();
                 editDataBase(new_password);
             }
         }
     }
 
     public void checkOldPassword(){
-        Log.i("TAG_checkOldPassword", "Check old pxd");
+        Log.i("TAG_checkOldPassword", "Check old pwd");
         String oldPassword = txt_old_password.getText().toString();
    // Log.i("TAG_oldPassword", "Old password : "+ oldPassword);
         //Check if the field for old password is empty and if not, check it in the database
         if(oldPassword.length() == 0){
-            Toast.makeText(getApplicationContext(), getString(R.string.error_old_password_missing), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_missing), Toast.LENGTH_LONG).show();
             Log.i("TAG_oldPassword", "Old password null ");
         }
         else {
             //Toast.makeText(getApplicationContext(), "Old password pas null !", Toast.LENGTH_LONG).show();
-            Log.i("TAG_oldPassword", "Old password pas null !");
+            Log.i("TAG_oldPassword", "Old password not null !");
             login(oldPassword);
         }
     }
 
-
-    public void login(String oldPassword){
+    public void login(String actualPassword){
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL+"/api/auth";
-        final String password = oldPassword;
-        Log.i("TAG_old pwd", oldPassword);
+        final String password = actualPassword;
+        Log.i("TAG_actual pwd", actualPassword);
         Log.i("TAG_old pwd_param", password);
         StringRequest sr = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>(){
@@ -153,12 +152,12 @@ public class EditPasswordActivity extends AppCompatActivity {
                             if (jo.getBoolean("success")){
                                 // If it's OK, we send a temporary message to say that it's okay
                                 Log.i("TAG_old pwd_correct", "correct");
-                                Toast.makeText(getApplicationContext(), getString(R.string.error_old_password_correct), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_correct), Toast.LENGTH_SHORT).show();
                                 checkPassword();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), getString(R.string.error_old_password_incorrect), Toast.LENGTH_SHORT).show();
-                                Log.i("TAG_old pwd_incorrect", "incorrect");
+                                Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_incorrect), Toast.LENGTH_SHORT).show();
+                                Log.i("TAG_pwd_incorrect", "incorrect");
                             }
 
                         } catch (JSONException e) {

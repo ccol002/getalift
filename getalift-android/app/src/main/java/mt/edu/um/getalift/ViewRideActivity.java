@@ -96,7 +96,7 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ride = (Ride) getIntent().getExtras().getParcelable("UserRide");
-        setTitle(ride.getUser_name()+"'s route");
+        setTitle(getString(R.string.txt_driver_route,ride.getUser_name()));
 
         startingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerStartingPointLat",0.0),getIntent().getDoubleExtra("passengerStartingPointLng",0.0),0,0);
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);

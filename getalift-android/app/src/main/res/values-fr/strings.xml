@@ -147,10 +147,16 @@
     <string name="txt_error_driver">Vous êtes conducteur sur ce trajet ! Vous ne pouvez pas être ajouté en tant que passager.</string>
     <string name="txt_new_password">Nouveau Mot de Passe</string>
     <string name="txt_edit_pwd">Modifier mon mot de passe</string>
-    <string name="error_old_password_incorrect">Votre mot de passe actuel est incorrect !</string>
-    <string name="error_old_password_missing">Pour modifier votre mot de passe, vous devez taper votre mot de passe actuel !</string>
     <string name="txt_date">"Date : "</string>
     <string name="txt_at">"À : "</string>
     <string name="txt_erase_passenger">a été retiré de vos trajets</string>
+    <string name="txt_actual_password">Mot de passe actuel</string>
+    <string name="error_same_password">Votre mot de passe actuel et votre nouveau sont les mêmes</string>
+    <string name="error_actual_password_missing">Pour modifier votre mot de passe, vous devez entrer votre mot de passe actuel!</string>
+    <string name="error_actual_password_incorrect">Votre mot de passe actuel est incorrect !</string>
+    <string name="error_actual_password_correct">Votre mot de passe actuel est correct !</string>
+    <string name="txt_to_edit_pwd">Si vous voulez modifier votre mot de passe, entrez votre mot de passe actuel.</string>
+    <string name="error_password_missing">Pour modifier votre mot de passe, vous devez entrez un nouveau !</string>
+    <string name="txt_driver_route">Route de %1$s</string>
 
 </resources>

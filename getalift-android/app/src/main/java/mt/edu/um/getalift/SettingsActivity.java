@@ -141,7 +141,7 @@ public class SettingsActivity extends AppCompatActivity  {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(getContext(), "Edit profile cliquer ! " , Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "Edit profile clicked ! " , Toast.LENGTH_SHORT).show();
 
                     return true;
                 }
