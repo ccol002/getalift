@@ -40,14 +40,13 @@ import java.util.Map;
 public class ContactUsActivity extends AppCompatActivity {
 
     //Creating variables to store Layout variables
-    private TextView txtName;
-    private TextView txtPhoneNumber;
-    private TextView txtEmail;
     private TextView txtSubject;
     private TextView txtMessage;
+    private String name;
+    private String phoneNumber;
+    private String email;
 
     private Button mSendMessageButton;
-    private Button mAutoFillButton;
     private Button mClearAll;
 
     //Tag for the LOG
@@ -73,9 +72,7 @@ public class ContactUsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //We assimilate the variables created above with the Id of the layout
-        txtName = findViewById(R.id.edt_contact_name);
-        txtPhoneNumber = findViewById(R.id.edt_contact_phoneNumber);
-        txtEmail = findViewById(R.id.edt_contact_email);
+
         txtMessage = findViewById(R.id.edt_contact_message);
         txtSubject = findViewById(R.id.edt_contact_subject);
 
@@ -91,18 +88,7 @@ public class ContactUsActivity extends AppCompatActivity {
 
         //Display the buttons
         mSendMessageButton = (Button) findViewById(R.id.contact_validate_button);
-        mAutoFillButton = (Button) findViewById(R.id.contact_autofill_button);
         mClearAll = (Button) findViewById(R.id.contact_clear_button);
-
-        //Autofill all the fields with the info of the current user
-        mAutoFillButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animationLoading.start();
-                profil();
-            }
-        });
-
 
         mClearAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,33 +96,12 @@ public class ContactUsActivity extends AppCompatActivity {
                 clearAll();
             }
         });
-
-        txtName.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                }
-
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    //Stop the loading animation when the first field is filled
-                    animationLoading.stop();
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                                           }
-        });
-
-
         mSendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fillOutTheForm(view);
             }
         });
-
-
 
     }
 
@@ -155,23 +120,12 @@ public class ContactUsActivity extends AppCompatActivity {
 
     public void  fillOutTheForm(View view){
         // We retrieve what the user select in the form
-        final String name = ((EditText) findViewById(R.id.edt_contact_name)).getText().toString().trim();
-        final String phonenumber = ((EditText) findViewById(R.id.edt_contact_phoneNumber)).getText().toString().trim();
-        final String email = ((EditText) findViewById(R.id.edt_contact_email)).getText().toString().trim();
         final String message = ((EditText) findViewById(R.id.edt_contact_message)).getText().toString().trim();
         final String subject = ((EditText) findViewById(R.id.edt_contact_subject)).getText().toString().trim();
 
         //We check if all the information is correct
         // We check a bunch of things from what the user type.
-        if (name.length() < 6) {
-            Toast.makeText(getApplicationContext(), getString(R.string.error_name_short), Toast.LENGTH_SHORT).show();
-        } else if (name.length() > 63){
-            Toast.makeText(getApplicationContext(), getString(R.string.error_name_long), Toast.LENGTH_SHORT).show();
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            Toast.makeText(getApplicationContext(), getString(R.string.error_email_valid), Toast.LENGTH_SHORT).show();
-        } else if (!Patterns.PHONE.matcher(phonenumber).matches()){
-            Toast.makeText(getApplicationContext(), getString(R.string.error_phone_valid), Toast.LENGTH_SHORT).show();
-        } else if (message.length() > 500){
+       if (message.length() > 500){
             Toast.makeText(getApplicationContext(), getString(R.string.error_message_long), Toast.LENGTH_SHORT).show();
         } else if (message.length() < 20){
             Toast.makeText(getApplicationContext(), getString(R.string.error_message_short), Toast.LENGTH_SHORT).show();
@@ -203,10 +157,10 @@ public class ContactUsActivity extends AppCompatActivity {
                             JSONObject jo = new JSONArray(response).getJSONObject(0);
 
                             // Display the info of the user
-                            Log.i("Test",response);
-                            txtEmail.setText(jo.getString("email"));
-                            txtPhoneNumber.setText(jo.getString("mobileNumber"));
-                            txtName.setText(jo.getString("name")+ " " + jo.getString("surname"));
+                            //Log.i("Test",response);
+                            email = jo.getString("email");
+                            phoneNumber = jo.getString("mobileNumber");
+                            name = jo.getString("name")+ " " + jo.getString("surname");
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -236,9 +190,6 @@ public class ContactUsActivity extends AppCompatActivity {
 
     //Clear all the fields
     public void clearAll(){
-        txtEmail.setText("");
-        txtPhoneNumber.setText("");
-        txtName.setText("");
         txtMessage.setText("");
         txtSubject.setText("");
     }
@@ -250,8 +201,8 @@ public class ContactUsActivity extends AppCompatActivity {
         intentMail.setType("message/rfc822");
         intentMail.putExtra(Intent.EXTRA_EMAIL, emailList);
         intentMail.putExtra(Intent.EXTRA_SUBJECT,  txtSubject.getText());
-        intentMail.putExtra(Intent.EXTRA_TEXT, txtMessage.getText() +"\n You can call" + txtName.getText()+ " with this phone number :" + txtPhoneNumber.getText());
-        startActivity(Intent.createChooser(intentMail, getString(R.string.txt_message_of)+" " + txtName.getText()));
+        intentMail.putExtra(Intent.EXTRA_TEXT, txtMessage.getText() +"\n You can call" + name + " with this phone number :" + phoneNumber);
+        startActivity(Intent.createChooser(intentMail, getString(R.string.txt_message_of)+" " + name));
 
     }
 }

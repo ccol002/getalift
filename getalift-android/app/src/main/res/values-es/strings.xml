@@ -69,14 +69,9 @@
         <string name="txt_subject">Sujeto</string>
         <string name="txt_message">Su mensaje</string>
         <string name="btn_clear">Limpiar</string>
-        <string name="txt_about1">"¿Qué es Get A Lift? "</string>
-        <string name="txt_about2">"→ Como puede ver, es una aplicación móvil para Android. ¿Pero qué más? Esta aplicación fue diseñada para conectar a las personas que quieren hacer viajes diarios. Favorece principalmente viajes cortos y regulares. La aplicación debe permitir a los usuarios encontrar la mejor ruta ofrecida por otros usuarios. De hecho, si el usuario deja Sliema para ir a Valletta, por ejemplo, todos los días y otro usuario hace el mismo viaje o parte de este viaje, pueden ponerse en contacto y hacer el viaje juntos. Solo tomará un automóvil en lugar de dos, reduciendo el número de automóviles en la isla. "</string>
-        <string name="txt_about3">"→ Puede crear su propia cuenta desde la que puede crear uno o más viajes, guardarlos y buscar un viaje. El viaje creado puede ser su viaje cotidiano o el que quiere hacer con otro usuario. Una vez guardada, la aplicación puede compararla con otros usuarios por similitudes. Esto determinará si uno o más usuarios realizan viajes más o menos similares. "</string>
-        <string name="txt_about4">"→ Además, la aplicación debe favorecer sobre todo al conductor a menos que decida acomodarse. Para ello, se le propondrá a la persona que desee viajar con él una ruta (a pie) para llegar al punto de encuentro. Este punto de encuentro será determinado por la aplicación dependiendo de la ruta inicial y la ubicación del pasajero. "</string>
-        <string name="txt_about5">"¿Cuál es el propósito de la aplicación Get A Lift? "</string>
-        <string name="txt_about6">"→ El objetivo de la aplicación es conectar solo a los conductores y pasajeros, no se ocupará de la gestión de pagos si los hay o de la gestión de los lugares en los vehículos. Identificará los viajes de los conductores y propondrá el que es el mejor usuario que busca una ruta. La aplicación debe ser simple de usar e intuitiva. "</string>
+    <string name="txt_about3">"Esta aplicación es el resultado de una pasantía en la Universidad de Malta. "</string>
 
-        <string name="txt_faq1">"Cómo crear una cuenta ? "</string>
+    <string name="txt_faq1">"Cómo crear una cuenta ? "</string>
         <string name="txt_faq2">"→ Simplemente vaya a la página de inicio de sesión y haga clic en el botón Crear una cuenta. Luego complete los campos con sus datos personales. "</string>
         <string name="txt_faq3">Cómo crear un viaje?</string>
         <string name="txt_faq4">"→ Haga clic en Introducir destino → Complete los campos relacionados con su viaje → Haga clic en Ir Y aquí está su viaje y cree, y puede ver todos sus viajes guardados en Mis discos "</string>
@@ -162,5 +157,7 @@
     <string name="txt_to_edit_pwd">Si desea editar su contraseña, ingrese su contraseña actual.</string>
     <string name="error_password_missing">Para editar su contraseña, debe ingresar una nueva!</string>
     <string name="txt_driver_route">La ruta de %1$s</string>
+    <string name="txt_about1">Esta aplicación ha sido realizada por:      * Argann BONNEAU   * Alexandre DONY   * Thessalène JEAN-LOUIS     Con el Dr. Christian COLOMBO como tutor</string>
+    <string name="txt_about2">Contacto :   thessalene.jeanlouis@reseau.eseo.fr   alexandre.dony@reseau.eseo.fr   christian.colombo@um.edu.mt</string>
 
 </resources>

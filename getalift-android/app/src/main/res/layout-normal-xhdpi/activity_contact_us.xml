@@ -20,71 +20,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edt_contact_email"
-        android:layout_width="215dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/txt_signin_email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/edt_contact_message"
-        app:layout_constraintEnd_toEndOf="@+id/edt_contact_phoneNumber"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/edt_contact_phoneNumber"
-        app:layout_constraintTop_toBottomOf="@+id/edt_contact_phoneNumber"
-        app:layout_constraintVertical_bias="0.121" />
-
-    <EditText
-        android:id="@+id/edt_contact_name"
-        android:layout_width="215dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
-        android:ems="10"
-        android:hint="@string/txt_signin_firstname"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlb_profile" />
-
-    <EditText
-        android:id="@+id/edt_contact_phoneNumber"
-        android:layout_width="215dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="0696000000"
-        android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_contact_name" />
-
-    <EditText
         android:id="@+id/edt_contact_subject"
-        android:layout_width="215dp"
+        android:layout_width="324dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/txt_subject"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/edt_contact_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_contact_email"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edt_contact_message"
         android:layout_width="320dp"
-        android:layout_height="83dp"
+        android:layout_height="220dp"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -100,41 +53,13 @@
         android:layout_width="59dp"
         android:layout_height="50dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="160dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:layout_constraintVertical_bias="0.079"
-        app:srcCompat="@drawable/user_image" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="34dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="212dp"
-        app:layout_constraintEnd_toStartOf="@+id/edt_contact_phoneNumber"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/phone_image" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="34dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:layout_constraintVertical_bias="0.04"
-        app:srcCompat="@drawable/mail_image" />
+        app:layout_constraintVertical_bias="0.044"
+        app:srcCompat="@drawable/ic_mail_help" />
 
     <Button
         android:id="@+id/contact_validate_button"
@@ -148,19 +73,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/contact_autofill_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/btn_autofill"
-        app:layout_constraintEnd_toStartOf="@+id/contact_clear_button"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_contact_message" />
-
-    <Button
         android:id="@+id/contact_clear_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -171,7 +83,7 @@
         android:text="@string/btn_clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/contact_validate_button"
-        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_contact_message"
         app:layout_constraintVertical_bias="0.666" />
@@ -182,12 +94,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_profile"
-        app:srcCompat="@drawable/loading"
-        android:visibility="invisible"/>
+        app:srcCompat="@drawable/loading" />
 
 
 </android.support.constraint.ConstraintLayout>

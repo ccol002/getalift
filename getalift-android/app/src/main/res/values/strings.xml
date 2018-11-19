@@ -91,12 +91,9 @@
 
     <string name="txt_message_of">Message of </string>
 
-    <string name="txt_about1"> What is Get A Lift ?</string>
-    <string name="txt_about2">" → As you can see, it’s an mobile application for Android. But what else ? This application was designed to connect people who want to make daily commutes. It mainly favors short and regular trips.   The application must allow users to find the best route offered by other users. Indeed, if the user leaves Sliema to go to Valletta for example every day and another user makes the same trip or part of this journey, they can be put in contact and make the trip together. It will only take one car instead of two, reducing the number of cars on the island.   "</string>
-    <string name="txt_about3">" → He can create his own account from which he can create one or more trips, save them and search for a trip.  The trip created can be his daily commute or the one he wants to do with another user. Once saved, the app can compare it to other users for similarities. This will determine if one or more users are making more or less similar journeys."</string>
-    <string name="txt_about4">" → In addition, the application must above all favor the driver unless he decides to be accommodating.          To do this, it will be proposed to the person wishing to travel with him a route (on foot) to reach the meeting point.          This meeting point will be determined by the application depending on the initial route and the location of the passenger.  "</string>
-    <string name="txt_about5"> What is the purpose of the Get A Lift App’ ? </string>
-    <string name="txt_about6">" → The purpose of the app is to connect only drivers and passengers, will not take care of the payment management if there is any, or the management of the places in the vehicles.          It will identify the journeys of the drivers and propose the one which is the best users seeking a route.          The application must be simple to use and intuitive. "</string>
+    <string name="txt_about3"> This application is the result of an internship in the University Of Malta</string>
+    <string name="txt_about2"> Contact : \n thessalene.jeanlouis@reseau.eseo.fr \n alexandre.dony@reseau.eseo.fr \n christian.colombo@um.edu.mt</string>
+    <string name="txt_about1"> This application has been made by : \n \n * Argann BONNEAU \n * Alexandre DONY \n * Thessalène JEAN-LOUIS \n \n With Dr Christian COLOMBO as tutor</string>
 
     <!-- Strings related to FAQ Page -->
 
@@ -191,11 +188,15 @@
     <string name="txt_at">At : </string>
 
 
-    <!-- Text for ViewRideActivityInfo -->
+    <!-- Text for ViewRideActivityInfo and ViewRideActivity -->
     <string name="txt_driver_route">%1$s\'s route</string>
     <string name="txt_confirm_ride">Confirm ride</string>
     <string name="title_ViewRideInfo_activity">Get A Lift - Ride\'s Info</string>
     <string name="txt_error_driver">You are driver on this ride ! You can\'t be added as passenger.</string>
+    <string name="txt_meeting_point">Meeting point with the driver</string>
+    <string name="txt_meeting">The driver arrives at : %1$s</string>
+    <string name="txt_dropping">The driver drops you at : %1$s</string>
+    <string name="txt_dropping_point">Dropping point with the driver</string>
 
     <!-- Strings related to Rating  Page -->
     <string name="error_rate_exists">You already have rate this user.</string>

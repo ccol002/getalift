@@ -148,7 +148,7 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
                 .position(origin)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                 .snippet(adressOrigin)
-                .alpha(0.7f)
+                .alpha(0f)
                 .title(getString(R.string.txt_new_origin_point)));
 
         destination = new LatLng(endingPoint.getLat(),endingPoint.getLng());
@@ -157,7 +157,7 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
                 .position(destination)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 .snippet(adressDestination)
-                .alpha(0.7f)
+                .alpha(0f)
                 .title(getString(R.string.txt_new_destination_point)));
 
         //To draw the route between the two markers
@@ -173,20 +173,22 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
         /** Creating the polyline of the driver's route*/
         originDriver = new LatLng(ride.getStartLat(), ride.getStartLng());
         adressOriginDriver = getAddressFromLocation(originDriver.latitude, originDriver.longitude, this);
-        Marker marker1 = mMap.addMarker(new MarkerOptions()
-                .position(originDriver)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                .snippet(adressOriginDriver)
-                .title("Origin driver"));
-
-        destinationDriver = new LatLng(ride.getEndLat(), ride.getEndLng());
-        adressDestinationDriver = getAddressFromLocation(destinationDriver.latitude, destinationDriver.longitude, this);
-        Marker marker2 = mMap.addMarker(new MarkerOptions()
-                .position(destinationDriver)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                .snippet(adressDestinationDriver)
-                .title("Destination driver"));
-
+       // if(originDriver != origin) {
+            Marker marker1 = mMap.addMarker(new MarkerOptions()
+                    .position(originDriver)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                    .snippet(adressOriginDriver)
+                    .title("Origin driver"));
+       // }
+       // if(destinationDriver != destination) {
+            destinationDriver = new LatLng(ride.getEndLat(), ride.getEndLng());
+            adressDestinationDriver = getAddressFromLocation(destinationDriver.latitude, destinationDriver.longitude, this);
+            Marker marker2 = mMap.addMarker(new MarkerOptions()
+                    .position(destinationDriver)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                    .snippet(adressDestinationDriver)
+                    .title("Destination driver"));
+       // }
         //To draw the route between the two markers
         ViewRideActivity.DownloadTask downloadTask = new ViewRideActivity.DownloadTask(Color.RED);
         // Getting URL to the Google Directions API
@@ -197,16 +199,21 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
         //Setting the meeting points markers (starting point and ending point)
         int seconds_from_start = (int) ride.getClosestPointStart().getSeconds_from_start()/60;
         LatLng meeting_point = new LatLng(meetingPoint.getLat(),meetingPoint.getLng());
-        mMap.addMarker(new MarkerOptions().position(meeting_point)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                .alpha(1f)
-                .title("Meeting point with the driver").snippet("The driver arrives at "+ getIntent().getStringExtra("meetingTime")));
-
-        LatLng dropping_point = new LatLng(droppingPoint.getLat(),droppingPoint.getLng());
-        mMap.addMarker(new MarkerOptions().position(dropping_point)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                .alpha(1f)
-                .title("Dropping point").snippet("The driver drops you at "+ getIntent().getStringExtra("droppingTime")));
+        if(meeting_point != originDriver && meeting_point != origin) {
+            mMap.addMarker(new MarkerOptions().position(meeting_point)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    .alpha(1f)
+                    .title(getString(R.string.txt_meeting_point))
+                    .snippet(getString(R.string.txt_meeting,getIntent().getStringExtra("meetingTime"))));
+        }
+        LatLng dropping_point = new LatLng(droppingPoint.getLat(), droppingPoint.getLng());
+        if(dropping_point != destination && dropping_point != destinationDriver) {
+            mMap.addMarker(new MarkerOptions().position(dropping_point)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    .alpha(1f)
+                    .title(getString(R.string.txt_dropping_point))
+                    .snippet(getString(R.string.txt_dropping,getIntent().getStringExtra("droppingTime"))));
+        }
     }
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
