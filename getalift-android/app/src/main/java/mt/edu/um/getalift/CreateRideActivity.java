@@ -166,6 +166,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
         @Override
         public void onMarkerDrag(Marker marker) {
+            //If a ride is already drawn, suppress it before to draw another one
             if(line != null){
                 line.remove();
             }
@@ -201,6 +202,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
 
         @Override
         public void onMarkerDragStart(Marker marker) {
+            //line.remove();
             marker.hideInfoWindow();
         }
     };
