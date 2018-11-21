@@ -148,8 +148,9 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
                 .position(origin)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                 .snippet(adressOrigin)
-                .alpha(0f)
+                .alpha(0.7f)
                 .title(getString(R.string.txt_new_origin_point)));
+        marker3.setZIndex(1);
 
         destination = new LatLng(endingPoint.getLat(),endingPoint.getLng());
         adressDestination= getAddressFromLocation(destination.latitude, destination.longitude, this);
@@ -157,8 +158,9 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
                 .position(destination)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 .snippet(adressDestination)
-                .alpha(0f)
+                .alpha(0.7f)
                 .title(getString(R.string.txt_new_destination_point)));
+        marker4.setZIndex(1);
 
         //To draw the route between the two markers
         ViewRideActivity.DownloadTask downloadTask = new ViewRideActivity.DownloadTask(Color.RED);
@@ -179,6 +181,7 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                     .snippet(adressOriginDriver)
                     .title("Origin driver"));
+            marker1.setZIndex(3);
        // }
        // if(destinationDriver != destination) {
             destinationDriver = new LatLng(ride.getEndLat(), ride.getEndLng());
@@ -188,6 +191,7 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                     .snippet(adressDestinationDriver)
                     .title("Destination driver"));
+            marker2.setZIndex(3);
        // }
         //To draw the route between the two markers
         ViewRideActivity.DownloadTask downloadTask = new ViewRideActivity.DownloadTask(Color.RED);
@@ -294,6 +298,7 @@ public class ViewRideActivity extends AppCompatActivity implements OnMapReadyCal
                 lineOptions.width(12);
                 if(color==0) {
                     lineOptions.color(Color.rgb(12,232,0));
+                    lineOptions.zIndex(2);
                     //lineOptions.color(Color.YELLOW);
                 }else if(color==1){
                     lineOptions.color(Color.RED);

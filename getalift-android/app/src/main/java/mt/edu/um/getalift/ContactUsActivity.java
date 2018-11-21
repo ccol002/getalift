@@ -68,7 +68,6 @@ public class ContactUsActivity extends AppCompatActivity {
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //We assimilate the variables created above with the Id of the layout
