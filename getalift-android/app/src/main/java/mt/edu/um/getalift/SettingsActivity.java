@@ -1,5 +1,6 @@
 package mt.edu.um.getalift;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -110,7 +111,8 @@ public class SettingsActivity extends AppCompatActivity  {
     }
 
     //Preference Fragment for teh settings screen
-    public static class MyPreferenceFragment extends PreferenceFragment {
+    @SuppressLint("ValidFragment")
+    public  class MyPreferenceFragment extends PreferenceFragment {
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -124,25 +126,10 @@ public class SettingsActivity extends AppCompatActivity  {
                 public boolean onPreferenceClick(Preference preference) {
                     //open intent here
                     //Transfer of the information of the user for the EditProfile page
+                    String pwd_no_crypted = getIntent().getStringExtra("password_no_crypted");
                     Intent intentEditProfile = new Intent(getActivity(), EditProfileActivity.class);
+                    intentEditProfile.putExtra("password_no_crypted", pwd_no_crypted);
                     startActivity(intentEditProfile);
-                    SharedPreferences sh = getContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
-                    try {
-                        JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
-                        Log.i("Home", Integer.toString(user.getInt("id"), 0));
-                        intentEditProfile.putExtra("userId", user.getInt("id"));
-                        intentEditProfile.putExtra("name", user.getString("name"));
-                        intentEditProfile.putExtra("username", user.getString("username"));
-                        intentEditProfile.putExtra("email", user.getString("email"));
-                        intentEditProfile.putExtra("surname", user.getString("surname"));
-                        intentEditProfile.putExtra("password", user.getString("password"));
-                        intentEditProfile.putExtra("mobileNumber", user.getInt("mobileNumber"));
-                        startActivity(intentEditProfile);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                   // Toast.makeText(getContext(), "Edit profile clicked ! " , Toast.LENGTH_SHORT).show();
-
                     return true;
                 }
 
@@ -154,25 +141,10 @@ public class SettingsActivity extends AppCompatActivity  {
                 public boolean onPreferenceClick(Preference preference) {
                     //open intent here
                     //Transfer of the information of the user for the EditProfile page
+                    String pwd_no_crypted = getIntent().getStringExtra("password_no_crypted");
                     Intent intentEditProfile = new Intent(getActivity(), EditPasswordActivity.class);
+                    intentEditProfile.putExtra("password_no_crypted", pwd_no_crypted);
                     startActivity(intentEditProfile);
-                    SharedPreferences sh = getContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
-                    try {
-                        JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
-                        Log.i("Home", Integer.toString(user.getInt("id"), 0));
-                        intentEditProfile.putExtra("userId", user.getInt("id"));
-                        intentEditProfile.putExtra("name", user.getString("name"));
-                        intentEditProfile.putExtra("username", user.getString("username"));
-                        intentEditProfile.putExtra("email", user.getString("email"));
-                        intentEditProfile.putExtra("surname", user.getString("surname"));
-                        intentEditProfile.putExtra("password", user.getString("password"));
-                        intentEditProfile.putExtra("mobileNumber", user.getInt("mobileNumber"));
-                        startActivity(intentEditProfile);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    Toast.makeText(getContext(), "Edit profile cliquer ! " , Toast.LENGTH_SHORT).show();
-
                     return true;
                 }
 

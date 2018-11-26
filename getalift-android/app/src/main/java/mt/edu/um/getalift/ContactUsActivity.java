@@ -71,14 +71,22 @@ public class ContactUsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //We assimilate the variables created above with the Id of the layout
-
         txtMessage = findViewById(R.id.edt_contact_message);
         txtSubject = findViewById(R.id.edt_contact_subject);
 
-        // Recovering the ID of the current user
-        intent_profile_activity = getIntent();
-        if (intent_profile_activity != null) {
-            userID = intent_profile_activity.getIntExtra("userId",0);
+        //Retrieve info of the current user
+        SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+        JSONObject user = null;
+        try {
+            user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+            name = user.getString("name");
+            //We don't realy need his email because the sendMail() method redirect him to an app in his device to send the mail so,
+            // automatically if the app has his email, it will send with this one
+
+            email = user.getString("email");
+            phoneNumber =user.getString("");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
         //Animation for loading

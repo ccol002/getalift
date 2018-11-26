@@ -33,8 +33,6 @@ import java.util.Map;
 /**  Created by Jean-Louis Thessalène   31-10-2018 **/
 public class EditPasswordActivity extends AppCompatActivity {
 
-    //Creation of the intent recovering the ID of the user
-    Intent intent_edit_profile_activity;
     private int userID;
     private String username ;
     private String name;
@@ -67,21 +65,29 @@ public class EditPasswordActivity extends AppCompatActivity {
         txt_new_password = (EditText) findViewById(R.id.edt_new_password);
         txt_old_password = (EditText) findViewById(R.id.edt_old_password);
         txt_view_message.setText(getString(R.string.txt_to_edit_pwd));
-        //Recover the intent
-        intent_edit_profile_activity = getIntent();
 
-        //Recover user's info already saved in his profile to fill out the parameters that it doesn't want to change
-        if (intent_edit_profile_activity != null) {
-            userID = intent_edit_profile_activity.getIntExtra("userId",0);
-            username = intent_edit_profile_activity.getStringExtra("username");
-            name = intent_edit_profile_activity.getStringExtra("name");
-            email = intent_edit_profile_activity.getStringExtra("email");
-            surname = intent_edit_profile_activity.getStringExtra("surname");
-            password = intent_edit_profile_activity.getStringExtra("password");
-            phoneNumber = intent_edit_profile_activity.getIntExtra("mobileNumber", 0000000000);
-            //Log.i("TAG_Old_pwd_Recup", "Password recovered :" + password);
+        //Because in the back-end the request crypt the password before to edit the database, and in sharedPref, we have the pwd crypted
+        //So  retrieve the pwd entered while connexion and I transfer it to this page.
+        String passwordNoCrypted = getIntent().getStringExtra("password_no_crypted");
+        password = passwordNoCrypted;
+        //Retrieve info of the current user
+        SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+        JSONObject user = null;
+        try {
+            user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+            userID = user.getInt("id");
+            username = user.getString("username");
+           // password = user.getString("password");
+            //Log.i("TAG_pwdCrypte", password);
+            name = user.getString("name");
+            surname = user.getString("surname");
+            //We don't realy need his email because the sendMail() method redirect him to an app in his device to send the mail so,
+            // automatically if the app has his email, it will send with this one
+            email = user.getString("email");
+            phoneNumber =user.getInt("mobileNumber");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
         btn_valid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,17 +122,15 @@ public class EditPasswordActivity extends AppCompatActivity {
     }
 
     public void checkOldPassword(){
-        Log.i("TAG_checkOldPassword", "Check old pwd");
         String oldPassword = txt_old_password.getText().toString();
-   // Log.i("TAG_oldPassword", "Old password : "+ oldPassword);
-        //Check if the field for old password is empty and if not, check it in the database
+
+        //Check if the field for actual password is empty and if not, check it in the database
         if(oldPassword.length() == 0){
             Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_missing), Toast.LENGTH_LONG).show();
-            Log.i("TAG_oldPassword", "Old password null ");
+           // Log.i("TAG_oldPassword", "Actual password null ");
         }
         else {
-            //Toast.makeText(getApplicationContext(), "Old password pas null !", Toast.LENGTH_LONG).show();
-            Log.i("TAG_oldPassword", "Old password not null !");
+           // Log.i("TAG_oldPassword", "Old password not null !");
             login(oldPassword);
         }
     }
@@ -138,7 +142,6 @@ public class EditPasswordActivity extends AppCompatActivity {
         String url = ConnectionManager.SERVER_URL+"/api/auth";
         final String password = actualPassword;
         Log.i("TAG_actual pwd", actualPassword);
-        Log.i("TAG_old pwd_param", password);
         StringRequest sr = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>(){
 
@@ -148,11 +151,12 @@ public class EditPasswordActivity extends AppCompatActivity {
                         try {
                             // We create a JSONObject from the server response.
                             JSONObject jo = new JSONObject(response);
-
+                            Log.i("TAG_Response", response);
                             if (jo.getBoolean("success")){
                                 // If it's OK, we send a temporary message to say that it's okay
                                 Log.i("TAG_old pwd_correct", "correct");
                                 Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_correct), Toast.LENGTH_SHORT).show();
+                                //If teh actual pwd is correct, we check with our constraints the new one
                                 checkPassword();
 
                             } else {

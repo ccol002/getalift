@@ -197,6 +197,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
             String url = getDirectionsUrl(origin, destination);
             // Start downloading json data from Google Directions API
             downloadTask.execute(url);
+            //To show the address
             marker.showInfoWindow();
         }
 

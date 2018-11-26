@@ -131,8 +131,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                 // ... and we go to the main menu.
                                 Intent intent = new Intent(getBaseContext(), HomeMapActivity.class);
+                                intent.putExtra("password_no_crypted", password);
+                                Log.i("TAG_pwdnocryt", password);
                                 finish();
-
                                 startActivity(intent);
                             } else {
                                 Context context = getApplicationContext();

@@ -71,7 +71,6 @@ public class EditProfileActivity extends AppCompatActivity {
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // We assimilate the variables created above with the Id of the layout
@@ -80,23 +79,30 @@ public class EditProfileActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.edt_edit_email);
         txtSurname = findViewById(R.id.edt_edit_surname);
         txtUsername = findViewById(R.id.edt_edit_username);
-
         mValidButton = (Button) findViewById(R.id.btn_valid_edit_profile);
         mClearButton = (Button) findViewById(R.id.btn_clear_edit);
         //txtTestId = (TextView)findViewById(R.id.txt_test_id);
 
-        // Recovering all the informations about the user
-        intent_edit_profile_activity = getIntent();
-
-        //Recover user's info already saved in his profile to fill out the parameters that it doesn't want to change
-        if (intent_edit_profile_activity != null) {
-            userID = intent_edit_profile_activity.getIntExtra("userId",0);
-            username = intent_edit_profile_activity.getStringExtra("username");
-            name = intent_edit_profile_activity.getStringExtra("name");
-            email = intent_edit_profile_activity.getStringExtra("email");
-            surname = intent_edit_profile_activity.getStringExtra("surname");
-            password = intent_edit_profile_activity.getStringExtra("password");
-            phoneNumber = intent_edit_profile_activity.getIntExtra("mobileNumber", 0000000000);
+        //Because in the back-end the request crypt the password before to edit the database, and in sharedPref, we have the pwd crypted
+        //So  retrieve the pwd entered while connexion and I transfer it to this page.
+        String passwordNoCrypted = getIntent().getStringExtra("password_no_crypted");
+        password = passwordNoCrypted;
+        //Retrieve info of the current user
+        SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+        JSONObject user = null;
+        try {
+            user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+            userID = user.getInt("id");
+            username = user.getString("username");
+            //password = user.getString("password");
+            name = user.getString("name");
+            surname = user.getString("surname");
+            //We don't realy need his email because the sendMail() method redirect him to an app in his device to send the mail so,
+            // automatically if the app has his email, it will send with this one
+            email = user.getString("email");
+            phoneNumber =user.getInt("mobileNumber");
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
         //Actions when the user click on teh valid button
@@ -115,6 +121,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
     }
+
     //We check if all the information is correct
     private void fillOutTheEditForm() {
         // We retrieve what the user select in the form
@@ -148,7 +155,7 @@ public class EditProfileActivity extends AppCompatActivity {
         } else if (username.length() > 63){
             Toast.makeText(getApplicationContext(), getString(R.string.error_username_long), Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(getApplicationContext(), "All information is correct", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "All information is correct", Toast.LENGTH_SHORT).show();
             editDataBase();
         }
 
@@ -160,7 +167,6 @@ public class EditProfileActivity extends AppCompatActivity {
      */
     //To update the database with the new information
     public void editDataBase() {
-        fillOutTheEditForm();
         // We first setup the queue for the API Request
         RequestQueue queue = Volley.newRequestQueue(this);
         // We get the URL of the server.
@@ -182,10 +188,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        Log.d("Response", response.toString());
+                        Log.d("TAG_response_edit", response.toString());
                         Toast.makeText(getBaseContext(),"Database Updated !", Toast.LENGTH_SHORT).show();
                         NavUtils.navigateUpFromSameTask(activity);
-                                          }
+                    }
                 },
                 new Response.ErrorListener()
                 {
@@ -255,7 +261,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
 
-//Clear all the fields
+    //Clear all the fields
     public void clearAll(){
         txtName.setText("");
         txtSurname.setText("");

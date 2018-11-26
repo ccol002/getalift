@@ -416,25 +416,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                 }
 
         } else if (id == R.id.nav_settings) {
+                String pwd_no_crypted = getIntent().getStringExtra("password_no_crypted");
                 Intent intentSettings = new Intent(getBaseContext(), SettingsActivity.class);
+                intentSettings.putExtra("password_no_crypted", pwd_no_crypted);
                 startActivity(intentSettings);
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
-                try {
-                    JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
-                    Log.i("Home",Integer.toString(user.getInt("id"),0));
-                    intentSettings.putExtra("userId", user.getInt("id"));
-                    intentSettings.putExtra("name", user.getString("name"));
-                    intentSettings.putExtra("username", user.getString("username"));
-                    intentSettings.putExtra("email", user.getString("email"));
-                    intentSettings.putExtra("surname", user.getString("surname"));
-                    intentSettings.putExtra("password", user.getString("password"));
-                    intentSettings.putExtra("mobileNumber", user.getInt("mobileNumber"));
-
-                    startActivity(intentSettings);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
 
         } else if (id == R.id.nav_logout) {
             // Retrieve the default SharedPreference File
@@ -691,16 +676,16 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                     public void onResponse(String response) {
                         // We got a response from our server.
                         //Display the response of the server
-                        Log.i("TAG_response", response);
+                        //Log.i("TAG_response", response);
                         try {
                             // We create a JSONArray from the server response to have each route where
                             // there is a new passenger of our current user
                             JSONArray joArray =  new JSONArray(response);
                             int size = joArray.length();
-                            Log.i("TAG_size_response", "taille : "+size);
+                            //Log.i("TAG_size_response", "size : "+size);
 
                            if(size != 0) {
-                               Log.i("TAG_array_null", "array PAS null!!!");
+                               //Log.i("TAG_array_null", "array not null!!!");
                                for (int i = 0; i < 1; i++) {
                                    JSONObject jo_route = new JSONArray(response).getJSONObject(i);
                                    String passengerName = jo_route.getString("username");
