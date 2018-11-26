@@ -607,10 +607,10 @@ public class HomeMapActivity extends AppCompatActivity implements OnMapReadyCall
                         intent_result_search_activity.putExtra("passengerStartingPointLng", startLng);
                         intent_result_search_activity.putExtra("passengerEndingPointLat",endLat);
                         intent_result_search_activity.putExtra("passengerEndingPointLng", endLng);
-                        Log.i("TAG_startLat",Double.toString(startLat));
+                        /*Log.i("TAG_startLat",Double.toString(startLat));
                         Log.i("TAG_startLng",Double.toString(startLng));
                         Log.i("TAG_endLat",Double.toString(endLat));
-                        Log.i("TAG_endLng",Double.toString(endLng));
+                        Log.i("TAG_endLng",Double.toString(endLng));*/
 
                         try {
                             JSONObject user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));

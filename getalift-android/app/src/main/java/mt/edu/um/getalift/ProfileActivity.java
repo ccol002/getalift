@@ -46,23 +46,25 @@ public class ProfileActivity extends AppCompatActivity {
     // Tag utilsié pour les LOG
     private static final String TAG = "ProfileActivityTag";
 
-    //Création de l'intent qui récupere l'Id de l'utilisateur
+
     Intent intent_profile_activity;
     private int userID;
 
+    private String email, name, surname, username;
+
     //Variable utilisée pour passer l'appel
-    //Variable use for the phone call
+    //Variable used for the phone call
     private int phoneNumber;
 
     //Variable utilisée pour la route (rating)
-    // Variable use for the route's Id (use in the rating system)
+    // Variable used for the route's Id (use in the rating system)
     private int routeId;
 
     //Variable utilsiée pour savoir si l'utilisateur peut noter la route
-    //Variable use to know if the user can rate the route
+    //Variable used to know if the user can rate the route
     private int canRate;
 
-    //Driver ou passenger
+    //Driver or passenger
     private int role;
 
     @Override
@@ -74,7 +76,6 @@ public class ProfileActivity extends AppCompatActivity {
         // Set the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_profile);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // On assimile les variables créées plus haut avec les Id des layout
@@ -86,11 +87,24 @@ public class ProfileActivity extends AppCompatActivity {
         txtNote = findViewById(R.id.textNote);
         txtRate = findViewById(R.id.textAdd);
 
-        // On recupere l'Id
-        intent_profile_activity = getIntent();
+        //Retrieve info of the current user
+        SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+        JSONObject user = null;
+        try {
+            user = new JSONObject(sh.getString(getString(R.string.msc_saved_user), null));
+            userID = user.getInt("id");
+            username = user.getString("username");
+            name = user.getString("name");
+            surname = user.getString("surname");
+            email = user.getString("email");
+            phoneNumber =user.getInt("mobileNumber");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        intent_profile_activity = getIntent();
         if (intent_profile_activity != null) {
-            userID = intent_profile_activity.getIntExtra("userId",0);
+           // userID = intent_profile_activity.getIntExtra("userId",0);
             routeId = intent_profile_activity.getIntExtra("routeId",0);
             canRate = intent_profile_activity.getIntExtra("canRate",0);
             role = intent_profile_activity.getIntExtra("role",3);
@@ -104,6 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
         // Same thing for the rate
         txtRate.setOnClickListener(txtRateBtn);
 
+        Log.i("TAG_profile", "profile");
         profil();
     }
 
@@ -118,56 +133,13 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-
     }
 
     public void profil(){
-        // We first setup the queue for the API Request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/users/" + Integer.toString(userID);
-
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-
-                    @Override
-                    public void onResponse(String response) {
-                        // We got a response from our server.
-                        try {
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-
-                            // On affiche les données de l'utilisateur
-                            // We display
-                            txtUser.setText(jo.getString("surname"));
-                            txtEmail.setText(jo.getString("email"));
-                            txtPhone.setText(jo.getString("mobileNumber"));
-                            txtName.setText(jo.getString("name")+ " " + jo.getString("username"));
-
-                            phoneNumber = Integer.parseInt(jo.getString("mobileNumber"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
-                    }
-
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
-                params.put("x-access-token", sh.getString("token", null));
-                return params;
-            }
-        };
-        queue.add(sr);
+        txtEmail.setText(email);
+        txtName.setText(name + " " + surname);
+        txtPhone.setText(" " + phoneNumber);
+        txtUser.setText(username);
     }
 
     // Pour passer l'appel

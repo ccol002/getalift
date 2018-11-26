@@ -89,11 +89,11 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         startingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerStartingPointLat",0.0),getIntent().getDoubleExtra("passengerStartingPointLng",0.0),0,0);
         endingPoint = new MyPoint(0,getIntent().getDoubleExtra("passengerEndingPointLat",0.0),getIntent().getDoubleExtra("passengerEndingPointLng",0.0),0,0);
 
-        Log.i("TAG_START", startingPoint.getLng().toString());
-        Log.i("TAG_END", endingPoint.getLng().toString());
+        //Log.i("TAG_START", startingPoint.getLng().toString());
+        //Log.i("TAG_END", endingPoint.getLng().toString());
 
         View view = findViewById(android.R.id.content);
-        Snackbar.make(view, getString(R.string.txt_edit_create_route) + "   \n \n", Snackbar.LENGTH_LONG)
+        Snackbar.make(view, getString(R.string.txt_edit_create_route) + "   \n \n", 7000)
                     .setAction("Action", null).show();
 
     }
@@ -419,7 +419,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         outState.putDouble("originSaved_lng", origin.longitude);
         outState.putDouble("destinationSaved_lat", destination.latitude);
         outState.putDouble("destinationSaved_lng", destination.latitude);
-        Log.i("TAG_SavedInstance", "onSaveInstanceState()");
+        //Log.i("TAG_SavedInstance", "onSaveInstanceState()");
     }
 
     @Override
@@ -429,7 +429,7 @@ public class CreateRideActivity extends AppCompatActivity implements OnMapReadyC
         Bundle si = savedInstanceState;
         origin = new LatLng(si.getDouble("originSaved_lat"),si.getDouble("originSaved_lng"));
         destination = new LatLng(si.getDouble("destinationSaved_lat"),si.getDouble("destinationSaved_lng"));
-        Log.i("onRestoreInstanceState", "onRestoreInstanceState()");
+        //Log.i("onRestoreInstanceState", "onRestoreInstanceState()");
 
     }
 

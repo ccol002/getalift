@@ -96,7 +96,7 @@ public class ResultSearchActivity extends AppCompatActivity {
 
     private void populateRideList() {
         String response = getIntent().getStringExtra("JSON_RESULT");
-        Log.i(TAG, "JSON_RESULT "+response);
+        //Log.i(TAG, "JSON_RESULT "+response);
         try {
             JSONArray res = new JSONArray(response);
             int user_id;
@@ -183,10 +183,10 @@ public class ResultSearchActivity extends AppCompatActivity {
                 int routeId = selectedItem.getRoute_id();
 
 
-                Log.i(TAG,"Selected item size: "+selectedItem.getRoutePoints().size());
+               // Log.i(TAG,"Selected item size: "+selectedItem.getRoutePoints().size());
 
                 Double test = getIntent().getDoubleExtra("passengerStartingPointLat",0.0);
-                Log.i(TAG, "Passenger starting point :"+ Double.toString(test));
+              //  Log.i(TAG, "Passenger starting point :"+ Double.toString(test));
                 Intent intent = new Intent(getApplicationContext(), ViewRideActivity.class);
                 intent.putExtra("UserRide", selectedItem);
                 intent.putExtra("JSON_RESULT", getIntent().getStringExtra("JSON_RESULT"));

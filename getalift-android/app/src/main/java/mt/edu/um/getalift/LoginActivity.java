@@ -116,19 +116,16 @@ public class LoginActivity extends AppCompatActivity {
                                     getString(R.string.msc_shared_pref_filename),
                                     Context.MODE_PRIVATE
                                 );
-
                                 SharedPreferences.Editor edit = sharedPreferences.edit();
                                 edit.putString(
                                         getString(R.string.msc_key_saved_token),
                                         jo.getString("token")
                                 );
-
                                 edit.putString(
                                         getString(R.string.msc_saved_user),
                                         jo.getJSONObject("user").toString()
                                 );
                                 edit.apply();
-
                                 // ... and we go to the main menu.
                                 Intent intent = new Intent(getBaseContext(), HomeMapActivity.class);
                                 intent.putExtra("password_no_crypted", password);
