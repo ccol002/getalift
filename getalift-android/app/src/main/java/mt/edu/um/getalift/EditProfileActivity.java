@@ -209,9 +209,8 @@ public class EditProfileActivity extends AppCompatActivity {
             public Map<String, String> getHeaders()
             {
                 Map<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
-                //or try with this:
-                headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                headers.put("x-access-token", sh.getString("token", null));
                 headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
             }

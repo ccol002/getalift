@@ -147,54 +147,6 @@ public class ContactUsActivity extends AppCompatActivity {
 
     }
 
-    public void profil(){
-        // We first setup the queue for the API Request
-        RequestQueue queue = Volley.newRequestQueue(this);
-        // We get the URL of the server.
-        String url = ConnectionManager.SERVER_URL+"/api/users/" + Integer.toString(userID);
-
-        StringRequest sr = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>(){
-
-                    @Override
-                    public void onResponse(String response) {
-                        // We got a response from our server.
-                        try {
-                            // We create a JSONObject from the server response.
-                            JSONObject jo = new JSONArray(response).getJSONObject(0);
-
-                            // Display the info of the user
-                            //Log.i("Test",response);
-                            email = jo.getString("email");
-                            phoneNumber = jo.getString("mobileNumber");
-                            name = jo.getString("name")+ " " + jo.getString("surname");
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener(){
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, error.toString());
-                    }
-
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename), Context.MODE_PRIVATE);
-                params.put("x-access-token", sh.getString("token", null));
-                return params;
-            }
-        };
-        queue.add(sr);
-
-    }
-
     //Clear all the fields
     public void clearAll(){
         txtMessage.setText("");

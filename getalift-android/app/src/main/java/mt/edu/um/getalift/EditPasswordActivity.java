@@ -61,7 +61,6 @@ public class EditPasswordActivity extends AppCompatActivity {
 
         txt_view_message = findViewById(R.id.txt_view_edit_pwd);
         btn_valid = findViewById(R.id.btn_valid_edit_pwd);
-
         txt_new_password = (EditText) findViewById(R.id.edt_new_password);
         txt_old_password = (EditText) findViewById(R.id.edt_old_password);
         txt_view_message.setText(getString(R.string.txt_to_edit_pwd));
@@ -99,7 +98,6 @@ public class EditPasswordActivity extends AppCompatActivity {
     public void checkPassword(){
         String new_password = txt_new_password.getText().toString();
         String old_password = txt_old_password.getText().toString();
-        Log.i("TAG_new_Password", "New password : " + new_password);
 
         if (new_password.equals(old_password)){
             Toast.makeText(getApplicationContext(), getString(R.string.error_same_password), Toast.LENGTH_LONG).show();
@@ -107,13 +105,10 @@ public class EditPasswordActivity extends AppCompatActivity {
         else {
             if (new_password.length() < 6 && new_password.length() > 0) {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_password_short), Toast.LENGTH_LONG).show();
-                //Log.i("TAG_new_Password", "New password too short");
             } else if (new_password.length() == 0) {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_password_missing), Toast.LENGTH_LONG).show();
-                //Log.i("TAG_new_Password", "New password null");
             } else if (new_password.length() > 63) {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_password_long), Toast.LENGTH_LONG).show();
-                //Log.i("TAG_new_Password", "New password too long");
             } else {
                 //Toast.makeText(getApplicationContext(), "New password okay ! ", Toast.LENGTH_SHORT).show();
                 editDataBase(new_password);
@@ -127,10 +122,8 @@ public class EditPasswordActivity extends AppCompatActivity {
         //Check if the field for actual password is empty and if not, check it in the database
         if(oldPassword.length() == 0){
             Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_missing), Toast.LENGTH_LONG).show();
-           // Log.i("TAG_oldPassword", "Actual password null ");
         }
         else {
-           // Log.i("TAG_oldPassword", "Old password not null !");
             login(oldPassword);
         }
     }
@@ -141,7 +134,6 @@ public class EditPasswordActivity extends AppCompatActivity {
         // We get the URL of the server.
         String url = ConnectionManager.SERVER_URL+"/api/auth";
         final String password = actualPassword;
-        Log.i("TAG_actual pwd", actualPassword);
         StringRequest sr = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>(){
 
@@ -158,7 +150,6 @@ public class EditPasswordActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_correct), Toast.LENGTH_SHORT).show();
                                 //If teh actual pwd is correct, we check with our constraints the new one
                                 checkPassword();
-
                             } else {
                                 Toast.makeText(getApplicationContext(), getString(R.string.error_actual_password_incorrect), Toast.LENGTH_SHORT).show();
                                 Log.i("TAG_pwd_incorrect", "incorrect");
@@ -235,9 +226,8 @@ public class EditPasswordActivity extends AppCompatActivity {
             public Map<String, String> getHeaders()
             {
                 Map<String, String> headers = new HashMap<String, String>();
-                //headers.put("Content-Type", "application/json");
-                //or try with this:
-                headers.put("x-access-token", "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJkb2RvIiwicGFzc3dvcmQiOiIkMmIkMTAkTGhNLnVCZ1YyL2JkYW9nbHpRUkNVZS5XL2Z0QTdnUG5mdEp2NC5JWFlGeGtCamplNVhVOHEiLCJuYW1lIjoiZG9kbyIsInN1cm5hbWUiOiJkb2RvIiwiZW1haWwiOiJkb2RvQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjA2MDYwNjA2MDYiLCJpc1ZlcmlmaWVkIjowfQ.kWqjMDwA6iwcNDXEYYzgHHnMwnCOwBHBX9aDHHi3gKo");
+                SharedPreferences sh = getApplicationContext().getSharedPreferences(getString(R.string.msc_shared_pref_filename),Context.MODE_PRIVATE);
+                headers.put("x-access-token", sh.getString("token", null));
                 headers.put("Content-Type", "application/x-www-form-urlencoded");
                 return headers;
             }
