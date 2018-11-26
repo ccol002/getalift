@@ -113,7 +113,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
-
         mClearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

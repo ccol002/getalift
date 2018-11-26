@@ -46,6 +46,7 @@ public class SettingsActivity extends AppCompatActivity  {
     private String email_txt;
     private String surname_txt;
     private String password_txt;
+    private String pwd_no_crypted;
     private int phone_txt;
 
     @Override
@@ -62,24 +63,17 @@ public class SettingsActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        pwd_no_crypted = getIntent().getStringExtra("password_no_crypted");
+
+
+
         //Display view of the buttons
         mValidButtonSettings = (Button) findViewById(R.id.btn_valid_settings);
-
-        // Recovering of all teh information of the user
-        intent_profile_activity = getIntent();
-        if (intent_profile_activity != null) {
-            userID = intent_profile_activity.getIntExtra("userId",0);
-            name_txt = intent_profile_activity.getStringExtra("name");
-            username_txt = intent_profile_activity.getStringExtra("username");
-            email_txt = intent_profile_activity.getStringExtra("email");
-            surname_txt = intent_profile_activity.getStringExtra("surname");
-            password_txt = intent_profile_activity.getStringExtra("password");
-            phone_txt = intent_profile_activity.getIntExtra("mobileNumber", 000000000000);
-        }
-
+        Log.i("TAG_settings", "settings1");
         // Display the settings screen in the frameLayout of the activity_settings (replace it by that)
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
 
+        Log.i("TAG_settings", "settings2");
         //When the user click on validate the language of the application changes in function of the choice of the user
         mValidButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +120,6 @@ public class SettingsActivity extends AppCompatActivity  {
                 public boolean onPreferenceClick(Preference preference) {
                     //open intent here
                     //Transfer of the information of the user for the EditProfile page
-                    String pwd_no_crypted = getIntent().getStringExtra("password_no_crypted");
                     Intent intentEditProfile = new Intent(getActivity(), EditProfileActivity.class);
                     intentEditProfile.putExtra("password_no_crypted", pwd_no_crypted);
                     startActivity(intentEditProfile);
@@ -141,7 +134,6 @@ public class SettingsActivity extends AppCompatActivity  {
                 public boolean onPreferenceClick(Preference preference) {
                     //open intent here
                     //Transfer of the information of the user for the EditProfile page
-                    String pwd_no_crypted = getIntent().getStringExtra("password_no_crypted");
                     Intent intentEditProfile = new Intent(getActivity(), EditPasswordActivity.class);
                     intentEditProfile.putExtra("password_no_crypted", pwd_no_crypted);
                     startActivity(intentEditProfile);

@@ -20,11 +20,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     //Layout which will contain the settings screen
+
     <FrameLayout
         android:id="@+id/content_frame"
-        android:layout_below="@+id/tlb_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="392dp"
+        android:layout_below="@+id/tlb_profile" />
 
     <Button
         android:id="@+id/btn_valid_settings"
